@@ -2,11 +2,15 @@
 				sys-check cli-dev-tools brew brew-install brew-setup \
 				default-user-shell sh-symlink
 
+# force make to use bash to interpret the recipes
+# NOTE: default shell used my make is /bin/sh
+SHELL := /bin/bash
+
 # vars
 SYSTEM := $(shell uname -s)
 
 # folders
-DOTFILES := ${HOME}/.dotfiles
+DOTFILES := $$HOME/.dotfiles
 BREWFILE := $(DOTFILES)/Brewfile
 
 # paths
@@ -23,7 +27,7 @@ core: zsh ssh git
 
 zsh: default-user-shell sh-symlink
 
-sys-check: 
+sys-check:
 	if [ "$(SYSTEM)" != "Darwin" ]; then \
 		echo "Nope! it only works for macos"; 
 		exit 1;
