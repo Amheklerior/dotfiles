@@ -1,14 +1,25 @@
 .PHONY: bootstrap prepare packages core link settings dev-env wrapup \
-				cli-dev-tools brew brew-install brew-setup
+				sys-check cli-dev-tools brew brew-install brew-setup
 
+# vars
+SYSTEM := $(shell uname -s)
+
+# folders
 DOTFILES := ${HOME}/.dotfiles
 BREWFILE := $(DOTFILES)/Brewfile
 
+
 bootstrap: prepare packages core link settings dev-env wrapup
 
-prepare: cli-dev-tools brew
+prepare: sys-check cli-dev-tools brew
 
 brew: brew-install brew-setup
+
+sys-check: 
+	if [ "$(SYSTEM)" != "Darwin" ]; then \
+		echo "Nope! it only works for macos"; 
+		exit 1; 
+	fi
 
 cli-dev-tools: 
 	xcode-select --install
