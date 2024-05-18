@@ -27,10 +27,11 @@ core: zsh ssh git
 
 zsh: default-user-shell sh-symlink
 
-sys-check:
-	if [ "$(SYSTEM)" != "Darwin" ]; then \
-		echo "Nope! it only works for macos"; 
-		exit 1;
+sys-check: 
+	if [ "$(SYSTEM)" == "Darwin" ]; then \
+		echo "sys-check: OK!"; \
+	else \
+		echo "sys-check: KO! It only works on macos" && exit 1; \
 	fi
 
 # TODO: find a way to automate installation without user intervention (this opens a dialog)
