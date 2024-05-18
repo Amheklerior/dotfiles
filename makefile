@@ -13,9 +13,9 @@ BREWFILE := $(DOTFILES)/Brewfile
 HOMEBREW_ZSH_PATH := /opt/homebrew/bin/zsh
 
 
-bootstrap: prepare packages core link settings dev-env wrapup
+prepare: sys-check cli-dev-tools
 
-prepare: sys-check cli-dev-tools brew
+bootstrap: brew packages core link settings dev-env wrapup
 
 brew: brew-install brew-setup
 
@@ -26,9 +26,10 @@ zsh: default-user-shell sh-symlink
 sys-check: 
 	if [ "$(SYSTEM)" != "Darwin" ]; then \
 		echo "Nope! it only works for macos"; 
-		exit 1; 
+		exit 1;
 	fi
 
+# TODO: find a way to automate installation without user intervention (this opens a dialog)
 cli-dev-tools: 
 	xcode-select --install
 
