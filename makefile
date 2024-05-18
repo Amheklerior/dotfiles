@@ -36,7 +36,7 @@ sys-check:
 
 # TODO: find a way to automate installation without user intervention (this opens a dialog)
 cli-dev-tools: 
-	xcode-select --install
+	xcode-select -p >/dev/null || xcode-select --install
 
 brew-install:
 	if ! which brew; then \
