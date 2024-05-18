@@ -15,6 +15,8 @@ prepare: sys-check cli-dev-tools brew
 
 brew: brew-install brew-setup
 
+core: zsh ssh git
+
 sys-check: 
 	if [ "$(SYSTEM)" != "Darwin" ]; then \
 		echo "Nope! it only works for macos"; 
@@ -40,8 +42,14 @@ packages: brew
 	HOMEBREW_CASK_OPTS="--no-quarantine" brew bundle --file=$(BREWFILE)
 	brew cleanup
 
-core: 
-	echo "Setting up the system with the basics..."
+zsh:
+	echo "make zsh the main shell"
+
+ssh: 
+	echo "setup ssh keypairs"
+
+git: 
+	echo "setup git and git-lfs"
 
 link: 
 	echo "Linking all dotfiles..."
