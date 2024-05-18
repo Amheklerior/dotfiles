@@ -15,6 +15,7 @@ BREWFILE := $(DOTFILES)/install/Brewfile
 
 # paths
 HOMEBREW_ZSH_PATH := /opt/homebrew/bin/zsh
+SYS_SHELLS := /etc/shells
 
 
 prepare: sys-check cli-dev-tools
@@ -56,13 +57,19 @@ packages: brew-install
 # make the updated version of zsh the default shell when I open a new terminal.
 # NOTE: homebrew version of zsh must be added to the list of recognised shells, otherwise the chsh command would not allow the update 
 default-user-shell: packages
-	echo $(HOMEBREW_ZSH_PATH) | sudo tee -a /etc/shells >/dev/null
-	chsh -s $(HOMEBREW_ZSH_PATH)
+	if ! grep -Fxq $(HOMEBREW_ZSH_PATH) $(SYS_SHELLS); then \
+		echo $(HOMEBREW_ZSH_PATH) | sudo tee -a $(SYS_SHELLS) >/dev/null; \
+	fi
+	if [ $$SHELL != $(HOMEBREW_ZSH_PATH) ]; then \
+		chsh -s $(HOMEBREW_ZSH_PATH); \
+	fi
 
 # update sh symlink to points to zsh instead of bash 
 # NOTE: could not symlink to /opt/homebrew/bin/zsh, linked it to the preinstalled /bin/zsh instead
 sh-symlink:
-	sudo ln -sfv /bin/zsh /var/select/sh
+	if ! sh --version | grep -q zsh; then \
+		sudo ln -sfv /bin/zsh /var/select/sh; \
+	fi
 
 ssh: 
 	echo "setup ssh keypairs"
