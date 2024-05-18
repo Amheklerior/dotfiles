@@ -1,6 +1,6 @@
 .PHONY: bootstrap prepare packages core link settings dev-env wrapup \
 				sys-check cli-dev-tools brew brew-install brew-setup \
-				default-user-shell sh-symlink
+				zsh ssh git default-user-shell sh-symlink personal work
 
 # force make to use bash to interpret the recipes
 # NOTE: default shell used my make is /bin/sh
@@ -21,7 +21,7 @@ SYS_SHELLS := /etc/shells
 
 prepare: sys-check cli-dev-tools
 
-bootstrap: brew packages core link settings dev-env wrapup
+bootstrap: brew packages core link settings dev-env personal work wrapup
 
 brew: brew-install brew-setup
 
@@ -87,6 +87,12 @@ settings:
 
 dev-env: 
 	echo "Setting up development specific goodies..."
+
+personal:
+	echo "clone my personal repos..."
+
+work:
+	echo "clone work related repos..."
 
 wrapup:
 	brew cleanup
