@@ -11,7 +11,7 @@ SYSTEM := $(shell uname -s)
 
 # folders
 DOTFILES := $$HOME/.dotfiles
-BREWFILE := $(DOTFILES)/Brewfile
+BREWFILE := $(DOTFILES)/install/Brewfile
 
 # paths
 HOMEBREW_ZSH_PATH := /opt/homebrew/bin/zsh
@@ -49,7 +49,7 @@ brew-setup: brew-install
 
 # TODO: I might split this in 4 different steps for bins, cask-apps, mas-apps, and vscode-ext
 # NOTE: the --no-quarantine flag is addedd to avoid quaranteening downloaded cask apps 
-packages: brew
+packages: brew-install
 	HOMEBREW_CASK_OPTS="--no-quarantine" brew bundle --file=$(BREWFILE)
 	brew cleanup
 
