@@ -1,5 +1,6 @@
 .PHONY: bootstrap prepare packages core link settings dev-env wrapup \
-				sys-check cli-dev-tools brew brew-install brew-setup
+				sys-check cli-dev-tools brew brew-install brew-setup \
+				default-user-shell sh-symlink
 
 # vars
 SYSTEM := $(shell uname -s)
@@ -7,6 +8,9 @@ SYSTEM := $(shell uname -s)
 # folders
 DOTFILES := ${HOME}/.dotfiles
 BREWFILE := $(DOTFILES)/Brewfile
+
+# paths
+HOMEBREW_ZSH_PATH := /opt/homebrew/bin/zsh
 
 
 bootstrap: prepare packages core link settings dev-env wrapup
@@ -16,6 +20,8 @@ prepare: sys-check cli-dev-tools brew
 brew: brew-install brew-setup
 
 core: zsh ssh git
+
+zsh: default-user-shell sh-symlink
 
 sys-check: 
 	if [ "$(SYSTEM)" != "Darwin" ]; then \
@@ -42,8 +48,16 @@ packages: brew
 	HOMEBREW_CASK_OPTS="--no-quarantine" brew bundle --file=$(BREWFILE)
 	brew cleanup
 
-zsh:
-	echo "make zsh the main shell"
+# make the updated version of zsh the default shell when I open a new terminal.
+# NOTE: homebrew version of zsh must be added to the list of recognised shells, otherwise the chsh command would not allow the update 
+default-user-shell: packages
+	echo $(HOMEBREW_ZSH_PATH) | sudo tee -a /etc/shells >/dev/null
+	chsh -s $(HOMEBREW_ZSH_PATH)
+
+# update sh symlink to points to zsh instead of bash 
+# NOTE: could not symlink to /opt/homebrew/bin/zsh, linked it to the preinstalled /bin/zsh instead
+sh-symlink:
+	sudo ln -sfv /bin/zsh /var/select/sh
 
 ssh: 
 	echo "setup ssh keypairs"
