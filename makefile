@@ -12,6 +12,7 @@ SYSTEM := $(shell uname -s)
 # folders
 DOTFILES := $$HOME/.dotfiles
 BREWFILE := $(DOTFILES)/install/Brewfile
+SSH_KEYS := $(DOTFILES)/ssh-keys
 
 # paths
 HOMEBREW_ZSH_PATH := /opt/homebrew/bin/zsh
@@ -71,8 +72,10 @@ sh-symlink:
 		sudo ln -sfv /bin/zsh /var/select/sh; \
 	fi
 
-ssh: 
-	echo "setup ssh keypairs"
+ssh: packages
+	mkdir -p $$HOME/.ssh
+	cp $(SSH_KEYS)/* $$HOME/.ssh 
+	ansible-vault decrypt $$HOME/.ssh/personal $$HOME/.ssh/work
 
 git: 
 	echo "setup git and git-lfs"
