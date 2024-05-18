@@ -39,9 +39,8 @@ cli-dev-tools:
 	xcode-select -p >/dev/null || xcode-select --install
 
 brew-install:
-	if ! which brew; then \
-		bash -c $(shell curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh);
-	fi
+	command -v brew >/dev/null 2>&1 || \
+	bash -c $$(shell curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh);
 
 brew-setup: brew-install
 	brew analytics off
