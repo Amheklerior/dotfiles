@@ -50,10 +50,9 @@ brew-setup: brew-install
 	brew doctor
 
 # TODO: I might split this in 4 different steps for bins, cask-apps, mas-apps, and vscode-ext
-# NOTE: the --no-quarantine flag is addedd to avoid quaranteening downloaded cask apps 
+# NOTE: the --no-quarantine flag is addedd to avoid the Gatekeeper for cask apps 
 packages: brew-install
 	HOMEBREW_CASK_OPTS="--no-quarantine" brew bundle --file=$(BREWFILE)
-	brew cleanup
 
 # make the updated version of zsh the default shell when I open a new terminal.
 # NOTE: homebrew version of zsh must be added to the list of recognised shells, otherwise the chsh command would not allow the update 
@@ -90,5 +89,5 @@ dev-env:
 	echo "Setting up development specific goodies..."
 
 wrapup:
-	echo "Checks and cleanup..."
+	brew cleanup
 	echo "You're ready to rock \m/"
