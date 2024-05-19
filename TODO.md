@@ -5,14 +5,18 @@
 - [ ] Implement the makefile's steps
 - [x] Add the Brewfile for installing tools and apps
 - [x] Add ssh keys in a safe way
-- [ ] Add recovery codes in a safe way
+- [x] Add recovery codes in a safe way
 - [x] Find a way to obfuscate my personal email in the repo
 - [ ] Add dotfiles
 - [ ] Automate system preferences setup
-- [ ] Automate iTerm preferences setup
+- [ ] Add iTerm profile preferences
+- [ ] Automate app preferences setup
 - [ ] Add neovim configs
 - [ ] Add the binaries to the Brewfile
 - [ ] Add the cask-apps to the Brewfile
 - [ ] Add the mas-apps to the Brewfile
 - [ ] Add the vscode extentions to the Brewfile
 - [ ] Break down the makefile into multiple files
+- [ ] Write about the package and apps installation on the README file
+- [ ] Write about the dotfiles structure and symlinking on the README file
+- [x] Write about ssh keys and backup codes management on the README file
