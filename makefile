@@ -13,8 +13,7 @@ SHELL := /bin/bash
 
 # vars
 SYSTEM := $(shell uname -s)
-HOME_ITEMS := .zshrc .ssh
-CONFIG_ITEMS := starship.toml
+STOW_ITEMS := .zshrc .ssh starship.toml
 
 # folders
 DOTFILES := ${HOME}/.dotfiles
@@ -50,29 +49,20 @@ cli-dev-tools:
 
 backup: 
 	mkdir -p $(DOTFILES)/backup/.config
-	for item in $(HOME_ITEMS); do \
+	for item in $(STOW_ITEMS); do \
 		if [ -e "${HOME}/$$item" ]; then \
 			mv -f ${HOME}/$$item $(DOTFILES)/backup/; \
 		fi; \
 	done
-	for item in $(CONFIG_ITEMS); do \
-		if [ -e "${XDG_CONFIG_HOME}/$$item" ]; then \
-				mv -f ${XDG_CONFIG_HOME}/$$item ${DOTFILES}/backup/.config; \
-		fi \
-	done
 
 restore: unlink
-	for item in $(HOME_ITEMS); do \
+	for item in $(STOW_ITEMS); do \
  		if [ -f "${DOTFILES}/backup/$$item" ]; then \
-  		mv -f ${DOTFILES}/backup/$$item ${HOME}/; \
+  		mv -f ${DOTFILES}/backup/$$item ${HOME}/$$item; \
 		fi; \
  		if [ -d "${DOTFILES}/backup/$$item" ]; then \
+			mkdir -p ${HOME}/$$item && \
   		mv -f ${DOTFILES}/backup/$$item/* ${HOME}/$$item; \
-		fi \
-	done
-	for item in $(CONFIG_ITEMS); do \
- 		if [ -e "${DOTFILES}/backup/.config/$$item" ]; then \
-  		mv -f ${DOTFILES}/backup/.config/$$item ${XDG_CONFIG_HOME}/; \
 		fi \
 	done
 
@@ -118,7 +108,7 @@ git:
 link: packages
 	stow -d $(DOTFILES)/system -t ${HOME} .
 
-unlink:
+unlink: packages
 	stow -D -d $(DOTFILES)/system -t ${HOME} .
 
 settings:
