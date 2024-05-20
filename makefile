@@ -1,6 +1,7 @@
-.PHONY: bootstrap prepare packages core link settings dev-env wrapup \
+.PHONY: bootstrap prepare packages core settings dev-env wrapup \
 				sys-check cli-dev-tools brew brew-install brew-setup \
-				zsh ssh git default-user-shell sh-symlink personal work
+				zsh ssh git default-user-shell sh-symlink personal work \
+				link unlink backup restore
 
 # running 'make' with no specified task will run bootstrap,
 # isntead of running the first task defined in the makefile 
@@ -12,18 +13,21 @@ SHELL := /bin/bash
 
 # vars
 SYSTEM := $(shell uname -s)
+HOME_ITEMS := .zshrc .ssh
+CONFIG_ITEMS := starship.toml
 
 # folders
-DOTFILES := $$HOME/.dotfiles
+DOTFILES := ${HOME}/.dotfiles
 BREWFILE := $(DOTFILES)/install/Brewfile
 SSH_KEYS := $(DOTFILES)/ssh-keys
+XDG_CONFIG_HOME := ${HOME}/.config
 
 # paths
 HOMEBREW_ZSH_PATH := /opt/homebrew/bin/zsh
 SYS_SHELLS := /etc/shells
 
 
-prepare: sys-check cli-dev-tools
+prepare: sys-check cli-dev-tools backup
 
 bootstrap: brew packages core link settings dev-env personal work wrapup
 
@@ -43,6 +47,34 @@ sys-check:
 # TODO: find a way to automate installation without user intervention (this opens a dialog)
 cli-dev-tools: 
 	xcode-select -p >/dev/null || xcode-select --install
+
+backup: 
+	mkdir -p $(DOTFILES)/backup/.config
+	for item in $(HOME_ITEMS); do \
+		if [ -e "${HOME}/$$item" ]; then \
+			mv -f ${HOME}/$$item $(DOTFILES)/backup/; \
+		fi; \
+	done
+	for item in $(CONFIG_ITEMS); do \
+		if [ -e "${XDG_CONFIG_HOME}/$$item" ]; then \
+				mv -f ${XDG_CONFIG_HOME}/$$item ${DOTFILES}/backup/.config; \
+		fi \
+	done
+
+restore: unlink
+	for item in $(HOME_ITEMS); do \
+ 		if [ -f "${DOTFILES}/backup/$$item" ]; then \
+  		mv -f ${DOTFILES}/backup/$$item ${HOME}/; \
+		fi; \
+ 		if [ -d "${DOTFILES}/backup/$$item" ]; then \
+  		mv -f ${DOTFILES}/backup/$$item/* ${HOME}/$$item; \
+		fi \
+	done
+	for item in $(CONFIG_ITEMS); do \
+ 		if [ -e "${DOTFILES}/backup/.config/$$item" ]; then \
+  		mv -f ${DOTFILES}/backup/.config/$$item ${XDG_CONFIG_HOME}/; \
+		fi \
+	done
 
 brew-install:
 	command -v brew >/dev/null 2>&1 || \
@@ -76,16 +108,18 @@ sh-symlink:
 	fi
 
 ssh: packages
-	mkdir -p $$HOME/.ssh
-	cp $(SSH_KEYS)/* $$HOME/.ssh 
-	ansible-vault decrypt $$HOME/.ssh/personal $$HOME/.ssh/work
+	mkdir -p ${HOME}/.ssh
+	cp $(SSH_KEYS)/* ${HOME}/.ssh 
+	ansible-vault decrypt ${HOME}/.ssh/personal ${HOME}/.ssh/work
 
 git: 
 	echo "setup git and git-lfs"
 
-# Smartly symlink the whole content of the system directory into the home directory
-link: 
-	cd $(DOTFILES)/system && stow -t $$HOME
+link: packages
+	stow -d $(DOTFILES)/system -t ${HOME} .
+
+unlink:
+	stow -D -d $(DOTFILES)/system -t ${HOME} .
 
 settings:
 	echo "Setting up all system preferences..."

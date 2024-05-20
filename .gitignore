@@ -2,3 +2,6 @@
 # Homebrew related
 **/Brewfile.lock.json
 **/Brewfile.dump
+
+# dotfiles backup folder
+backup
