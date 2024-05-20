@@ -18,6 +18,16 @@ source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Setup zsh syntax highlighting
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# path to the dotfiles repo
+export DOTFILES="$HOME/.dotfiles"
+
+
+### STOW
+
+# Relink all dotfiles from the repo (clean up current files)
+# -R/--restow is equivalent to running stow -D and stow -S
+alias dotreset="stow -R -d $DOTFILES/system -t $HOME"
+
 
 ### HOMEBREW 
 
