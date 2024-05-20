@@ -83,8 +83,9 @@ ssh: packages
 git: 
 	echo "setup git and git-lfs"
 
+# Smartly symlink the whole content of the system directory into the home directory
 link: 
-	echo "Linking all dotfiles..."
+	cd $(DOTFILES)/system && stow -t $$HOME
 
 settings:
 	echo "Setting up all system preferences..."

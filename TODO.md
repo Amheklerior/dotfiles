@@ -25,6 +25,7 @@
 
 ### Nice to have:
 
+- [ ] Compartimentalize the dotfiles (separate stow trees instead of a global one)
 - [ ] Break down the makefile into multiple files
 - [ ] Write about packages/apps installation on the [README.md](/README.md)
 - [ ] Write about the dotfiles structure and symlinking on the [README.md](/README.md)
