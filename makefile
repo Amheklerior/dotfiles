@@ -2,6 +2,10 @@
 				sys-check cli-dev-tools brew brew-install brew-setup \
 				zsh ssh git default-user-shell sh-symlink personal work
 
+# running 'make' with no specified task will run bootstrap,
+# isntead of running the first task defined in the makefile 
+.DEFAULT_GOAL := bootstrap
+
 # force make to use bash to interpret the recipes
 # NOTE: default shell used my make is /bin/sh
 SHELL := /bin/bash
