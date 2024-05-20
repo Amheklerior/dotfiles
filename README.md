@@ -2,14 +2,13 @@
 
 This are my personal dotfiles.
 
-> [!NOTE] \
-> It targets macOS systems only for now.
+> **! NOTE**\
+> It only targets macOS systems at the moment.
 
 ## Installation
 
-> [!WARNING] \
-> **_WARNING: Use at your own risk!_** \
-> _If you want to use these dotfiles, feel free to do it, but please don't do it blindly. You should first fork the repo, review the code, and remove anything you don't want or need._
+> **⚠ WARNING**\
+> Use at your own risk! If you want to use these dotfiles, feel free to do so, but be careful. First fork the repo, review the code, and remove anything you don't want or need.
 
 The installation process is _idempotent_, which means that running it once or multiple times produce the same end result.
 
@@ -29,20 +28,19 @@ make prepare
 make bootstrap
 ```
 
-> [!TIP] \
-> If you're interested in what the last two commands do, have a look at the [`makefile`]().
+If you're interested in what the last two commands do, have a look at the [`makefile`](/makefile).
 
 ## Packages
 
 Packages are installed via [`homebrew`](https://brew.sh/).
 
-TODO
+<!-- TODO -->
 
 ## Dotfiles
 
 Dotfiles are not copied, but symlinked using [`GNU Stow`](https://www.gnu.org/software/stow/).
 
-TODO
+<!-- TODO -->
 
 ## Sensitive Data
 
@@ -53,13 +51,13 @@ Sensitive data are protected by encryption, using [`ansible-vault`](https://docs
 ansible-vault encrypt <sensitive-data>
 
 # it will prompt for the password used for encryption...
-ansible-vault decrypt <private-key>
+ansible-vault decrypt <sensitive-data>
 ```
 
 ### SSH keys
 
-SSH key pairs are stored under the `/ssh-keys` directory. The private keys are stored encrypted, while the public ones are stored as is.
+SSH key pairs are stored under the [`/ssh-keys`](/ssh-keys/) directory. The private keys are stored encrypted, while the public ones are stored as is.
 
 ### Backup codes
 
-Backup codes for apps/services are stored encrypted in a `*.codes` file under the `/recover-codes` directory.
+Backup codes for apps/services are stored encrypted in a `*.codes` file under the [`/backup-codes`](/backup-codes/) directory.
