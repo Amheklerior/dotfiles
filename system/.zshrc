@@ -3,6 +3,7 @@
 
 # path to the dotfiles repo
 export DOTFILES="$HOME/.dotfiles"
+export TMP="$DOTFILES/tmp"
 
 # reset dotfiles
 # -R/--restow: equivalent to unstow && stow
@@ -18,24 +19,22 @@ alias edot="$EDITOR $DOTFILES"
 alias sdot="source ~/.zshrc"
 
 # clear /tmp directory
-alias clean="rm -rf $DOTFILES/tmp && mkdir -p $DOTFILES/tmp"
+alias clean="rm -rf $TMP && mkdir -p $TMP"
 
 # compare current extensions list with the default list from the brewfile
 codediff() {
-  mkdir -p $DOTFILES/tmp
-  
   # grab the default extensions list from brewfile 
-  DEFAULT=$DOTFILES/tmp/vscode_default_ext
+  DEFAULT=$TMP/vscode_default_ext
   # echo "DEFAULT:\n\n" > $DEFAULT
   cat $HOMEBREW_BUNDLE_FILE | rg vscode | sed "s/vscode \"\(.*\)\"/\1/" > $DEFAULT
 
   # grab the current extensions list
-  CURRENT=$DOTFILES/tmp/vscode_current_ext
+  CURRENT=$TMP/vscode_current_ext
   # echo "CURRENT:\n\n" > $CURRENT
   code --list-extensions > $CURRENT
 
   # show differences
-  diff --side-by-side $DEFAULT $CURRENT
+  riff $DEFAULT $CURRENT
 }
 
 ### HOMEBREW 
@@ -59,7 +58,7 @@ alias breset="brew bundle install --file=$HOMEBREW_BUNDLE_FILE && brew bundle cl
 #
 # NOTE: using a separate brewfile for dumping the current list of packages/apps, 
 # as I want to keep direct control over what gets inside the actual Brewfile
-alias bdump="brew bundle dump --force --describe --file=$HOMEBREW_BUNDLE_FILE.dump"
+alias bdump="brew bundle dump --force --describe --file=$TMP/Brewfile.dump"
 
 
 ### PATHS
