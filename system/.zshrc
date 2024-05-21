@@ -50,3 +50,9 @@ alias breset="brew bundle install --file=$HOMEBREW_BUNDLE_FILE && brew bundle cl
 # NOTE: using a separate brewfile for dumping the current list of packages/apps, 
 # as I want to keep direct control over what gets inside the actual Brewfile
 alias bdump="brew bundle dump --force --describe --file=$HOMEBREW_BUNDLE_FILE.dump"
+
+
+### STARSHIP
+
+# Load starship
+eval "$(starship init zsh)"
