@@ -4,9 +4,18 @@
 # path to the dotfiles repo
 export DOTFILES="$HOME/.dotfiles"
 
-# Relink all dotfiles from the repo (clean up current files)
-# -R/--restow is equivalent to running stow -D and stow -S
-alias dotreset="stow -R -d $DOTFILES/system -t $HOME"
+# reset dotfiles
+# -R/--restow: equivalent to unstow && stow
+alias rdot="stow -R -d $DOTFILES/system -t $HOME"
+
+# cd into dotfiles
+alias cdot="cd $DOTFILES"
+
+# edit dotfiles
+alias edot="$EDITOR $DOTFILES"
+
+# source dotfiles
+alias sdot="source ~/.zshenv ~/.zprofile ~/.zshrc"
 
 
 ### HOMEBREW 
@@ -60,3 +69,12 @@ source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Setup zsh syntax highlighting
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+### SHELL UTILS
+
+# Load zoxide
+eval "$(zoxide init zsh)"
+
+# dropin replacement of cd
+alias cd="z"
