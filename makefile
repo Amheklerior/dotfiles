@@ -15,8 +15,9 @@ SHELL := /bin/bash
 SYSTEM := $(shell uname -s)
 STOW_ITEMS := .zshrc .ssh starship.toml
 
-# folders
+# dirs
 DOTFILES := ${HOME}/.dotfiles
+BACKUP_DIR := $(DOTFILES)/backup
 BREWFILE := $(DOTFILES)/install/Brewfile
 SSH_KEYS := $(DOTFILES)/ssh-keys
 XDG_CONFIG_HOME := ${HOME}/.config
@@ -47,22 +48,24 @@ sys-check:
 cli-dev-tools: 
 	xcode-select -p >/dev/null || xcode-select --install
 
+# move any file/dir which is NOT a symlink into the backup directory
 backup: 
-	mkdir -p $(DOTFILES)/backup/.config
+	mkdir -p $(BACKUP_DIR)/.config
 	for item in $(STOW_ITEMS); do \
-		if [ -e "${HOME}/$$item" ]; then \
-			mv -f ${HOME}/$$item $(DOTFILES)/backup/; \
+		if [ -e "${HOME}/$$item" ] && [ ! -L "${HOME}/$$item" ]; then \
+			mv -f ${HOME}/$$item $(BACKUP_DIR); \
 		fi; \
 	done
 
+# move all files/dirs from the backup dir back into their original position
 restore: unlink
 	for item in $(STOW_ITEMS); do \
- 		if [ -f "${DOTFILES}/backup/$$item" ]; then \
-  		mv -f ${DOTFILES}/backup/$$item ${HOME}/$$item; \
+ 		if [ -f "$(BACKUP_DIR)/$$item" ]; then \
+  		mv -f $(BACKUP_DIR)/$$item ${HOME}/$$item; \
 		fi; \
- 		if [ -d "${DOTFILES}/backup/$$item" ]; then \
+ 		if [ -d "$(BACKUP_DIR)/$$item" ]; then \
 			mkdir -p ${HOME}/$$item && \
-  		mv -f ${DOTFILES}/backup/$$item/* ${HOME}/$$item; \
+  		mv -f $(BACKUP_DIR)/$$item/* ${HOME}/$$item; \
 		fi \
 	done
 
