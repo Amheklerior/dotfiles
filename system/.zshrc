@@ -153,3 +153,29 @@ gwconf() {
 	git config user.name "Andrea Amato"
 	git config user.email "andrea.amato@moneyfarm.com"
 }
+
+
+### EDITOR
+
+# make nvim the default editor
+export EDITOR=nvim
+
+# shortcuts
+alias e=$EDITOR
+alias v="nvim"
+alias vim="nvim"
+
+# add vs code cli (code) to the path
+# 
+# when vascode is installed via homebrew, there's already a 'code' symlink
+# created in the process, linking to this /Application/... path. 
+# 
+# adding this to the PATH is only necessary when vscode is installed manually,
+# from UI. 
+# 
+# therefore, it should be safe to remove this since the vscode installation is
+# automated usind homebrew. Anyway, it doesn't hurt either.
+path=(
+  $path,
+  "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+)
