@@ -5,3 +5,6 @@
 
 # dotfiles backup folder
 backup
+
+# dotfiles tmp folder
+tmp

@@ -18,6 +18,7 @@ STOW_ITEMS := .zshrc .zprofile .zshenv .ssh starship.toml
 # dirs
 DOTFILES := ${HOME}/.dotfiles
 BACKUP_DIR := $(DOTFILES)/backup
+TMP_DIR := $(DOTFILES)/tmp
 BREWFILE := $(DOTFILES)/install/Brewfile
 SSH_KEYS := $(DOTFILES)/ssh-keys
 XDG_CONFIG_HOME := ${HOME}/.config
@@ -108,7 +109,7 @@ ssh: packages
 git: 
 	echo "setup git and git-lfs"
 
-link: packages
+link: packages ssh
 	stow -d $(DOTFILES)/system -t ${HOME} .
 
 unlink: packages
@@ -128,4 +129,5 @@ work:
 
 wrapup:
 	brew cleanup
+	mkdir -p $(TMP_DIR)
 	echo "You're ready to rock \m/"
