@@ -78,3 +78,28 @@ eval "$(zoxide init zsh)"
 
 # dropin replacement of cd
 alias cd="z"
+
+
+# Setup bat color theme
+export BAT_THEME=gruvbox-dark
+
+# Setup bat as man pager
+export MANPAGER="sh -c 'col -bx | bat --language=man --style=plain'"
+# ...only if you experience formatting issues with man pages
+# export MANROFFOPT="-c"
+
+# Integrate bat to the -h and --help command options
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+
+# dropin replacement of cat 
+alias cat="bat"
+
+# integrate syntax highlighting to the tail command
+alias watch="tail -f $1 | bat --paging=never -l log"
+
+# preview and set a bat theme
+setbat() {
+  export BAT_THEME=$(bat --list-themes | fzf --preview="bat --theme={} --color=always $HOME/.zshrc")
+}
+
