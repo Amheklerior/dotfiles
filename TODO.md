@@ -4,27 +4,28 @@
 
 - [x] Init the repository
 - [x] Create a basic makefile for automating installation on a new system
-- [ ] Implement the makefile's steps
+- [x] Implement the makefile's steps
 - [x] Add the Brewfile for installing tools and apps
 - [x] Add ssh keys in a safe way
 - [x] Add recovery codes in a safe way
 - [x] Find a way to obfuscate my personal email in the repo
-- [ ] Add dotfiles
+- [x] Add dotfiles
 - [x] Add the binaries to the Brewfile
 - [x] Add the cask-apps to the Brewfile
 - [x] Add the mas-apps to the Brewfile
 - [x] Add the vscode extentions to the Brewfile
+- [x] Add node configs
+- [ ] Add iTerm profile preferences
 - [ ] Add neovim configs
 
 ### Should have:
 
-- [ ] Find a way to automate command line dev tools isntallation
 - [ ] Automate macosx preferences setup
-- [ ] Add iTerm profile preferences
-- [ ] Automate app preferences setup
+- [ ] Find a way to automate command line dev tools installation
 
 ### Nice to have:
 
+- [ ] Automate iterm2 preferences setup into the makefile
 - [ ] Compartimentalize the dotfiles (separate stow trees instead of a global one)
 - [ ] Break down the makefile into multiple files
 - [ ] Break down the pakcages step in the makefile, to better manage task dependencies

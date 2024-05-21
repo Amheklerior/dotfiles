@@ -114,14 +114,15 @@ alias rg="rg --colors=match:fg:green"
 ### DEV 
 
 # git shortcuts
-alias gf='git fetch --all'
-alias gco='git checkout'
-alias gs='git status'
-alias ga='git add'
-alias gaa='git add --all'
-alias gc='git commit'
-alias gp='git push'
-alias gl='git log --oneline --graph -10'
+alias g="git"
+alias gf="git fetch --all"
+alias gco="git checkout"
+alias gs="git status"
+alias ga="git add"
+alias gaa="git add --all"
+alias gc="git commit"
+alias gp="git push"
+alias gl="git log --oneline --graph -10"
 
 # set personal git account name/email 
 gpconf() {
@@ -134,6 +135,24 @@ gwconf() {
 	git config user.name "Andrea Amato"
 	git config user.email "andrea.amato@moneyfarm.com"
 }
+
+
+# setup fnm env vars 
+# --use-on-cd: automatically run fnm use when a directory contains a `.node-version` or `.nvmrc` file
+eval "$(fnm env --use-on-cd)"
+
+# define the root directory for node isntallations
+export FNM_DIR="$HOME/.fnm"
+
+# enable corepack support for each new installation (ie. corepack enable)
+export FNM_COREPACK_ENABLED="true"
+
+# Resolve `engines.node` field in `package.json` whenever a `.node-version`/`.nvmrc` file is not present
+export FNM_RESOLVE_ENGINES="true"
+
+# node package managers shortcuts
+alias y='yarn'
+alias p='pnpm'
 
 
 ### EDITOR

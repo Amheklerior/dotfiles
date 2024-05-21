@@ -119,7 +119,9 @@ settings:
 	echo "Setting up all system preferences..."
 
 dev-env: 
-	echo "Setting up development specific goodies..."
+	fnm install --lts
+	fnm install --latest
+	fnm use --latest
 
 personal:
 	echo "clone my personal repos..."
