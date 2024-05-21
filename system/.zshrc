@@ -113,3 +113,18 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # call fzf with a content previewer, using bat for syntax highlighting
 export FZF_DEFAULT_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+
+
+# exa shortcuts
+alias ls="exa --all --oneline --classify --group-directories-first --icons"
+alias ll="exa --all --long --classify --header --group --group-directories-first --icons"
+alias ld="ls --only-dirs"
+alias lld="ll --only-dirs"
+alias tree="exa --tree --all --classify --icons --group-directories-first --git-ignore"
+alias t2="tree -L2"
+alias t4="tree -L4"
+
+
+# ripgrep shortcuts
+alias grep="rg"
+alias rg="rg --colors=match:fg:green"
