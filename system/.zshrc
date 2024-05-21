@@ -1,42 +1,4 @@
 
-### DOTFILES
-
-# path to the dotfiles repo
-export DOTFILES="$HOME/.dotfiles"
-export TMP="$DOTFILES/tmp"
-
-# reset dotfiles
-# -R/--restow: equivalent to unstow && stow
-alias rdot="stow -R -d $DOTFILES/system -t $HOME"
-
-# cd into dotfiles
-alias cdot="cd $DOTFILES"
-
-# edit dotfiles
-alias edot="$EDITOR $DOTFILES"
-
-# source dotfiles
-alias sdot="source ~/.zshrc"
-
-# clear /tmp directory
-alias clean="rm -rf $TMP && mkdir -p $TMP"
-
-# compare current extensions list with the default list from the brewfile
-codediff() {
-  # grab the default extensions list from brewfile 
-  DEFAULT=$TMP/vscode_default_ext
-  # echo "DEFAULT:\n\n" > $DEFAULT
-  cat $HOMEBREW_BUNDLE_FILE | rg vscode | sed "s/vscode \"\(.*\)\"/\1/" > $DEFAULT
-
-  # grab the current extensions list
-  CURRENT=$TMP/vscode_current_ext
-  # echo "CURRENT:\n\n" > $CURRENT
-  code --list-extensions > $CURRENT
-
-  # show differences
-  riff $DEFAULT $CURRENT
-}
-
 ### HOMEBREW 
 
 # set PATH, MANPATH, etc. for Homebrew
@@ -198,3 +160,78 @@ path=(
   $path,
   "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 )
+
+
+### DOTFILES
+
+# path to the dotfiles repo
+export DOTFILES="$HOME/.dotfiles"
+export TMP="$DOTFILES/tmp"
+
+# reset dotfiles
+# -R/--restow: equivalent to unstow && stow
+alias rdot="stow -R -d $DOTFILES/system -t $HOME"
+
+# cd into dotfiles
+alias cdot="cd $DOTFILES"
+
+# edit dotfiles
+alias edot="$EDITOR $DOTFILES"
+
+# source dotfiles
+alias sdot="source ~/.zshrc"
+
+# clear /tmp directory
+alias clean="rm -rf $TMP && mkdir -p $TMP"
+
+
+# compare current brew bundle list with the default brewfile
+# TOFIX: the original brewfile should be ordered
+alias _extract_brews="rg '^brew' | sed 's/brew \"\(.*\)\"/\1/'"
+brewdiff() {
+  # get the default list of brews form the brewfile
+  local DEFAULT=$TMP/brews_default
+  cat $HOMEBREW_BUNDLE_FILE | _extract_brews > $DEFAULT
+
+  # get the current bundle list
+  local CURRENT=$TMP/brews_current
+  brew bundle dump --brews --force --file=$TMP/Brewfile.dump
+  cat $TMP/Brewfile.dump | _extract_brews > $CURRENT
+
+  # show differences
+  riff $DEFAULT $CURRENT
+}
+
+# compare the list of currently installed apps with the default list from the brewfile
+# TOFIX: the original brewfile should be ordered
+alias _extract_apps="rg '^(cask|mas)' | sed -e 's/cask \"\(.*\)\"/\1/' -e 's/mas \"\(.*\)\".*/\1/'"
+appdiff() {
+  # get the default list of cask and mas apps from the brewfile
+  local DEFAULT=$TMP/apps_default
+  cat $HOMEBREW_BUNDLE_FILE | _extract_apps > $DEFAULT
+
+  # get the list of currently installed cask and mas apps
+  local CURRENT=$TMP/apps_current
+  brew bundle dump --cask --mas --force --file=$TMP/Brewfile.dump
+  cat $TMP/Brewfile.dump | _extract_apps > $CURRENT
+
+  # show differences
+  riff $DEFAULT $CURRENT
+}
+
+# compare current extensions list for vscode with the default list from the brewfile
+alias _extract_vscode_ext="rg '^vscode' | sed 's/vscode \"\(.*\)\"/\1/'"
+codediff() {
+  # grab the default extensions list from brewfile 
+  local DEFAULT=$TMP/vscode_default_ext
+  # echo "DEFAULT:\n\n" > $DEFAULT
+  cat $HOMEBREW_BUNDLE_FILE | _extract_vscode_ext > $DEFAULT
+
+  # grab the current extensions list
+  local URRENT=$TMP/vscode_current_ext
+  # echo "CURRENT:\n\n" > $CURRENT
+  code --list-extensions > $CURRENT
+
+  # show differences
+  riff $DEFAULT $CURRENT
+}
