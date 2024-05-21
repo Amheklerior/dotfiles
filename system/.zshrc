@@ -15,7 +15,7 @@ alias cdot="cd $DOTFILES"
 alias edot="$EDITOR $DOTFILES"
 
 # source dotfiles
-alias sdot="source ~/.zshenv ~/.zprofile ~/.zshrc"
+alias sdot="source ~/.zshrc"
 
 
 ### HOMEBREW 
@@ -102,4 +102,3 @@ alias watch="tail -f $1 | bat --paging=never -l log"
 setbat() {
   export BAT_THEME=$(bat --list-themes | fzf --preview="bat --theme={} --color=always $HOME/.zshrc")
 }
-
