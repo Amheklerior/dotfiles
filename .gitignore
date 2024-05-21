@@ -3,8 +3,7 @@
 **/Brewfile.lock.json
 **/Brewfile.dump
 
-# dotfiles backup folder
+# per-system dirs
 backup
-
-# dotfiles tmp folder
 tmp
+playground

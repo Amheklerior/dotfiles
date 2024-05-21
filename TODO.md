@@ -20,7 +20,7 @@
 
 ### Should have:
 
-- [ ] Automate macosx preferences setup
+- [ ] Automate [macosx preferences](https://github.com/mathiasbynens/dotfiles/blob/main/.macos) setup
 - [ ] Find a way to automate command line dev tools installation
 
 ### Nice to have:
