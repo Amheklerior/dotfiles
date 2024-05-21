@@ -13,7 +13,7 @@ SHELL := /bin/bash
 
 # vars
 SYSTEM := $(shell uname -s)
-STOW_ITEMS := .zshrc .ssh starship.toml
+STOW_ITEMS := .zshrc .zprofile .zshenv .ssh starship.toml
 
 # dirs
 DOTFILES := ${HOME}/.dotfiles
