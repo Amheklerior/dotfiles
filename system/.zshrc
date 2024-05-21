@@ -25,7 +25,7 @@ alias bdump="brew bundle dump --force --describe --file=$TMP/Brewfile.dump"
 
 ### PATHS
 
-# ensure unique values for the path array
+# ensure unique values for the path and fpath arrays
 typeset -U path fpath
 
 # add homebrew site functions to the FPATH
@@ -69,11 +69,11 @@ export MANPAGER="sh -c 'col -bx | bat --language=man --style=plain'"
 # ...only if you experience formatting issues with man pages
 # export MANROFFOPT="-c"
 
-# integrate bat to the -h and --help command options
+# integrate bat to the `-h` and `--help` command options
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
-# dropin replacement of cat 
+# dropin replacement of cat
 alias cat="bat"
 
 # integrate syntax highlighting to the tail command
@@ -148,8 +148,8 @@ alias vim="nvim"
 
 # add vs code cli (code) to the path
 # 
-# when vascode is installed via homebrew, there's already a 'code' symlink
-# created in the process, linking to this /Application/... path. 
+# when vascode is installed via homebrew, there's already a `code` symlink
+# created in the process, linking to this `/Application/...` path. 
 # 
 # adding this to the PATH is only necessary when vscode is installed manually,
 # from UI. 
@@ -187,8 +187,9 @@ alias clean="rm -rf $TMP && mkdir -p $TMP"
 
 # compare current brew bundle list with the default brewfile
 # TOFIX: the original brewfile should be ordered
-alias _extract_brews="rg '^brew' | sed 's/brew \"\(.*\)\"/\1/'"
 brewdiff() {
+  alias _extract_brews="rg '^brew' | sed 's/brew \"\(.*\)\"/\1/'"
+
   # get the default list of brews form the brewfile
   local DEFAULT=$TMP/brews_default
   cat $HOMEBREW_BUNDLE_FILE | _extract_brews > $DEFAULT
@@ -200,12 +201,17 @@ brewdiff() {
 
   # show differences
   riff $DEFAULT $CURRENT
+
+  # cleanu
+  # TOFIX: doesn't workp
+  # unalias _extract_brews
 }
 
 # compare the list of currently installed apps with the default list from the brewfile
 # TOFIX: the original brewfile should be ordered
-alias _extract_apps="rg '^(cask|mas)' | sed -e 's/cask \"\(.*\)\"/\1/' -e 's/mas \"\(.*\)\".*/\1/'"
 appdiff() {
+  alias _extract_apps="rg '^(cask|mas)' | sed -e 's/cask \"\(.*\)\"/\1/' -e 's/mas \"\(.*\)\".*/\1/'"
+  
   # get the default list of cask and mas apps from the brewfile
   local DEFAULT=$TMP/apps_default
   cat $HOMEBREW_BUNDLE_FILE | _extract_apps > $DEFAULT
@@ -217,21 +223,28 @@ appdiff() {
 
   # show differences
   riff $DEFAULT $CURRENT
+
+  # cleanu
+  # TOFIX: doesn't workp
+  # unalias _extract_apps 
 }
 
 # compare current extensions list for vscode with the default list from the brewfile
-alias _extract_vscode_ext="rg '^vscode' | sed 's/vscode \"\(.*\)\"/\1/'"
 codediff() {
+  alias _extract_vscode_ext="rg '^vscode' | sed 's/vscode \"\(.*\)\"/\1/'"
+  
   # grab the default extensions list from brewfile 
   local DEFAULT=$TMP/vscode_default_ext
-  # echo "DEFAULT:\n\n" > $DEFAULT
   cat $HOMEBREW_BUNDLE_FILE | _extract_vscode_ext > $DEFAULT
 
   # grab the current extensions list
-  local URRENT=$TMP/vscode_current_ext
-  # echo "CURRENT:\n\n" > $CURRENT
+  local CURRENT=$TMP/vscode_current_ext
   code --list-extensions > $CURRENT
 
   # show differences
   riff $DEFAULT $CURRENT
+
+  # cleanup
+  # TOFIX: doesn't work
+  # unalias _extract_vscode_ext 
 }
