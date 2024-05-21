@@ -1,28 +1,8 @@
 
-# Ensure unique values for the path array
-typeset -U path fpath
-
-# Add site-functions to the path
-fpath=(
-  "$HOMEBREW_PREFIX/share/zsh/site-functions",
-  $fpath,
-)
-
-# Load the completion functions and initialize the completion system.
-# -z first unload any preloaded completion function.
-autoload -Uz compinit && compinit
-
-# Setup zsh autouggestions
-source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Setup zsh syntax highlighting
-source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+### DOTFILES
 
 # path to the dotfiles repo
 export DOTFILES="$HOME/.dotfiles"
-
-
-### STOW
 
 # Relink all dotfiles from the repo (clean up current files)
 # -R/--restow is equivalent to running stow -D and stow -S
@@ -32,6 +12,7 @@ alias dotreset="stow -R -d $DOTFILES/system -t $HOME"
 ### HOMEBREW 
 
 # Set PATH, MANPATH, etc. for Homebrew
+# NOTE: should be moved to the .zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Bypass the Gatekeeper for cask apps
@@ -52,7 +33,30 @@ alias breset="brew bundle install --file=$HOMEBREW_BUNDLE_FILE && brew bundle cl
 alias bdump="brew bundle dump --force --describe --file=$HOMEBREW_BUNDLE_FILE.dump"
 
 
-### STARSHIP
+### PATHS
+
+# Ensure unique values for the path array
+typeset -U path fpath
+
+# Add homebrew site functions to the FPATH
+# NOTE: it was already present, moved it at the top of the list.
+fpath=(
+  "$(brew --prefix)/share/zsh/site-functions"
+  $fpath
+)
+
+
+### PROMPT
+
+# Load the completion functions and initialize the completion system.
+# -z first unload any preloaded completion function.
+autoload -Uz compinit && compinit
 
 # Load starship
 eval "$(starship init zsh)"
+
+# Setup zsh autouggestions
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Setup zsh syntax highlighting
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
