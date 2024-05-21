@@ -17,6 +17,26 @@ alias edot="$EDITOR $DOTFILES"
 # source dotfiles
 alias sdot="source ~/.zshrc"
 
+# clear /tmp directory
+alias clean="rm -rf $DOTFILES/tmp && mkdir -p $DOTFILES/tmp"
+
+# compare current extensions list with the default list from the brewfile
+codediff() {
+  mkdir -p $DOTFILES/tmp
+  
+  # grab the default extensions list from brewfile 
+  DEFAULT=$DOTFILES/tmp/vscode_default_ext
+  # echo "DEFAULT:\n\n" > $DEFAULT
+  cat $HOMEBREW_BUNDLE_FILE | rg vscode | sed "s/vscode \"\(.*\)\"/\1/" > $DEFAULT
+
+  # grab the current extensions list
+  CURRENT=$DOTFILES/tmp/vscode_current_ext
+  # echo "CURRENT:\n\n" > $CURRENT
+  code --list-extensions > $CURRENT
+
+  # show differences
+  diff --side-by-side $DEFAULT $CURRENT
+}
 
 ### HOMEBREW 
 
