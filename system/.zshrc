@@ -141,13 +141,13 @@ gwconf() {
 # --use-on-cd: automatically run fnm use when a directory contains a `.node-version` or `.nvmrc` file
 eval "$(fnm env --use-on-cd)"
 
-# define the root directory for node isntallations
+# define the root directory for node installations
 export FNM_DIR="$HOME/.fnm"
 
 # enable corepack support for each new installation (ie. corepack enable)
 export FNM_COREPACK_ENABLED="true"
 
-# Resolve `engines.node` field in `package.json` whenever a `.node-version`/`.nvmrc` file is not present
+# resolve `engines.node` field in `package.json` whenever a `.node-version`/`.nvmrc` file is not present
 export FNM_RESOLVE_ENGINES="true"
 
 # node package managers shortcuts
@@ -267,3 +267,13 @@ codediff() {
   # TOFIX: doesn't work
   # unalias _extract_vscode_ext 
 }
+
+
+### UTILS 
+
+# exit shortcut
+alias q="exit"
+
+# list path/fpath  
+alias path="echo $PATH | sed 's/:/\n/g'"
+alias fpath="echo $FPATH | sed 's/:/\n/g'"
