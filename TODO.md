@@ -27,7 +27,7 @@
 
 - [ ] Automate iterm2 preferences setup into the makefile
 - [ ] Compartimentalize the dotfiles (separate stow trees instead of a global one)
-- [ ] Break down the makefile into multiple files
+- [x] Break down the makefile into multiple files
 - [ ] Break down the pakcages step in the makefile, to better manage task dependencies
 - [ ] Write about packages/apps installation on the [README.md](/README.md)
 - [ ] Write about the dotfiles structure and symlinking on the [README.md](/README.md)

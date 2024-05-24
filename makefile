@@ -1,11 +1,11 @@
-include install/env.mk
-include install/prepare.mk
-include install/brew.mk
-include install/packages.mk
-include install/core.mk
-include install/link.mk
-include install/dev.mk
-include install/settings.mk
+include install/configs/env.mk
+include install/rules/prepare.mk
+include install/rules/brew.mk
+include install/rules/packages.mk
+include install/rules/core.mk
+include install/rules/link.mk
+include install/rules/dev.mk
+include install/rules/settings.mk
 
 .PHONY: bootstrap wrapup 
 

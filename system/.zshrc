@@ -9,7 +9,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export HOMEBREW_CASK_OPTS="--no-quarantine"
 
 # the filepath to the Brewfile
-export HOMEBREW_BUNDLE_FILE="$DOTFILES/install/Brewfile"
+export HOMEBREW_BUNDLE_FILE="$DOTFILES/install/bundles/Brewfile"
 
 # shortcut to reset the system, aligning it with the original Brewfile
 alias breset="brew bundle install --file=$HOMEBREW_BUNDLE_FILE && brew bundle cleanup --file=$HOMEBREW_BUNDLE_FILE"
@@ -222,7 +222,7 @@ brewdiff() {
   riff $DEFAULT $CURRENT
 
   # cleanu
-  # TOFIX: doesn't workp
+  # TOFIX: doesn't work
   # unalias _extract_brews
 }
 
@@ -244,7 +244,7 @@ appdiff() {
   riff $DEFAULT $CURRENT
 
   # cleanu
-  # TOFIX: doesn't workp
+  # TOFIX: doesn't work
   # unalias _extract_apps 
 }
 
