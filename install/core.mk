@@ -1,6 +1,3 @@
-include install/env.mk
-include install/packages.mk
-
 .PHONY: core zsh ssh git default-user-shell sh-symlink
 
 .DEFAULT_GOAL := core

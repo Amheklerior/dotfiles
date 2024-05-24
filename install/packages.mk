@@ -1,5 +1,3 @@
-include install/brew.mk
-
 .PHONY: packages
 
 .DEFAULT_GOAL := packages

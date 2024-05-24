@@ -1,5 +1,3 @@
-include install/env.mk
-
 .PHONY: prepare sys-check cli-dev-tools backup restore
 
 .DEFAULT_GOAL := prepare

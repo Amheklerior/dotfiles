@@ -20,7 +20,8 @@ SHELL := /bin/bash
 bootstrap: brew packages core link dev settings wrapup
 
 wrapup:
-	echo "wrapping up..."
+	echo "[wrapping]: wrapping up..."
 	brew cleanup
+	echo "[wrapping]: creating folders..."
 	mkdir -p $(TMP_DIR)
-	echo "You're ready to rock \m/"
+	echo "[Done]: You're ready to rock \m/"

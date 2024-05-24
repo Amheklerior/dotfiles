@@ -1,6 +1,3 @@
-include install/env.mk
-include install/packages.mk
-
 .PHONY: link unlink
 
 .DEFAULT_GOAL := link
