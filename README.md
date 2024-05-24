@@ -21,11 +21,8 @@ git clone https://github.com/Amheklerior/dotfiles $HOME/.dotfiles
 # move into the .dotfiles directory
 cd $HOME/.dotfiles
 
-# run preliminary steps
-make prepare
-
-# install all dotfiles
-make bootstrap
+# run the install script
+./install
 ```
 
 If you're interested in what the last two commands do, have a look at the [`makefile`](/makefile).
