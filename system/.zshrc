@@ -1,4 +1,9 @@
 
+# path to the dotfiles repo
+export DOTFILES="$HOME/.dotfiles"
+export TMP="$DOTFILES/tmp"
+
+
 ### HOMEBREW 
 
 # set PATH, MANPATH, etc. for Homebrew
@@ -183,9 +188,6 @@ path=(
 
 ### DOTFILES
 
-# path to the dotfiles repo
-export DOTFILES="$HOME/.dotfiles"
-export TMP="$DOTFILES/tmp"
 
 # reset dotfiles
 # -R/--restow: equivalent to unstow && stow
@@ -205,52 +207,49 @@ alias clean="rm -rf $TMP && mkdir -p $TMP"
 
 
 # compare current brew bundle list with the default brewfile
-# TOFIX: the original brewfile should be ordered
 brewdiff() {
-  alias _extract_brews="rg '^brew' | sed 's/brew \"\(.*\)\"/\1/'"
+  local _extract_brews() {
+    rg '^brew' | sed 's/brew \"\(.*\)\"/\1/'
+  }
 
   # get the default list of brews form the brewfile
   local DEFAULT=$TMP/brews_default
-  cat $HOMEBREW_BUNDLE_FILE | _extract_brews > $DEFAULT
+  cat $HOMEBREW_BUNDLE_FILE | _extract_brews | sort > $DEFAULT
 
   # get the current bundle list
   local CURRENT=$TMP/brews_current
   brew bundle dump --brews --force --file=$TMP/Brewfile.dump
-  cat $TMP/Brewfile.dump | _extract_brews > $CURRENT
+  cat $TMP/Brewfile.dump | _extract_brews | sort > $CURRENT
 
   # show differences
+  egrep -v 
   riff $DEFAULT $CURRENT
-
-  # cleanu
-  # TOFIX: doesn't work
-  # unalias _extract_brews
 }
 
 # compare the list of currently installed apps with the default list from the brewfile
-# TOFIX: the original brewfile should be ordered
 appdiff() {
-  alias _extract_apps="rg '^(cask|mas)' | sed -e 's/cask \"\(.*\)\"/\1/' -e 's/mas \"\(.*\)\".*/\1/'"
+  local _extract_apps() {
+    rg '^(cask|mas)' | sed -e 's/cask \"\(.*\)\"/\1/' -e 's/mas \"\(.*\)\".*/\1/'
+  }
   
   # get the default list of cask and mas apps from the brewfile
   local DEFAULT=$TMP/apps_default
-  cat $HOMEBREW_BUNDLE_FILE | _extract_apps > $DEFAULT
+  cat $HOMEBREW_BUNDLE_FILE | _extract_apps | sort > $DEFAULT
 
   # get the list of currently installed cask and mas apps
   local CURRENT=$TMP/apps_current
   brew bundle dump --cask --mas --force --file=$TMP/Brewfile.dump
-  cat $TMP/Brewfile.dump | _extract_apps > $CURRENT
+  cat $TMP/Brewfile.dump | _extract_apps | sort > $CURRENT
 
   # show differences
   riff $DEFAULT $CURRENT
-
-  # cleanu
-  # TOFIX: doesn't work
-  # unalias _extract_apps 
 }
 
 # compare current extensions list for vscode with the default list from the brewfile
 codediff() {
-  alias _extract_vscode_ext="rg '^vscode' | sed 's/vscode \"\(.*\)\"/\1/'"
+  local _extract_vscode_ext() {
+    rg '^vscode' | sed 's/vscode \"\(.*\)\"/\1/'
+  }
   
   # grab the default extensions list from brewfile 
   local DEFAULT=$TMP/vscode_default_ext
@@ -262,10 +261,6 @@ codediff() {
 
   # show differences
   riff $DEFAULT $CURRENT
-
-  # cleanup
-  # TOFIX: doesn't work
-  # unalias _extract_vscode_ext 
 }
 
 
