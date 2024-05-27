@@ -38,4 +38,9 @@
 
 ### To explore:
 
-- [ ] Check out [Ansible Playbooks](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html) as an alternative to the makefile
+- [ ] [Ansible Playbooks](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html) as an alternative to the makefile
+- [ ] [smart pnpm shell completion](https://github.com/g-plane/pnpm-shell-completion)
+- [ ] [smart yarn shell completion](https://github.com/g-plane/zsh-yarn-autocompletions)
+- [ ] [ember](https://amber-lang.com/) to write bash-compiled scripts
+- [ ] [nvim-zoxide integration](https://github.com/nanotee/zoxide.vim)
+- [ ] [telescope-zoxide integration](https://github.com/jvgrootveld/telescope-zoxide)
