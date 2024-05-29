@@ -123,23 +123,10 @@ alias g="git"
 alias gf="git fetch --all"
 alias gco="git checkout"
 alias gs="git status"
-alias ga="git add"
-alias gaa="git add --all"
+alias ga="git add --all"
 alias gc="git commit"
 alias gp="git push"
 alias gl="git log --oneline --graph -10"
-
-# set personal git account name/email 
-gpconf() {
-	git config user.name "Amheklerior"
-	git config user.email "49590425+Amheklerior@users.noreply.github.com"
-}
-
-# set work git account name/email 
-gwconf() {
-	git config user.name "Andrea Amato"
-	git config user.email "andrea.amato@moneyfarm.com"
-}
 
 
 # setup fnm env vars 
