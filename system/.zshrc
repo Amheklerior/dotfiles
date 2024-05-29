@@ -117,7 +117,7 @@ alias ls="exa --all --oneline --classify --group-directories-first --icons"
 alias ll="exa --all --long --classify --header --group --group-directories-first --icons"
 alias ld="ls --only-dirs"
 alias lld="ll --only-dirs"
-alias tree="exa --tree --all --classify --icons --group-directories-first --git-ignore"
+alias tree="exa --tree --all --classify --icons --group-directories-first --git-ignore --ignore-glob .git"
 alias t2="tree -L2"
 alias t4="tree -L4"
 
