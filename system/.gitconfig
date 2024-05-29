@@ -3,3 +3,19 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[alias]
+	# commit amend shortcut
+	amend = commit --amend --reuse-message=HEAD
+	
+	# list all git aliases
+	aliases = !git config --get-regex alias | sed -e 's/alias\\.//g' -e 's/\\([a-zA-Z]*\\) /\\1:  \\t/'
+	
+	# check if on personal or work git account
+	whoami = !git config --get-regex 'user.(name|email)' | sed -e \"s/user\\.//\"
+	
+	# set personal git account name/email 
+	set-personal = !git config user.name 'Amheklerior' && git config user.email '49590425+Amheklerior@users.noreply.github.com'
+
+	# set work git account name/email 
+	set-work = !git config user.name 'Andrea Amato' && git config user.email 'andrea.amato@moneyfarm.com'
