@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+
+### brewdiff:
+### compare current brew bundle list with the default brewfile
+
+local _extract_brews() {
+  rg '^brew' | sed 's/brew \"\(.*\)\"/\1/'
+}
+
+# get the default list of brews form the brewfile
+local DEFAULT=$TMP/brews_default
+cat $HOMEBREW_BUNDLE_FILE | _extract_brews | sort > $DEFAULT
+
+# get the current bundle list
+local CURRENT=$TMP/brews_current
+brew bundle dump --brews --force --file=$TMP/Brewfile.dump
+cat $TMP/Brewfile.dump | _extract_brews | sort > $CURRENT
+
+# show differences
+git diff --no-index $DEFAULT $CURRENT

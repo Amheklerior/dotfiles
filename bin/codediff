@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+
+### codediff:
+### compare current extensions list for vscode with the default list from the brewfile
+
+local _extract_vscode_ext() {
+  rg '^vscode' | sed 's/vscode \"\(.*\)\"/\1/'
+}
+
+# grab the default extensions list from brewfile 
+local DEFAULT=$TMP/vscode_default_ext
+cat $HOMEBREW_BUNDLE_FILE | _extract_vscode_ext > $DEFAULT
+
+# grab the current extensions list
+local CURRENT=$TMP/vscode_current_ext
+code --list-extensions > $CURRENT
+
+# show differences
+git diff --no-index $DEFAULT $CURRENT

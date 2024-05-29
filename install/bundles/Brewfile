@@ -28,7 +28,6 @@ brew "nss"
 brew "ripgrep"
 brew "xh"
 brew "zoxide"
-brew "riff"
 
 # dev
 tap "oven-sh/bun"
