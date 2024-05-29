@@ -8,10 +8,6 @@ export DOTFILES="$HOME/.dotfiles"
 # path to the original dotfiles backup dir
 export BACKUP="$HOME/backup"
 
-# path to the custom tmp dir
-# NOTE: used by custom scripts
-export TMP="$HOME/tmp"
-
 # path to the bin folder
 export BIN="$DOTFILES/bin"
 
