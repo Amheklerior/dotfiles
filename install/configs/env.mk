@@ -8,7 +8,6 @@ BACKUP_DIR := ${HOME}/backup
 BREWFILE := $(DOTFILES)/install/bundles/Brewfile
 SSH_KEYS := $(DOTFILES)/ssh-keys
 XDG_CONFIG_HOME := ${HOME}/.config
-TMP_DIR := ${HOME}/tmp
 PERSONAL_DIR := ${HOME}/personal
 WORK_DIR := ${HOME}/work
 

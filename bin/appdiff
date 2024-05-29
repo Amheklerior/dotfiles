@@ -3,6 +3,7 @@
 ### appdiff:
 ### compare the list of currently installed apps with the default list from the brewfile
 
+local TMP=$(mktemp -d)
 local _extract_apps() {
   rg '^(cask|mas)' | sed -e 's/cask \"\(.*\)\"/\1/' -e 's/mas \"\(.*\)\".*/\1/'
 }
@@ -18,3 +19,6 @@ cat $TMP/Brewfile.dump | _extract_apps | sort > $CURRENT
 
 # show differences
 git diff --no-index $DEFAULT $CURRENT
+
+# cleanup temporary generated files
+rm -r $TMP
