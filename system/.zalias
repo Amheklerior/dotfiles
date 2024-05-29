@@ -65,6 +65,7 @@ alias ga="git add --all"
 alias gc="git commit"
 alias gp="git push"
 alias gl="git log --oneline --graph -15"
+alias yolo="git push origin master --force --no-verify"
 
 # dotfiles management
 alias edot="$EDITOR $DOTFILES"
