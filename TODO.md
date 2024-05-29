@@ -15,17 +15,23 @@
 - [x] Add the mas-apps to the Brewfile
 - [x] Add the vscode extentions to the Brewfile
 - [x] Add node configs
+- [ ] Add bun configs
+- [ ] Add go configs
 - [ ] Add iTerm profile preferences
-- [ ] Add neovim configs
+- [ ] Move /.dotfiles/backup to /.backup
+- [ ] Move /.dotfiles/tmp to /tmp
 
 ### Should have:
 
+- [ ] Split the .zshrc into .zshrc and .zprofile (and .zshenv?)
+- [ ] Add neovim configs
 - [ ] Automate [macosx preferences](https://github.com/mathiasbynens/dotfiles/blob/main/.macos) setup
 - [ ] Find a way to automate command line dev tools installation
 
 ### Nice to have:
 
 - [ ] Automate iterm2 preferences setup into the makefile
+- [ ] Compartimentalize shell configurations per tool
 - [ ] Compartimentalize the dotfiles (separate stow trees instead of a global one)
 - [x] Break down the makefile into multiple files
 - [x] Break down the pakcages step in the makefile, to better manage task dependencies
