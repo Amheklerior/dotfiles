@@ -1,7 +1,8 @@
 
 # path to the dotfiles repo
 export DOTFILES="$HOME/.dotfiles"
-export TMP="$DOTFILES/tmp"
+export BACKUP="$HOME/backup"
+export TMP="$HOME/tmp"
 
 
 ### HOMEBREW 

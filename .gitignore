@@ -3,7 +3,5 @@
 **/Brewfile.lock.json
 **/Brewfile.dump
 
-# per-system dirs
-backup
-tmp
+# experimentation dir
 playground

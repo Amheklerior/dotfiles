@@ -4,8 +4,8 @@ STOW_ITEMS := .zshrc .zprofile .zshenv .ssh .gitconfig starship.toml
 
 # dirs
 DOTFILES := ${HOME}/.dotfiles
-BACKUP_DIR := $(DOTFILES)/backup
-TMP_DIR := $(DOTFILES)/tmp
+BACKUP_DIR := ${HOME}/backup
+TMP_DIR := ${HOME}/tmp
 BREWFILE := $(DOTFILES)/install/bundles/Brewfile
 SSH_KEYS := $(DOTFILES)/ssh-keys
 XDG_CONFIG_HOME := ${HOME}/.config
