@@ -23,5 +23,5 @@ wrapup:
 	echo "[wrapping]: wrapping up..."
 	brew cleanup
 	echo "[wrapping]: creating folders..."
-	mkdir -p $(TMP_DIR)
+	mkdir -p $(TMP_DIR) $(PERSONAL_DIR) $(WORK_DIR)
 	echo "[Done]: You're ready to rock \m/"

@@ -5,10 +5,12 @@ STOW_ITEMS := .zshrc .zprofile .zshenv .ssh .gitconfig starship.toml
 # dirs
 DOTFILES := ${HOME}/.dotfiles
 BACKUP_DIR := ${HOME}/backup
-TMP_DIR := ${HOME}/tmp
 BREWFILE := $(DOTFILES)/install/bundles/Brewfile
 SSH_KEYS := $(DOTFILES)/ssh-keys
 XDG_CONFIG_HOME := ${HOME}/.config
+TMP_DIR := ${HOME}/tmp
+PERSONAL_DIR := ${HOME}/personal
+WORK_DIR := ${HOME}/work
 
 # paths
 HOMEBREW_ZSH_PATH := /opt/homebrew/bin/zsh
