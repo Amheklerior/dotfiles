@@ -22,6 +22,4 @@ bootstrap: brew packages core link dev settings wrapup
 wrapup:
 	echo "[wrapping]: wrapping up..."
 	brew cleanup
-	echo "[wrapping]: creating folders..."
-	mkdir -p $(PERSONAL_DIR) $(WORK_DIR)
 	echo "[Done]: You're ready to rock \m/"

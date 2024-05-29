@@ -16,7 +16,11 @@ setup-node:
 	fnm use latest
 
 personal:
+	echo "$(DEV_LOG) creating the ~/personal dir..."
+	mkdir -p $(PERSONAL_DIR)
 	echo "$(DEV_LOG) clone my personal repos..."
 
 work:
+	echo "$(DEV_LOG) creating the ~/work dir..."
+	mkdir -p $(WORK_DIR)
 	echo "$(DEV_LOG) clone work related repos..."
