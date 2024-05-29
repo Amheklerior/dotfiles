@@ -18,27 +18,28 @@
 - [x] Move /.dotfiles/backup to /.backup
 - [x] Move /.dotfiles/tmp to /tmp
 - [ ] Add iTerm profile preferences
-- [ ] Add bun configs
-- [ ] Add go configs
 
 ### Should have:
 
 - [x] Split the .zshrc into .zshrc and .zprofile and .zshenv
-- [ ] Add neovim configs
-- [ ] Add tmux (or equivalent) configs
-- [ ] Automate [macosx preferences](https://github.com/mathiasbynens/dotfiles/blob/main/.macos) setup
-- [ ] Find a way to automate command line dev tools installation
-
-### Nice to have:
-
-- [ ] Automate iterm2 preferences setup into the makefile
-- [ ] Compartimentalize shell configurations per tool
-- [ ] Compartimentalize the dotfiles (separate stow trees instead of a global one)
-- [x] Break down the makefile into multiple files
-- [x] Break down the pakcages step in the makefile, to better manage task dependencies
+- [ ] Write about the overall project structure on the [README.md](/README.md)
 - [ ] Write about packages/apps installation on the [README.md](/README.md)
 - [ ] Write about the dotfiles structure and symlinking on the [README.md](/README.md)
 - [x] Write about ssh keys and backup codes management on the [README.md](/README.md)
+- [ ] Add bun configs
+- [ ] Add go configs
+- [ ] Add neovim configs
+- [ ] Add tmux (or equivalent) configs
+
+### Nice to have:
+
+- [x] Break down the makefile into multiple files
+- [x] Break down the pakcages step in the makefile, to better manage task dependencies
+- [ ] Automate iterm2 preferences setup into the makefile
+- [ ] Automate [macosx preferences](https://github.com/mathiasbynens/dotfiles/blob/main/.macos) setup
+- [ ] Automate command line dev tools installation (ie. no dialog prompt)
+- [ ] Compartimentalize shell configurations per tool
+- [ ] Compartimentalize the dotfiles (separate stow trees instead of a global one)
 - [ ] Convert todos into [Github Issues](https://github.com/Amheklerior/dotfiles/issues)
 - [ ] Write automated tests against the installation process
 - [ ] Setup Github Actions
