@@ -66,5 +66,5 @@ export FNM_RESOLVE_ENGINES="true"
 
 ### ALIASES & FUNCTIONS
 
-source .zalias
-source .zfunc
+source $HOME/.zalias
+source $HOME/.zfunc
