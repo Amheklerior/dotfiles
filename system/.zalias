@@ -1,0 +1,92 @@
+# dropin replacements
+alias cd="z"
+alias cat="bat"
+alias grep="rg"
+alias rg="rg --colors=match:fg:green"
+
+# exit shortcut
+alias q="exit"
+alias quit="exit"
+
+# list aliases, paths, functions, ...
+alias aliases="alias | sed 's/=.*//'"
+alias func="declare -f | grep '^[a-z].* ().*$' | sed 's/().*$//g'"
+alias path="echo $PATH | sed 's/:/\n/g'"
+alias fpath="echo $FPATH | sed 's/:/\n/g'"
+
+# system
+alias afk="open /System/Library/CoreServices/ScreenSaverEngine.app"
+alias logoff="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+alias screens="system_profiler SPDisplaysDataType"
+alias cpu="sysctl -n machdep.cpu.brand_string"
+alias ram="top -l 1 -s 0 | grep PhysMem"
+
+# Recursively remove Apple meta files
+alias rmds="find . -type f -name '*.DS_Store' -ls -delete"
+alias rmad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
+
+# browsers shortcuts
+alias web="open -a /Applications/Safari.app"
+alias chrome="open -a /Applications/Google\ Chrome.app"
+
+# editing
+alias e=$EDITOR
+alias v="nvim"
+alias vim="nvim"
+alias cpwd="pwd | tr -d '\n' | pbcopy"
+
+# navigation shortcuts
+alias dot="cd $DOTFILES"
+alias personal="cd $PERSONAL"
+alias ihavenolife="cd $PERSONAL"
+alias work="cd $WORK"
+alias dl="cd ~/Downloads"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias -- -="cd -"
+
+# fs view
+alias ls="exa --all --oneline --classify --group-directories-first --icons"
+alias ll="exa --all --long --classify --header --group --group-directories-first --icons"
+alias ld="ls --only-dirs"
+alias lld="ll --only-dirs"
+alias tree="exa --tree --all --classify --icons --group-directories-first --git-ignore --ignore-glob .git"
+alias t2="tree -L2"
+alias t4="tree -L4"
+
+# git shortcuts
+alias g="git"
+alias gf="git fetch --all"
+alias gco="git checkout"
+alias gs="git status --short"
+alias ga="git add --all"
+alias gc="git commit"
+alias gp="git push"
+alias gl="git log --oneline --graph -15"
+
+# dotfiles management
+alias edot="$EDITOR $DOTFILES"
+alias sdot="source $HOME/.zshrc $HOME/.zprofile"
+alias rdot="stow -R -d $DOTFILES/system -t $HOME ."
+alias restore="stow -D -d $DOTFILES/system -t $HOME . && restore_from_backup"
+alias cleantmp="rm -rf $TMP && mkdir -p $TMP"
+
+# node package managers shortcuts
+alias y='yarn'
+alias p='pnpm'
+
+# tail log files with syntax highlighting 
+alias watch="tail -f $1 | bat --paging=never -l log"
+
+# reset the system, aligning installed packages and apps with the original Brewfile
+alias breset="brew bundle install --file=$HOMEBREW_BUNDLE_FILE && brew bundle cleanup --file=$HOMEBREW_BUNDLE_FILE"
+
+# create a list of currently installed software in the `Brewfile`.
+# --force: overrides a previously created `Brewfile`.
+# --describe: adds descriptive comments (for formulae and cask only).
+#
+# NOTE: using a separate brewfile for dumping the current list of packages/apps, 
+# as I want to keep direct control over what gets inside the actual Brewfile
+alias bdump="brew bundle dump --force --describe --file=$TMP/Brewfile.dump"
