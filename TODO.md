@@ -23,8 +23,9 @@
 
 ### Should have:
 
-- [ ] Split the .zshrc into .zshrc and .zprofile (and .zshenv?)
+- [x] Split the .zshrc into .zshrc and .zprofile and .zshenv
 - [ ] Add neovim configs
+- [ ] Add tmux (or equivalent) configs
 - [ ] Automate [macosx preferences](https://github.com/mathiasbynens/dotfiles/blob/main/.macos) setup
 - [ ] Find a way to automate command line dev tools installation
 
@@ -45,8 +46,15 @@
 ### To explore:
 
 - [ ] [Ansible Playbooks](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html) as an alternative to the makefile
+- [ ] [ThePrimeagen's tmux sessionizer script](https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer)
 - [ ] [smart pnpm shell completion](https://github.com/g-plane/pnpm-shell-completion)
 - [ ] [smart yarn shell completion](https://github.com/g-plane/zsh-yarn-autocompletions)
 - [ ] [ember](https://amber-lang.com/) to write bash-compiled scripts
 - [ ] [nvim-zoxide integration](https://github.com/nanotee/zoxide.vim)
 - [ ] [telescope-zoxide integration](https://github.com/jvgrootveld/telescope-zoxide)
+
+### Ideas:
+
+- [ ] cli for managing my dotfiles and workflow
+- [ ] cli for managing my work and personal repos
+- [ ] cli for getting my cheatsheets on commands/languages/topics
