@@ -15,11 +15,11 @@
 - [x] Add the mas-apps to the Brewfile
 - [x] Add the vscode extentions to the Brewfile
 - [x] Add node configs
+- [x] Move /.dotfiles/backup to /.backup
+- [x] Move /.dotfiles/tmp to /tmp
+- [ ] Add iTerm profile preferences
 - [ ] Add bun configs
 - [ ] Add go configs
-- [ ] Add iTerm profile preferences
-- [ ] Move /.dotfiles/backup to /.backup
-- [ ] Move /.dotfiles/tmp to /tmp
 
 ### Should have:
 
