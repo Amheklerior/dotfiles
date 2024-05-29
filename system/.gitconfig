@@ -4,6 +4,19 @@
 	process = git-lfs filter-process
 	required = true
 
+[core]
+	# make rebasing safer on macOS
+	# https://www.git-tower.com/blog/make-git-rebase-safe-on-osx
+	trustctime = false
+
+	# prevent showing files which filenames contains non-ASCII as untracked
+	# https://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+	precomposeunicode = false
+
+	# speed up commands that involve determining untracked files such as git status
+	# https://git-scm.com/docs/git-update-index#_untracked_cache
+	untrackedCache = true
+
 [alias]
 	# commit amend shortcut
 	amend = commit --amend --reuse-message=HEAD
