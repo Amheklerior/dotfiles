@@ -40,6 +40,16 @@ fpath=(
   $fpath
 )
 
+path=(
+  # add custom binaries to the path
+  "$DOTFILES/bin"
+  $path
+  # add vs code cli (code) to the path
+  # NOTE: it's already added if vscode is installed via homebrew, hence
+  # should only be necessary when vscode is installed via UI
+  "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+)
+
 
 ### PROMPT
 
@@ -157,20 +167,6 @@ alias e=$EDITOR
 alias v="nvim"
 alias vim="nvim"
 
-# add vs code cli (code) to the path
-# 
-# when vascode is installed via homebrew, there's already a `code` symlink
-# created in the process, linking to this `/Application/...` path. 
-# 
-# adding this to the PATH is only necessary when vscode is installed manually,
-# from UI. 
-# 
-# therefore, it should be safe to remove this since the vscode installation is
-# automated usind homebrew. Anyway, it doesn't hurt either.
-path=(
-  $path,
-  "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-)
 
 
 ### DOTFILES
@@ -191,65 +187,6 @@ alias sdot="source ~/.zshrc"
 
 # clear /tmp directory
 alias clean="rm -rf $TMP && mkdir -p $TMP"
-
-
-# compare current brew bundle list with the default brewfile
-brewdiff() {
-  local _extract_brews() {
-    rg '^brew' | sed 's/brew \"\(.*\)\"/\1/'
-  }
-
-  # get the default list of brews form the brewfile
-  local DEFAULT=$TMP/brews_default
-  cat $HOMEBREW_BUNDLE_FILE | _extract_brews | sort > $DEFAULT
-
-  # get the current bundle list
-  local CURRENT=$TMP/brews_current
-  brew bundle dump --brews --force --file=$TMP/Brewfile.dump
-  cat $TMP/Brewfile.dump | _extract_brews | sort > $CURRENT
-
-  # show differences
-  egrep -v 
-  riff $DEFAULT $CURRENT
-}
-
-# compare the list of currently installed apps with the default list from the brewfile
-appdiff() {
-  local _extract_apps() {
-    rg '^(cask|mas)' | sed -e 's/cask \"\(.*\)\"/\1/' -e 's/mas \"\(.*\)\".*/\1/'
-  }
-  
-  # get the default list of cask and mas apps from the brewfile
-  local DEFAULT=$TMP/apps_default
-  cat $HOMEBREW_BUNDLE_FILE | _extract_apps | sort > $DEFAULT
-
-  # get the list of currently installed cask and mas apps
-  local CURRENT=$TMP/apps_current
-  brew bundle dump --cask --mas --force --file=$TMP/Brewfile.dump
-  cat $TMP/Brewfile.dump | _extract_apps | sort > $CURRENT
-
-  # show differences
-  riff $DEFAULT $CURRENT
-}
-
-# compare current extensions list for vscode with the default list from the brewfile
-codediff() {
-  local _extract_vscode_ext() {
-    rg '^vscode' | sed 's/vscode \"\(.*\)\"/\1/'
-  }
-  
-  # grab the default extensions list from brewfile 
-  local DEFAULT=$TMP/vscode_default_ext
-  cat $HOMEBREW_BUNDLE_FILE | _extract_vscode_ext > $DEFAULT
-
-  # grab the current extensions list
-  local CURRENT=$TMP/vscode_current_ext
-  code --list-extensions > $CURRENT
-
-  # show differences
-  riff $DEFAULT $CURRENT
-}
-
 
 ### UTILS 
 
