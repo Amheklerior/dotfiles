@@ -63,6 +63,9 @@ export FNM_COREPACK_ENABLED="true"
 # resolve `engines.node` field in `package.json` whenever a `.node-version`/`.nvmrc` file is not present
 export FNM_RESOLVE_ENGINES="true"
 
+# corepack install dir
+export COREPACK_HOME="$HOME/.corepack"
+
 
 ### ALIASES & FUNCTIONS
 
