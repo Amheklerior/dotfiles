@@ -17,7 +17,7 @@
 - [x] Add node configs
 - [x] Move /.dotfiles/backup to /.backup
 - [x] Move /.dotfiles/tmp to /tmp
-- [ ] Add iTerm profile preferences
+- [x] Add iTerm profile preferences
 
 ### Should have:
 
