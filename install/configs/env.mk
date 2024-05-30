@@ -10,6 +10,8 @@ SSH_KEYS := $(DOTFILES)/ssh-keys
 XDG_CONFIG_HOME := ${HOME}/.config
 PERSONAL_DIR := ${HOME}/personal
 WORK_DIR := ${HOME}/work
+FNM_INSTALL_DIR := ${HOME}/.fnm
+COREPACK_INSTALL_DIR := ${HOME}/.corepack
 
 # paths
 HOMEBREW_ZSH_PATH := /opt/homebrew/bin/zsh
