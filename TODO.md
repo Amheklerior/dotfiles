@@ -22,9 +22,8 @@
 ### Should have:
 
 - [x] Split the .zshrc into .zshrc and .zprofile and .zshenv
-- [ ] Write about the overall project structure on the [README.md](/README.md)
-- [ ] Write about packages/apps installation on the [README.md](/README.md)
-- [ ] Write about the dotfiles structure and symlinking on the [README.md](/README.md)
+- [x] Write about packages/apps installation on the [README.md](/README.md)
+- [x] Write about the dotfiles structure and symlinking on the [README.md](/README.md)
 - [x] Write about ssh keys and backup codes management on the [README.md](/README.md)
 - [x] Add credits to the [README.md](/README.md)
 - [ ] Add bun configs

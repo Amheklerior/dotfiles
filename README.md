@@ -27,17 +27,32 @@ cd $HOME/.dotfiles
 
 If you're interested in what the last two commands do, have a look at the [`makefile`](/makefile).
 
-## Packages
+After that, go to `iterm2 > Settings > Preferences` and link the iterm2 preferences, as shown below.
 
-Packages are installed via [`homebrew`](https://brew.sh/).
+![iterm2 prefs](./docs/iterm2%20prefs.png)
 
-<!-- TODO -->
+## Homebrew
+
+[`homebrew`](https://brew.sh/) is the core tool used to install packages, applications, and vscode extensions, defined in the [Brewfile](./install/bundles/Brewfile).
+
+Run the following commands to check the current status of the system against the Brewfile:
+
+```sh
+# compare installed formulae with the Brewfile list
+brewdiff
+
+# compare installed apps with the Brewfile list
+appdiff
+
+# compare installed vscode extentions with the Brewfile list
+codediff
+```
 
 ## Dotfiles
 
-Dotfiles are not copied, but symlinked using [`GNU Stow`](https://www.gnu.org/software/stow/).
+Dotfiles are defines in the [`/system`](./system/) directory, and are symlinked using [`GNU Stow`](https://www.gnu.org/software/stow/).
 
-<!-- TODO -->
+They contains configuration for `ssh`, `git`, and the `shell`.
 
 ## Sensitive Data
 
