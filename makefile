@@ -3,7 +3,7 @@ include install/rules/prepare.mk
 include install/rules/brew.mk
 include install/rules/packages.mk
 include install/rules/core.mk
-include install/rules/link.mk
+include install/rules/stow.mk
 include install/rules/dev.mk
 include install/rules/settings.mk
 

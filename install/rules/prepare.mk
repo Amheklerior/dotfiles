@@ -1,4 +1,4 @@
-.PHONY: prepare sys-check cli-dev-tools backup restore
+.PHONY: prepare sys-check cli-dev-tools backup
 
 .DEFAULT_GOAL := prepare
 
@@ -29,17 +29,4 @@ backup:
 		if [ -e "${HOME}/$$item" ] && [ ! -L "${HOME}/$$item" ]; then \
 			mv -f ${HOME}/$$item $(BACKUP_DIR); \
 		fi; \
-	done
-
-# move all files/dirs from the backup dir back into their original position
-restore:
-	echo "$(PREPARE_LOG) restore backed up dotfiles..."
-	for item in $(STOW_ITEMS); do \
-		if [ -f "$(BACKUP_DIR)/$$item" ]; then \
-			mv -f $(BACKUP_DIR)/$$item ${HOME}/$$item; \
-		fi; \
-		if [ -d "$(BACKUP_DIR)/$$item" ]; then \
-			mkdir -p ${HOME}/$$item && \
-			mv -f $(BACKUP_DIR)/$$item/* ${HOME}/$$item; \
-		fi \
 	done
