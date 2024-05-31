@@ -26,7 +26,7 @@
 - [ ] Write about packages/apps installation on the [README.md](/README.md)
 - [ ] Write about the dotfiles structure and symlinking on the [README.md](/README.md)
 - [x] Write about ssh keys and backup codes management on the [README.md](/README.md)
-- [ ] Add credits to the [README.md](/README.md)
+- [x] Add credits to the [README.md](/README.md)
 - [ ] Add bun configs
 - [ ] Add go configs
 - [ ] Add neovim configs

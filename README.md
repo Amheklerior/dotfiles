@@ -58,3 +58,7 @@ SSH key pairs are stored under the [`/ssh-keys`](/ssh-keys/) directory. The priv
 ### Backup codes
 
 Backup codes for apps/services are stored encrypted in a `*.codes` file under the [`/backup-codes`](/backup-codes/) directory.
+
+## Credits
+
+Special thanks to the [github's dotfiles community](https://dotfiles.github.io/) which has been a great source of ideas and inspiration, to [Michael Paulson (aka The Primeagen)](https://www.youtube.com/c/ThePrimeagen) for his [_developer productivity_ course](https://frontendmasters.com/courses/developer-productivity/), and to [Patrick Mcdonald](https://twitter.com/eieioxyz) for his [_dotfiles from start to finish-ish_ course](https://www.udemy.com/course/dotfiles-from-start-to-finish-ish/).
