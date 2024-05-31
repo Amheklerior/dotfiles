@@ -69,10 +69,9 @@ alias yolo="git push origin master --force --no-verify"
 
 # dotfiles management
 alias edot="$EDITOR $DOTFILES"
-alias sdot="source $HOME/.zshrc $HOME/.zprofile"
+alias sdot="source $HOME/.zshenv $HOME/.zprofile $HOME/.zshrc"
 alias rdot="stow -R -d $DOTFILES/system -t $HOME ."
 alias restore="stow -D -d $DOTFILES/system -t $HOME . && restore_from_backup"
-alias cleantmp="rm -rf $TMP && mkdir -p $TMP"
 
 # node package managers shortcuts
 alias y='yarn'
