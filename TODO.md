@@ -15,9 +15,12 @@
 - [x] Add the mas-apps to the Brewfile
 - [x] Add the vscode extentions to the Brewfile
 - [x] Add node configs
-- [x] Move /.dotfiles/backup to /.backup
-- [x] Move /.dotfiles/tmp to /tmp
+- [x] Move /.dotfiles/backup to /backup
 - [x] Add iTerm profile preferences
+- [ ] Add bun configs
+- [ ] Add go configs
+- [ ] Add neovim configs
+- [ ] Add tmux (or equivalent) configs
 
 ### Should have:
 
@@ -26,18 +29,14 @@
 - [x] Write about the dotfiles structure and symlinking on the [README.md](/README.md)
 - [x] Write about ssh keys and backup codes management on the [README.md](/README.md)
 - [x] Add credits to the [README.md](/README.md)
-- [ ] Add bun configs
-- [ ] Add go configs
-- [ ] Add neovim configs
-- [ ] Add tmux (or equivalent) configs
+- [ ] Automate [macosx preferences](https://github.com/mathiasbynens/dotfiles/blob/main/.macos) setup
 
 ### Nice to have:
 
 - [x] Break down the makefile into multiple files
 - [x] Break down the pakcages step in the makefile, to better manage task dependencies
+- [ ] Automate command line dev tools installation (ie. no dialog prompt) or make it manual and avoid the prepare.mk altogether
 - [ ] Automate iterm2 preferences setup into the makefile
-- [ ] Automate [macosx preferences](https://github.com/mathiasbynens/dotfiles/blob/main/.macos) setup
-- [ ] Automate command line dev tools installation (ie. no dialog prompt)
 - [ ] Compartimentalize shell configurations per tool
 - [ ] Compartimentalize the dotfiles (separate stow trees instead of a global one)
 - [ ] Convert todos into [Github Issues](https://github.com/Amheklerior/dotfiles/issues)
@@ -47,14 +46,11 @@
 ### To explore:
 
 - [ ] [Ansible Playbooks](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html) as an alternative to the makefile
-- [ ] [ThePrimeagen's tmux sessionizer script](https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer)
+- [ ] [ember](https://amber-lang.com/) to write bash-compiled scripts
 - [ ] [smart pnpm shell completion](https://github.com/g-plane/pnpm-shell-completion)
 - [ ] [smart yarn shell completion](https://github.com/g-plane/zsh-yarn-autocompletions)
-- [ ] [ember](https://amber-lang.com/) to write bash-compiled scripts
-- [ ] [nvim-zoxide integration](https://github.com/nanotee/zoxide.vim)
-- [ ] [telescope-zoxide integration](https://github.com/jvgrootveld/telescope-zoxide)
 
-### Ideas:
+### Ideas:
 
 - [ ] add shell nesting level indicator to the shell prompt
 - [ ] cli for managing my dotfiles and workflow
