@@ -17,10 +17,11 @@
 - [x] Add node configs
 - [x] Move /.dotfiles/backup to /backup
 - [x] Add iTerm profile preferences
+- [ ] Move the bin dir to the home and link it with stow
+- [ ] Add tmux configs
 - [ ] Add bun configs
 - [ ] Add go configs
 - [ ] Add neovim configs
-- [ ] Add tmux (or equivalent) configs
 
 ### Should have:
 
@@ -42,6 +43,8 @@
 - [ ] Convert todos into [Github Issues](https://github.com/Amheklerior/dotfiles/issues)
 - [ ] Write automated tests against the installation process
 - [ ] Setup Github Actions
+- [ ] Adapt the installation process for Windows systems
+- [ ] Adapt the installation process for Linux systems
 
 ### To explore:
 
@@ -49,6 +52,8 @@
 - [ ] [ember](https://amber-lang.com/) to write bash-compiled scripts
 - [ ] [smart pnpm shell completion](https://github.com/g-plane/pnpm-shell-completion)
 - [ ] [smart yarn shell completion](https://github.com/g-plane/zsh-yarn-autocompletions)
+- [ ] [yabai](https://github.com/koekeishiya/yabai) for a better windows and spaces management on macOS
+- [ ] [bug.n](https://github.com/fuhsjr00/bug.n) for a better windows management on Windows
 
 ### Ideas:
 
