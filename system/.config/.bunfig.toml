@@ -1,0 +1,3 @@
+# disable analytics recording
+# https://bun.sh/docs/runtime/bunfig#telemetry
+telemetry = false
