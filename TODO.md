@@ -19,7 +19,6 @@
 - [x] Add iTerm profile preferences
 - [x] Move the /bin dir to the $home and link it with stow
 - [x] Add bun configs
-- [ ] Add go configs
 - [ ] Add neovim configs
 - [ ] Add tmux configs
 
@@ -62,3 +61,4 @@
 - [ ] cli for managing my dotfiles and workflow
 - [ ] cli for managing my work and personal repos
 - [ ] cli for getting my cheatsheets on commands/languages/topics
+- [ ] add keyboard layout
