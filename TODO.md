@@ -18,10 +18,10 @@
 - [x] Move /.dotfiles/backup to /backup
 - [x] Add iTerm profile preferences
 - [x] Move the /bin dir to the $home and link it with stow
-- [ ] Add tmux configs
-- [ ] Add bun configs
+- [x] Add bun configs
 - [ ] Add go configs
 - [ ] Add neovim configs
+- [ ] Add tmux configs
 
 ### Should have:
 
@@ -54,6 +54,7 @@
 - [ ] [smart yarn shell completion](https://github.com/g-plane/zsh-yarn-autocompletions)
 - [ ] [yabai](https://github.com/koekeishiya/yabai) for a better windows and spaces management on macOS
 - [ ] [bug.n](https://github.com/fuhsjr00/bug.n) for a better windows management on Windows
+- [ ] [git-worktree](https://git-scm.com/docs/git-worktree) workflow with bare repos
 
 ### Ideas:
 
