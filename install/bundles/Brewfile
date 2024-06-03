@@ -19,7 +19,7 @@ cask "iterm2"
 
 # utils
 brew "bat"
-brew "exa"
+brew "eza"
 brew "fd"
 brew "fzf"
 brew "jq"
