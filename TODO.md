@@ -29,6 +29,7 @@
 - [x] Write about the dotfiles structure and symlinking on the [README.md](/README.md)
 - [x] Write about ssh keys and backup codes management on the [README.md](/README.md)
 - [x] Add credits to the [README.md](/README.md)
+- [x] Add keyboard layout
 - [ ] Automate [macosx preferences](https://github.com/mathiasbynens/dotfiles/blob/main/.macos) setup
 
 ### Nice to have:
@@ -61,4 +62,3 @@
 - [ ] cli for managing my dotfiles and workflow
 - [ ] cli for managing my work and personal repos
 - [ ] cli for getting my cheatsheets on commands/languages/topics
-- [ ] add keyboard layout
