@@ -17,7 +17,7 @@
 - [x] Add node configs
 - [x] Move /.dotfiles/backup to /backup
 - [x] Add iTerm profile preferences
-- [ ] Move the bin dir to the home and link it with stow
+- [x] Move the /bin dir to the $home and link it with stow
 - [ ] Add tmux configs
 - [ ] Add bun configs
 - [ ] Add go configs

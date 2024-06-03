@@ -1,6 +1,6 @@
-include install/configs/env.mk
+include ${HOME}/.dotfiles/install/configs/env.mk
 
-.PHONY: fmt-iterm-profile link unlink relink clean check-links restore view-backup
+.PHONY: help fmt-iterm-profile link unlink relink clean check-links restore view-backup
 
 ITERM_PROFILE := $(DOTFILES)/prefs/iterm2/profile.json
 LINKED_FILES := \
@@ -12,12 +12,13 @@ LINKED_FILES := \
 	${HOME}/.gitconfig \
 	${HOME}/.ssh/config \
 	${HOME}/.ssh/known_hosts \
-	${HOME}/.config/starship.toml
+	${HOME}/.config/starship.toml \
+	${HOME}/bin
 
 # use zsh to interpret the recipes
 SHELL := /bin/zsh
 
-what-can-i-do: 
+help: 
 	head $(DOTFILES)/dev.mk | grep ".PHONY:" | sed -e "s/\.PHONY: //" -e "s/ /\n/g"
 
 fmt-iterm-profile: 
@@ -41,7 +42,7 @@ clean:
 
 # NOTE: it just list all the dotfiles (they should all appear as symlinks)
 check-links:
-	exa --all --long --classify --header --icons --group-directories-first $(LINKED_FILES)
+	exa --all --long --list-dirs --classify --header --icons --group-directories-first $(LINKED_FILES)
 
 # copies all files/dirs from the backup dir back into their original position
 restore:

@@ -17,7 +17,7 @@ export DOTFILES="$HOME/.dotfiles"
 export BACKUP="$HOME/backup"
 
 # path to the bin folder
-export BIN="$DOTFILES/bin"
+export BIN="$HOME/bin"
 
 # ensure unique values for the path and fpath arrays
 typeset -U path fpath
