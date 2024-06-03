@@ -19,6 +19,11 @@ export BACKUP="$HOME/backup"
 # path to the bin folder
 export BIN="$HOME/bin"
 
+# disable telemetry and data collection for apps and services
+# IMPORTANT: it's not universally honored/supported across all software
+# NOTE: `not consent` if set to `1`, `consent` if set with any other value or not set at all
+export DO_NOT_TRACK=1
+
 # ensure unique values for the path and fpath arrays
 typeset -U path fpath
 
