@@ -27,20 +27,3 @@ path=(
   $BIN
   $path
 )
-
-
-### FUNCTIONS
-
-# restore the original system dotfiles from backup
-# TODO: could pass the items as arguments
-restore_from_backup() {
-  local items = ".zshrc .zprofile .zshenv .ssh .gitconfig starship.toml"
-  for item in $items; do
-		if [ -f "$BACKUP_DIR/$item" ]; then
-			mv -f $BACKUP_DIR/$item $HOME/$item
-		fi
-		if [ -d "$BACKUP_DIR/$item" ]; then
-			mkdir -p $HOME/$item && mv -f $BACKUP_DIR/$item/* $HOME/$item
-		fi
-	done
-}
