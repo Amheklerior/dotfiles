@@ -27,13 +27,16 @@ cd $HOME/.dotfiles
 
 If you're interested in what the last two commands do, have a look at the [`makefile`](/makefile).
 
-After that, go to `iterm2 > Settings > Preferences` and link the iterm2 preferences, as shown below.
+After that, you are all set. You might now [import system and app related preferences](/docs/prefs/prefs.md)
 
-![iterm2 prefs](./docs/iterm2%20prefs.png)
+## Preferences
+
+System wide and app related preferences are stored in the [`/prefs`](/prefs/) directory, as well as keyboard layouts.
+They are all separated by target (one dir for each target).
 
 ## Homebrew
 
-[`homebrew`](https://brew.sh/) is the core tool used to install packages, applications, and vscode extensions, defined in the [Brewfile](./install/bundles/Brewfile).
+[`homebrew`](https://brew.sh/) is the core tool used to install packages, applications, and vscode extensions, defined in the [Brewfile](/install/bundles/Brewfile).
 
 Run the following commands to check the current status of the system against the Brewfile:
 
@@ -50,7 +53,7 @@ codediff
 
 ## Dotfiles
 
-Dotfiles are defines in the [`/system`](./system/) directory, and are symlinked using [`GNU Stow`](https://www.gnu.org/software/stow/).
+Dotfiles are defines in the [`/system`](/system/) directory, and are symlinked using [`GNU Stow`](https://www.gnu.org/software/stow/).
 
 They contains configuration for `ssh`, `git`, and the `shell`.
 
