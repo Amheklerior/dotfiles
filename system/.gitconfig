@@ -1,3 +1,16 @@
+[init]
+	defaultBranch = main
+
+[pull]
+	# git pull works as git pull --rebase by default
+	rebase = true
+
+[rerere]
+	# enable "reuse recorded resolutions" to avoid solving the same conflicts
+	# over and over again during rebase operations on long-living branches
+	# https://git-scm.com/book/en/v2/Git-Tools-Rerere
+	enabled = true
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
