@@ -1,14 +1,14 @@
 # dotfiles
 
-This are my personal dotfiles.
+This is my personal dotfiles repo. Feel free to explore it, copy bits and pieces for your own dotfiles, or fork the whole repo and use them.
 
 > **! NOTE**\
-> It only targets macOS systems at the moment.
-
-## Installation
+> It only targets macOS systems for now.
 
 > **⚠ WARNING**\
-> Use at your own risk! If you want to use these dotfiles, feel free to do so, but be careful. First fork the repo, review the code, and remove anything you don't want or need.
+> These dotfiles are tailored to my liking to help me manage my macos laptops. If you want to use them, fork the repo, review the code, remove anything you don't want or need, and enjoy.
+
+## Installation
 
 The installation process is _idempotent_, which means that running it once or multiple times produce the same end result.
 
@@ -29,53 +29,23 @@ If you're interested in what the last two commands do, have a look at the [`make
 
 After that, you are all set. You might now [import system and app related preferences](/docs/prefs/prefs.md)
 
-## Preferences
+## How it Works
 
-System wide and app related preferences are stored in the [`/prefs`](/prefs/) directory, as well as keyboard layouts.
-They are all separated by target (one dir for each target).
+The pillars are **`Homebrew`**, **`Ansible`**, **`GNU Stow`**, and **`GNU Make`**.
 
-## Homebrew
+[Homebrew](https://brew.sh/) is at the core of how I manage all the _packages_, _apps_, and _vscode extensions_. They are all listed in the [Brewfile](/install/bundles/Brewfile), and installed in bulk during the first steps of the installation process.
 
-[`homebrew`](https://brew.sh/) is the core tool used to install packages, applications, and vscode extensions, defined in the [Brewfile](/install/bundles/Brewfile).
+[GNU Stow](https://www.gnu.org/software/stow/) is used to to symlink all of my dotfiles from the [`/system`](/system/) dir into the `$home` dir.
 
-Run the following commands to check the current status of the system against the Brewfile:
+[Ansible Vault](https://docs.ansible.com/ansible/latest/vault_guide/index.html) is used to protect [sensitive information](/docs/sensitive-data.md) contained in this repo, such as apps and services recovery codes and ssh keys.
 
-```sh
-# compare installed formulae with the Brewfile list
-brewdiff
+[GNU Make](https://www.gnu.org/software/make/manual/make.html) is what I've used to define (1) the [automated installation process](/makefile) and (2) the [development utilities](/dev.mk) for managing the dotfiles repo. In the future, I might use [Ansible Playbooks](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html) as an alternative to the makefile for automating the installation process.
 
-# compare installed apps with the Brewfile list
-appdiff
+System and app related preferences are stored in the [`/prefs`](/prefs/) directory.
 
-# compare installed vscode extentions with the Brewfile list
-codediff
-```
+## Feedback
 
-## Dotfiles
-
-Dotfiles are defines in the [`/system`](/system/) directory, and are symlinked using [`GNU Stow`](https://www.gnu.org/software/stow/).
-
-They contains configuration for `ssh`, `git`, and the `shell`.
-
-## Sensitive Data
-
-Sensitive data are protected by encryption, using [`ansible-vault`](https://docs.ansible.com/ansible/latest/vault_guide/index.html).
-
-```sh
-# it will prompt to create a password...
-ansible-vault encrypt <sensitive-data>
-
-# it will prompt for the password used for encryption...
-ansible-vault decrypt <sensitive-data>
-```
-
-### SSH keys
-
-SSH key pairs are stored under the [`/ssh-keys`](/ssh-keys/) directory. The private keys are stored encrypted, while the public ones are stored as is.
-
-### Backup codes
-
-Backup codes for apps/services are stored encrypted in a `*.codes` file under the [`/backup-codes`](/backup-codes/) directory.
+If you have any suggestion/improvement [be my guest](https://github.com/Amheklerior/dotfiles/issues)!
 
 ## Credits
 

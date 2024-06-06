@@ -28,7 +28,8 @@
 - [x] Write about packages/apps installation on the [`README.md`](/README.md)
 - [x] Write about the dotfiles structure and symlinking on the [`README.md`](/README.md)
 - [x] Write about ssh keys and backup codes management on the [`README.md`](/README.md)
-- [ ] Write about the keyboard layout setup on the [`README.md`](/README.md)
+- [x] Write about the keyboard layout setup on the [`README.md`](/README.md)
+- [x] Move some sections out from the [`README.md`](/README.md) to make it more concice
 - [x] Add credits to the [`README.md`](/README.md)
 - [x] Add keyboard layout
 - [ ] Automate [macosx preferences](https://github.com/mathiasbynens/dotfiles/blob/main/.macos) setup
@@ -56,6 +57,7 @@
 - [ ] [`yabai`](https://github.com/koekeishiya/yabai) for a better windows and spaces management on macOS
 - [ ] [`bug.n`](https://github.com/fuhsjr00/bug.n) for a better windows management on Windows
 - [ ] [`git-worktree`](https://git-scm.com/docs/git-worktree) workflow
+- [ ] [`mackup`](https://github.com/lra/mackup) to manage application settings
 
 ### Ideas:
 
