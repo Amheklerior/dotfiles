@@ -13,7 +13,8 @@ LINKED_FILES := \
 	${HOME}/.ssh/config \
 	${HOME}/.ssh/known_hosts \
 	${HOME}/.config/starship.toml \
-	${HOME}/bin
+	${HOME}/bin \
+	${HOME}/Library/Application\ Support/Code/User/settings.json
 
 # use zsh to interpret the recipes
 SHELL := /bin/zsh

@@ -1,0 +1,43 @@
+{
+  "workbench.colorTheme": "Gruvbox Dark Hard",
+  "editor.fontFamily": "'JetBrainsMono Nerd Font', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  
+  "window.titleBarStyle": "custom",
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "trailing",
+  "editor.formatOnSave": true,
+  "editor.semanticHighlighting.enabled": true,
+  "terminal.integrated.minimumContrastRatio": 1,
+  "redhat.telemetry.enabled": false,
+  "gopls": {
+    "ui.semanticTokens": true
+  },
+
+  "tailwindCSS.includeLanguages": {
+    "templ": "html",
+    "plaintext": "html",
+    "ts": "javascript",
+  },
+
+  // Lang specific settings
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[templ]": {
+    "editor.defaultFormatter": "a-h.templ"
+  },
+  "go.toolsManagement.autoUpdate": true,
+}

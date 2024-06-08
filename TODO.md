@@ -19,6 +19,8 @@
 - [x] Add iTerm profile preferences
 - [x] Move the `/bin` dir to the `$home` and link it with stow
 - [x] Add `bun` configs
+- [x] Add `vscode` settings
+- [ ] Automate repo cloning into the bootstrap process
 - [ ] Add `neovim` configs
 - [ ] Add `tmux` configs
 
@@ -38,7 +40,7 @@
 
 - [x] Break down the makefile into multiple files
 - [x] Break down the pakcages step in the makefile, to better manage task dependencies
-- [ ] Automate command line dev tools installation (ie. no dialog prompt) or make it manual and avoid the [`prepare.mk`](/install/rules/packages.mk) altogether
+- [ ] Automate macos command line dev tools installation (ie. no dialog prompt) or make it manual and avoid the [`prepare.mk`](/install/rules/packages.mk) altogether
 - [ ] Automate `iterm2` preferences setup into the makefile
 - [ ] Compartimentalize shell configurations per tool
 - [ ] Compartimentalize the dotfiles (separate `stow` trees instead of a global one)
@@ -51,17 +53,18 @@
 ### To explore:
 
 - [x] [Ansible Playbooks](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html) as an alternative to the makefile
-- [ ] [ember](https://amber-lang.com/) to write bash-compiled scripts
 - [ ] [smart `pnpm` shell completion](https://github.com/g-plane/pnpm-shell-completion)
 - [ ] [smart `yarn` shell completion](https://github.com/g-plane/zsh-yarn-autocompletions)
+- [ ] [`zellij`](https://zellij.dev/) as an alternative to `tmux`
 - [ ] [`yabai`](https://github.com/koekeishiya/yabai) for a better windows and spaces management on macOS
 - [ ] [`bug.n`](https://github.com/fuhsjr00/bug.n) for a better windows management on Windows
 - [ ] [`git-worktree`](https://git-scm.com/docs/git-worktree) workflow
 - [ ] [`mackup`](https://github.com/lra/mackup) to manage application settings
+- [ ] [ember](https://amber-lang.com/) to write bash-compiled scripts
 
 ### Ideas:
 
 - [ ] add shell nesting level indicator to the shell prompt
 - [ ] cli for managing my dotfiles and workflow
-- [ ] cli for managing my work and personal repos
+- [ ] cli for managing my work and personal repos in bulk
 - [ ] cli for getting my cheatsheets on commands/languages/topics
