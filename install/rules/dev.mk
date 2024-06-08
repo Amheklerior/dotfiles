@@ -16,12 +16,34 @@ setup-node:
 	fnm alias 22 latest
 	fnm use latest
 
+# clone personal projects
 personal:
 	echo "$(DEV_LOG) creating the ~/personal dir..."
 	mkdir -p $(PERSONAL_DIR)
 	echo "$(DEV_LOG) clone my personal repos..."
+	cp $(PERSONAL_REPO_LIST) $(PERSONAL_REPO_LIST_DECRYPTED)
+	ansible-vault decrypt $(PERSONAL_REPO_LIST_DECRYPTED)
+	while IFS=' ' read -r repo path; do \
+		if [ ! -e $(PERSONAL_DIR)/$$path ]; then \
+			gh repo clone $$repo $(PERSONAL_DIR)/$$path || echo "$(DEV_LOG) Failed to clone: $$repo"; \
+		else \
+			echo "$(DEV_LOG) $$repo is already present, skipped!"; \
+		fi; \
+	done < $(PERSONAL_REPO_LIST_DECRYPTED)
+	rm $(PERSONAL_REPO_LIST_DECRYPTED)
 
+# clone work projects
 work:
 	echo "$(DEV_LOG) creating the ~/work dir..."
 	mkdir -p $(WORK_DIR)
 	echo "$(DEV_LOG) clone work related repos..."
+	cp $(WORK_REPO_LIST) $(WORK_REPO_LIST_DECRIPTED)
+	ansible-vault decrypt $(WORK_REPO_LIST_DECRIPTED)
+	while IFS=' ' read -r repo path; do \
+		if [ ! -e $(WORK_DIR)/$$path ]; then \
+			glab repo clone $$repo $(WORK_DIR)/$$path || echo "$(DEV_LOG) Failed to clone: $$repo"; \
+		else \
+			echo "$(DEV_LOG) $$repo is already present, skipped!"; \
+		fi; \
+	done < $(WORK_REPO_LIST_DECRIPTED)
+	rm $(WORK_REPO_LIST_DECRIPTED) 

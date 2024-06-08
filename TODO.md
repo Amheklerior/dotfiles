@@ -20,7 +20,7 @@
 - [x] Move the `/bin` dir to the `$home` and link it with stow
 - [x] Add `bun` configs
 - [x] Add `vscode` settings
-- [ ] Automate repo cloning into the bootstrap process
+- [x] Automate repo cloning into the bootstrap process
 - [ ] Add `neovim` configs
 - [ ] Add `tmux` configs
 
