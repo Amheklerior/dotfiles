@@ -5,3 +5,6 @@
 
 # experimentation dir
 playground
+
+# apple meta files
+.DS_store
