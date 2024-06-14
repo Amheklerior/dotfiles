@@ -39,7 +39,7 @@ The pillars are **`Homebrew`**, **`Ansible`**, **`GNU Stow`**, and **`GNU Make`*
 
 [Ansible Vault](https://docs.ansible.com/ansible/latest/vault_guide/index.html) is used to protect [sensitive information](/docs/sensitive-data.md) contained in this repo, such as apps and services recovery codes and ssh keys.
 
-[GNU Make](https://www.gnu.org/software/make/manual/make.html) is what I've used to define (1) the [automated installation process](/makefile) and (2) the [development utilities](/dev.mk) for managing the dotfiles repo. In the future, I might use [Ansible Playbooks](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html) as an alternative to the makefile for automating the installation process.
+[GNU Make](https://www.gnu.org/software/make/manual/make.html) is what I've used to define (1) the [automated installation process](/makefile) and (2) the [development utilities](/dev.mk) for managing the dotfiles repo. In the future, I might use [Ansible Playbooks](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html) as an alternative to the makefile for automating the installation process, and a simple cli for managing the repo.
 
 System and app related preferences are stored in the [`/prefs`](/prefs/) directory.
 

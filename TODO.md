@@ -22,7 +22,7 @@
 - [x] Add `vscode` settings
 - [x] Automate repo cloning into the bootstrap process
 - [ ] Add `neovim` configs
-- [ ] Add `tmux` configs
+- [ ] Add `tmux` (or `zellij`) configs
 
 ### Should have:
 
