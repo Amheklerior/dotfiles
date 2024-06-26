@@ -3,5 +3,5 @@
 # don't echo the commands while running make
 export MAKEFLAGS="--silent"
 
-# run the preliminary steps and the bootstrap pipeline
-make prepare && make
+# run the bootstrap pipeline
+make bootstrap

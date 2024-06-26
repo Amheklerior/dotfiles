@@ -15,6 +15,9 @@ The installation process is _idempotent_, which means that running it once or mu
 To automatically install these dotfiles on a brand new system, simply run the following shell commands:
 
 ```sh
+# install the command line dev tools
+xcode-select --install 
+
 # clone this dotfile repository
 git clone https://github.com/Amheklerior/dotfiles $HOME/.dotfiles
 
