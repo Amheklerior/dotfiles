@@ -14,11 +14,11 @@ zsh-install: brew-install
 # NOTE: homebrew version of zsh must be added to the list of recognised shells, otherwise the chsh command would not allow the update 
 default-user-shell: zsh-install
 	echo "$(CORE_LOG) change default shell to zsh..."
-	if ! grep -Fxq $(HOMEBREW_ZSH_PATH) $(SYS_SHELLS); then \
-		echo $(HOMEBREW_ZSH_PATH) | sudo tee -a $(SYS_SHELLS) >/dev/null; \
+	if ! grep -Fxq $(HOMEBREW_BIN_PATH)/zsh $(SYS_SHELLS); then \
+		echo $(HOMEBREW_BIN_PATH)/zsh | sudo tee -a $(SYS_SHELLS) >/dev/null; \
 	fi
-	if [ $$SHELL != $(HOMEBREW_ZSH_PATH) ]; then \
-		chsh -s $(HOMEBREW_ZSH_PATH); \
+	if [ $$SHELL != $(HOMEBREW_BIN_PATH)/zsh ]; then \
+		chsh -s $(HOMEBREW_BIN_PATH)/zsh; \
 	fi
 
 # update sh symlink to points to zsh instead of bash 

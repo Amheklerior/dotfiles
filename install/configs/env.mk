@@ -18,7 +18,7 @@ WORK_REPO_LIST := $(DOTFILES)/install/bundles/work-repos.list
 WORK_REPO_LIST_DECRIPTED := ${HOME}/.local/share/work-repos
 
 # paths
-HOMEBREW_ZSH_PATH := /opt/homebrew/bin/zsh
+HOMEBREW_BIN_PATH := /opt/homebrew/bin
 SYS_SHELLS := /etc/shells
 
 # logging tags

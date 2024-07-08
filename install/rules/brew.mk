@@ -8,8 +8,9 @@ brew: brew-install brew-setup
 # install homebrew if not already present
 brew-install:
 	echo "$(BREW_LOG) install homebrew if not present..."
-	command -v brew >/dev/null 2>&1 || \
-	bash -c $$(shell curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh);
+	test $$(command -v $(HOMEBREW_BIN_PATH)/brew) \
+		&& echo "$(BREW_LOG) brew already installed!" \
+		|| bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew-setup: brew-install
 	echo "$(BREW_LOG) setup homebrew..."
