@@ -11,6 +11,7 @@ brew-install:
 	test $$(command -v $(HOMEBREW_BIN_PATH)/brew) \
 		&& echo "$(BREW_LOG) brew already installed!" \
 		|| bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	eval "$$($(HOMEBREW_BIN_PATH)/brew shellenv)"
 
 brew-setup: brew-install
 	echo "$(BREW_LOG) setup homebrew..."
