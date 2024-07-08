@@ -1,11 +1,14 @@
-.PHONY: packages
+.PHONY: packages core-packages brew-bundle zsh ansible stow
 
 .DEFAULT_GOAL := packages
 
 
 packages: core-packages brew-bundle
 
-core-packages: ansible stow
+core-packages: zsh ansible stow
+
+zsh: brew-install
+	test $$(command -v $(HOMEBREW_BIN_PATH)/zsh) || brew install zsh
 
 ansible: brew-install
 	test $$(command -v $(HOMEBREW_BIN_PATH)/ansible) || brew install ansible

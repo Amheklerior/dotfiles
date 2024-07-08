@@ -1,18 +1,15 @@
-.PHONY: core zsh ssh git zsh-install default-user-shell sh-symlink
+.PHONY: core shell ssh git make-default-user-shell sh-symlink
 
 .DEFAULT_GOAL := core
 
 
-core: zsh ssh git
+core: shell ssh git
 
-zsh: zsh-install default-user-shell sh-symlink
-
-zsh-install: brew-install
-	brew install zsh
+shell: make-default-user-shell sh-symlink
 
 # make the updated version of zsh the default shell when I open a new terminal.
 # NOTE: homebrew version of zsh must be added to the list of recognised shells, otherwise the chsh command would not allow the update 
-default-user-shell: zsh-install
+make-default-user-shell: zsh
 	echo "$(CORE_LOG) change default shell to zsh..."
 	if ! grep -Fxq $(HOMEBREW_BIN_PATH)/zsh $(SYS_SHELLS); then \
 		echo $(HOMEBREW_BIN_PATH)/zsh | sudo tee -a $(SYS_SHELLS) >/dev/null; \
@@ -23,7 +20,7 @@ default-user-shell: zsh-install
 
 # update sh symlink to points to zsh instead of bash 
 # NOTE: could not symlink to /opt/homebrew/bin/zsh, linked it to the preinstalled /bin/zsh instead
-sh-symlink: zsh-install
+sh-symlink: zsh
 	echo "$(CORE_LOG) update sh symlink from bash to zsh..."
 	if ! sh --version | grep -q zsh; then \
 		sudo ln -sfv /bin/zsh /var/select/sh; \
