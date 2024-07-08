@@ -16,10 +16,14 @@ sys-check:
 
 # move any file/dir which is NOT a symlink into the backup directory
 backup: 
-	echo "$(PREPARE_LOG) backup currently present dotfiles..."
-	mkdir -p $(BACKUP_DIR)/.config
-	for item in $(STOW_ITEMS); do \
-		if [ -e "${HOME}/$$item" ] && [ ! -L "${HOME}/$$item" ]; then \
-			mv -f ${HOME}/$$item $(BACKUP_DIR); \
-		fi; \
-	done
+	if [ ! -e $(BACKUP_DIR)/.config ]; then \
+		echo "$(PREPARE_LOG) backup currently present dotfiles..."; \
+		mkdir -p $(BACKUP_DIR)/.config; \
+		for item in $(STOW_ITEMS); do \
+			if [ -e "${HOME}/$$item" ] && [ ! -L "${HOME}/$$item" ]; then \
+				mv -f ${HOME}/$$item $(BACKUP_DIR); \
+			fi; \
+		done; \
+	else \
+		echo "$(PREPARE_LOG) Skipping backup. Aldready done"; \
+	fi
