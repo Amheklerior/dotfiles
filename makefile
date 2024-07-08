@@ -17,7 +17,7 @@ include install/rules/settings.mk
 SHELL := /bin/bash
 
 
-bootstrap: prepare brew packages core link dev settings wrapup
+bootstrap: prepare brew packages core dotfiles dev settings wrapup
 
 wrapup:
 	echo "[wrapping]: wrapping up..."
