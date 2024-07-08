@@ -8,10 +8,10 @@ packages: core-packages brew-bundle
 core-packages: ansible stow
 
 ansible: brew-install
-	brew install ansible
+	test $$(command -v $(HOMEBREW_BIN_PATH)/ansible) || brew install ansible
 
 stow: brew-install
-	brew install stow
+	test $$(command -v $(HOMEBREW_BIN_PATH)/stow) || brew install stow
 
 # TODO: I might split this in 4 different steps for bins, cask-apps, mas-apps, and vscode-ext
 # NOTE: the --no-quarantine flag is addedd to avoid the Gatekeeper for cask apps 
