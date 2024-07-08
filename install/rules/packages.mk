@@ -3,7 +3,7 @@
 .DEFAULT_GOAL := packages
 
 
-packages: core-pkgs brew-bundle
+packages: core-packages brew-bundle
 
 core-packages: ansible stow
 
