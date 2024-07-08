@@ -5,7 +5,6 @@
 
 brew: brew-install brew-setup
 
-# install homebrew if not already present
 brew-install:
 	echo "$(BREW_LOG) install homebrew if not present..."
 	test $$(command -v $(HOMEBREW_BIN_PATH)/brew) \
@@ -17,4 +16,3 @@ brew-setup: brew-install
 	echo "$(BREW_LOG) setup homebrew..."
 	brew analytics off
 	brew update --auto-update
-	brew doctor

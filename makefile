@@ -20,6 +20,6 @@ SHELL := /bin/bash
 bootstrap: prepare brew packages core dotfiles dev settings wrapup
 
 wrapup:
-	echo "[wrapping]: wrapping up..."
-	brew cleanup
 	echo "[Done]: You're ready to rock \m/"
+	brew doctor
+	brew cleanup
