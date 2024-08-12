@@ -21,31 +21,33 @@ setup-node:
 # clone personal projects
 personal:
 	echo "$(DEV_LOG) creating the ~/personal dir..."
-	mkdir -p $(PERSONAL_DIR)
+	mkdir -p $(PERSONAL_DIR) $(XDG_DATA_HOME)
 	echo "$(DEV_LOG) clone my personal repos..."
-	cp $(PERSONAL_REPO_LIST) $(PERSONAL_REPO_LIST_DECRYPTED)
-	ansible-vault decrypt $(PERSONAL_REPO_LIST_DECRYPTED)
+	if [ ! -e ${XDG_DATA_HOME}/personal-repo ]; then \
+		cp $(PERSONAL_REPO_LIST) ${XDG_DATA_HOME}/personal-repo; \
+		ansible-vault decrypt ${XDG_DATA_HOME}/personal-repo; \
+	fi
 	while IFS=' ' read -r repo path; do \
 		if [ ! -e $(PERSONAL_DIR)/$$path ]; then \
 			gh repo clone $$repo $(PERSONAL_DIR)/$$path || echo "$(DEV_LOG) Failed to clone: $$repo"; \
 		else \
 			echo "$(DEV_LOG) $$repo is already present, skipped!"; \
 		fi; \
-	done < $(PERSONAL_REPO_LIST_DECRYPTED)
-	rm $(PERSONAL_REPO_LIST_DECRYPTED)
+	done < ${XDG_DATA_HOME}/personal-repo
 
 # clone work projects
 work:
 	echo "$(DEV_LOG) creating the ~/work dir..."
-	mkdir -p $(WORK_DIR)
+	mkdir -p $(WORK_DIR) $(XDG_DATA_HOME)
 	echo "$(DEV_LOG) clone work related repos..."
-	cp $(WORK_REPO_LIST) $(WORK_REPO_LIST_DECRIPTED)
-	ansible-vault decrypt $(WORK_REPO_LIST_DECRIPTED)
+	if [ ! -e ${XDG_DATA_HOME}/work-repo ]; then \
+		cp $(WORK_REPO_LIST) ${XDG_DATA_HOME}/work-repo; \
+		ansible-vault decrypt ${XDG_DATA_HOME}/work-repo; \
+	fi
 	while IFS=' ' read -r repo path; do \
 		if [ ! -e $(WORK_DIR)/$$path ]; then \
 			glab repo clone $$repo $(WORK_DIR)/$$path || echo "$(DEV_LOG) Failed to clone: $$repo"; \
 		else \
 			echo "$(DEV_LOG) $$repo is already present, skipped!"; \
 		fi; \
-	done < $(WORK_REPO_LIST_DECRIPTED)
-	rm $(WORK_REPO_LIST_DECRIPTED) 
+	done < ${XDG_DATA_HOME}/work-repo

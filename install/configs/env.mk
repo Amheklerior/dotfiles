@@ -11,11 +11,9 @@ XDG_CONFIG_HOME := ${HOME}/.config
 FNM_INSTALL_DIR := ${HOME}/.fnm
 COREPACK_INSTALL_DIR := ${HOME}/.corepack
 PERSONAL_DIR := ${HOME}/personal
-PERSONAL_REPO_LIST := $(DOTFILES)/install/bundles/personal-repos.list
-PERSONAL_REPO_LIST_DECRYPTED := ${HOME}/.local/share/personal-repos
 WORK_DIR := ${HOME}/work
+PERSONAL_REPO_LIST := $(DOTFILES)/install/bundles/personal-repos.list
 WORK_REPO_LIST := $(DOTFILES)/install/bundles/work-repos.list
-WORK_REPO_LIST_DECRIPTED := ${HOME}/.local/share/work-repos
 
 # paths
 HOMEBREW_BIN_PATH := /opt/homebrew/bin
