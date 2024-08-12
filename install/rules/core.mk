@@ -28,9 +28,11 @@ sh-symlink: zsh
 
 ssh: ansible
 	echo "$(CORE_LOG) copy ssh keys..."
-	mkdir -p ${HOME}/.ssh
-	cp $(SSH_KEYS)/* ${HOME}/.ssh 
-	ansible-vault decrypt ${HOME}/.ssh/personal ${HOME}/.ssh/work
+	if [ ! -e ${HOME}/.ssh/{personal,work} ]; then \
+		mkdir -p ${HOME}/.ssh; \
+		cp $(SSH_KEYS)/* ${HOME}/.ssh; \
+		ansible-vault decrypt ${HOME}/.ssh/personal ${HOME}/.ssh/work; \
+	fi
 
 git: 
 	echo "$(CORE_LOG) setup git and git-lfs..."
