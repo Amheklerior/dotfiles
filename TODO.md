@@ -21,6 +21,7 @@
 - [x] Add `bun` configs
 - [x] Add `vscode` settings
 - [x] Automate repo cloning into the bootstrap process
+- [ ] Enforce EN as the terminal language
 - [ ] Add `neovim` configs
 - [ ] Add `tmux` (or `zellij`) configs
 
@@ -56,11 +57,13 @@
 - [ ] [smart `pnpm` shell completion](https://github.com/g-plane/pnpm-shell-completion)
 - [ ] [smart `yarn` shell completion](https://github.com/g-plane/zsh-yarn-autocompletions)
 - [ ] [`zellij`](https://zellij.dev/) as an alternative to `tmux`
-- [ ] [`yabai`](https://github.com/koekeishiya/yabai) for a better windows and spaces management on macOS
+- [ ] [`yabai`](https://github.com/koekeishiya/yabai) or [`rectangle`](https://rectangleapp.com) or [`hyprland`](https://hyprland.org) for a better windows and spaces management on macOS
 - [ ] [`bug.n`](https://github.com/fuhsjr00/bug.n) for a better windows management on Windows
 - [ ] [`git-worktree`](https://git-scm.com/docs/git-worktree) workflow
 - [ ] [`mackup`](https://github.com/lra/mackup) to manage application settings
-- [ ] [ember](https://amber-lang.com/) to write bash-compiled scripts
+- [ ] [`ember`](https://amber-lang.com/) to write bash-compiled scripts
+- [ ] [`Ark`](https://arc.net) web browser
+- [ ] `fzf` [simple](https://github.com/junegunn/fzf/wiki/examples) and [advanced](https://github.com/junegunn/fzf/blob/master/ADVANCED.md) usage
 
 ### Ideas:
 
