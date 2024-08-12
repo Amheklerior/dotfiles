@@ -20,6 +20,8 @@ SHELL := /bin/bash
 bootstrap: prepare brew packages core dotfiles dev settings wrapup
 
 wrapup:
-	echo "[Done]: You're ready to rock \m/"
+	echo "[Done]: You're ready to rock \m/"	
+	rm ${XDG_DATA_HOME}/personal-repo
+	rm ${XDG_DATA_HOME}/work-repo
 	brew doctor
 	brew cleanup
