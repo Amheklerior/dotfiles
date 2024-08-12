@@ -27,11 +27,13 @@ sh-symlink: zsh
 	fi
 
 ssh: ansible
-	echo "$(CORE_LOG) copy ssh keys..."
+	echo "$(CORE_LOG) setup ssh keys..."
 	if [ ! -e ${HOME}/.ssh/{personal,work} ]; then \
 		mkdir -p ${HOME}/.ssh; \
 		cp $(SSH_KEYS)/* ${HOME}/.ssh; \
 		ansible-vault decrypt ${HOME}/.ssh/personal ${HOME}/.ssh/work; \
+	else \
+		echo "$(CORE_LOG) ssh keys already present!"; \
 	fi
 
 git: 
