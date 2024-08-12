@@ -9,11 +9,13 @@ dev: setup-node personal work
 # NOTE: at the moment, node versions are: v22.2.0 (latest), and v20.13.1 (LTS) 
 setup-node: 
 	echo "$(DEV_LOG) setup node env..."
-	mkdir $(FNM_INSTALL_DIR) $(COREPACK_INSTALL_DIR)
-	fnm install --lts
-	fnm install --latest
-	fnm alias 20 lts
-	fnm alias 22 latest
+	mkdir -p $(FNM_INSTALL_DIR) $(COREPACK_INSTALL_DIR)
+	if fnm list | grep -q lts; then \
+		fnm install --lts && fnm alias 20 lts; \
+	fi
+	if fnm list | grep -q latest; then \
+		fnm install --latest && fnm alias 22 latest; \
+	fi
 	fnm use latest
 
 # clone personal projects
