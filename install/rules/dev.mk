@@ -1,4 +1,4 @@
-.PHONY: dev setup-node personal work
+.PHONY: dev setup-node personal work github-login gitlab-login
 
 .DEFAULT_GOAL := dev
 
@@ -19,7 +19,7 @@ setup-node:
 	fnm use latest
 
 # clone personal projects
-personal:
+personal: github-login
 	echo "$(DEV_LOG) creating the ~/personal dir..."
 	mkdir -p $(PERSONAL_DIR) $(XDG_DATA_HOME)
 	echo "$(DEV_LOG) clone my personal repos..."
@@ -36,7 +36,7 @@ personal:
 	done < ${XDG_DATA_HOME}/personal-repo
 
 # clone work projects
-work:
+work: gitlab-login
 	echo "$(DEV_LOG) creating the ~/work dir..."
 	mkdir -p $(WORK_DIR) $(XDG_DATA_HOME)
 	echo "$(DEV_LOG) clone work related repos..."
@@ -51,3 +51,13 @@ work:
 			echo "$(DEV_LOG) $$repo is already present, skipped!"; \
 		fi; \
 	done < ${XDG_DATA_HOME}/work-repo
+
+github-login: brew-bundle
+	if ! gh auth status >/dev/null 2>&1; then \
+		gh auth login; \
+	fi
+
+gitlab-login: brew-bundle
+	if ! glab auth status >/dev/null 2>&1; then \
+		glab auth login; \
+	fi
