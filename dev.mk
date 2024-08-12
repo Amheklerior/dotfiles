@@ -13,6 +13,7 @@ LINKED_FILES := \
 	${HOME}/.ssh/config \
 	${HOME}/.ssh/known_hosts \
 	${HOME}/.config/starship.toml \
+	${HOME}/.config/.bunfig.toml \
 	${HOME}/bin \
 	${HOME}/Library/Application\ Support/Code/User/settings.json
 
@@ -43,7 +44,7 @@ clean:
 
 # NOTE: it just list all the dotfiles (they should all appear as symlinks)
 check-links:
-	exa --all --long --list-dirs --classify --header --icons --group-directories-first $(LINKED_FILES)
+	eza --all --long --list-dirs --classify --header --icons --group-directories-first $(LINKED_FILES)
 
 # copies all files/dirs from the backup dir back into their original position
 restore:
@@ -60,4 +61,4 @@ restore:
 
 # a tree view of the backed up original dotfiles
 view-backup:
-	exa --tree -L2 --all --classify --header --icons --group-directories-first $(BACKUP_DIR)	
+	eza --tree -L2 --all --classify --header --icons --group-directories-first $(BACKUP_DIR)	
