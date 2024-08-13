@@ -54,9 +54,10 @@ alias ld="ls --only-dirs"
 alias lf="ls --only-files"
 alias lld="ll --only-dirs"
 alias llf="ll --only-files"
-alias tree="eza --tree --all --classify --icons --group-directories-first --git-ignore --ignore-glob .git"
-alias t2="tree -L2"
-alias t4="tree -L4"
+alias tree="eza --tree --all --classify --icons --group-directories-first"
+alias t="tree --git-ignore --ignore-glob .git"
+alias t2="t -L2"
+alias t4="t -L4"
 
 # git shortcuts
 alias g="git"
