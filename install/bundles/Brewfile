@@ -41,7 +41,7 @@ brew "oven-sh/bun/bun"
 cask "docker"
 
 # UI apps
-cask "authy"
+cask "ente-auth"
 cask "google-chrome"
 cask "notion"
 cask "slack"
