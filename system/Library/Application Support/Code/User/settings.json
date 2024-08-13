@@ -2,7 +2,8 @@
   "workbench.colorTheme": "Gruvbox Dark Hard",
   "editor.fontFamily": "'JetBrainsMono Nerd Font', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": true,
-  
+  "diffEditor.ignoreTrimWhitespace": false,
+
   "window.titleBarStyle": "custom",
   "editor.tabSize": 2,
   "editor.renderWhitespace": "trailing",
@@ -17,7 +18,7 @@
   "tailwindCSS.includeLanguages": {
     "templ": "html",
     "plaintext": "html",
-    "ts": "javascript",
+    "ts": "javascript"
   },
 
   // Lang specific settings
