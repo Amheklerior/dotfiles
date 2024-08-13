@@ -1,3 +1,18 @@
+### SHELL & SYSTEM-WIDE LANGUAGE
+
+# There are various LC_* variables used to configure various locale aspects,
+# such as LC_TIME, LC_MESSAGE, LC_CTYPE, LC_TELEPHONE, etc...
+# LANG is used as fallback, it's used if the specific LC_* var is not set.
+# LC_ALL overrides all LC_* conf.
+# LANGUAGE takes precedence over LANG and LC_MESSAGE, but only for message translations.
+
+export LANGUAGE=en_US:en_GB:it # the list of preferred languages.
+export LANG=en_US.UTF-8 # use US English as default
+export LC_MEASUREMENT=it_IT.UTF-8 # use metric system over imperial
+export LC_TIME=it_IT.UTF-8 # day-month-year, 24-h format
+export LC_ALL= # unset to make sure there's no override
+
+
 ### SHELL PROMPT 
 
 # load the completion functions and initialize the completion system.

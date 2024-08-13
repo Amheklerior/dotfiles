@@ -21,7 +21,7 @@
 - [x] Add `bun` configs
 - [x] Add `vscode` settings
 - [x] Automate repo cloning into the bootstrap process
-- [ ] Enforce EN as the terminal language
+- [x] Enforce EN as the terminal language
 - [ ] Add `neovim` configs
 - [ ] Add `tmux` (or `zellij`) configs
 
