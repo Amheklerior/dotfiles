@@ -61,6 +61,7 @@ brew "neovim"
 # VS Code
 cask "visual-studio-code"
 vscode "a-h.templ"
+vscode "arjun.swagger-viewer"
 vscode "bradlc.vscode-tailwindcss"
 vscode "catppuccin.catppuccin-vsc-pack"
 vscode "dbaeumer.vscode-eslint"
