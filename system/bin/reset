@@ -1,0 +1,65 @@
+#!/usr/bin/env zsh
+
+# Function to reset an app's settings
+reset_app_settings() {
+    local app_bundle_id="$1"
+    if defaults read "$app_bundle_id" &>/dev/null; then
+        defaults delete "$app_bundle_id"
+}
+
+echo "Resetting system and apps settings..."
+
+# Reset Global System Preferences
+defaults delete -g
+
+# Reset Finder settings
+defaults delete com.apple.finder && killall Finder
+
+# Reset Dock settings
+defaults delete com.apple.dock && killall Dock
+
+# Reset Mission Control settings
+defaults delete com.apple.spaces
+
+# Reset SystemUIServer (menu bar) settings
+defaults delete com.apple.systemuiserver && killall SystemUIServer
+
+# Reset Keyboard settings
+defaults delete -g com.apple.keyboard
+
+# Reset Trackpad settings
+defaults delete -g com.apple.trackpad
+
+# Reset Bluetooth settings
+defaults delete com.apple.Bluetooth
+
+# Reset Wi-Fi settings
+defaults delete com.apple.airport.preferences
+
+# Reset Screen Saver settings
+defaults delete com.apple.screensaver
+
+# Reset Energy Saver settings
+defaults delete com.apple.PowerManagement
+
+# Reset Date & Time settings
+defaults delete com.apple.systempreferences
+
+# Reset apps settings
+reset_app_settings "com.apple.Safari"
+reset_app_settings "com.apple.mail"
+reset_app_settings "com.apple.iCal"
+reset_app_settings "com.apple.AddressBook"
+reset_app_settings "com.apple.iChat"
+reset_app_settings "com.apple.Photos"
+reset_app_settings "com.apple.Notes"
+reset_app_settings "com.apple.Reminders"
+reset_app_settings "com.apple.Music"
+reset_app_settings "com.apple.Maps"
+reset_app_settings "com.apple.tv"
+reset_app_settings "com.apple.Terminal"
+reset_app_settings "com.apple.TextEdit"
+
+# Final step: Restart the Mac
+echo "Restarting your Mac to apply changes..."
+sudo shutdown -r now
