@@ -10,10 +10,10 @@ dev: setup-node personal work
 setup-node: 
 	echo "$(DEV_LOG) setup node env..."
 	mkdir -p $(FNM_INSTALL_DIR) $(COREPACK_INSTALL_DIR)
-	if fnm list | grep -q lts; then \
+	if [[ ! $$(fnm list | grep -q lts) ]]; then \
 		fnm install --lts && fnm alias 20 lts; \
 	fi
-	if fnm list | grep -q latest; then \
+	if [[ ! $$(fnm list | grep -q latest) ]]; then \
 		fnm install --latest && fnm alias 22 latest; \
 	fi
 	fnm use latest
