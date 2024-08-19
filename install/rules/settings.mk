@@ -3,10 +3,10 @@
 .DEFAULT_GOAL := settings
 
 
-settings: osx iterm2
+settings: osx apps
 
 osx:
-	echo "$(SETTINGS_LOG) Setting up system preferences..."
+	echo "$(SETTINGS_LOG) Setting up system and apps preferences..."
 
-iterm2:
-	echo "$(SETTINGS_LOG) Setting up iterm2 preferences..."
+apps:
+	echo "$(SETTINGS_LOG) Setting up apps' preferences..."
