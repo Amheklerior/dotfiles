@@ -50,10 +50,10 @@ check-links:
 restore:
 	echo "$(DEV_LOG) restoring backed up dotfiles..."
 	for item in $(STOW_ITEMS); do \
-		if [ -f "$(BACKUP_DIR)/$$item" ]; then \
+		if [[ -f "$(BACKUP_DIR)/$$item" ]]; then \
 			cp -f $(BACKUP_DIR)/$$item ${HOME}/$$item; \
 		fi; \
-		if [ -d "$(BACKUP_DIR)/$$item" ]; then \
+		if [[ -d "$(BACKUP_DIR)/$$item" ]]; then \
 			mkdir -p ${HOME}/$$item && \
 			cp -f $(BACKUP_DIR)/$$item/* ${HOME}/$$item; \
 		fi; \

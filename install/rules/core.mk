@@ -14,7 +14,7 @@ make-default-user-shell: zsh
 	if ! grep -Fxq $(HOMEBREW_BIN_PATH)/zsh $(SYS_SHELLS); then \
 		echo $(HOMEBREW_BIN_PATH)/zsh | sudo tee -a $(SYS_SHELLS) >/dev/null; \
 	fi
-	if [ $$SHELL != $(HOMEBREW_BIN_PATH)/zsh ]; then \
+	if [[ $$SHELL != $(HOMEBREW_BIN_PATH)/zsh ]]; then \
 		chsh -s $(HOMEBREW_BIN_PATH)/zsh; \
 	fi
 
@@ -28,7 +28,7 @@ sh-symlink: zsh
 
 ssh: ansible
 	echo "$(CORE_LOG) setup ssh keys..."
-	if [ ! -e ${HOME}/.ssh/{personal,work} ]; then \
+	if [[ ! -e ${HOME}/.ssh/{personal,work} ]]; then \
 		mkdir -p ${HOME}/.ssh; \
 		cp $(SSH_KEYS)/* ${HOME}/.ssh; \
 		ansible-vault decrypt ${HOME}/.ssh/personal ${HOME}/.ssh/work; \

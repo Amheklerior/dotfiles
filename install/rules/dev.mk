@@ -23,12 +23,12 @@ personal: github-login
 	echo "$(DEV_LOG) creating the ~/personal dir..."
 	mkdir -p $(PERSONAL_DIR) $(XDG_DATA_HOME)
 	echo "$(DEV_LOG) clone my personal repos..."
-	if [ ! -e ${XDG_DATA_HOME}/personal-repo ]; then \
+	if [[ ! -e ${XDG_DATA_HOME}/personal-repo ]]; then \
 		cp $(PERSONAL_REPO_LIST) ${XDG_DATA_HOME}/personal-repo; \
 		ansible-vault decrypt ${XDG_DATA_HOME}/personal-repo; \
 	fi
 	while IFS=' ' read -r repo path; do \
-		if [ ! -e $(PERSONAL_DIR)/$$path ]; then \
+		if [[ ! -e $(PERSONAL_DIR)/$$path ]]; then \
 			gh repo clone $$repo $(PERSONAL_DIR)/$$path || echo "$(DEV_LOG) Failed to clone: $$repo"; \
 		else \
 			echo "$(DEV_LOG) $$repo is already present, skipped!"; \
@@ -40,12 +40,12 @@ work: gitlab-login
 	echo "$(DEV_LOG) creating the ~/work dir..."
 	mkdir -p $(WORK_DIR) $(XDG_DATA_HOME)
 	echo "$(DEV_LOG) clone work related repos..."
-	if [ ! -e ${XDG_DATA_HOME}/work-repo ]; then \
+	if [[ ! -e ${XDG_DATA_HOME}/work-repo ]]; then \
 		cp $(WORK_REPO_LIST) ${XDG_DATA_HOME}/work-repo; \
 		ansible-vault decrypt ${XDG_DATA_HOME}/work-repo; \
 	fi
 	while IFS=' ' read -r repo path; do \
-		if [ ! -e $(WORK_DIR)/$$path ]; then \
+		if [[ ! -e $(WORK_DIR)/$$path ]]; then \
 			glab repo clone $$repo $(WORK_DIR)/$$path || echo "$(DEV_LOG) Failed to clone: $$repo"; \
 		else \
 			echo "$(DEV_LOG) $$repo is already present, skipped!"; \
