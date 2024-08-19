@@ -1,9 +1,9 @@
-.PHONY: core shell ssh git make-default-user-shell sh-symlink
+.PHONY: core shell ssh make-default-user-shell sh-symlink
 
 .DEFAULT_GOAL := core
 
 
-core: shell ssh git
+core: shell ssh
 
 shell: make-default-user-shell sh-symlink
 
@@ -35,6 +35,3 @@ ssh: ansible
 	else \
 		echo "$(CORE_LOG) ssh keys already present!"; \
 	fi
-
-git: 
-	echo "$(CORE_LOG) setup git and git-lfs..."
