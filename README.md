@@ -52,4 +52,9 @@ If you have any suggestion/improvement [be my guest](https://github.com/Amhekler
 
 ## Credits
 
-Special thanks to the [github's dotfiles community](https://dotfiles.github.io/) which has been a great source of ideas and inspiration, to [Michael Paulson (aka The Primeagen)](https://www.youtube.com/c/ThePrimeagen) for his [_developer productivity_ course](https://frontendmasters.com/courses/developer-productivity/), and to [Patrick Mcdonald](https://twitter.com/eieioxyz) for his [_dotfiles from start to finish-ish_ course](https://www.udemy.com/course/dotfiles-from-start-to-finish-ish/).
+Special thanks to:
+
+- the [github's dotfiles community](https://dotfiles.github.io/) which has been a great source of ideas and inspiration,
+- [Michael Paulson (aka The Primeagen)](https://www.youtube.com/c/ThePrimeagen) for his [_developer productivity_ course](https://frontendmasters.com/courses/developer-productivity/),
+- [Patrick Mcdonald](https://twitter.com/eieioxyz) for his [_dotfiles from start to finish-ish_ course](https://www.udemy.com/course/dotfiles-from-start-to-finish-ish/),
+- [Mathia's macos sensible default settings](https://github.com/mathiasbynens/dotfiles/blob/main/.macos), [macos-defaults.com](https://macos-defaults.com/), [defaults-write.com](https://www.defaults-write.com/), and [SS64-s macOS defaults](https://ss64.com/mac/syntax-defaults.html), used as reference for automating macos system and apps settings.
