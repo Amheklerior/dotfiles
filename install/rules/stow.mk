@@ -7,14 +7,12 @@ dotfiles: setdir link source
 
 # create directories to let stow symlink their content individually,
 # rather than the entire dir.
+# NOTE: The .ssh/ dir should already be present with the ssh key pairs in it
 setdir:
-	if [ ! -e ${HOME}/.config ]; then \
+	if [[ ! -e ${HOME}/.config ]]; then \
+		echo "$(STOW_LOG) Creating the ~/.config dir" && \
 		mkdir ${HOME}/.config; \
 	fi
-	if [ ! -e ${HOME}/.ssh ]; then \
-		mkdir ${HOME}/.ssh; \
-	fi
-
 
 link: stow
 	echo "$(STOW_LOG) symlink dotfiles..."
