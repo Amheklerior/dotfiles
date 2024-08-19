@@ -54,10 +54,20 @@ work: gitlab-login
 
 github-login: brew-bundle
 	if ! gh auth status >/dev/null 2>&1; then \
+		cp ./backup-codes/github.token ${XDG_DATA_HOME}/gh-login-token; \
+		echo "Please enter the decryption password for copying the gh login token"; \
+		ansible-vault decrypt ${XDG_DATA_HOME}/gh-login-token && \
+		cat ${XDG_DATA_HOME}/gh-login-token | pbcopy; \
+		echo "Token copeid! Paste it during the installation process..."; \
 		gh auth login; \
 	fi
 
 gitlab-login: brew-bundle
 	if ! glab auth status >/dev/null 2>&1; then \
+		cp ./backup-codes/gitlab.token ${XDG_DATA_HOME}/glab-login-token; \
+		echo "Please enter the decryption password for copying the glab login token"; \
+		ansible-vault decrypt ${XDG_DATA_HOME}/glab-login-token && \
+		cat ${XDG_DATA_HOME}/glab-login-token | pbcopy; \
+		echo "Token copeid! Paste it during the installation process..."; \
 		glab auth login; \
 	fi

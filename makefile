@@ -23,5 +23,7 @@ wrapup:
 	echo "[Done]: You're ready to rock \m/"	
 	rm ${XDG_DATA_HOME}/personal-repo
 	rm ${XDG_DATA_HOME}/work-repo
+	rm ${XDG_DATA_HOME}/gh-login-token
+	rm ${XDG_DATA_HOME}/glab-login-token
 	brew doctor
 	brew cleanup
