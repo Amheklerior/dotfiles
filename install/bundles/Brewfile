@@ -1,62 +1,58 @@
-# core
+# Repos
 tap "homebrew/bundle"
-brew "mas"
+tap "oven-sh/bun"
+
+# Core and terminal utils
 brew "ansible"
-brew "stow"
-brew "git"
-brew "git-lfs"
-cask "font-jetbrains-mono-nerd-font"
-
-# shell/terminal
-brew "zsh"
-brew "zsh-autosuggestions"
-brew "zsh-syntax-highlighting"
-brew "starship"
-cask "iterm2"
-
-# utils
 brew "bat"
 brew "eza"
 brew "fd"
+brew "fnm"
 brew "fzf"
-brew "jq"
-brew "mkcert"
-brew "nss"
-brew "ripgrep"
-brew "xh"
-brew "zoxide"
-brew "tldr"
-brew "trash"
-
-# dev
-tap "oven-sh/bun"
 brew "gh"
+brew "git"
+brew "git-lfs"
 brew "glab"
 brew "go"
-brew "fnm"
+brew "jq"
+brew "mas"
+brew "mkcert"
+brew "neovim"
+brew "nss"
 brew "oven-sh/bun/bun"
-cask "docker"
+brew "ripgrep"
+brew "starship"
+brew "stow"
+brew "tldr"
+brew "trash"
+brew "xh"
+brew "zoxide"
+brew "zsh"
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
 
-# UI apps
+# Cask applications
+cask "discord"
+cask "docker"
 cask "ente-auth"
+cask "font-jetbrains-mono-nerd-font"
 cask "google-chrome"
+cask "iterm2"
 cask "notion"
 cask "slack"
-cask "discord"
-cask "zoom"
 cask "steam"
-mas "Telegram Lite", id: 946399090
+cask "visual-studio-code"
+cask "zoom"
+
+# Mac App Store applications
 mas "Habits", id: 1514915737
-mas "Trello", id: 1278508951
 mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Telegram Lite", id: 946399090
+mas "Trello", id: 1278508951
 
-# NeoVim
-brew "neovim"
-
-# VS Code
-cask "visual-studio-code"
+# VSCode extensions
 vscode "a-h.templ"
 vscode "arjun.swagger-viewer"
 vscode "bradlc.vscode-tailwindcss"
