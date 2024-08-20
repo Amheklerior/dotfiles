@@ -5,9 +5,6 @@ brew "ansible"
 brew "stow"
 brew "git"
 brew "git-lfs"
-
-# fonts
-tap "homebrew/cask-fonts"
 cask "font-jetbrains-mono-nerd-font"
 
 # shell/terminal
