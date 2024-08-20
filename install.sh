@@ -18,6 +18,17 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # bootstrap the system
 # - install packages and apps
 # - link my dotfiles
-# - setup dev env
-# - configure system and apps settings 
 make bootstrap
+
+# source dotfiles in current shell
+echo "[dotfiles]: source dotfiles..."
+source ${HOME}/.z{shenv,profile,shrc}
+
+# setup the rest of the system
+# - setup dev env
+# - clone personal and work repos
+# - configure system and apps settings
+make setup
+
+# Complete
+echo "[Done]: You're ready to rock \m/"

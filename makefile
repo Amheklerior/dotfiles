@@ -7,10 +7,7 @@ include install/rules/stow.mk
 include install/rules/dev.mk
 include install/rules/settings.mk
 
-.PHONY: init bootstrap wrapup 
-
-# the default command to run by just typing `make`
-.DEFAULT_GOAL := bootstrap
+.PHONY: init bootstrap setup
 
 # force make to use bash to interpret the recipes
 # NOTE: default shell used my make is /bin/sh
@@ -19,7 +16,6 @@ SHELL := /bin/bash
 
 init: prepare brew
 
-bootstrap: packages core dotfiles dev settings wrapup
+bootstrap: packages core dotfiles
 
-wrapup:
-	echo "[Done]: You're ready to rock \m/"
+setup: dev settings
