@@ -16,7 +16,6 @@ setup-node:
 	if [[ ! $$(fnm list | grep -q latest) ]]; then \
 		fnm install --latest && fnm alias 22 latest; \
 	fi
-	fnm use latest
 
 # clone personal projects
 personal: github-login
