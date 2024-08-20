@@ -1,4 +1,4 @@
-.PHONY: brew brew-install brew-setup brew-check
+.PHONY: brew brew-install brew-setup
 
 .DEFAULT_GOAL := brew
 
@@ -11,7 +11,7 @@
 # because the command is not found.
 brew := $(HOMEBREW_BIN_PATH)/brew
 
-brew: brew-install brew-setup brew-check
+brew: brew-install brew-setup
 
 brew-install:
 	if ! command -v $(brew) >/dev/null; then \
@@ -25,7 +25,3 @@ brew-setup: brew-install
 	echo "$(BREW_LOG) setup homebrew..."
 	$(brew) analytics off
 	$(brew) update --auto-update
-
-brew-check: brew-install
-	$(brew) doctor
-	$(brew) cleanup
