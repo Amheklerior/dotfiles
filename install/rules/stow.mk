@@ -1,9 +1,9 @@
-.PHONY: dotfiles link source
+.PHONY: dotfiles link
 
 .DEFAULT_GOAL := dotfiles
 
 
-dotfiles: setdir link source
+dotfiles: setdir link
 
 # create directories to let stow symlink their content individually,
 # rather than the entire dir.
@@ -17,7 +17,3 @@ setdir:
 link: stow
 	echo "$(STOW_LOG) symlink dotfiles..."
 	stow -d $(DOTFILES)/system -t ${HOME} .
-
-source:
-	echo "$(STOW_LOG) source dotfiles..."
-	source ${HOME}/.z{shenv,profile,shrc}

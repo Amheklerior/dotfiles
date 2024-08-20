@@ -22,7 +22,9 @@ make bootstrap
 
 # source dotfiles in current shell
 echo "[dotfiles]: source dotfiles..."
-source ${HOME}/.z{shenv,profile,shrc}
+source $HOME/.zshenv
+source $HOME/.zprofile
+source $HOME/.zshrc
 
 # setup the rest of the system
 # - setup dev env
