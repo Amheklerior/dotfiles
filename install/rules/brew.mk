@@ -1,9 +1,17 @@
-.PHONY: brew brew-install brew-setup 
+.PHONY: brew brew-install brew-setup brew-check
 
 .DEFAULT_GOAL := brew
 
+# NOTE: The above is necessary because calling `eval "$(/opt/homebrew/brew shellenv)"`
+# from a make recipe, executes it in a subshell that exits as soon as the comman
+# completes.
+# This means that, although the command should make the `brew` command available
+# in the `PATH`, allowing me to simply call `brew` instead of `/opt/homebrew/bin/brew`
+# in the following recipes of the bootstrap process, the `brew` command calls fail
+# because the command is not found.
+brew := $(HOMEBREW_BIN_PATH)/brew
 
-brew: brew-install brew-setup
+brew: brew-install brew-setup brew-check
 
 brew-install:
 	if ! command -v $(brew) >/dev/null; then \
@@ -17,3 +25,7 @@ brew-setup: brew-install
 	echo "$(BREW_LOG) setup homebrew..."
 	$(brew) analytics off
 	$(brew) update --auto-update
+
+brew-check: brew-install
+	$(brew) doctor
+	$(brew) cleanup

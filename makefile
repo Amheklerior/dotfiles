@@ -7,7 +7,7 @@ include install/rules/stow.mk
 include install/rules/dev.mk
 include install/rules/settings.mk
 
-.PHONY: bootstrap wrapup 
+.PHONY: init bootstrap wrapup 
 
 # the default command to run by just typing `make`
 .DEFAULT_GOAL := bootstrap
@@ -17,13 +17,9 @@ include install/rules/settings.mk
 SHELL := /bin/bash
 
 
-bootstrap: prepare brew packages core dotfiles dev settings wrapup
+init: prepare brew
+
+bootstrap: packages core dotfiles dev settings wrapup
 
 wrapup:
-	echo "[Done]: You're ready to rock \m/"	
-	rm ${XDG_DATA_HOME}/personal-repo
-	rm ${XDG_DATA_HOME}/work-repo
-	rm ${XDG_DATA_HOME}/gh-login-token
-	rm ${XDG_DATA_HOME}/glab-login-token
-	$(brew) doctor
-	$(brew) cleanup
+	echo "[Done]: You're ready to rock \m/"

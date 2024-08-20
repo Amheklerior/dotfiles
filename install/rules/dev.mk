@@ -1,9 +1,9 @@
-.PHONY: dev setup-node personal work github-login gitlab-login
+.PHONY: dev setup-node personal work github-login gitlab-login cleanup
 
 .DEFAULT_GOAL := dev
 
 
-dev: setup-node personal work
+dev: setup-node personal work cleanup
 
 # setup fnm and corepack install dirs, and install lts and latest version of node
 # NOTE: at the moment, node versions are: v22.2.0 (latest), and v20.13.1 (LTS) 
@@ -52,22 +52,31 @@ work: gitlab-login
 		fi; \
 	done < ${XDG_DATA_HOME}/work-repo
 
+# login to gh via access token
 github-login: brew-bundle
 	if ! gh auth status >/dev/null 2>&1; then \
 		cp ./backup-codes/github.token ${XDG_DATA_HOME}/gh-login-token; \
-		echo "Please enter the decryption password for copying the gh login token"; \
+		echo "$(DEV_LOG) please enter the decryption password for copying the gh login token"; \
 		ansible-vault decrypt ${XDG_DATA_HOME}/gh-login-token && \
 		cat ${XDG_DATA_HOME}/gh-login-token | pbcopy; \
-		echo "Token copeid! Paste it during the installation process..."; \
+		echo "$(DEV_LOG) token successfully copeid! Paste it during the installation process..."; \
 		gh auth login; \
 	fi
 
+# login to glab via access token
 gitlab-login: brew-bundle
 	if ! glab auth status >/dev/null 2>&1; then \
 		cp ./backup-codes/gitlab.token ${XDG_DATA_HOME}/glab-login-token; \
-		echo "Please enter the decryption password for copying the glab login token"; \
+		echo "$(DEV_LOG) please enter the decryption password for copying the glab login token"; \
 		ansible-vault decrypt ${XDG_DATA_HOME}/glab-login-token && \
 		cat ${XDG_DATA_HOME}/glab-login-token | pbcopy; \
-		echo "Token copeid! Paste it during the installation process..."; \
+		echo "$(DEV_LOG) token successfully copeid! Paste it during the installation process..."; \
 		glab auth login; \
 	fi
+
+# remove temporary files
+cleanup:
+	rm ${XDG_DATA_HOME}/personal-repo
+	rm ${XDG_DATA_HOME}/work-repo
+	rm ${XDG_DATA_HOME}/gh-login-token
+	rm ${XDG_DATA_HOME}/glab-login-token
