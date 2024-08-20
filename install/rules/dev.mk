@@ -52,7 +52,7 @@ work: gitlab-login
 	done < ${XDG_DATA_HOME}/work-repo
 
 # login to gh via access token
-github-login: brew-bundle
+github-login:
 	if ! gh auth status >/dev/null 2>&1; then \
 		cp ./backup-codes/github.token ${XDG_DATA_HOME}/gh-login-token; \
 		echo "$(DEV_LOG) please enter the decryption password for copying the gh login token"; \
@@ -63,7 +63,7 @@ github-login: brew-bundle
 	fi
 
 # login to glab via access token
-gitlab-login: brew-bundle
+gitlab-login:
 	if ! glab auth status >/dev/null 2>&1; then \
 		cp ./backup-codes/gitlab.token ${XDG_DATA_HOME}/glab-login-token; \
 		echo "$(DEV_LOG) please enter the decryption password for copying the glab login token"; \
