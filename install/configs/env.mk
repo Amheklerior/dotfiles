@@ -16,7 +16,8 @@ PERSONAL_REPO_LIST := $(DOTFILES)/install/bundles/personal-repos.list
 WORK_REPO_LIST := $(DOTFILES)/install/bundles/work-repos.list
 
 # paths
-HOMEBREW_BIN_PATH := /opt/homebrew/bin # for intel-macs: /usr/local/bin
+# for intel-macs: /usr/local/bin
+HOMEBREW_BIN_PATH := /opt/homebrew/bin
 SYS_SHELLS := /etc/shells
 
 # bins
