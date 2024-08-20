@@ -25,5 +25,5 @@ wrapup:
 	rm ${XDG_DATA_HOME}/work-repo
 	rm ${XDG_DATA_HOME}/gh-login-token
 	rm ${XDG_DATA_HOME}/glab-login-token
-	brew doctor
-	brew cleanup
+	$(brew) doctor
+	$(brew) cleanup
