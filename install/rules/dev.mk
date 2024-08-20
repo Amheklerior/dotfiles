@@ -57,8 +57,8 @@ github-login: brew-bundle
 		cp ./backup-codes/github.token ${XDG_DATA_HOME}/gh-login-token; \
 		echo "$(DEV_LOG) please enter the decryption password for copying the gh login token"; \
 		ansible-vault decrypt ${XDG_DATA_HOME}/gh-login-token && \
-		cat ${XDG_DATA_HOME}/gh-login-token | pbcopy; \
-		echo "$(DEV_LOG) token successfully copeid! Paste it during the installation process..."; \
+		cat ${XDG_DATA_HOME}/gh-login-token | pbcopy && \
+		echo "$(DEV_LOG) token successfully copeid! Paste it during the installation process..." && \
 		gh auth login; \
 	fi
 
@@ -68,8 +68,8 @@ gitlab-login: brew-bundle
 		cp ./backup-codes/gitlab.token ${XDG_DATA_HOME}/glab-login-token; \
 		echo "$(DEV_LOG) please enter the decryption password for copying the glab login token"; \
 		ansible-vault decrypt ${XDG_DATA_HOME}/glab-login-token && \
-		cat ${XDG_DATA_HOME}/glab-login-token | pbcopy; \
-		echo "$(DEV_LOG) token successfully copeid! Paste it during the installation process..."; \
+		cat ${XDG_DATA_HOME}/glab-login-token | pbcopy && \
+		echo "$(DEV_LOG) token successfully copeid! Paste it during the installation process..." && \
 		glab auth login; \
 	fi
 
