@@ -34,7 +34,7 @@ sh-symlink: zsh
 ssh: ansible
 	if [ ! -d ${HOME}/.ssh ]; then \
 		echo "$(CORE_LOG) setting up ssh keys on your system..."; \
-		mkdir -p ${HOME}/.ssh;
+		mkdir -p ${HOME}/.ssh; \
 		cp $(SSH_KEYS)/* ${HOME}/.ssh && \
 		ansible-vault decrypt ${HOME}/.ssh/personal ${HOME}/.ssh/work; \
 	else \
