@@ -1,4 +1,4 @@
-.PHONY: dev setup-node personal work github-login gitlab-login cleanup
+.PHONY: dev setup-node personal work github-login gitlab-login mk-tmp-dir cleanup
 
 .DEFAULT_GOAL := dev
 
@@ -20,7 +20,7 @@ setup-node:
 # clone personal projects
 personal: github-login
 	echo "$(DEV_LOG) creating the ~/personal dir..."
-	mkdir -p $(PERSONAL_DIR) $(XDG_DATA_HOME)
+	mkdir -p $(PERSONAL_DIR)
 	echo "$(DEV_LOG) clone my personal repos..."
 	if [[ ! -e ${XDG_DATA_HOME}/personal-repo ]]; then \
 		cp $(PERSONAL_REPO_LIST) ${XDG_DATA_HOME}/personal-repo; \
@@ -38,7 +38,7 @@ personal: github-login
 # clone work projects
 work: gitlab-login
 	echo "$(DEV_LOG) creating the ~/work dir..."
-	mkdir -p $(WORK_DIR) $(XDG_DATA_HOME)
+	mkdir -p $(WORK_DIR)
 	echo "$(DEV_LOG) clone work related repos..."
 	if [[ ! -e ${XDG_DATA_HOME}/work-repo ]]; then \
 		cp $(WORK_REPO_LIST) ${XDG_DATA_HOME}/work-repo; \
@@ -54,7 +54,7 @@ work: gitlab-login
 	done < ${XDG_DATA_HOME}/work-repo
 
 # login to gh via access token
-github-login:
+github-login: mk-tmp-dir
 	if ! gh auth status >/dev/null 2>&1; then \
 		cp ./backup-codes/github.token ${XDG_DATA_HOME}/gh-login-token; \
 		echo "$(DEV_LOG) please enter the decryption password for copying the gh login token"; \
@@ -65,7 +65,7 @@ github-login:
 	fi
 
 # login to glab via access token
-gitlab-login:
+gitlab-login: mk-tmp-dir
 	if ! glab auth status >/dev/null 2>&1; then \
 		cp ./backup-codes/gitlab.token ${XDG_DATA_HOME}/glab-login-token; \
 		echo "$(DEV_LOG) please enter the decryption password for copying the glab login token"; \
@@ -74,6 +74,9 @@ gitlab-login:
 		echo "$(DEV_LOG) token successfully copeid on your clipboard! Paste it during the installation process..." && \
 		glab auth login; \
 	fi
+
+mk-tmp-dir: 
+	mkdir -p $(XDG_DATA_HOME)
 
 # remove temporary files
 cleanup:
