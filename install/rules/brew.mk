@@ -23,5 +23,5 @@ brew-install:
 
 brew-setup: brew-install
 	echo "$(BREW_LOG) setting up homebrew..."
-	$(brew) analytics state | grep enabled >/dev/null && $(brew) analytics off
+	$(brew) analytics state | grep enabled >/dev/null && $(brew) analytics off || :
 	$(brew) update --auto-update
