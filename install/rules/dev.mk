@@ -8,7 +8,7 @@ dev: setup-node personal work cleanup
 # setup fnm and corepack install dirs, and install lts and latest version of node
 # NOTE: at the moment, node versions are: v22.2.0 (latest), and v20.13.1 (LTS) 
 setup-node: 
-	echo "$(DEV_LOG) setup node env..."
+	echo "$(DEV_LOG) setting up node env..."
 	mkdir -p $(FNM_INSTALL_DIR) $(COREPACK_INSTALL_DIR)
 	if [[ ! $$(fnm list | grep -q lts) ]]; then \
 		fnm install --lts && fnm alias 20 lts; \
@@ -24,6 +24,7 @@ personal: github-login
 	echo "$(DEV_LOG) clone my personal repos..."
 	if [[ ! -e ${XDG_DATA_HOME}/personal-repo ]]; then \
 		cp $(PERSONAL_REPO_LIST) ${XDG_DATA_HOME}/personal-repo; \
+		echo "$(DEV_LOG) provide decryption password to access your personal repo list..."; \
 		ansible-vault decrypt ${XDG_DATA_HOME}/personal-repo; \
 	fi
 	while IFS=' ' read -r repo path; do \
@@ -41,6 +42,7 @@ work: gitlab-login
 	echo "$(DEV_LOG) clone work related repos..."
 	if [[ ! -e ${XDG_DATA_HOME}/work-repo ]]; then \
 		cp $(WORK_REPO_LIST) ${XDG_DATA_HOME}/work-repo; \
+		echo "$(DEV_LOG) provide decryption password to access your work repo list..."; \
 		ansible-vault decrypt ${XDG_DATA_HOME}/work-repo; \
 	fi
 	while IFS=' ' read -r repo path; do \
@@ -58,7 +60,7 @@ github-login:
 		echo "$(DEV_LOG) please enter the decryption password for copying the gh login token"; \
 		ansible-vault decrypt ${XDG_DATA_HOME}/gh-login-token && \
 		cat ${XDG_DATA_HOME}/gh-login-token | pbcopy && \
-		echo "$(DEV_LOG) token successfully copeid! Paste it during the installation process..." && \
+		echo "$(DEV_LOG) token successfully copeid on your clipboard! Paste it during the installation process..." && \
 		gh auth login; \
 	fi
 
@@ -69,13 +71,14 @@ gitlab-login:
 		echo "$(DEV_LOG) please enter the decryption password for copying the glab login token"; \
 		ansible-vault decrypt ${XDG_DATA_HOME}/glab-login-token && \
 		cat ${XDG_DATA_HOME}/glab-login-token | pbcopy && \
-		echo "$(DEV_LOG) token successfully copeid! Paste it during the installation process..." && \
+		echo "$(DEV_LOG) token successfully copeid on your clipboard! Paste it during the installation process..." && \
 		glab auth login; \
 	fi
 
 # remove temporary files
 cleanup:
-	rm ${XDG_DATA_HOME}/personal-repo
-	rm ${XDG_DATA_HOME}/work-repo
-	rm ${XDG_DATA_HOME}/gh-login-token
-	rm ${XDG_DATA_HOME}/glab-login-token
+	echo "$(DEV_LOG) Cleaning up your system from the following temporary files: "
+	echo "- ${XDG_DATA_HOME}/personal-repo" && rm ${XDG_DATA_HOME}/personal-repo
+	echo "- ${XDG_DATA_HOME}/work-repo" && rm ${XDG_DATA_HOME}/work-repo
+	echo "- ${XDG_DATA_HOME}/gh-login-token" && rm ${XDG_DATA_HOME}/gh-login-token
+	echo "- ${XDG_DATA_HOME}/glab-login-token" && rm ${XDG_DATA_HOME}/glab-login-token

@@ -8,13 +8,19 @@ packages: core-packages brew-bundle brew-check
 core-packages: zsh ansible stow
 
 zsh:
-	test $$(command -v $(HOMEBREW_BIN_PATH)/zsh) || brew install zsh
+	test $$(command -v $(HOMEBREW_BIN_PATH)/zsh) \
+	&& echo "$(PKG_LOG) zsh already installed on your system" \
+	|| brew install zsh
 
 ansible:
-	test $$(command -v $(HOMEBREW_BIN_PATH)/ansible) || brew install ansible
+	test $$(command -v $(HOMEBREW_BIN_PATH)/ansible) \
+	&& echo "$(PKG_LOG) ansible already installed on your system" \
+	|| brew install ansible
 
 stow:
-	test $$(command -v $(HOMEBREW_BIN_PATH)/stow) || brew install stow
+	test $$(command -v $(HOMEBREW_BIN_PATH)/stow) \
+	&& echo "$(PKG_LOG) stow already installed on your system" \
+	|| brew install stow
 
 # TODO: I might split this in 4 different steps for bins, cask-apps, mas-apps, and vscode-ext
 # NOTE: the --no-quarantine flag is addedd to avoid the Gatekeeper for cask apps 

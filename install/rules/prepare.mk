@@ -7,17 +7,17 @@ prepare: sys-check backup
 
 # check whether it's running on a macos system (the only supported so far)
 sys-check: 
-	echo "$(PREPARE_LOG) check system os..."
+	echo "$(PREPARE_LOG) checking system os..."
 	if [[ "$(SYSTEM)" == "Darwin" ]]; then \
-		echo "sys-check: OK!"; \
+		echo "$(PREPARE_LOG) sys-check: OK!"; \
 	else \
-		echo "sys-check: KO! It only works on macos" && exit 1; \
+		echo "$(PREPARE_LOG) sys-check: KO! It only works on Apple Silicon MacOS systems" && exit 1; \
 	fi
 
 # move any file/dir which is NOT a symlink into the backup directory
 backup: 
 	if [[ ! -e $(BACKUP_DIR)/.config ]]; then \
-		echo "$(PREPARE_LOG) backup currently present dotfiles..."; \
+		echo "$(PREPARE_LOG) creating backup for current dotfiles..."; \
 		mkdir -p $(BACKUP_DIR)/.config; \
 		for item in $(STOW_ITEMS); do \
 			if [[ -e "${HOME}/$$item" ]] && [ ! -L "${HOME}/$$item" ]; then \

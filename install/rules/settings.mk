@@ -6,7 +6,7 @@
 settings: osx apps
 
 osx:
-	echo "$(SETTINGS_LOG) Setting up system and apps preferences..."
+	echo "$(SETTINGS_LOG) Setting up system and apps preferences... {TODO}"
 
 apps:
-	echo "$(SETTINGS_LOG) Setting up apps' preferences..."
+	echo "$(SETTINGS_LOG) Setting up apps' preferences... {TODO}"
