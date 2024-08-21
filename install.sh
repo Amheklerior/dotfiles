@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # don't echo the commands while running make
 export MAKEFLAGS="--silent"
@@ -12,11 +12,13 @@ make init
 # complete homebrew installation
 # - set homebrew env vars
 # - add the `brew` command to the PATH
-echo "[brew]: Setting up homebrew environment variables..."
+echo "[brew]: setting up homebrew environment variables..."
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # bootstrap the system
 # - install packages and apps
+# - setup shell
+# - setup ssh
 # - link my dotfiles
 make bootstrap
 
