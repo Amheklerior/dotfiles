@@ -18,7 +18,7 @@ defaults write -g AppleLiveTextEnabled -bool true
 
 
 #------------------------------------------------------------------------------------#
-#                      • LANG, LOCALE, FORMATS, UNITS •                              #
+#                 • LANG, LOCALE, FORMATS, UNITS, TIMEZONE •                         #
 #------------------------------------------------------------------------------------#
 
 # Set preferred languages
@@ -49,3 +49,12 @@ defaults write com.apple.iCal BirthdayEventsGenerationLastLocale -string "en_US@
 # ----------------------------------------------------------------
 # defaults write -g AppleMetricUnits -int 0
 # defaults write -g AppleMeasurementUnits -int "Inches"
+
+# Set 12-hours time format
+# defaults write -g AppleICUForce12HourTime -bool true
+
+# Set system timezone
+# NOTE: run `sudo systemsetup -listtimezones` for other values
+# TOFIX: it works but with error:
+# Error:-99 File:/AppleInternal/Library/BuildRoots/91a344b1-f985-11ee-b563-fe8bc7981bff/Library/Caches/com.apple.xbs/Sources/Admin/InternetServices.m Line:379
+sudo systemsetup -settimezone "Europe/Rome" >/dev/null
