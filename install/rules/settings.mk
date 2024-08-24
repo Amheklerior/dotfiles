@@ -1,12 +1,9 @@
-.PHONY: settings osx iterm2 # add others
+.PHONY: settings
 
 .DEFAULT_GOAL := settings
 
 
-settings: osx apps
-
-osx:
-	echo "$(SETTINGS_LOG) Setting up system and apps preferences... {TODO}"
-
-apps:
-	echo "$(SETTINGS_LOG) Setting up apps' preferences... {TODO}"
+settings:
+	echo "$(SETTINGS_LOG) Setting up system and apps preferences... (IN PROGRESS)"
+	$(DOTFILES)/prefs/macos/defaults.sh
+	echo "$(SETTINGS_LOG) Done! You may want to restart now"
