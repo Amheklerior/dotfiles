@@ -64,7 +64,7 @@ github-login: mk-tmp-dir
 		cat ${XDG_DATA_HOME}/gh-login-token | pbcopy && \
 		echo "$(DEV_LOG) token successfully copeid on your clipboard! Paste it during the installation process..." && \
 		gh auth login; \
-		rm ${XDG_DATA_HOME}/gh-login-token \
+		rm ${XDG_DATA_HOME}/gh-login-token; \
 	else \
 		echo "$(DEV_LOG) already logged in into github"; \
 	fi
