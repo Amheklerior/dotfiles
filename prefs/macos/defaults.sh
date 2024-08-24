@@ -3,7 +3,7 @@
 log="[Settings]: "
 
 #------------------------------------------------------------------------------------#
-#                                 • GENERAL •                                        #
+#                                  • GENERAL •                                       #
 #------------------------------------------------------------------------------------#
 
 # Set computer name
@@ -18,7 +18,7 @@ defaults write -g AppleLiveTextEnabled -bool true
 
 
 #------------------------------------------------------------------------------------#
-#                 • LANG, LOCALE, FORMATS, UNITS, TIMEZONE •                         #
+#                   • LANG, LOCALE, FORMATS, UNITS, TIMEZONE •                       #
 #------------------------------------------------------------------------------------#
 
 # Set preferred languages
@@ -58,3 +58,53 @@ defaults write com.apple.iCal BirthdayEventsGenerationLastLocale -string "en_US@
 # TOFIX: it works but with error:
 # Error:-99 File:/AppleInternal/Library/BuildRoots/91a344b1-f985-11ee-b563-fe8bc7981bff/Library/Caches/com.apple.xbs/Sources/Admin/InternetServices.m Line:379
 sudo systemsetup -settimezone "Europe/Rome" >/dev/null
+
+
+#------------------------------------------------------------------------------------#
+#                               • APPEARANCE / UI •                                  #
+#------------------------------------------------------------------------------------#
+
+# Switch to Dark theme
+# NOTE: other options are:
+# - `Light` -> leave both unset
+# - `Auto`  -> only set `AppleInterfaceStyleSwithesAutomatically` to 1
+defaults write -g AppleInterfaceStyle -string "Dark"
+# defaults write -g AppleInterfaceStyleSwitchesAutomatically -int 1
+
+# Set sidebar icon size to (1) small, (2) medium, (3) large
+defaults write -g NSTableViewDefaultSizeMode -int 1
+
+# Enable wallpaper tinting in windows
+defaults write -g AppleReduceDesktopTinting -bool false
+
+# Set accent and highlight colors
+# NOTE: you can mix between accent and highlight colors...
+# ------------------------------------------------------------------------------
+# desired       accent        highlight                             aqua var
+# ------------------------------------------------------------------------------
+# multicolor    leave unset   leave unset                           leave unset
+# blue          4             0.698039 0.843137 1.000000 Blue       1
+# purple        5             0.968627 0.831373 1.000000 Purple     1
+# pink          6             1.000000 0.749020 0.823529 Pink       1
+# red           0             1.000000 0.749020 0.823529 Red        1
+# orange        1             1.000000 0.874510 0.701961 Orange     1
+# yellow        2             1.000000 0.937255 0.690196 Yellow     1
+# green         3             0.752941 0.964706 0.678431 Green      1
+# graphite      -1            0.847059 0.847059 0.862745 Graphite   6
+# ------------------------------------------------------------------------------
+# defaults write -g AppleAccentColor -int 3
+# defaults write -g AppleHighlightColor -string "0.752941 0.964706 0.678431 Green"
+# defaults write -g AppleAquaColorVariant -int 1
+
+
+#------------------------------------------------------------------------------------#
+#                                 • SCROLLING •                                      #
+#------------------------------------------------------------------------------------#
+
+# Show scrollbar: `WhenScrolling`, `Automatic`, `Always`
+defaults write -g AppleShowScrollBars -string "WhenScrolling"
+
+# Click the scroll bar to jump to:
+# 0: the next page or
+# 1: the spot that's clicked
+defaults write -g AppleScrollerPagingBehavior -int 1
