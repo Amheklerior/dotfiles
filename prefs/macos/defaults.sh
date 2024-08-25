@@ -108,3 +108,67 @@ defaults write -g AppleShowScrollBars -string "WhenScrolling"
 # 0: the next page or
 # 1: the spot that's clicked
 defaults write -g AppleScrollerPagingBehavior -int 1
+
+
+#------------------------------------------------------------------------------------#
+#                    • SYSTEM MENU BAR & CONTROL CENTER •                            #
+#------------------------------------------------------------------------------------#
+
+# Set the menu bar to autohide on fullscreen only
+defaults write -g AppleMenuBarVisibleInFullscreen -bool false
+defaults write -g _HIHideMenuBar -bool false
+
+# Show time on the menu bar
+# ...in digital style
+defaults write com.apple.menuextra.clock IsAnalog -bool false
+# ...with non-flashing time separator
+defaults write com.apple.menuextra.clock FlashDateSeparators -bool false
+# ...with no seconds
+defaults write com.apple.menuextra.clock ShowSeconds -bool false
+# ...including day of the week
+defaults write com.apple.menuextra.clock ShowDayOfWeek -bool true
+# ...including full date: (0) if space is available, (1) always, (2) never
+defaults write com.apple.menuextra.clock ShowDate -int 0
+
+# Sets visible items on the system menu bar on the top
+for item in "Battery" "BentoBox" "Clock" "WiFi"; do
+  defaults write com.apple.controlcenter "NSStatusItem Visible $item" -bool true &>/dev/null
+done
+
+# Sets the control center items position
+# NOTE: higher values gets places further to the left 
+defaults write com.apple.controlcenter "NSStatusItem Preferred Position WiFi" -int 200
+defaults write com.apple.controlcenter "NSStatusItem Preferred Position Battery" -int 150
+defaults write com.apple.controlcenter "NSStatusItem Preferred Position BentoBox" -int 100
+defaults write com.apple.controlcenter "NSStatusItem Preferred Position Clock" -int 50
+
+# Remove Siri from the menu bar
+defaults write com.apple.Siri StatusMenuVisible -bool false
+defaults write com.apple.systemuiserver "NSStatusItem Visible Siri" -bool false
+
+# Remove Spotlight from the menu bar
+defaults write com.apple.Spotlight "NSStatusItem Visible Item-0" -bool false
+
+# Remove TimeMachine from the menu bar
+defaults write com.apple.systemuiserver menuExtras -array
+defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.TimeMachine" -bool false
+
+# Make sure all other unwanted items are removed from the system menu bar
+for item in \
+  "AccessibilityShortcuts" \
+  "AirDrop" \
+  "Bluetooth" \
+  "Display" \
+  "FocusModes" \
+  "Hearing" \
+  "KeyboardBrightness" \
+  "MusicRecognition" \
+  "NowPlaying" \
+  "ScreenMirroring" \
+  "Sound" \
+  "StageManager" \
+  "UserSwitcher" \
+; do
+  defaults write com.apple.controlcenter "NSStatusItem Visible $item" -bool false &>/dev/null
+  defaults delete com.apple.controlcenter "NSStatusItem Preferred Position $item" &>/dev/null
+done
