@@ -178,10 +178,16 @@ done
 #                                 • SPOTLIGHT •                                      #
 #------------------------------------------------------------------------------------#
 
+# IMPORTANT: Thinking to disable spotlight, in favour of either Alfred or Raycast
+# disable spotlight keyboard shortcut
+# /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:64:enabled 0" \
+# "$HOME/Library/Preferences/com.apple.symbolichotkeys.plist"
+
 # disable spotlight indexing for all volumes
 sudo mdutil -a -i off
 
 # Change indexing order and disable some search results
+# NOTE: remove all items once I switch to its alternative
 defaults write com.apple.spotlight orderedItems -array \
 	'{"enabled" = 1;"name" = "APPLICATIONS";}' \
 	'{"enabled" = 1;"name" = "DIRECTORIES";}' \
