@@ -355,3 +355,24 @@ defaults write com.apple.dock wvous-bl-modifier -int 0
 # Bottom right screen corner -> no-op
 defaults write com.apple.dock wvous-br-corner -int 0
 defaults write com.apple.dock wvous-br-modifier -int 0
+
+#------------------------------------------------------------------------------------#
+#                              • POWER MANAGEMENT •                                  #
+#------------------------------------------------------------------------------------#
+
+# Set sleep times when on AC Power
+sudo pmset -c displaysleep 10
+sudo pmset -c disksleep 0
+sudo pmset -c sleep 0
+
+# Set sleep times when on battery
+sudo pmset -b displaysleep 5
+sudo pmset -b disksleep 10
+sudo pmset -b sleep 10
+
+# Maximize performance on AC Power, but reduce energy usage on battery
+sudo pmset -c lowpowermode 0
+sudo pmset -b lowpowermode 1
+
+# Slightly dim display on battery
+sudo pmset -b lessbright
