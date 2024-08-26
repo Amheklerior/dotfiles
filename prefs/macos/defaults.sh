@@ -223,3 +223,135 @@ defaults write com.apple.assistant.support Assistant\ Enabled -bool false
 defaults write com.apple.Siri StatusMenuVisible -bobl false
 defaults write com.apple.Siri VoiceTriggerUserEnabled -bobl false
 defaults write com.apple.Siri SiriPrefStashedStatusMenuVisible -bobl false
+
+
+#------------------------------------------------------------------------------------#
+#                                   • DOCK •                                         #
+#------------------------------------------------------------------------------------#
+
+# Dock position on screen: `bottom`, `left`, `right`
+defaults write com.apple.dock orientation -string "bottom"
+
+# Don't automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool false
+
+# Autohide animation properties: in seconds (requires autohide)
+defaults write com.apple.dock autohide-delay -float 0.2
+defaults write com.apple.dock autohide-time-modifier -float 0.1
+
+# Set dock icons size in pixels
+defaults write com.apple.dock tilesize -int 36
+
+# Set dock icons to grow on hover
+defaults write com.apple.dock magnification -bool true
+defaults write com.apple.dock largesize -int 48
+
+# Animate opening apps
+defaults write com.apple.dock launchanim -bool true
+
+# Show indicator lights for running apps
+defaults write com.apple.dock show-process-indicators -bool true
+
+# Minimize windows into their application’s icon
+defaults write com.apple.dock minimize-to-application -bool true
+
+# Change minimize/maximize window animation effect: `genie`, `scale`, `suck`
+defaults write com.apple.dock mineffect -string "scale"
+
+# Show suggested and recent apps on the dock
+defaults write com.apple.dock show-recents -bool false
+
+# Wipe all (default) apps from the Dock, then add the favourite apps
+defaults write com.apple.dock persistent-apps -array
+# TODO: Add favs apps
+# defaults write com.apple.dock persistent-apps -array-add '
+# {
+#   "tile-data" = {
+#     "file-data" = {
+#       "_CFURLString" = "/Applications/iTerm.app";
+#       "_CFURLStringType"=0;
+#     };
+#   };
+# }
+
+
+#------------------------------------------------------------------------------------#
+#                                   • WINDOWS •                                      #
+#------------------------------------------------------------------------------------#
+
+# Double-click a window's title bar to: 'Maximize', 'Minimize', 'None' (do nothing)
+defaults write -g AppleActionOnDoubleClick -string "None"
+
+# Hide desktop icons when windows are open
+defaults write com.apple.WindowManager StandardHideDesktopIcons -bool true
+
+# Prefer tabs when opening documents: 'always', 'manual', or when in 'fullscreen'
+defaults write -g AppleWindowTabbingMode -string "fullscreen"
+
+# Close all windows when quitting an app (no restore when reopening)
+defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
+
+
+#------------------------------------------------------------------------------------#
+#                           • SPACES, MISSION CONTROL •                              #
+#------------------------------------------------------------------------------------#
+
+# When switching to an app, go to space with open windows of that app
+defaults write -g AppleSpacesSwitchOnActivate -bool true
+
+# Group windows by application in Mission Control
+defaults write com.apple.dock expose-group-apps -bool true
+
+# Don’t automatically rearrange Spaces based on most recent use
+defaults write com.apple.dock mru-spaces -bool false
+
+# Displays have separate spaces
+defaults write com.apple.spaces spans-displays -bool false
+
+
+#------------------------------------------------------------------------------------#
+#                             • DESKTOP & WIDGETS •                                  #
+#------------------------------------------------------------------------------------#
+
+# Reveal desktop when clicking the wallpaper
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool true 
+
+# Widgets appearance: (0) monochrome, (1) in full color, or (2) automatic
+defaults write com.apple.widgets widgetAppearance -int 2
+
+# Use iPhone widgets
+defaults write com.apple.chronod remoteWidgetsEnabled -bool true
+
+
+#------------------------------------------------------------------------------------#
+#                               • HOT CORNERS •                                      #
+#------------------------------------------------------------------------------------#
+
+# NOTE: Possible values are:
+#  0: no-op
+#  2: Mission Control
+#  3: Show application windows
+#  4: Desktop
+#  5: Start screen saver
+#  6: Disable screen saver
+#  7: Dashboard
+# 10: Put display to sleep
+# 11: Launchpad
+# 12: Notification Center
+# 13: Lock Screen
+
+# Top left screen corner -> no-op
+defaults write com.apple.dock wvous-tl-corner -int 0
+defaults write com.apple.dock wvous-tl-modifier -int 0
+
+# Top right screen corner -> no-op
+defaults write com.apple.dock wvous-tr-corner -int 0
+defaults write com.apple.dock wvous-tr-modifier -int 0
+
+# Bottom left screen corner -> no-op
+defaults write com.apple.dock wvous-bl-corner -int 0
+defaults write com.apple.dock wvous-bl-modifier -int 0
+
+# Bottom right screen corner -> no-op
+defaults write com.apple.dock wvous-br-corner -int 0
+defaults write com.apple.dock wvous-br-modifier -int 0
