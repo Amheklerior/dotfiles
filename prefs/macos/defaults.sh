@@ -360,6 +360,9 @@ defaults write com.apple.dock wvous-br-modifier -int 0
 #                              • POWER MANAGEMENT •                                  #
 #------------------------------------------------------------------------------------#
 
+# Enable put to sleep with power button
+sudo systemsetup -setallowpowerbuttontosleepcomputer on
+
 # Set sleep times when on AC Power
 sudo pmset -c displaysleep 10
 sudo pmset -c disksleep 0
@@ -376,3 +379,41 @@ sudo pmset -b lowpowermode 1
 
 # Slightly dim display on battery
 sudo pmset -b lessbright
+
+# Enable lid wakeup (lifting the screen lid up wakes the system)
+sudo pmset -a lidwake 1
+
+# Enable wakeup when devices with same Cloud ID are near
+sudo pmset -a proximitywake 1
+
+# Enable wakup when switching power source
+sudo pmset -a acwake 1
+
+# Enable wakup on network access, unless on battery
+sudo pmset -a womp 1
+sudo pmset -b womp 0
+
+# Restart automatically on power loss, or freeze
+sudo pmset -a autorestart 1
+sudo systemsetup -setrestartfreeze on
+
+# Hibernate mode:
+#  0: Disable hibernation (speeds up sleep/wake operations)
+#  3: Copy RAM to disk (can restore state in case of power failure)
+# 25: Copy RAM to disk and power it off (better battery life)
+#
+# NOTE: Here's a table with the implications of each option
+# --------------------------------------------------------------------------------
+# setting     RAM copy to disk    RAM power during sleep            restore state
+# --------------------------------------------------------------------------------
+# 0           off                 on                                off
+# 3           on                  on (unless a power loss occur)    on
+# 25          on                  off                               on
+# --------------------------------------------------------------------------------
+sudo pmset -a hibernatemode 0
+
+# Remove the sleep image file to save disk space, replacing it
+# with a readonluy zero-byte file instead
+sudo rm /private/var/vm/sleepimage
+sudo touch /private/var/vm/sleepimage
+sudo chflags uchg /private/var/vm/sleepimage
