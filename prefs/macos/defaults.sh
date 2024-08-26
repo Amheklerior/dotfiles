@@ -356,6 +356,7 @@ defaults write com.apple.dock wvous-bl-modifier -int 0
 defaults write com.apple.dock wvous-br-corner -int 0
 defaults write com.apple.dock wvous-br-modifier -int 0
 
+
 #------------------------------------------------------------------------------------#
 #                              • POWER MANAGEMENT •                                  #
 #------------------------------------------------------------------------------------#
@@ -417,3 +418,36 @@ sudo pmset -a hibernatemode 0
 sudo rm /private/var/vm/sleepimage
 sudo touch /private/var/vm/sleepimage
 sudo chflags uchg /private/var/vm/sleepimage
+
+
+#------------------------------------------------------------------------------------#
+#                              • LOGIN WINDOW •                                      #
+#------------------------------------------------------------------------------------#
+
+# path to the plist file
+loginwindow=/Library/Preferences/com.apple.loginwindow.plist
+
+# Hide user name and avatar
+sudo defautls $loginwindow HideUserAvatarAndName -bool true
+
+# Don't show a custom message
+sudo defautls $loginwindow LoginwindowText -strin ""
+
+# Don't show password hint
+sudo defautls $loginwindow RetriesUntilHint -int 0
+
+# Show the Sleep, Restartm and Shutdown buttons
+sudo defautls $loginwindow PowerOffDisabled -bool false
+
+
+#------------------------------------------------------------------------------------#
+#                               • SCREEN SAVER •                                     #
+#------------------------------------------------------------------------------------#
+
+# Start Screen saver when inactive for 5 minutes
+# NOTE: set to 0 to never have screensaver
+defaults write com.apple.screensaver idleTime -int 300
+
+# Require password immediately after sleep or screen saver begins
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
