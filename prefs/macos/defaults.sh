@@ -53,11 +53,18 @@ defaults write com.apple.iCal BirthdayEventsGenerationLastLocale -string "en_US@
 # Set 12-hours time format
 # defaults write -g AppleICUForce12HourTime -bool true
 
-# Set system timezone
+# Enable date and time syncrhorization
+sudo systemsetup -setusingnetworktime on
+
+# Set timezone atuomatically based on current location
+sudo defautls /Library/Preferences/com.apple.timezone.auto.plist Active -bool true
+
+# Set system timezone manually (remember to disable the automatic timezone option above)
 # NOTE: run `sudo systemsetup -listtimezones` for other values
-# TOFIX: it works but with error:
-# Error:-99 File:/AppleInternal/Library/BuildRoots/91a344b1-f985-11ee-b563-fe8bc7981bff/Library/Caches/com.apple.xbs/Sources/Admin/InternetServices.m Line:379
-sudo systemsetup -settimezone "Europe/Rome" >/dev/null
+# sudo systemsetup -settimezone "Europe/Rome" >/dev/null
+
+# Apply changes timezone changes
+sudo launchctl kickstart -k system/com.apple.locationd
 
 
 #------------------------------------------------------------------------------------#
