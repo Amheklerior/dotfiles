@@ -1,13 +1,17 @@
 #!/usr/bin/env zsh
 
-# NOTE: 
-# `wallpaper` • select a picture to be set as new wallpaper on all desktop
+# NOTE: `wallpaper` - select a picture to be set as new wallpaper on all desktop
 
 # default path to all wallpapers
 WALLPAPER_DIR=$HOME/wallpapers
 
 # select a wallpaper from the list 
-wallpaper=$(ls $WALLPAPER_DIR | fzf)
+wallpaper=$(\
+  ls $WALLPAPER_DIR | fzf \
+    --preview 'viu --width 120 --static '"$WALLPAPER_DIR"'/{1}' \
+    --preview-window=right:70%
+)
+
 selected=$WALLPAPER_DIR/$wallpaper
 
 # apply wallpaper to all spaces
