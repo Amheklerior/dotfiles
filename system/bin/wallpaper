@@ -12,6 +12,11 @@ wallpaper=$(\
     --preview-window=right:70%
 )
 
+# Check if the user exited fzf without making a selection
+if [ -z "$wallpaper" ]; then
+  echo "No wallpaper selected. Exiting..." && exit 0
+fi
+
 selected=$WALLPAPER_DIR/$wallpaper
 
 # apply wallpaper to all spaces
