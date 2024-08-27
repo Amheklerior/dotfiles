@@ -458,3 +458,20 @@ defaults write com.apple.screensaver idleTime -int 300
 # Require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+
+#------------------------------------------------------------------------------------#
+#                             • AUDIO / SOUNDS •                                     #
+#------------------------------------------------------------------------------------#
+
+# Disable the sound effects on system boot (%00 to reenable it)
+sudo nvram StartupMute="%01"
+
+# Play UI sound effects
+defaults write -g com.apple.sound.uiaudio.enabled -bool true
+
+# Don't play feedback sound on volume change
+defaults write -g com.apple.sound.beep.feedback -bool false
+
+# Alerts volume (it's not the general output volume)
+defaults write -g com.apple.sound.beep.volume -float 0.7
