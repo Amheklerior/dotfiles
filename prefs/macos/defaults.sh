@@ -475,3 +475,11 @@ defaults write -g com.apple.sound.beep.feedback -bool false
 
 # Alerts volume (it's not the general output volume)
 defaults write -g com.apple.sound.beep.volume -float 0.7
+
+
+#------------------------------------------------------------------------------------#
+#                               • NOTIFICATIONS •                                    #
+#------------------------------------------------------------------------------------#
+
+# Show notification previews: (1) never, (2) when unlocked, (3) always
+defaults write com.apple.ncprefs content_visibility -int 2
