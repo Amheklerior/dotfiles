@@ -478,8 +478,11 @@ defaults write -g com.apple.sound.beep.volume -float 0.7
 
 
 #------------------------------------------------------------------------------------#
-#                               • NOTIFICATIONS •                                    #
+#                           • FOCUS / NOTIFICATIONS •                                #
 #------------------------------------------------------------------------------------#
+
+# Share focus across devices (activating it on one device, activates it for all)
+defaults write com.apple.donotdisturb disableCloudSync -bool false
 
 # Show notification previews: (1) never, (2) when unlocked, (3) always
 defaults write com.apple.ncprefs content_visibility -int 2
