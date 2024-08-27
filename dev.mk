@@ -15,6 +15,7 @@ LINKED_FILES := \
 	${HOME}/.config/starship.toml \
 	${HOME}/.config/.bunfig.toml \
 	${HOME}/bin \
+	${HOME}/wallpapers \
 	${HOME}/Library/Application\ Support/Code/User/settings.json
 
 # use zsh to interpret the recipes

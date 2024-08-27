@@ -1,6 +1,15 @@
 # vars
 SYSTEM := $(shell uname -s)
-STOW_ITEMS := .zshrc .zprofile .zshenv .ssh .gitconfig .config/starship.toml .config/.bunfig.toml bin
+STOW_ITEMS := \
+	.zshrc \
+	.zprofile \
+	.zshenv \
+	.ssh \
+	.gitconfig \
+	.config/starship.toml \
+	.config/.bunfig.toml bin \
+	wallpapers \
+	bin
 
 # dirs
 DOTFILES := ${HOME}/.dotfiles

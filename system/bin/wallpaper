@@ -1,0 +1,29 @@
+#!/usr/bin/env zsh
+
+# NOTE: 
+# `wallpaper` • select a picture to be set as new wallpaper on all desktop
+
+# default path to all wallpapers
+WALLPAPER_DIR=$HOME/wallpapers
+
+# select a wallpaper from the list 
+wallpaper=$(ls $WALLPAPER_DIR | fzf)
+selected=$WALLPAPER_DIR/$wallpaper
+
+# apply wallpaper to all spaces
+osascript -e "
+on run {wallpaper}
+    tell application \"System Events\"
+        tell every desktop
+            set picture to wallpaper
+        end tell
+    end tell
+end run
+" "$selected"
+
+# provide feedback to the user
+if [ $? = "0" ]; then
+  echo "$wallpaper set as wallpaper"
+else
+  echo "$wallpaper not set"
+fi
