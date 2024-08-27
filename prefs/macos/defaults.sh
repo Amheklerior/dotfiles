@@ -6,6 +6,8 @@ log="[Settings]: "
 #                                  • GENERAL •                                       #
 #------------------------------------------------------------------------------------#
 
+updates="/Library/Preferences/com.apple.SoftwareUpdates.plist"
+
 # Set computer name
 echo "$log which name do you want to give to this computer? (amheklerior)" && read
 sudo scutil --set ComputerName $REPLY
@@ -15,6 +17,14 @@ defaults write com.apple.rapport familySyncedName -string $REPLY
 
 # Allow text selection in images
 defaults write -g AppleLiveTextEnabled -bool true
+
+# Automatically check for software updates and download them
+sudo defaults write $updates AutomaticCheckEnabled -bool true
+sudo defaults write $updates AutomaticDownload -bool true
+
+# Automatically download and install critical updates 
+sudo defaults write $updates ConfigDataInstall -bool true
+sudo defaults write $updates CriticalUpdateInstall -bool true
 
 
 #------------------------------------------------------------------------------------#
