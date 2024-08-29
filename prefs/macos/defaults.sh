@@ -534,3 +534,11 @@ defaults write com.apple.CharacterPaletteIM CVStartAsLargeWindow --bool true
 
 # Clear replacement dictionary
 defaults write -g NSUserDictionaryReplacementItems -array
+
+
+#------------------------------------------------------------------------------------#
+#                                 • PRINTERS •                                       #
+#------------------------------------------------------------------------------------#
+
+# Set 'A4' as the default printing format
+defaults write com.apple.PrintingPrefs DefaultPaperID -string "iso-a4"
