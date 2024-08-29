@@ -126,6 +126,9 @@ defaults write -g AppleShowScrollBars -string "WhenScrolling"
 # 1: the spot that's clicked
 defaults write -g AppleScrollerPagingBehavior -int 1
 
+# Prefer natural direction (content follows fingers direction)
+defaults write -g com.apple.swipescrolldirection -int 1
+
 
 #------------------------------------------------------------------------------------#
 #                    • SYSTEM MENU BAR & CONTROL CENTER •                            #
@@ -542,3 +545,79 @@ defaults write -g NSUserDictionaryReplacementItems -array
 
 # Set 'A4' as the default printing format
 defaults write com.apple.PrintingPrefs DefaultPaperID -string "iso-a4"
+
+
+#------------------------------------------------------------------------------------#
+#                             • MOUSE / TRACKPAD •                                   #
+#------------------------------------------------------------------------------------#
+
+# Set a high tracking speed
+defaults write -g com.apple.trackpad.scaling -float 2.5
+
+# Disable tap-to-click
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool false
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool false
+
+# Click threshold: (0) Light, (1) Medium, (2) Firm
+defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 1
+defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 1
+
+# Prefer sublte clicking sound
+defaults write com.apple.AppleMultitouchTrackpad ActuationStrenght -int 0
+
+# Disable force-click and haptic feedback
+defaults write com.apple.AppleMultitouchTrackpad ActuateDetents -int 0
+defaults write com.apple.AppleMultitouchTrackpad ForceSuppressed -bool true
+
+# Disable builtin trackpad when an external mouse/trackpad is connected
+defaults write com.apple.AppleMultitouchTrackpad USBMouseStopsTrackpad -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad USBMouseStopsTrackpad -int 1
+
+
+#------------------------------------------------------------------------------------#
+#                                 • GESTURES •                                       #
+#------------------------------------------------------------------------------------#
+
+# Secondary click with: two-fingers click
+defaults write -g ContextMenuGesture -int 1
+defaults com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+
+# Pinch to zoom
+defaults com.apple.AppleMultitouchTrackpad TrackpadPinch -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadPinch -bool true
+
+# Double-tap with two fingers to zoom 
+defaults com.apple.AppleMultitouchTrackpad TrackpadTwoFingerDoubleTapGesture -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadTwoFingerDoubleTapGesture -bool true
+
+# Rotate with two fingers
+defaults com.apple.AppleMultitouchTrackpad TrackpadRotate -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRotate -bool true
+
+# Swipe between pages with two-fingers horizonal scoll
+defaults write -g AppleEnableSwipeNavigateWithScrolls -bool true
+
+# Swipe between spaces with three-fingers horizontal scroll
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerHorizSwipeGesture -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 2
+
+# Open notification center with two-finger left-scroll from the right edge
+defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 3
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 3
+ 
+# Disable gestures: Mission Control, App Expose
+defaults write com.apple.dock showMissionControlGestureEnabled -bool false
+defaults write com.apple.dock showAppExposeGestureEnabled -bool false
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 0
+defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerVertSwipeGesture -int 0
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerVertSwipeGesture -int 0
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFourFingerVertSwipeGesture -int 0
+
+# Disable festures: App Launchpad, Desktop Reveal
+defaults write com.apple.dock showLaunchpadGestureEnabled -bool false
+defaults write com.apple.dock showDesktopGestureEnabled -bool false 
+defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerPinchGesture -int 0
+defaults write com.apple.AppleMultitouchTrackpad TrackpadFiveFingerPinchGesture -int 0
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFourFingerPinchGesture -int 0
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFiveFingerPinchGesture -int 0
