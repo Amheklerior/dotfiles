@@ -496,3 +496,41 @@ defaults write com.apple.donotdisturb disableCloudSync -bool false
 
 # Show notification previews: (1) never, (2) when unlocked, (3) always
 defaults write com.apple.ncprefs content_visibility -int 2
+
+
+#------------------------------------------------------------------------------------#
+#                                 • KEYBOARD •                                       #
+#------------------------------------------------------------------------------------#
+
+# Enable full keyboard access for all controls (move focus with Tab and Shift+Tab)
+defaults write -g AppleKeyboardUIMode -int 2
+
+# Disable press-and-hold for keys in favor of key repeat
+defaults write -g ApplePressAndHoldEnabled -bool false
+
+# Set a blazingly fast keyboard repeat rate
+defaults write -g KeyRepeat -int 1
+defaults write -g InitialKeyRepeat -int 10
+
+# Function keys default behaviour: 
+# `true`:   F1, F2, etc. behave as standard function keys
+# `false`:  pressing a function key will perform the special feature printed on that key
+defaults write -g com.apple.keyboard.fnState -bool false
+
+# Fn/🌐︎ key press behaviour:
+# 0: do nothing
+# 1: change input source (swhith between keyboard layouts)
+# 2: show emojis, symbols, and more
+# 3: start dictation
+defaults write com.apple.HIToolbox AppleFnUsageType -int 2
+
+# Use large window for emoji and symbols 
+defaults write com.apple.CharacterPaletteIM CVStartAsLargeWindow --bool true
+
+
+#------------------------------------------------------------------------------------#
+#                                   • TEXT •                                         #
+#------------------------------------------------------------------------------------#
+
+# Clear replacement dictionary
+defaults write -g NSUserDictionaryReplacementItems -array
