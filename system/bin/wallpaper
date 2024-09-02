@@ -2,6 +2,11 @@
 
 # NOTE: `wallpaper` - select a picture to be set as new wallpaper on all desktop
 
+# ISSUES:
+# - It doesn't work if the terminal is full screen
+# - It pnly changes the desktop picture on the space where the terminal window is, 
+#   the others remain unchanged
+
 # default path to all wallpapers
 WALLPAPER_DIR=$HOME/wallpapers
 
