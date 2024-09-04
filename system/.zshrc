@@ -22,6 +22,9 @@ autoload -Uz compinit && compinit
 # load starship
 eval "$(starship init zsh)"
 
+# integrate fuzzy search on tab autocompletion
+source $SHELL_PLUGINS/fzf-tab/fzf-tab.plugin.zsh
+
 # setup zsh autouggestions
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
