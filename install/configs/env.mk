@@ -23,6 +23,7 @@ PERSONAL_DIR := ${HOME}/personal
 WORK_DIR := ${HOME}/work
 PERSONAL_REPO_LIST := $(DOTFILES)/install/bundles/personal-repos.list
 WORK_REPO_LIST := $(DOTFILES)/install/bundles/work-repos.list
+SHELL_PLUGINS_LIST := $(DOTFILES)/install/bundles/shell-plugins.list
 
 # paths
 # for intel-macs: /usr/local/bin

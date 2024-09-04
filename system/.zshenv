@@ -19,6 +19,9 @@ export BACKUP="$HOME/backup"
 # path to the bin folder
 export BIN="$HOME/bin"
 
+# path to the shell plugins
+export SHELL_PLUGINS="$XDG_CONFIG_HOME/plugins"
+
 # disable telemetry and data collection for apps and services
 # IMPORTANT: it's not universally honored/supported across all software
 # NOTE: `not consent` if set to `1`, `consent` if set with any other value or not set at all

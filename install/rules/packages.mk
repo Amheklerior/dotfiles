@@ -3,7 +3,7 @@
 .DEFAULT_GOAL := packages
 
 
-packages: core-packages brew-bundle brew-check
+packages: core-packages brew-bundle shell-plugins brew-check
 
 core-packages: zsh ansible stow
 
@@ -28,6 +28,18 @@ stow:
 brew-bundle:
 	echo "$(PKG_LOG) install all packages from brewfile..."
 	HOMEBREW_CASK_OPTS="--no-quarantine" brew bundle --file=$(BREWFILE) || :
+
+# For all plugins that are not supported by brew yet, clone them manually into the .config/plugins dir
+shell-plugins:
+	echo "$(PKG_LOG) install shell plugins..."
+	mkdir -p $(XDG_CONFIG_HOME)/plugins
+	while IFS=' ' read -r plugin repo; do \
+		if [[ ! -e $(XDG_CONFIG_HOME)/plugins/$$plugin ]]; then \
+			glab repo clone $$repo $(XDG_CONFIG_HOME)/plugins/$$plugin || echo "$(PCK_LOG) Failed to clone: $$plugin"; \
+		else \
+			echo "$(PCK_LOG) $$plugin is already present, skipped!"; \
+		fi; \
+	done < $(SHELL_PLUGINS_LIST)
 
 brew-check:
 	brew cleanup
