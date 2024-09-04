@@ -65,6 +65,12 @@
 - [ ] [`Ark`](https://arc.net) web browser
 - [ ] `fzf` [simple](https://github.com/junegunn/fzf/wiki/examples) and [advanced](https://github.com/junegunn/fzf/blob/master/ADVANCED.md) usage
 - [ ] [`alfred`](https://www.alfredapp.com/) as an alternative to Spotlight
+- [ ] A plugin manager for zsh, like:
+  - [zinit](https://github.com/zdharma-continuum/zinit) - power users, who wants finegrained control over zsh env
+  - [zplug](https://github.com/zplug/zplug) - featurerich but lightweight, users who need advanced features and customization options
+  - [zap](https://github.com/zap-zsh/zap) or [znap](https://github.com/marlonrichert/zsh-snap) - minimal and super fast manager, for users who prioritize perf and simplicity
+  - [sheldon](https://github.com/rossmacarthur/sheldon) - lightweight and configurable via a TOML file
+  - [zi](https://github.com/z-shell/zi) - a more lightweight version of zinit
 
 ### Ideas:
 
