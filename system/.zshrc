@@ -28,6 +28,10 @@ source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # setup zsh syntax highlighting
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# improve history up/down traversal to limit results on the current shell input
+bindkey '\e[A' history-search-backward
+bindkey '\e[B' history-search-forward
+
 
 ### ZOXIDE
 
