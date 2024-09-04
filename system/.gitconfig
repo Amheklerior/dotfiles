@@ -35,13 +35,22 @@
 	amend = commit --amend --reuse-message=HEAD
 	
 	# list all git aliases
-	aliases = !git config --get-regex alias | sed -e 's/alias\\.//g' -e 's/\\([a-zA-Z]*\\) /\\1:  \\t/'
+	aliases = !git config --get-regex alias | sed -e 's/alias\\.//g' -e 's/\\([a-zA-Z]*\\) /\\1\\t---\\t/'
 	
 	# check if on personal or work git account
 	whoami = !git config --get-regex 'user.(name|email)' | sed -e 's/user\\.\\([a-zA-Z]*\\) /\\1:\\t/'
 
 	# worktree shortcut
 	wt = worktree
+
+	# stash staged files with a comment
+	park = stash --staged -m
+
+	# unstash selected changes (preserve stash entry)
+	peek = !git stash list | fzf | git stash apply
+
+	# unstash selected changes (delete stash entry)
+	pop = !git stash list | fzf | git stash pop
 	
 	# set personal git account name/email 
 	set-personal = !git config user.name 'Amheklerior' && git config user.email '49590425+Amheklerior@users.noreply.github.com'
