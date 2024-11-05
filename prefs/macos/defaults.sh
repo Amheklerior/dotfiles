@@ -2,9 +2,19 @@
 
 log="[Settings]: "
 
+go_on () {
+  echo "...continue? (y/n)" && read
+  if [[ $REPLY != "y" || $REPLY != "Y" ]]; then
+    echo "Cool! bye" && exit 0
+  fi
+}
+
 #------------------------------------------------------------------------------------#
 #                                  • GENERAL •                                       #
 #------------------------------------------------------------------------------------#
+
+echo "[Prefs]: Ccomputer name, auto updates, and general settings"
+go_on()
 
 updates="/Library/Preferences/com.apple.SoftwareUpdates.plist"
 
@@ -30,6 +40,9 @@ sudo defaults write $updates CriticalUpdateInstall -bool true
 #------------------------------------------------------------------------------------#
 #                   • LANG, LOCALE, FORMATS, UNITS, TIMEZONE •                       #
 #------------------------------------------------------------------------------------#
+
+echo "[Prefs]: Language, locale, and timezone"
+go_on()
 
 # Set preferred languages
 defaults write -g AppleLanguages -array "en-US" "it-IT"
@@ -67,19 +80,22 @@ defaults write com.apple.iCal BirthdayEventsGenerationLastLocale -string "en_US@
 sudo systemsetup -setusingnetworktime on
 
 # Set timezone atuomatically based on current location
-sudo defautls /Library/Preferences/com.apple.timezone.auto.plist Active -bool true
+sudo defaults /Library/Preferences/com.apple.timezone.auto.plist Active -bool true
 
 # Set system timezone manually (remember to disable the automatic timezone option above)
 # NOTE: run `sudo systemsetup -listtimezones` for other values
 # sudo systemsetup -settimezone "Europe/Rome" >/dev/null
 
-# Apply changes timezone changes
+# Apply timezone changes
 sudo launchctl kickstart -k system/com.apple.locationd
 
 
 #------------------------------------------------------------------------------------#
 #                               • APPEARANCE / UI •                                  #
 #------------------------------------------------------------------------------------#
+
+echo "[Prefs]: Appearance/UI"
+go_on()
 
 # Switch to Dark theme
 # NOTE: other options are:
@@ -118,6 +134,9 @@ defaults write -g AppleReduceDesktopTinting -bool false
 #                                 • SCROLLING •                                      #
 #------------------------------------------------------------------------------------#
 
+echo "[Prefs]: Scrolling behaviour settings"
+go_on()
+
 # Show scrollbar: `WhenScrolling`, `Automatic`, `Always`
 defaults write -g AppleShowScrollBars -string "WhenScrolling"
 
@@ -133,6 +152,9 @@ defaults write -g com.apple.swipescrolldirection -int 1
 #------------------------------------------------------------------------------------#
 #                    • SYSTEM MENU BAR & CONTROL CENTER •                            #
 #------------------------------------------------------------------------------------#
+
+echo "[Prefs]: Sys menu bar and settings"
+go_on()
 
 # Set the menu bar to autohide on fullscreen only
 defaults write -g AppleMenuBarVisibleInFullscreen -bool false
@@ -198,6 +220,9 @@ done
 #                                 • SPOTLIGHT •                                      #
 #------------------------------------------------------------------------------------#
 
+echo "[Prefs]: Spotlight settings"
+go_on()
+
 # IMPORTANT: Thinking to disable spotlight, in favour of either Alfred or Raycast
 # disable spotlight keyboard shortcut
 # /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:64:enabled 0" \
@@ -238,6 +263,9 @@ sudo mdutil -E / > /dev/null
 #                                   • SIRI •                                         #
 #------------------------------------------------------------------------------------#
 
+echo "[Prefs]: disable Siri"
+go_on()
+
 # disable Siri
 defaults write com.apple.assistant.support Assistant\ Enabled -bool false
 defaults write com.apple.Siri StatusMenuVisible -bobl false
@@ -248,6 +276,9 @@ defaults write com.apple.Siri SiriPrefStashedStatusMenuVisible -bobl false
 #------------------------------------------------------------------------------------#
 #                                   • DOCK •                                         #
 #------------------------------------------------------------------------------------#
+
+echo "[Prefs]: Dock settings"
+go_on()
 
 # Dock position on screen: `bottom`, `left`, `right`
 defaults write com.apple.dock orientation -string "bottom"
@@ -299,6 +330,9 @@ defaults write com.apple.dock persistent-apps -array
 #                                   • WINDOWS •                                      #
 #------------------------------------------------------------------------------------#
 
+echo "[Prefs]: Windows settings"
+go_on()
+
 # Double-click a window's title bar to: 'Maximize', 'Minimize', 'None' (do nothing)
 defaults write -g AppleActionOnDoubleClick -string "None"
 
@@ -315,6 +349,9 @@ defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
 #------------------------------------------------------------------------------------#
 #                           • SPACES, MISSION CONTROL •                              #
 #------------------------------------------------------------------------------------#
+
+echo "[Prefs]: Spaces and mission control settings"
+go_on()
 
 # When switching to an app, go to space with open windows of that app
 defaults write -g AppleSpacesSwitchOnActivate -bool true
@@ -333,6 +370,9 @@ defaults write com.apple.spaces spans-displays -bool false
 #                             • DESKTOP & WIDGETS •                                  #
 #------------------------------------------------------------------------------------#
 
+echo "[Prefs]: Desktop and widgets settings"
+go_on()
+
 # Reveal desktop when clicking the wallpaper
 defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool true 
 
@@ -346,6 +386,9 @@ defaults write com.apple.chronod remoteWidgetsEnabled -bool true
 #------------------------------------------------------------------------------------#
 #                               • HOT CORNERS •                                      #
 #------------------------------------------------------------------------------------#
+
+echo "[Prefs]: Remove all hot corners shortcuts"
+go_on()
 
 # NOTE: Possible values are:
 #  0: no-op
@@ -380,6 +423,9 @@ defaults write com.apple.dock wvous-br-modifier -int 0
 #------------------------------------------------------------------------------------#
 #                              • POWER MANAGEMENT •                                  #
 #------------------------------------------------------------------------------------#
+
+echo "[Prefs]: Power management settings"
+go_on()
 
 # Enable put to sleep with power button
 sudo systemsetup -setallowpowerbuttontosleepcomputer on
@@ -444,25 +490,31 @@ sudo chflags uchg /private/var/vm/sleepimage
 #                              • LOGIN WINDOW •                                      #
 #------------------------------------------------------------------------------------#
 
+echo "[Prefs]: login window settings"
+go_on()
+
 # path to the plist file
 loginwindow=/Library/Preferences/com.apple.loginwindow.plist
 
 # Hide user name and avatar
-sudo defautls $loginwindow HideUserAvatarAndName -bool true
+sudo defaults $loginwindow HideUserAvatarAndName -bool true
 
 # Don't show a custom message
-sudo defautls $loginwindow LoginwindowText -strin ""
+sudo defaults $loginwindow LoginwindowText -strin ""
 
 # Don't show password hint
-sudo defautls $loginwindow RetriesUntilHint -int 0
+sudo defaults $loginwindow RetriesUntilHint -int 0
 
-# Show the Sleep, Restartm and Shutdown buttons
-sudo defautls $loginwindow PowerOffDisabled -bool false
+# Show the Sleep, Restart and Shutdown buttons
+sudo defaults $loginwindow PowerOffDisabled -bool false
 
 
 #------------------------------------------------------------------------------------#
 #                               • SCREEN SAVER •                                     #
 #------------------------------------------------------------------------------------#
+
+echo "[Prefs]: screen saver settings"
+go_on()
 
 # Start Screen saver when inactive for 5 minutes
 # NOTE: set to 0 to never have screensaver
@@ -476,6 +528,9 @@ defaults write com.apple.screensaver askForPasswordDelay -int 0
 #------------------------------------------------------------------------------------#
 #                             • AUDIO / SOUNDS •                                     #
 #------------------------------------------------------------------------------------#
+
+echo "[Prefs]: audio settings"
+go_on()
 
 # Disable the sound effects on system boot (%00 to reenable it)
 sudo nvram StartupMute="%01"
@@ -494,6 +549,9 @@ defaults write -g com.apple.sound.beep.volume -float 0.7
 #                           • FOCUS / NOTIFICATIONS •                                #
 #------------------------------------------------------------------------------------#
 
+echo "[Prefs]: Notification settings, and sync focus across devices"
+go_on()
+
 # Share focus across devices (activating it on one device, activates it for all)
 defaults write com.apple.donotdisturb disableCloudSync -bool false
 
@@ -504,6 +562,9 @@ defaults write com.apple.ncprefs content_visibility -int 2
 #------------------------------------------------------------------------------------#
 #                                 • KEYBOARD •                                       #
 #------------------------------------------------------------------------------------#
+
+echo "[Prefs]: keyboard settings"
+go_on()
 
 # Enable full keyboard access for all controls (move focus with Tab and Shift+Tab)
 defaults write -g AppleKeyboardUIMode -int 2
@@ -535,6 +596,9 @@ defaults write com.apple.CharacterPaletteIM CVStartAsLargeWindow --bool true
 #                                   • TEXT •                                         #
 #------------------------------------------------------------------------------------#
 
+echo "[Prefs]: Clear replacement dictionary"
+go_on()
+
 # Clear replacement dictionary
 defaults write -g NSUserDictionaryReplacementItems -array
 
@@ -543,6 +607,9 @@ defaults write -g NSUserDictionaryReplacementItems -array
 #                                 • PRINTERS •                                       #
 #------------------------------------------------------------------------------------#
 
+echo "[Prefs]: A4 as default printing format"
+go_on()
+
 # Set 'A4' as the default printing format
 defaults write com.apple.PrintingPrefs DefaultPaperID -string "iso-a4"
 
@@ -550,6 +617,9 @@ defaults write com.apple.PrintingPrefs DefaultPaperID -string "iso-a4"
 #------------------------------------------------------------------------------------#
 #                             • MOUSE / TRACKPAD •                                   #
 #------------------------------------------------------------------------------------#
+
+echo "[Prefs]: mouse/trackpad settings"
+go_on()
 
 # Set a high tracking speed
 defaults write -g com.apple.trackpad.scaling -float 2.5
@@ -577,6 +647,9 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad USBMouseStopsT
 #------------------------------------------------------------------------------------#
 #                                 • GESTURES •                                       #
 #------------------------------------------------------------------------------------#
+
+echo "[Prefs]: Set gestures"
+go_on()
 
 # Secondary click with: two-fingers click
 defaults write -g ContextMenuGesture -int 1
