@@ -3,7 +3,7 @@
 .DEFAULT_GOAL := prepare
 
 
-prepare: sys-check backup
+prepare: prompt sys-check backup
 
 # check whether it's running on a macos system (the only supported so far)
 sys-check: 

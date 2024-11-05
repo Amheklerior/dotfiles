@@ -3,7 +3,7 @@
 .DEFAULT_GOAL := packages
 
 
-packages: core-packages brew-bundle shell-plugins brew-check
+packages: prompt core-packages brew-bundle shell-plugins brew-check
 
 core-packages: zsh ansible stow
 

@@ -38,3 +38,9 @@ CORE_LOG := [core]:
 STOW_LOG := [stow]:
 DEV_LOG := [dev setup]:
 SETTINGS_LOG := [settings]:
+
+prompt:
+	echo "Continue? (y/n)" & read
+	if [[ $REPLY != "y" || $REPLY != "Y" ]]; then \
+		echo "Cool! bye" && exit 0 \
+	fi

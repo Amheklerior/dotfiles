@@ -3,7 +3,7 @@
 .DEFAULT_GOAL := core
 
 
-core: shell ssh
+core: prompt shell ssh
 
 shell: make-default-user-shell sh-symlink
 

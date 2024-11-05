@@ -3,7 +3,7 @@
 .DEFAULT_GOAL := dev
 
 
-dev: setup-node personal work
+dev: prompt setup-node personal work
 
 # setup fnm and corepack install dirs, and install lts and latest version of node
 # NOTE: at the moment, node versions are: v22.2.0 (latest), and v20.13.1 (LTS) 
