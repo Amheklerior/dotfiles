@@ -32,10 +32,13 @@ brew "zsh"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 
+# Fonts
+cask "font-jetbrains-mono-nerd-font"
+cask "font-victor-mono-nerd-font"
+
 # Cask applications
 cask "discord"
 cask "docker"
-cask "font-jetbrains-mono-nerd-font"
 cask "google-chrome"
 cask "iterm2"
 cask "notion"
