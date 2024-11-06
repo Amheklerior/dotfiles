@@ -35,23 +35,16 @@ brew "zsh-syntax-highlighting"
 # Cask applications
 cask "discord"
 cask "docker"
-cask "ente-auth"
 cask "font-jetbrains-mono-nerd-font"
 cask "google-chrome"
 cask "iterm2"
 cask "notion"
-# cask "slack"
 cask "steam"
 cask "visual-studio-code"
-# cask "zoom"
 
 # Mac App Store applications
 mas "Telegram Lite", id: 946399090
-# mas "Habits", id: 1514915737
-# mas "Keynote", id: 409183694
-# mas "Numbers", id: 409203825
-# mas "Pages", id: 409201541
-# mas "Trello", id: 1278508951
+mas "Pages", id: 409201541
 
 # VSCode extensions
 vscode "a-h.templ"
