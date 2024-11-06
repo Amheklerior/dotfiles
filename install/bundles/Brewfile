@@ -40,6 +40,7 @@ cask "google-chrome"
 cask "iterm2"
 cask "notion"
 cask "steam"
+cask "todoist"
 cask "visual-studio-code"
 
 # Mac App Store applications
