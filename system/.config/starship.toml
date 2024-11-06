@@ -8,6 +8,15 @@ command_timeout = 3000 # custom
 palette = "gruvbox_dark" # custom
 
 
+[shlvl]
+disabled = false
+format = '[$symbol$shlvl]($style) '
+repeat = true
+symbol = '❯'
+repeat_offset = 1
+threshold = 0
+
+
 [character]
 format = '$symbol '
 success_symbol = '[❯](bold green)'
