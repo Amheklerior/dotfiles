@@ -43,11 +43,11 @@ cask "google-chrome"
 cask "iterm2"
 cask "notion"
 cask "steam"
+cask "telegram"
 cask "todoist"
 cask "visual-studio-code"
 
 # Mac App Store applications
-mas "Telegram Lite", id: 946399090
 mas "Pages", id: 409201541
 
 # VSCode extensions
