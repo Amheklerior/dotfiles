@@ -3,6 +3,7 @@
   "editor.fontFamily": "'VictorMono Nerd Font', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 14,
   "editor.fontLigatures": true,
+  "editor.minimap.enabled": false,
   "diffEditor.ignoreTrimWhitespace": false,
 
   "window.titleBarStyle": "custom",
