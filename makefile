@@ -16,6 +16,6 @@ SHELL := /bin/bash
 
 init: prepare brew
 
-bootstrap: packages core dotfiles
+bootstrap: packages core shell dotfiles
 
 setup: dev settings

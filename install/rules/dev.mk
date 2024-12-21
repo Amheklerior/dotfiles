@@ -1,4 +1,4 @@
-.PHONY: dev setup-node personal work github-login gitlab-login mk-tmp-dir
+.PHONY: dev setup-node personal work
 
 .DEFAULT_GOAL := dev
 
@@ -54,34 +54,3 @@ work: gitlab-login
 		fi; \
 	done < ${XDG_DATA_HOME}/work-repo
 	rm ${XDG_DATA_HOME}/work-repo
-
-# login to gh via access token
-github-login: mk-tmp-dir
-	if ! gh auth status >/dev/null 2>&1; then \
-		cp ./backup-codes/github.token ${XDG_DATA_HOME}/gh-login-token; \
-		echo "$(DEV_LOG) please enter the decryption password for copying the gh login token"; \
-		ansible-vault decrypt ${XDG_DATA_HOME}/gh-login-token && \
-		cat ${XDG_DATA_HOME}/gh-login-token | pbcopy && \
-		echo "$(DEV_LOG) token successfully copeid on your clipboard! Paste it during the installation process..." && \
-		gh auth login; \
-		rm ${XDG_DATA_HOME}/gh-login-token; \
-	else \
-		echo "$(DEV_LOG) already logged in into github"; \
-	fi
-
-# login to glab via access token
-gitlab-login: mk-tmp-dir
-	if ! glab auth status >/dev/null 2>&1; then \
-		cp ./backup-codes/gitlab.token ${XDG_DATA_HOME}/glab-login-token; \
-		echo "$(DEV_LOG) please enter the decryption password for copying the glab login token"; \
-		ansible-vault decrypt ${XDG_DATA_HOME}/glab-login-token && \
-		cat ${XDG_DATA_HOME}/glab-login-token | pbcopy && \
-		echo "$(DEV_LOG) token successfully copeid on your clipboard! Paste it during the installation process..." && \
-		glab auth login; \
-		rm ${XDG_DATA_HOME}/glab-login-token; \
-	else \
-		echo "$(DEV_LOG) already logged in into gitlab"; \
-	fi
-
-mk-tmp-dir: 
-	mkdir -p $(XDG_DATA_HOME)
