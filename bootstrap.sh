@@ -15,6 +15,9 @@ make init || exit 1
 echo "[brew]: setting up homebrew environment variables..."
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# export dir for tmp files (used by the bootstrap recipe)
+export XDG_DATA_HOME="$HOME/.local/share"
+
 # bootstrap the system
 # - install packages and apps
 # - setup shell
@@ -33,6 +36,5 @@ source $HOME/.zshrc
 # - clone personal and work repos
 # - configure system and apps settings
 make setup || exit 1
-
 # Complete
 echo "[Done]: You're ready to rock \m/"

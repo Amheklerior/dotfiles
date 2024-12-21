@@ -47,5 +47,5 @@ gitlab-login: mk-tmp-dir
 		echo "$(DEV_LOG) already logged in into gitlab"; \
 	fi
 
-mk-tmp-dir: 
-	mkdir -p $(XDG_DATA_HOME)
+mk-tmp-dir:
+	mkdir -p ${XDG_DATA_HOME}
