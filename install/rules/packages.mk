@@ -29,6 +29,8 @@ brew-bundle:
 	echo "$(PKG_LOG) install all packages from brewfile..."
 	HOMEBREW_CASK_OPTS="--no-quarantine" brew bundle --file=$(BREWFILE) || :
 
+# NOTE: the shortcircuit on the brew doctor command is a workaround to the fact that the doctor
+# doctor command exits with failures even on warnings, causing the whole make process to quit.
 brew-check:
 	brew cleanup
-	brew doctor
+	brew doctor || :
