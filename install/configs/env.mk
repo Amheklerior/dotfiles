@@ -40,7 +40,4 @@ DEV_LOG := [dev setup]:
 SETTINGS_LOG := [settings]:
 
 prompt:
-	echo "Continue? (y/n)" & read
-	if [[ $REPLY != "y" || $REPLY != "Y" ]]; then \
-		echo "Cool! bye" && exit 0 \
-	fi
+	echo "Press ENTER to continue" & read
