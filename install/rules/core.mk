@@ -36,7 +36,7 @@ github-login: mk-tmp-dir
 # login to glab via access token
 gitlab-login: mk-tmp-dir
 	if ! glab auth status >/dev/null 2>&1; then \
-		cp ./backup-codes/gitlab.token ${XDG_DATA_HOME}/glab-login-token; \
+		cp ./backup-codes/gitlab-mfm.token ${XDG_DATA_HOME}/glab-login-token; \
 		echo "$(DEV_LOG) please enter the decryption password for copying the glab login token"; \
 		ansible-vault decrypt ${XDG_DATA_HOME}/glab-login-token && \
 		cat ${XDG_DATA_HOME}/glab-login-token | pbcopy && \
