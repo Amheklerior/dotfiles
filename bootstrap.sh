@@ -7,7 +7,7 @@ export MAKEFLAGS="--silent"
 # - check system compatibility
 # - create backup of current dotfiles
 # - install homebrew
-make init
+make init || exit 1
 
 # complete homebrew installation
 # - set homebrew env vars
@@ -20,7 +20,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # - setup shell
 # - setup ssh
 # - link my dotfiles
-make bootstrap
+make bootstrap || exit 1
 
 # source dotfiles in current shell
 echo "[dotfiles]: source dotfiles..."
@@ -32,7 +32,7 @@ source $HOME/.zshrc
 # - setup dev env
 # - clone personal and work repos
 # - configure system and apps settings
-make setup
+make setup || exit 1
 
 # Complete
 echo "[Done]: You're ready to rock \m/"
