@@ -19,8 +19,11 @@ setup-node:
 
 # clone personal projects
 personal: github-login
-	echo "$(DEV_LOG) creating the ~/personal dir..."
-	mkdir -p $(PERSONAL_DIR)
+	echo "$(DEV_LOG) Do you want to clone personal repos on this machine? (y/n)" && read -r REPLY
+	if [[ $$REPLY != "y" && $$REPLY != "Y" ]]; then \
+		echo "$(DEV_LOG) Skipping personal repos cloning"; \
+		exit 0; \
+	fi
 	echo "$(DEV_LOG) clone my personal repos..."
 	if [[ ! -e ${XDG_DATA_HOME}/personal-repo ]]; then \
 		cp $(PERSONAL_REPO_LIST) ${XDG_DATA_HOME}/personal-repo; \
@@ -28,8 +31,8 @@ personal: github-login
 		ansible-vault decrypt ${XDG_DATA_HOME}/personal-repo; \
 	fi
 	while IFS=' ' read -r repo path; do \
-		if [[ ! -e $(PERSONAL_DIR)/$$path ]]; then \
-			gh repo clone $$repo $(PERSONAL_DIR)/$$path || echo "$(DEV_LOG) Failed to clone: $$repo"; \
+		if [[ ! -e ${HOME}/$$path ]]; then \
+			gh repo clone $$repo ${HOME}/$$path || echo "$(DEV_LOG) Failed to clone: $$repo"; \
 		else \
 			echo "$(DEV_LOG) $$repo is already present, skipped!"; \
 		fi; \
@@ -38,8 +41,11 @@ personal: github-login
 
 # clone work projects
 work: gitlab-login
-	echo "$(DEV_LOG) creating the ~/work dir..."
-	mkdir -p $(WORK_DIR)
+	echo "$(DEV_LOG) Do you want to clone work related repos on this machine? (y/n)" && read -r REPLY
+	if [[ $$REPLY != "y" && $$REPLY != "Y" ]]; then \
+		echo "$(DEV_LOG) Skipping work repos cloning"; \
+		exit 0; \
+	fi
 	echo "$(DEV_LOG) clone work related repos..."
 	if [[ ! -e ${XDG_DATA_HOME}/work-repo ]]; then \
 		cp $(WORK_REPO_LIST) ${XDG_DATA_HOME}/work-repo; \
@@ -47,8 +53,8 @@ work: gitlab-login
 		ansible-vault decrypt ${XDG_DATA_HOME}/work-repo; \
 	fi
 	while IFS=' ' read -r repo path; do \
-		if [[ ! -e $(WORK_DIR)/$$path ]]; then \
-			glab repo clone $$repo $(WORK_DIR)/$$path || echo "$(DEV_LOG) Failed to clone: $$repo"; \
+		if [[ ! -e ${HOME}/$$path ]]; then \
+			glab repo clone $$repo ${HOME}/$$path || echo "$(DEV_LOG) Failed to clone: $$repo"; \
 		else \
 			echo "$(DEV_LOG) $$repo is already present, skipped!"; \
 		fi; \
