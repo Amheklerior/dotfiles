@@ -1,4 +1,4 @@
-.PHONY: dotfiles link
+.PHONY: dotfiles setdir link
 
 .DEFAULT_GOAL := dotfiles
 
