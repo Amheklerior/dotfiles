@@ -1,59 +1,87 @@
 #!/usr/bin/env zsh
 
-log="[Settings]: "
+# -------------------------------------
+# Table of Content:
+# -------------------------------------
+# - Computer Name
+# - Software Updates
+# - Language / Locale / Formats
+# - Timezone
+# - Power Management
+# - Screen Saver
+# - Appearance / UI
+# - Screens
+# - Audio / Sounds
+# - Keyboard
+# - Typing
+# - Mouse & Trackpad
+# - Gestures
+# - Login Window
+# - Screenshots
+# - Privacy / Security
+# - Disable unused systems
+# - Quality of Life
+# - Dock
+# - Windows / Navigation
+# - Finder
+# - APPLY CHANGES
 
-go_on () {
-  echo "...continue? (y/n)" && read
-  if [[ $REPLY != "y" || $REPLY != "Y" ]]; then
-    echo "Cool! bye" && exit 0
-  fi
-}
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 #------------------------------------------------------------------------------------#
-#                                  • GENERAL •                                       #
+#                            • Computer Name •                                       #
 #------------------------------------------------------------------------------------#
-
-echo "[Prefs]: Ccomputer name, auto updates, and general settings"
-go_on()
 
 updates="/Library/Preferences/com.apple.SoftwareUpdates.plist"
 
 # Set computer name
 echo "$log which name do you want to give to this computer? (amheklerior)" && read
+name=$REPLY
+if [ $name == "" ]; then
+  name=amheklerior;
+fi
 sudo scutil --set ComputerName $REPLY
 sudo scutil --set HostName $REPLY
 sudo scutil --set LocalHostName $REPLY
 defaults write com.apple.rapport familySyncedName -string $REPLY
 
-# Allow text selection in images
-defaults write -g AppleLiveTextEnabled -bool true
+#------------------------------------------------------------------------------------#
+#                            • Software Updates •                                    #
+#------------------------------------------------------------------------------------#
 
 # Automatically check for software updates and download them
 sudo defaults write $updates AutomaticCheckEnabled -bool true
 sudo defaults write $updates AutomaticDownload -bool true
 
-# Automatically download and install critical updates 
+# Automatically install critical updates 
 sudo defaults write $updates ConfigDataInstall -bool true
 sudo defaults write $updates CriticalUpdateInstall -bool true
 
+# Update Safari extensions automatically
+defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 
 #------------------------------------------------------------------------------------#
-#                   • LANG, LOCALE, FORMATS, UNITS, TIMEZONE •                       #
+#                       • Language / Locale / Formats •                              #
 #------------------------------------------------------------------------------------#
-
-echo "[Prefs]: Language, locale, and timezone"
-go_on()
 
 # Set preferred languages
 defaults write -g AppleLanguages -array "en-US" "it-IT"
 
 # Set locale to IT keeping the EN language
 # drive formats for date/time, number, currencies, etc
-defaults write -g AppleLocale -string "en_US@rg=itzzzz"
-defaults write -g AKLastLocale -string "en_US@rg=itzzzz"
+defaults write -g AppleLocale -string "en_IT"
+defaults write -g AKLastLocale -string "en_IT"
 defaults write com.apple.dock region -string "IT"
-defaults write com.apple.iCal NotificationsLastLocale -string "en_US@rg=itzzzz"
-defaults write com.apple.iCal BirthdayEventsGenerationLastLocale -string "en_US@rg=itzzzz"
+defaults write com.apple.iCal NotificationsLastLocale -string "en_IT"
+defaults write com.apple.iCal BirthdayEventsGenerationLastLocale -string "en_IT"
 
 # Switch to Fahrenheit as temperature unit (leave unset for Celsius)
 # defaults write -g AppleTemperatureUnit -string "Fahrenheit"
@@ -76,6 +104,10 @@ defaults write com.apple.iCal BirthdayEventsGenerationLastLocale -string "en_US@
 # Set 12-hours time format
 # defaults write -g AppleICUForce12HourTime -bool true
 
+#------------------------------------------------------------------------------------#
+#                                 • Timezone •                                       #
+#------------------------------------------------------------------------------------#
+
 # Enable date and time syncrhorization
 sudo systemsetup -setusingnetworktime on
 
@@ -89,343 +121,9 @@ sudo defaults /Library/Preferences/com.apple.timezone.auto.plist Active -bool tr
 # Apply timezone changes
 sudo launchctl kickstart -k system/com.apple.locationd
 
-
 #------------------------------------------------------------------------------------#
-#                               • APPEARANCE / UI •                                  #
+#                             • Power Management •                                   #
 #------------------------------------------------------------------------------------#
-
-echo "[Prefs]: Appearance/UI"
-go_on()
-
-# Switch to Dark theme
-# NOTE: other options are:
-# - `Light` -> leave both unset
-# - `Auto`  -> only set `AppleInterfaceStyleSwithesAutomatically` to 1
-defaults write -g AppleInterfaceStyle -string "Dark"
-# defaults write -g AppleInterfaceStyleSwitchesAutomatically -int 1
-
-# Set sidebar icon size to (1) small, (2) medium, (3) large
-defaults write -g NSTableViewDefaultSizeMode -int 1
-
-# Enable wallpaper tinting in windows
-defaults write -g AppleReduceDesktopTinting -bool false
-
-# Set accent and highlight colors
-# NOTE: you can mix between accent and highlight colors...
-# ------------------------------------------------------------------------------
-# desired       accent        highlight                             aqua var
-# ------------------------------------------------------------------------------
-# multicolor    leave unset   leave unset                           leave unset
-# blue          4             0.698039 0.843137 1.000000 Blue       1
-# purple        5             0.968627 0.831373 1.000000 Purple     1
-# pink          6             1.000000 0.749020 0.823529 Pink       1
-# red           0             1.000000 0.749020 0.823529 Red        1
-# orange        1             1.000000 0.874510 0.701961 Orange     1
-# yellow        2             1.000000 0.937255 0.690196 Yellow     1
-# green         3             0.752941 0.964706 0.678431 Green      1
-# graphite      -1            0.847059 0.847059 0.862745 Graphite   6
-# ------------------------------------------------------------------------------
-# defaults write -g AppleAccentColor -int 3
-# defaults write -g AppleHighlightColor -string "0.752941 0.964706 0.678431 Green"
-# defaults write -g AppleAquaColorVariant -int 1
-
-
-#------------------------------------------------------------------------------------#
-#                                 • SCROLLING •                                      #
-#------------------------------------------------------------------------------------#
-
-echo "[Prefs]: Scrolling behaviour settings"
-go_on()
-
-# Show scrollbar: `WhenScrolling`, `Automatic`, `Always`
-defaults write -g AppleShowScrollBars -string "WhenScrolling"
-
-# Click the scroll bar to jump to:
-# 0: the next page or
-# 1: the spot that's clicked
-defaults write -g AppleScrollerPagingBehavior -int 1
-
-# Prefer natural direction (content follows fingers direction)
-defaults write -g com.apple.swipescrolldirection -int 1
-
-
-#------------------------------------------------------------------------------------#
-#                    • SYSTEM MENU BAR & CONTROL CENTER •                            #
-#------------------------------------------------------------------------------------#
-
-echo "[Prefs]: Sys menu bar and settings"
-go_on()
-
-# Set the menu bar to autohide on fullscreen only
-defaults write -g AppleMenuBarVisibleInFullscreen -bool false
-defaults write -g _HIHideMenuBar -bool false
-
-# Show time on the menu bar
-# ...in digital style
-defaults write com.apple.menuextra.clock IsAnalog -bool false
-# ...with non-flashing time separator
-defaults write com.apple.menuextra.clock FlashDateSeparators -bool false
-# ...with no seconds
-defaults write com.apple.menuextra.clock ShowSeconds -bool false
-# ...including day of the week
-defaults write com.apple.menuextra.clock ShowDayOfWeek -bool true
-# ...including full date: (0) if space is available, (1) always, (2) never
-defaults write com.apple.menuextra.clock ShowDate -int 0
-
-# Sets visible items on the system menu bar on the top
-for item in "Battery" "BentoBox" "Clock" "WiFi"; do
-  defaults write com.apple.controlcenter "NSStatusItem Visible $item" -bool true &>/dev/null
-done
-
-# Sets the control center items position
-# NOTE: higher values gets places further to the left 
-defaults write com.apple.controlcenter "NSStatusItem Preferred Position WiFi" -int 200
-defaults write com.apple.controlcenter "NSStatusItem Preferred Position Battery" -int 150
-defaults write com.apple.controlcenter "NSStatusItem Preferred Position BentoBox" -int 100
-defaults write com.apple.controlcenter "NSStatusItem Preferred Position Clock" -int 50
-
-# Remove Siri from the menu bar
-defaults write com.apple.Siri StatusMenuVisible -bool false
-defaults write com.apple.systemuiserver "NSStatusItem Visible Siri" -bool false
-
-# Remove Spotlight from the menu bar
-defaults write com.apple.Spotlight "NSStatusItem Visible Item-0" -bool false
-
-# Remove TimeMachine from the menu bar
-defaults write com.apple.systemuiserver menuExtras -array
-defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.TimeMachine" -bool false
-
-# Make sure all other unwanted items are removed from the system menu bar
-for item in \
-  "AccessibilityShortcuts" \
-  "AirDrop" \
-  "Bluetooth" \
-  "Display" \
-  "FocusModes" \
-  "Hearing" \
-  "KeyboardBrightness" \
-  "MusicRecognition" \
-  "NowPlaying" \
-  "ScreenMirroring" \
-  "Sound" \
-  "StageManager" \
-  "UserSwitcher" \
-; do
-  defaults write com.apple.controlcenter "NSStatusItem Visible $item" -bool false &>/dev/null
-  defaults delete com.apple.controlcenter "NSStatusItem Preferred Position $item" &>/dev/null
-done
-
-
-#------------------------------------------------------------------------------------#
-#                                 • SPOTLIGHT •                                      #
-#------------------------------------------------------------------------------------#
-
-echo "[Prefs]: Spotlight settings"
-go_on()
-
-# IMPORTANT: Thinking to disable spotlight, in favour of either Alfred or Raycast
-# disable spotlight keyboard shortcut
-# /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:64:enabled 0" \
-# "$HOME/Library/Preferences/com.apple.symbolichotkeys.plist"
-
-# disable spotlight indexing for all volumes
-sudo mdutil -a -i off
-
-# Change indexing order and disable some search results
-# NOTE: remove all items once I switch to its alternative
-defaults write com.apple.spotlight orderedItems -array \
-	'{"enabled" = 1;"name" = "APPLICATIONS";}' \
-	'{"enabled" = 1;"name" = "DIRECTORIES";}' \
-	'{"enabled" = 1;"name" = "PDF";}' \
-	'{"enabled" = 1;"name" = "DOCUMENTS";}' \
-	'{"enabled" = 1;"name" = "IMAGES";}' \
-	'{"enabled" = 1;"name" = "PRESENTATIONS";}' \
-	'{"enabled" = 1;"name" = "SPREADSHEETS";}' \
-	'{"enabled" = 0;"name" = "SYSTEM_PREFS";}' \
-	'{"enabled" = 0;"name" = "FONTS";}' \
-	'{"enabled" = 0;"name" = "MESSAGES";}' \
-	'{"enabled" = 0;"name" = "CONTACT";}' \
-	'{"enabled" = 0;"name" = "EVENT_TODO";}' \
-	'{"enabled" = 0;"name" = "BOOKMARKS";}' \
-	'{"enabled" = 0;"name" = "MUSIC";}' \
-	'{"enabled" = 0;"name" = "MOVIES";}' \
-	'{"enabled" = 0;"name" = "SOURCE";}'
-
-# Load new settings before rebuilding the index, ...
-killall mds > /dev/null 2>&1
-# ...make sure indexing is enabled for the main volume
-sudo mdutil -i on / > /dev/null
-# ...erase and rebuild the index from scratch
-sudo mdutil -E / > /dev/null
-
-
-#------------------------------------------------------------------------------------#
-#                                   • SIRI •                                         #
-#------------------------------------------------------------------------------------#
-
-echo "[Prefs]: disable Siri"
-go_on()
-
-# disable Siri
-defaults write com.apple.assistant.support Assistant\ Enabled -bool false
-defaults write com.apple.Siri StatusMenuVisible -bobl false
-defaults write com.apple.Siri VoiceTriggerUserEnabled -bobl false
-defaults write com.apple.Siri SiriPrefStashedStatusMenuVisible -bobl false
-
-
-#------------------------------------------------------------------------------------#
-#                                   • DOCK •                                         #
-#------------------------------------------------------------------------------------#
-
-echo "[Prefs]: Dock settings"
-go_on()
-
-# Dock position on screen: `bottom`, `left`, `right`
-defaults write com.apple.dock orientation -string "bottom"
-
-# Don't automatically hide and show the Dock
-defaults write com.apple.dock autohide -bool false
-
-# Autohide animation properties: in seconds (requires autohide)
-defaults write com.apple.dock autohide-delay -float 0.2
-defaults write com.apple.dock autohide-time-modifier -float 0.1
-
-# Set dock icons size in pixels
-defaults write com.apple.dock tilesize -int 36
-
-# Set dock icons to grow on hover
-defaults write com.apple.dock magnification -bool true
-defaults write com.apple.dock largesize -int 48
-
-# Animate opening apps
-defaults write com.apple.dock launchanim -bool true
-
-# Show indicator lights for running apps
-defaults write com.apple.dock show-process-indicators -bool true
-
-# Minimize windows into their application’s icon
-defaults write com.apple.dock minimize-to-application -bool true
-
-# Change minimize/maximize window animation effect: `genie`, `scale`, `suck`
-defaults write com.apple.dock mineffect -string "scale"
-
-# Show suggested and recent apps on the dock
-defaults write com.apple.dock show-recents -bool false
-
-# Wipe all (default) apps from the Dock, then add the favourite apps
-defaults write com.apple.dock persistent-apps -array
-# TODO: Add favs apps
-# defaults write com.apple.dock persistent-apps -array-add '
-# {
-#   "tile-data" = {
-#     "file-data" = {
-#       "_CFURLString" = "/Applications/iTerm.app";
-#       "_CFURLStringType"=0;
-#     };
-#   };
-# }
-
-
-#------------------------------------------------------------------------------------#
-#                                   • WINDOWS •                                      #
-#------------------------------------------------------------------------------------#
-
-echo "[Prefs]: Windows settings"
-go_on()
-
-# Double-click a window's title bar to: 'Maximize', 'Minimize', 'None' (do nothing)
-defaults write -g AppleActionOnDoubleClick -string "None"
-
-# Hide desktop icons when windows are open
-defaults write com.apple.WindowManager StandardHideDesktopIcons -bool true
-
-# Prefer tabs when opening documents: 'always', 'manual', or when in 'fullscreen'
-defaults write -g AppleWindowTabbingMode -string "fullscreen"
-
-# Close all windows when quitting an app (no restore when reopening)
-defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
-
-
-#------------------------------------------------------------------------------------#
-#                           • SPACES, MISSION CONTROL •                              #
-#------------------------------------------------------------------------------------#
-
-echo "[Prefs]: Spaces and mission control settings"
-go_on()
-
-# When switching to an app, go to space with open windows of that app
-defaults write -g AppleSpacesSwitchOnActivate -bool true
-
-# Group windows by application in Mission Control
-defaults write com.apple.dock expose-group-apps -bool true
-
-# Don’t automatically rearrange Spaces based on most recent use
-defaults write com.apple.dock mru-spaces -bool false
-
-# Displays have separate spaces
-defaults write com.apple.spaces spans-displays -bool false
-
-
-#------------------------------------------------------------------------------------#
-#                             • DESKTOP & WIDGETS •                                  #
-#------------------------------------------------------------------------------------#
-
-echo "[Prefs]: Desktop and widgets settings"
-go_on()
-
-# Reveal desktop when clicking the wallpaper
-defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool true 
-
-# Widgets appearance: (0) monochrome, (1) in full color, or (2) automatic
-defaults write com.apple.widgets widgetAppearance -int 2
-
-# Use iPhone widgets
-defaults write com.apple.chronod remoteWidgetsEnabled -bool true
-
-
-#------------------------------------------------------------------------------------#
-#                               • HOT CORNERS •                                      #
-#------------------------------------------------------------------------------------#
-
-echo "[Prefs]: Remove all hot corners shortcuts"
-go_on()
-
-# NOTE: Possible values are:
-#  0: no-op
-#  2: Mission Control
-#  3: Show application windows
-#  4: Desktop
-#  5: Start screen saver
-#  6: Disable screen saver
-#  7: Dashboard
-# 10: Put display to sleep
-# 11: Launchpad
-# 12: Notification Center
-# 13: Lock Screen
-
-# Top left screen corner -> no-op
-defaults write com.apple.dock wvous-tl-corner -int 0
-defaults write com.apple.dock wvous-tl-modifier -int 0
-
-# Top right screen corner -> no-op
-defaults write com.apple.dock wvous-tr-corner -int 0
-defaults write com.apple.dock wvous-tr-modifier -int 0
-
-# Bottom left screen corner -> no-op
-defaults write com.apple.dock wvous-bl-corner -int 0
-defaults write com.apple.dock wvous-bl-modifier -int 0
-
-# Bottom right screen corner -> no-op
-defaults write com.apple.dock wvous-br-corner -int 0
-defaults write com.apple.dock wvous-br-modifier -int 0
-
-
-#------------------------------------------------------------------------------------#
-#                              • POWER MANAGEMENT •                                  #
-#------------------------------------------------------------------------------------#
-
-echo "[Prefs]: Power management settings"
-go_on()
 
 # Enable put to sleep with power button
 sudo systemsetup -setallowpowerbuttontosleepcomputer on
@@ -485,36 +183,9 @@ sudo rm /private/var/vm/sleepimage
 sudo touch /private/var/vm/sleepimage
 sudo chflags uchg /private/var/vm/sleepimage
 
-
 #------------------------------------------------------------------------------------#
-#                              • LOGIN WINDOW •                                      #
+#                              • Screen Saver •                                      #
 #------------------------------------------------------------------------------------#
-
-echo "[Prefs]: login window settings"
-go_on()
-
-# path to the plist file
-loginwindow=/Library/Preferences/com.apple.loginwindow.plist
-
-# Hide user name and avatar
-sudo defaults $loginwindow HideUserAvatarAndName -bool true
-
-# Don't show a custom message
-sudo defaults $loginwindow LoginwindowText -strin ""
-
-# Don't show password hint
-sudo defaults $loginwindow RetriesUntilHint -int 0
-
-# Show the Sleep, Restart and Shutdown buttons
-sudo defaults $loginwindow PowerOffDisabled -bool false
-
-
-#------------------------------------------------------------------------------------#
-#                               • SCREEN SAVER •                                     #
-#------------------------------------------------------------------------------------#
-
-echo "[Prefs]: screen saver settings"
-go_on()
 
 # Start Screen saver when inactive for 5 minutes
 # NOTE: set to 0 to never have screensaver
@@ -524,13 +195,75 @@ defaults write com.apple.screensaver idleTime -int 300
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
+#------------------------------------------------------------------------------------#
+#                              • Appearance / UI •                                   #
+#------------------------------------------------------------------------------------#
+
+# Switch to Dark theme
+# NOTE: other options are:
+# - `Light` -> leave both unset
+# - `Auto`  -> only set `AppleInterfaceStyleSwithesAutomatically` to 1
+defaults write -g AppleInterfaceStyle -string "Dark"
+# defaults write -g AppleInterfaceStyleSwitchesAutomatically -int 1
+
+# Set sidebar icon size to (1) small, (2) medium, (3) large
+defaults write -g NSTableViewDefaultSizeMode -int 1
+
+# Disable animations for opening windows and getting file/dir info
+defaults write com.apple.finder DisableAllAnimations -bool true
+
+# Show scrollbar: `WhenScrolling`, `Automatic`, `Always`
+defaults write -g AppleShowScrollBars -string "WhenScrolling"
+
+# Enable wallpaper tinting in windows
+defaults write -g AppleReduceDesktopTinting -bool false
+
+# Hide desktop icons when windows are open
+defaults write com.apple.WindowManager StandardHideDesktopIcons -bool false
+
+# Widgets appearance: (0) monochrome, (1) in full color, or (2) automatic
+defaults write com.apple.widgets widgetAppearance -int 2
+
+# Disable focus ring animation
+defaults write -g NSUseAnimatedFocusRing -bool false
+
+# Set the menu bar to autohide on fullscreen only
+defaults write -g AppleMenuBarVisibleInFullscreen -bool false
+defaults write -g _HIHideMenuBar -bool false
+
+# Set accent and highlight colors
+# NOTE: you can mix between accent and highlight colors...
+# ------------------------------------------------------------------------------
+# desired       accent        highlight                             aqua var
+# ------------------------------------------------------------------------------
+# multicolor    leave unset   leave unset                           leave unset
+# blue          4             0.698039 0.843137 1.000000 Blue       1
+# purple        5             0.968627 0.831373 1.000000 Purple     1
+# pink          6             1.000000 0.749020 0.823529 Pink       1
+# red           0             1.000000 0.749020 0.823529 Red        1
+# orange        1             1.000000 0.874510 0.701961 Orange     1
+# yellow        2             1.000000 0.937255 0.690196 Yellow     1
+# green         3             0.752941 0.964706 0.678431 Green      1
+# graphite      -1            0.847059 0.847059 0.862745 Graphite   6
+# ------------------------------------------------------------------------------
+# defaults write -g AppleAccentColor -int 3
+# defaults write -g AppleHighlightColor -string "0.752941 0.964706 0.678431 Green"
+# defaults write -g AppleAquaColorVariant -int 1
 
 #------------------------------------------------------------------------------------#
-#                             • AUDIO / SOUNDS •                                     #
+#                                • Screens •                                         #
 #------------------------------------------------------------------------------------#
 
-echo "[Prefs]: audio settings"
-go_on()
+# Enable subpixel font rendering on non-Apple LCDs
+# Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
+defaults write -g AppleFontSmoothing -int 1
+
+# Enable HiDPI display modes (requires restart)
+sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
+
+#------------------------------------------------------------------------------------#
+#                             • Audio / Sounds •                                     #
+#------------------------------------------------------------------------------------#
 
 # Disable the sound effects on system boot (%00 to reenable it)
 sudo nvram StartupMute="%01"
@@ -540,37 +273,23 @@ defaults write -g com.apple.sound.uiaudio.enabled -bool true
 
 # Don't play feedback sound on volume change
 defaults write -g com.apple.sound.beep.feedback -bool false
-
-# Alerts volume (it's not the general output volume)
+  
+# Alerts volume 
+# NOTE: it's not the general output volume 
 defaults write -g com.apple.sound.beep.volume -float 0.7
 
+# Increase sound quality for Bluetooth headphones/headsets
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
 #------------------------------------------------------------------------------------#
-#                           • FOCUS / NOTIFICATIONS •                                #
+#                               • Keyboard •                                         #
 #------------------------------------------------------------------------------------#
-
-echo "[Prefs]: Notification settings, and sync focus across devices"
-go_on()
-
-# Share focus across devices (activating it on one device, activates it for all)
-defaults write com.apple.donotdisturb disableCloudSync -bool false
-
-# Show notification previews: (1) never, (2) when unlocked, (3) always
-defaults write com.apple.ncprefs content_visibility -int 2
-
-
-#------------------------------------------------------------------------------------#
-#                                 • KEYBOARD •                                       #
-#------------------------------------------------------------------------------------#
-
-echo "[Prefs]: keyboard settings"
-go_on()
 
 # Enable full keyboard access for all controls (move focus with Tab and Shift+Tab)
 defaults write -g AppleKeyboardUIMode -int 2
 
 # Disable press-and-hold for keys in favor of key repeat
-defaults write -g ApplePressAndHoldEnabled -bool false
+defaults write -g ApplePressAndHoldEnabled -bool true
 
 # Set a blazingly fast keyboard repeat rate
 defaults write -g KeyRepeat -int 1
@@ -591,35 +310,28 @@ defaults write com.apple.HIToolbox AppleFnUsageType -int 2
 # Use large window for emoji and symbols 
 defaults write com.apple.CharacterPaletteIM CVStartAsLargeWindow --bool true
 
-
 #------------------------------------------------------------------------------------#
-#                                   • TEXT •                                         #
+#                               • Typing •                                           #
 #------------------------------------------------------------------------------------#
-
-echo "[Prefs]: Clear replacement dictionary"
-go_on()
 
 # Clear replacement dictionary
 defaults write -g NSUserDictionaryReplacementItems -array
 
+# Disable autocorrection
+defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false
+
+# Disable automatic capitalization
+defaults write -g NSAutomaticCapitalizationEnabled -bool false
+
+# Disable automatic dash, period, and quote substitution 
+defaults write -g NSAutomaticDashSubstitutionEnabled -bool false
+defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool false
+defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool false
 
 #------------------------------------------------------------------------------------#
-#                                 • PRINTERS •                                       #
+#                           • Mouse & Trackpad •                                     #
 #------------------------------------------------------------------------------------#
-
-echo "[Prefs]: A4 as default printing format"
-go_on()
-
-# Set 'A4' as the default printing format
-defaults write com.apple.PrintingPrefs DefaultPaperID -string "iso-a4"
-
-
-#------------------------------------------------------------------------------------#
-#                             • MOUSE / TRACKPAD •                                   #
-#------------------------------------------------------------------------------------#
-
-echo "[Prefs]: mouse/trackpad settings"
-go_on()
 
 # Set a high tracking speed
 defaults write -g com.apple.trackpad.scaling -float 2.5
@@ -643,13 +355,18 @@ defaults write com.apple.AppleMultitouchTrackpad ForceSuppressed -bool true
 defaults write com.apple.AppleMultitouchTrackpad USBMouseStopsTrackpad -int 1
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad USBMouseStopsTrackpad -int 1
 
+# Click the scroll bar to jump to:
+# 0: the next page or
+# 1: the spot that's clicked
+defaults write -g AppleScrollerPagingBehavior -int 1
+
+# Prefer natural direction (content follows fingers direction)
+defaults write -g com.apple.swipescrolldirection -int 1
+
 
 #------------------------------------------------------------------------------------#
-#                                 • GESTURES •                                       #
+#                              • Gestures •                                          #
 #------------------------------------------------------------------------------------#
-
-echo "[Prefs]: Set gestures"
-go_on()
 
 # Secondary click with: two-fingers click
 defaults write -g ContextMenuGesture -int 1
@@ -668,7 +385,7 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadTwoFin
 defaults com.apple.AppleMultitouchTrackpad TrackpadRotate -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRotate -bool true
 
-# Swipe between pages with two-fingers horizonal scoll
+# Swipe between pages with two-fingers horizonal scroll
 defaults write -g AppleEnableSwipeNavigateWithScrolls -bool true
 
 # Swipe between spaces with three-fingers horizontal scroll
@@ -694,3 +411,352 @@ defaults write com.apple.AppleMultitouchTrackpad TrackpadFourFingerPinchGesture 
 defaults write com.apple.AppleMultitouchTrackpad TrackpadFiveFingerPinchGesture -int 0
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFourFingerPinchGesture -int 0
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFiveFingerPinchGesture -int 0
+
+#------------------------------------------------------------------------------------#
+#                              • Login Window •                                      #
+#------------------------------------------------------------------------------------#
+
+loginwindow=/Library/Preferences/com.apple.loginwindow.plist
+
+# Hide user name and avatar
+sudo defaults $loginwindow HideUserAvatarAndName -bool true
+
+# Don't show a custom message
+sudo defaults $loginwindow LoginwindowText -string ""
+
+# Don't show password hint
+sudo defaults $loginwindow RetriesUntilHint -int 0
+
+# Show the Sleep, Restart and Shutdown buttons
+sudo defaults $loginwindow PowerOffDisabled -bool false
+
+# Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window
+sudo defaults write $loginwindow AdminHostInfo HostName
+
+#------------------------------------------------------------------------------------#
+#                             • Screenshots •                                        #
+#------------------------------------------------------------------------------------#
+
+# Screenshots format: `png`, `bmp`, `gif`, `jpg`, `pdf`, `tiff`, `psd`, `tga`, 
+defaults write com.apple.screencapture type -string "png"
+
+# Save screenshots to the desktop
+defaults write com.apple.screencapture location -string "${HOME}/Desktop"
+
+# Include date and time on screenshot name
+defaults write com.apple.screencapture include-date -bool true
+
+# Disable shadow in screenshots
+defaults write com.apple.screencapture disable-shadow -bool true
+
+#------------------------------------------------------------------------------------#
+#                         • Privacy / Security •                                     #
+#------------------------------------------------------------------------------------#
+
+# Show notification previews: (1) never, (2) when unlocked, (3) always
+defaults write com.apple.ncprefs content_visibility -int 2
+
+# Warn about fraudulent websites
+defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
+
+# Enable “Do Not Track”
+defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
+
+#------------------------------------------------------------------------------------#
+#                        • Disable unused systems •                                  #
+#------------------------------------------------------------------------------------#
+
+# Disable Siri
+defaults write com.apple.assistant.support "Assistant Enabled" -bool false
+defaults write com.apple.Siri StatusMenuVisible -bobl false
+defaults write com.apple.Siri VoiceTriggerUserEnabled -bobl false
+defaults write com.apple.Siri SiriPrefStashedStatusMenuVisible -bobl false
+
+# Disable all hot-corners operations
+defaults write com.apple.dock wvous-tl-corner -int 0
+defaults write com.apple.dock wvous-tl-modifier -int 0
+defaults write com.apple.dock wvous-tr-corner -int 0
+defaults write com.apple.dock wvous-tr-modifier -int 0
+defaults write com.apple.dock wvous-bl-corner -int 0
+defaults write com.apple.dock wvous-bl-modifier -int 0
+defaults write com.apple.dock wvous-br-corner -int 0
+defaults write com.apple.dock wvous-br-modifier -int 0
+
+# Disable spotlight indexing for all volumes,
+sudo mdutil -a -i off
+# ...clear index dirs on the main volume,
+sudo mdutil -X / > /dev/null
+# ...and remove spotlight keyboard shortcut
+/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:64:enabled 0" \
+"$HOME/Library/Preferences/com.apple.symbolichotkeys.plist"
+
+# Disable local Time Machine backups
+hash tmutil &> /dev/null && sudo tmutil disablelocal
+
+# Disable Notification Center
+launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
+
+# Disable the “Are you sure you want to open this application?” dialog
+defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+# Disable the crash reporter
+defaults write com.apple.CrashReporter DialogType -string "none"
+
+# Disable automatic termination of inactive apps
+defaults write -g NSDisableAutomaticTermination -bool true
+
+#------------------------------------------------------------------------------------#
+#                           • Quality of Life •                                      #
+#------------------------------------------------------------------------------------#
+
+# Close all windows when quitting an app (no restore when reopening)
+defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
+
+# Share focus across devices (activating it on one device, activates it for all)
+defaults write com.apple.donotdisturb disableCloudSync -bool false
+
+# Use iPhone widgets
+defaults write com.apple.chronod remoteWidgetsEnabled -bool true
+
+# Prevent Photos from opening automatically when devices are plugged in
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+
+# Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
+defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+
+# Allow text selection in images
+defaults write -g AppleLiveTextEnabled -bool true
+
+# Double-click a window's title bar to: 'Maximize', 'Minimize', 'None' (do nothing)
+defaults write -g AppleActionOnDoubleClick -string "None"
+
+# Prevent Time Machine from prompting to use new hard drives as backup volume
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+# Save to disk (not to iCloud) by default
+defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
+
+#------------------------------------------------------------------------------------#
+#                                   • Dock •                                         #
+#------------------------------------------------------------------------------------#
+
+# Dock position on screen: `bottom`, `left`, `right`
+defaults write com.apple.dock orientation -string "bottom"
+
+# Don't automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool false
+
+# Autohide animation properties: in seconds (requires autohide)
+defaults write com.apple.dock autohide-delay -float 0.2
+defaults write com.apple.dock autohide-time-modifier -float 0.1
+
+# Set dock icons size in pixels
+defaults write com.apple.dock tilesize -int 36
+
+# Set dock icons to grow on hover
+defaults write com.apple.dock magnification -bool true
+defaults write com.apple.dock largesize -int 48
+
+# Animate opening apps
+defaults write com.apple.dock launchanim -bool true
+
+# Show indicator lights for running apps
+defaults write com.apple.dock show-process-indicators -bool true
+
+# Minimize windows into their application’s icon
+defaults write com.apple.dock minimize-to-application -bool true
+
+# Change minimize/maximize window animation effect: `genie`, `scale`, `suck`
+defaults write com.apple.dock mineffect -string "scale"
+
+# Show suggested and recent apps on the dock
+defaults write com.apple.dock show-recents -bool false
+
+# Wipe all (default) apps from the Dock, then add the favourite apps
+defaults write com.apple.dock persistent-apps -array
+
+#------------------------------------------------------------------------------------#
+#                          • Windows / Navigation •                                  #
+#------------------------------------------------------------------------------------#
+
+# Prefer tabs when opening documents: 'always', 'manual', or when in 'fullscreen'
+defaults write -g AppleWindowTabbingMode -string "fullscreen"
+
+# Reveal desktop when clicking the wallpaper
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool true 
+
+# When switching to an app, go to space with open windows of that app
+defaults write -g AppleSpacesSwitchOnActivate -bool true
+
+# Group windows by application in Mission Control
+defaults write com.apple.dock expose-group-apps -bool true
+
+# Don’t automatically rearrange Spaces based on most recent use
+defaults write com.apple.dock mru-spaces -bool false
+
+# Displays have separate spaces
+defaults write com.apple.spaces spans-displays -bool false
+
+#------------------------------------------------------------------------------------#
+#                               • Desktop •                                          #
+#------------------------------------------------------------------------------------#
+
+# Set a custom wallpaper image. `DefaultDesktop.jpg` is already a symlink, and
+# all wallpapers are in `/Library/Desktop Pictures/`.
+# rm -rf ~/Library/Application Support/Dock/desktoppicture.db
+# sudo rm -rf /System/Library/CoreServices/DefaultDesktop.jpg
+# sudo ln -s $HOME/.dotfiles/wallpapers/sunrise-deer.jpeg /System/Library/CoreServices/DefaultDesktop.jpg
+
+# Hide all icons
+defaults write com.apple.finder CreateDesktop -bool false
+
+# Group directories on top, regardless of sort type
+defaults write com.apple.finder _FXSortFoldersFirstOnDesktop -bool "true"
+
+# Don't show hard drives, removable media, and connected servers on Desktop
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
+
+# Show item info near icons
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+
+# Enable snap-to-grid for icons
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+
+# Set size and grid spacing for icons
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 80" ~/Library/Preferences/com.apple.finder.plist
+
+#------------------------------------------------------------------------------------#
+#                               • Finder •                                           #
+#------------------------------------------------------------------------------------#
+
+# Set Home as the default location for new Finder windows
+defaults write com.apple.finder NewWindowTarget -string "PfLo"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
+
+# Don't allow quitting Finder via ⌘ + Q
+defaults write com.apple.finder QuitMenuItem -bool false
+
+# Show path bar
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Finder: show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Display full POSIX path as Finder window title
+# defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+# Open dirs in new windows
+defaults write com.apple.finder FinderSpawnTab -bool false
+
+# Remove all tags
+defaults write com.apple.finder FavoriteTagNames -array
+defaults write com.apple.finder FavoriteTags -array
+
+# Expand the following File Info panes:
+# “General”, “Open with”, and “Sharing & Permissions”
+defaults write com.apple.finder FXInfoPanesExpanded -dict \
+	General -bool true \
+	OpenWith -bool true \
+	Privileges -bool true
+
+# Disable disk image verification
+defaults write com.apple.frameworks.diskimages skip-verify -bool true
+defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
+defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
+
+# Automatically open a new Finder window when a volume is mounted
+defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
+defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
+defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
+
+# Enable AirDrop over Ethernet and on unsupported Macs running Lion
+defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
+
+# View style in all Finder windows by default:
+# `icnv` -> Icon view
+# `clmv` -> Column view
+# `glyv` -> Gallery view
+# `Nlsv` -> List view
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+# Show hidden files by default (Toggle with ⌘ + SHIFT + .)
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Show /Volumes and /Library dirs
+# sudo chflags nohidden /Volumes
+# chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
+
+# Group directories on top, regardless of sort type
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
+
+# Always show file extensions
+defaults write -g AppleShowAllExtensions -bool true
+
+# Disable the warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# When performing a search, search the current directory by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Enable spring loading for directories, with no delay
+defaults write -g com.apple.springing.enabled -bool true
+defaults write -g com.apple.springing.delay -float 0
+
+# Avoid creating .DS_Store files on network or USB volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+# Show item info near icons
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+
+# Enable snap-to-grid for icons
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+
+# Set the size of icons
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
+
+# Set grid spacing for icons
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 80" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:gridSpacing 80" ~/Library/Preferences/com.apple.finder.plist
+
+# Remove Dropbox’s green checkmark icons in Finder
+# file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
+# [ -e "${file}" ] && mv -f "${file}" "${file}.bak"
+
+#------------------------------------------------------------------------------------#
+#                           • APPLY CHANGES •                                        #
+#------------------------------------------------------------------------------------#
+
+# Cleanup current Dock state
+find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
+
+# Restart affected applications and apply changes...
+for app in "Activity Monitor" \
+	"Address Book" \
+	"Calendar" \
+	"cfprefsd" \
+	"Contacts" \
+	"Dock" \
+	"Finder" \
+	"Google Chrome Canary" \
+	"Google Chrome" \
+	"Mail" \
+	"Messages" \
+	"Photos" \
+	"Safari" \
+	"SystemUIServer" \
+	"Terminal" \
+	"Transmission" \
+	"Tweetbot" \
+	"Twitter" \
+	"iCal"; do
+	killall "${app}" &> /dev/null
+done
+echo "Done. Note that some of these changes require a logout/restart to take effect."
