@@ -26,6 +26,9 @@
 # - Finder
 # - APPLY CHANGES
 
+log="[system preferences]: "
+echo "$log starting system preferences setup..."
+
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
@@ -56,12 +59,13 @@ defaults write com.apple.rapport familySyncedName -string $REPLY
 #------------------------------------------------------------------------------------#
 #                            • Software Updates •                                    #
 #------------------------------------------------------------------------------------#
+echo "$log enabling automatic software updates preferences..."
 
 # Automatically check for software updates and download them
 sudo defaults write $updates AutomaticCheckEnabled -bool true
 sudo defaults write $updates AutomaticDownload -bool true
 
-# Automatically install critical updates 
+# Automatically install critical updates
 sudo defaults write $updates ConfigDataInstall -bool true
 sudo defaults write $updates CriticalUpdateInstall -bool true
 
@@ -71,6 +75,7 @@ defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 #------------------------------------------------------------------------------------#
 #                       • Language / Locale / Formats •                              #
 #------------------------------------------------------------------------------------#
+echo "$log setting favorite languages, locales, and formats..."
 
 # Set preferred languages
 defaults write -g AppleLanguages -array "en-US" "it-IT"
@@ -107,6 +112,7 @@ defaults write com.apple.iCal BirthdayEventsGenerationLastLocale -string "en_IT"
 #------------------------------------------------------------------------------------#
 #                                 • Timezone •                                       #
 #------------------------------------------------------------------------------------#
+echo "$log enabling location-based timezone..."
 
 # Enable date and time syncrhorization
 sudo systemsetup -setusingnetworktime on
@@ -124,6 +130,7 @@ sudo launchctl kickstart -k system/com.apple.locationd
 #------------------------------------------------------------------------------------#
 #                             • Power Management •                                   #
 #------------------------------------------------------------------------------------#
+echo "$log setting up power management preferences..."
 
 # Enable put to sleep with power button
 sudo systemsetup -setallowpowerbuttontosleepcomputer on
@@ -186,6 +193,7 @@ sudo chflags uchg /private/var/vm/sleepimage
 #------------------------------------------------------------------------------------#
 #                              • Screen Saver •                                      #
 #------------------------------------------------------------------------------------#
+echo "$log setting up screen saver preferences..."
 
 # Start Screen saver when inactive for 5 minutes
 # NOTE: set to 0 to never have screensaver
@@ -198,6 +206,7 @@ defaults write com.apple.screensaver askForPasswordDelay -int 0
 #------------------------------------------------------------------------------------#
 #                              • Appearance / UI •                                   #
 #------------------------------------------------------------------------------------#
+echo "$log setting up appearance and UI preferences..."
 
 # Switch to Dark theme
 # NOTE: other options are:
@@ -253,6 +262,7 @@ defaults write -g _HIHideMenuBar -bool false
 #------------------------------------------------------------------------------------#
 #                                • Screens •                                         #
 #------------------------------------------------------------------------------------#
+echo "$log optimizing screen settings for non-Apple LCDs..."
 
 # Enable subpixel font rendering on non-Apple LCDs
 # Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
@@ -264,6 +274,7 @@ sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutio
 #------------------------------------------------------------------------------------#
 #                             • Audio / Sounds •                                     #
 #------------------------------------------------------------------------------------#
+echo "$log setting up audio and sound preferences..."
 
 # Disable the sound effects on system boot (%00 to reenable it)
 sudo nvram StartupMute="%01"
@@ -284,6 +295,7 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 #------------------------------------------------------------------------------------#
 #                               • Keyboard •                                         #
 #------------------------------------------------------------------------------------#
+echo "$log setting up keyboard preferences..."
 
 # Enable full keyboard access for all controls (move focus with Tab and Shift+Tab)
 defaults write -g AppleKeyboardUIMode -int 2
@@ -313,6 +325,7 @@ defaults write com.apple.CharacterPaletteIM CVStartAsLargeWindow --bool true
 #------------------------------------------------------------------------------------#
 #                               • Typing •                                           #
 #------------------------------------------------------------------------------------#
+echo "$log optimizing typing experience..."
 
 # Clear replacement dictionary
 defaults write -g NSUserDictionaryReplacementItems -array
@@ -332,6 +345,7 @@ defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool false
 #------------------------------------------------------------------------------------#
 #                           • Mouse & Trackpad •                                     #
 #------------------------------------------------------------------------------------#
+echo "$log setting up mouse and trackpad preferences..."
 
 # Set a high tracking speed
 defaults write -g com.apple.trackpad.scaling -float 2.5
@@ -367,6 +381,7 @@ defaults write -g com.apple.swipescrolldirection -int 1
 #------------------------------------------------------------------------------------#
 #                              • Gestures •                                          #
 #------------------------------------------------------------------------------------#
+echo "$log setting up gestures..."
 
 # Secondary click with: two-fingers click
 defaults write -g ContextMenuGesture -int 1
@@ -415,6 +430,7 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFiveFi
 #------------------------------------------------------------------------------------#
 #                              • Login Window •                                      #
 #------------------------------------------------------------------------------------#
+echo "$log setting up login window screen appearance..."
 
 loginwindow=/Library/Preferences/com.apple.loginwindow.plist
 
@@ -436,6 +452,7 @@ sudo defaults write $loginwindow AdminHostInfo HostName
 #------------------------------------------------------------------------------------#
 #                             • Screenshots •                                        #
 #------------------------------------------------------------------------------------#
+echo "$log configuring screenshots format and location..."
 
 # Screenshots format: `png`, `bmp`, `gif`, `jpg`, `pdf`, `tiff`, `psd`, `tga`, 
 defaults write com.apple.screencapture type -string "png"
@@ -452,6 +469,7 @@ defaults write com.apple.screencapture disable-shadow -bool true
 #------------------------------------------------------------------------------------#
 #                         • Privacy / Security •                                     #
 #------------------------------------------------------------------------------------#
+echo "$log setting up privacy and security preferences..."
 
 # Show notification previews: (1) never, (2) when unlocked, (3) always
 defaults write com.apple.ncprefs content_visibility -int 2
@@ -465,6 +483,7 @@ defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 #------------------------------------------------------------------------------------#
 #                        • Disable unused systems •                                  #
 #------------------------------------------------------------------------------------#
+echo "$log disabling Siri, Spotlight, Notification center, and other unused systems..."
 
 # Disable Siri
 defaults write com.apple.assistant.support "Assistant Enabled" -bool false
@@ -508,6 +527,7 @@ defaults write -g NSDisableAutomaticTermination -bool true
 #------------------------------------------------------------------------------------#
 #                           • Quality of Life •                                      #
 #------------------------------------------------------------------------------------#
+echo "$log setting up quality of life preferences..."
 
 # Close all windows when quitting an app (no restore when reopening)
 defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
@@ -539,6 +559,7 @@ defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
 #------------------------------------------------------------------------------------#
 #                                   • Dock •                                         #
 #------------------------------------------------------------------------------------#
+echo "$log configuring the Dock..."
 
 # Dock position on screen: `bottom`, `left`, `right`
 defaults write com.apple.dock orientation -string "bottom"
@@ -578,6 +599,7 @@ defaults write com.apple.dock persistent-apps -array
 #------------------------------------------------------------------------------------#
 #                          • Windows / Navigation •                                  #
 #------------------------------------------------------------------------------------#
+echo "$log setting up window and navigation preferences..."
 
 # Prefer tabs when opening documents: 'always', 'manual', or when in 'fullscreen'
 defaults write -g AppleWindowTabbingMode -string "fullscreen"
@@ -600,6 +622,7 @@ defaults write com.apple.spaces spans-displays -bool false
 #------------------------------------------------------------------------------------#
 #                               • Desktop •                                          #
 #------------------------------------------------------------------------------------#
+echo "$log configuring the Desktop..."
 
 # Set a custom wallpaper image. `DefaultDesktop.jpg` is already a symlink, and
 # all wallpapers are in `/Library/Desktop Pictures/`.
@@ -632,6 +655,7 @@ defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
 #------------------------------------------------------------------------------------#
 #                               • Finder •                                           #
 #------------------------------------------------------------------------------------#
+echo "$log configuring Finder..."
 
 # Set Home as the default location for new Finder windows
 defaults write com.apple.finder NewWindowTarget -string "PfLo"
@@ -733,6 +757,7 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 #------------------------------------------------------------------------------------#
 #                           • APPLY CHANGES •                                        #
 #------------------------------------------------------------------------------------#
+echo "$log applying changes to the system..."
 
 # Cleanup current Dock state
 find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
@@ -759,4 +784,4 @@ for app in "Activity Monitor" \
 	"iCal"; do
 	killall "${app}" &> /dev/null
 done
-echo "Done. Note that some of these changes require a logout/restart to take effect."
+echo "$log done! Note that some of these changes require a logout/restart to take effect."
