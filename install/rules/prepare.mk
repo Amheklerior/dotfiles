@@ -3,7 +3,7 @@
 .DEFAULT_GOAL := prepare
 
 
-prepare: prompt sys-check backup
+prepare: sys-check backup
 
 # check whether it's running on a macos system (the only supported so far)
 sys-check: 
@@ -17,6 +17,11 @@ sys-check:
 # move any file/dir which is NOT a symlink into the backup directory
 backup: 
 	if [[ ! -e $(BACKUP_DIR)/.config ]]; then \
+		echo "$(PREPARE_LOG) Do you want to backup your current dotfiles? (y/n)" && read -r REPLY; \
+		if [[ $$REPLY != "y" && $$REPLY != "Y" ]]; then \
+			echo "$(PREPARE_LOG) Skipping backup"; \
+			exit 0; \
+		fi; \
 		echo "$(PREPARE_LOG) creating backup for current dotfiles..."; \
 		mkdir -p $(BACKUP_DIR)/.config; \
 		for item in $(STOW_ITEMS); do \

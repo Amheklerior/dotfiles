@@ -3,7 +3,7 @@
 .DEFAULT_GOAL := dotfiles
 
 
-dotfiles: prompt setdir link
+dotfiles: setdir link
 
 # create directories to let stow symlink their content individually,
 # rather than the entire dir.

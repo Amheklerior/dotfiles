@@ -2,7 +2,7 @@
 
 .DEFAULT_GOAL := shell
 
-shell: prompt make-default-user-shell sh-symlink shell-plugins
+shell: make-default-user-shell sh-symlink shell-plugins
 
 # make the updated version of zsh the default shell when I open a new terminal.
 # NOTE: homebrew version of zsh must be added to the list of recognised shells,
@@ -28,12 +28,17 @@ sh-symlink: zsh
 
 # For all plugins that are not supported by brew yet, clone them manually into the .config/plugins dir
 shell-plugins: github-login
-	echo "$(PKG_LOG) install shell plugins..."
-	mkdir -p $(XDG_CONFIG_HOME)/plugins
+  echo "$(CORE_LOG) Do you want to install shell plugins? (y/n)" && read -r REPLY; \
+	if [[ $$REPLY != "y" && $$REPLY != "Y" ]]; then \
+		echo "$(CORE_LOG) Skipping shell plugins installation"; \
+		exit 0; \
+	fi; \
+	echo "$(CORE_LOG) install shell plugins..."; \
+	mkdir -p $(XDG_CONFIG_HOME)/plugins; \
 	while IFS=' ' read -r plugin repo; do \
 		if [[ ! -e $(XDG_CONFIG_HOME)/plugins/$$plugin ]]; then \
-			gh repo clone $$repo $(XDG_CONFIG_HOME)/plugins/$$plugin || echo "$(PCK_LOG) Failed to clone: $$plugin"; \
+			gh repo clone $$repo $(XDG_CONFIG_HOME)/plugins/$$plugin || echo "$(CORE_LOG) Failed to clone: $$plugin"; \
 		else \
-			echo "$(PCK_LOG) $$plugin is already present, skipped!"; \
+			echo "$(CORE_LOG) $$plugin is already present, skipped!"; \
 		fi; \
 	done < $(SHELL_PLUGINS_LIST)

@@ -11,7 +11,7 @@
 # because the command is not found.
 brew := $(HOMEBREW_BIN_PATH)/brew
 
-brew: prompt brew-install brew-setup
+brew: brew-install brew-setup
 
 brew-install:
 	if ! command -v $(brew) >/dev/null; then \

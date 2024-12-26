@@ -36,5 +36,6 @@ source $HOME/.zshrc
 # - clone personal and work repos
 # - configure system and apps settings
 make setup || exit 1
+
 # Complete
 echo "[Done]: You're ready to rock \m/"

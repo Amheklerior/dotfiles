@@ -36,6 +36,3 @@ CORE_LOG := [core]:
 STOW_LOG := [stow]:
 DEV_LOG := [dev setup]:
 SETTINGS_LOG := [settings]:
-
-prompt:
-	echo "Press ENTER to continue" & read

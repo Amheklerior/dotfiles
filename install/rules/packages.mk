@@ -3,7 +3,7 @@
 .DEFAULT_GOAL := packages
 
 
-packages: prompt core-packages brew-bundle brew-check
+packages: core-packages brew-bundle brew-check
 
 core-packages: zsh ansible stow
 
@@ -32,5 +32,6 @@ brew-bundle:
 # NOTE: the shortcircuit on the brew doctor command is a workaround to the fact that the doctor
 # doctor command exits with failures even on warnings, causing the whole make process to quit.
 brew-check:
+	echo "$(PKG_LOG) cleanup..."
 	brew cleanup
 	brew doctor || :

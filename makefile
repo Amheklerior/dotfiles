@@ -11,7 +11,7 @@ include install/rules/settings.mk
 .PHONY: init bootstrap setup
 
 # force make to use bash to interpret the recipes
-# NOTE: default shell used my make is /bin/sh
+# NOTE: default shell used by make is /bin/sh
 SHELL := /bin/bash
 
 

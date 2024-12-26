@@ -3,13 +3,13 @@
 .DEFAULT_GOAL := core
 
 
-core: prompt ssh git
+core: ssh git
 
-git: prompt github-login gitlab-login
+git: github-login gitlab-login
 
 # NOTE: it checks the .ssh/ dir presence, under the assumption
 # that it won't be created prior to the ssh-keys copy operation. 
-ssh: prompt ansible
+ssh: ansible
 	if [ ! -d ${HOME}/.ssh ]; then \
 		echo "$(CORE_LOG) setting up ssh keys on your system..."; \
 		mkdir -p ${HOME}/.ssh; \
@@ -22,6 +22,11 @@ ssh: prompt ansible
 # login to gh via access token
 github-login: mk-tmp-dir
 	if ! gh auth status >/dev/null 2>&1; then \
+		echo "$(DEV_LOG) Do you want to setup github cli? (y/n)" && read -r REPLY; \
+		if [[ $$REPLY != "y" && $$REPLY != "Y" ]]; then \
+			echo "$(DEV_LOG) Skipping github cli setup"; \
+			exit 0; \
+		fi; \
 		cp ./backup-codes/github.token ${XDG_DATA_HOME}/gh-login-token; \
 		echo "$(DEV_LOG) please enter the decryption password for copying the gh login token"; \
 		ansible-vault decrypt ${XDG_DATA_HOME}/gh-login-token && \
@@ -36,6 +41,11 @@ github-login: mk-tmp-dir
 # login to glab via access token
 gitlab-login: mk-tmp-dir
 	if ! glab auth status >/dev/null 2>&1; then \
+		echo "$(DEV_LOG) Do you want to setup gitlab cli? (y/n)" && read -r REPLY; \
+		if [[ $$REPLY != "y" && $$REPLY != "Y" ]]; then \
+			echo "$(DEV_LOG) Skipping gitlab cli setup"; \
+			exit 0; \
+		fi; \
 		cp ./backup-codes/gitlab-mfm.token ${XDG_DATA_HOME}/glab-login-token; \
 		echo "$(DEV_LOG) please enter the decryption password for copying the glab login token"; \
 		ansible-vault decrypt ${XDG_DATA_HOME}/glab-login-token && \
