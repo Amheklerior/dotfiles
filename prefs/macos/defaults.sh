@@ -18,11 +18,11 @@
 # - Gestures
 # - Login Window
 # - Screenshots
-# - Privacy / Security
 # - Disable unused systems
 # - Quality of Life
 # - Dock
 # - Windows / Navigation
+# - Desktop
 # - Finder
 # - APPLY CHANGES
 
@@ -43,23 +43,23 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 #                            • Computer Name •                                       #
 #------------------------------------------------------------------------------------#
 
-updates="/Library/Preferences/com.apple.SoftwareUpdates.plist"
-
 # Set computer name
 echo "$log which name do you want to give to this computer? (amheklerior)" && read
 name=$REPLY
-if [ $name == "" ]; then
+if [[ $name == "" ]]; then
   name=amheklerior;
 fi
-sudo scutil --set ComputerName $REPLY
-sudo scutil --set HostName $REPLY
-sudo scutil --set LocalHostName $REPLY
-defaults write com.apple.rapport familySyncedName -string $REPLY
+sudo scutil --set ComputerName $name
+sudo scutil --set HostName $name
+sudo scutil --set LocalHostName $name
+defaults write com.apple.rapport familySyncedName -string $name
 
 #------------------------------------------------------------------------------------#
 #                            • Software Updates •                                    #
 #------------------------------------------------------------------------------------#
 echo "$log enabling automatic software updates preferences..."
+
+updates="/Library/Preferences/com.apple.SoftwareUpdates"
 
 # Automatically check for software updates and download them
 sudo defaults write $updates AutomaticCheckEnabled -bool true
@@ -68,9 +68,6 @@ sudo defaults write $updates AutomaticDownload -bool true
 # Automatically install critical updates
 sudo defaults write $updates ConfigDataInstall -bool true
 sudo defaults write $updates CriticalUpdateInstall -bool true
-
-# Update Safari extensions automatically
-defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 
 #------------------------------------------------------------------------------------#
 #                       • Language / Locale / Formats •                              #
@@ -118,22 +115,22 @@ echo "$log enabling location-based timezone..."
 sudo systemsetup -setusingnetworktime on
 
 # Set timezone atuomatically based on current location
-sudo defaults /Library/Preferences/com.apple.timezone.auto.plist Active -bool true
+sudo defaults write /Library/Preferences/com.apple.timezone.auto Active -bool true
 
 # Set system timezone manually (remember to disable the automatic timezone option above)
 # NOTE: run `sudo systemsetup -listtimezones` for other values
 # sudo systemsetup -settimezone "Europe/Rome" >/dev/null
 
 # Apply timezone changes
-sudo launchctl kickstart -k system/com.apple.locationd
+# NOTE: it doesn't work due to insufficient permissions. 
+# The System Integrity Protection (SIP) prevents the command to be run.
+# Simply restarting the system should be enough to achieve the same result.
+# sudo launchctl kickstart -k system/com.apple.locationd
 
 #------------------------------------------------------------------------------------#
 #                             • Power Management •                                   #
 #------------------------------------------------------------------------------------#
 echo "$log setting up power management preferences..."
-
-# Enable put to sleep with power button
-sudo systemsetup -setallowpowerbuttontosleepcomputer on
 
 # Set sleep times when on AC Power
 sudo pmset -c displaysleep 10
@@ -150,7 +147,7 @@ sudo pmset -c lowpowermode 0
 sudo pmset -b lowpowermode 1
 
 # Slightly dim display on battery
-sudo pmset -b lessbright
+sudo pmset -b lessbright 1
 
 # Enable lid wakeup (lifting the screen lid up wakes the system)
 sudo pmset -a lidwake 1
@@ -165,9 +162,6 @@ sudo pmset -a acwake 1
 sudo pmset -a womp 1
 sudo pmset -b womp 0
 
-# Restart automatically on power loss, or freeze
-sudo pmset -a autorestart 1
-sudo systemsetup -setrestartfreeze on
 
 # Hibernate mode:
 #  0: Disable hibernation (speeds up sleep/wake operations)
@@ -320,7 +314,7 @@ defaults write -g com.apple.keyboard.fnState -bool false
 defaults write com.apple.HIToolbox AppleFnUsageType -int 2
 
 # Use large window for emoji and symbols 
-defaults write com.apple.CharacterPaletteIM CVStartAsLargeWindow --bool true
+defaults write com.apple.CharacterPaletteIM CVStartAsLargeWindow -int 1
 
 #------------------------------------------------------------------------------------#
 #                               • Typing •                                           #
@@ -332,7 +326,6 @@ defaults write -g NSUserDictionaryReplacementItems -array
 
 # Disable autocorrection
 defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
-defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false
 
 # Disable automatic capitalization
 defaults write -g NSAutomaticCapitalizationEnabled -bool false
@@ -377,7 +370,6 @@ defaults write -g AppleScrollerPagingBehavior -int 1
 # Prefer natural direction (content follows fingers direction)
 defaults write -g com.apple.swipescrolldirection -int 1
 
-
 #------------------------------------------------------------------------------------#
 #                              • Gestures •                                          #
 #------------------------------------------------------------------------------------#
@@ -385,19 +377,19 @@ echo "$log setting up gestures..."
 
 # Secondary click with: two-fingers click
 defaults write -g ContextMenuGesture -int 1
-defaults com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
 
 # Pinch to zoom
-defaults com.apple.AppleMultitouchTrackpad TrackpadPinch -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadPinch -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadPinch -bool true
 
 # Double-tap with two fingers to zoom 
-defaults com.apple.AppleMultitouchTrackpad TrackpadTwoFingerDoubleTapGesture -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerDoubleTapGesture -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadTwoFingerDoubleTapGesture -bool true
 
 # Rotate with two fingers
-defaults com.apple.AppleMultitouchTrackpad TrackpadRotate -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRotate -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRotate -bool true
 
 # Swipe between pages with two-fingers horizonal scroll
@@ -432,19 +424,19 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFiveFi
 #------------------------------------------------------------------------------------#
 echo "$log setting up login window screen appearance..."
 
-loginwindow=/Library/Preferences/com.apple.loginwindow.plist
+loginwindow=/Library/Preferences/com.apple.loginwindow
 
 # Hide user name and avatar
-sudo defaults $loginwindow HideUserAvatarAndName -bool true
+sudo defaults write $loginwindow HideUserAvatarAndName -bool true
 
 # Don't show a custom message
-sudo defaults $loginwindow LoginwindowText -string ""
+sudo defaults write $loginwindow LoginwindowText -string ""
 
 # Don't show password hint
-sudo defaults $loginwindow RetriesUntilHint -int 0
+sudo defaults write $loginwindow RetriesUntilHint -int 0
 
 # Show the Sleep, Restart and Shutdown buttons
-sudo defaults $loginwindow PowerOffDisabled -bool false
+sudo defaults write $loginwindow PowerOffDisabled -bool false
 
 # Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window
 sudo defaults write $loginwindow AdminHostInfo HostName
@@ -467,29 +459,15 @@ defaults write com.apple.screencapture include-date -bool true
 defaults write com.apple.screencapture disable-shadow -bool true
 
 #------------------------------------------------------------------------------------#
-#                         • Privacy / Security •                                     #
-#------------------------------------------------------------------------------------#
-echo "$log setting up privacy and security preferences..."
-
-# Show notification previews: (1) never, (2) when unlocked, (3) always
-defaults write com.apple.ncprefs content_visibility -int 2
-
-# Warn about fraudulent websites
-defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
-
-# Enable “Do Not Track”
-defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
-
-#------------------------------------------------------------------------------------#
 #                        • Disable unused systems •                                  #
 #------------------------------------------------------------------------------------#
 echo "$log disabling Siri, Spotlight, Notification center, and other unused systems..."
 
 # Disable Siri
 defaults write com.apple.assistant.support "Assistant Enabled" -bool false
-defaults write com.apple.Siri StatusMenuVisible -bobl false
-defaults write com.apple.Siri VoiceTriggerUserEnabled -bobl false
-defaults write com.apple.Siri SiriPrefStashedStatusMenuVisible -bobl false
+defaults write com.apple.Siri StatusMenuVisible -bool false
+defaults write com.apple.Siri VoiceTriggerUserEnabled -bool false
+defaults write com.apple.Siri SiriPrefStashedStatusMenuVisible -bool false
 
 # Disable all hot-corners operations
 defaults write com.apple.dock wvous-tl-corner -int 0
@@ -502,15 +480,15 @@ defaults write com.apple.dock wvous-br-corner -int 0
 defaults write com.apple.dock wvous-br-modifier -int 0
 
 # Disable spotlight indexing for all volumes,
-sudo mdutil -a -i off
+sudo mdutil -a -i off &> /dev/null
 # ...clear index dirs on the main volume,
-sudo mdutil -X / > /dev/null
+sudo mdutil -X / &> /dev/null
 # ...and remove spotlight keyboard shortcut
-/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:64:enabled 0" \
-"$HOME/Library/Preferences/com.apple.symbolichotkeys.plist"
+# /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:64:enabled 0" \
+# "$HOME/Library/Preferences/com.apple.symbolichotkeys.plist"
 
 # Disable local Time Machine backups
-hash tmutil &> /dev/null && sudo tmutil disablelocal
+# hash tmutil &> /dev/null && sudo tmutil disable local
 
 # Disable Notification Center
 launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
@@ -528,6 +506,9 @@ defaults write -g NSDisableAutomaticTermination -bool true
 #                           • Quality of Life •                                      #
 #------------------------------------------------------------------------------------#
 echo "$log setting up quality of life preferences..."
+
+# Show notification previews: (1) never, (2) when unlocked, (3) always
+defaults write com.apple.ncprefs content_visibility -int 2
 
 # Close all windows when quitting an app (no restore when reopening)
 defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
@@ -564,8 +545,8 @@ echo "$log configuring the Dock..."
 # Dock position on screen: `bottom`, `left`, `right`
 defaults write com.apple.dock orientation -string "bottom"
 
-# Don't automatically hide and show the Dock
-defaults write com.apple.dock autohide -bool false
+# Automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool true
 
 # Autohide animation properties: in seconds (requires autohide)
 defaults write com.apple.dock autohide-delay -float 0.2
@@ -643,14 +624,14 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
 
 # Show item info near icons
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
 
 # Enable snap-to-grid for icons
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
 # Set size and grid spacing for icons
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 80" ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 80" ~/Library/Preferences/com.apple.finder.plist
 
 #------------------------------------------------------------------------------------#
 #                               • Finder •                                           #
@@ -735,20 +716,20 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # Show item info near icons
-/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
 
 # Enable snap-to-grid for icons
-/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
 # Set the size of icons
-/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
 
 # Set grid spacing for icons
-/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 80" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:gridSpacing 80" ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 80" ~/Library/Preferences/com.apple.finder.plist
+# /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:gridSpacing 80" ~/Library/Preferences/com.apple.finder.plist
 
 # Remove Dropbox’s green checkmark icons in Finder
 # file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
@@ -760,7 +741,7 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 echo "$log applying changes to the system..."
 
 # Cleanup current Dock state
-find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
+find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete &> /dev/null
 
 # Restart affected applications and apply changes...
 for app in "Activity Monitor" \
