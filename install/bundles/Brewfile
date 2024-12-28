@@ -36,6 +36,8 @@ brew "zsh-syntax-highlighting"
 # Fonts
 cask "font-jetbrains-mono-nerd-font"
 cask "font-victor-mono-nerd-font"
+cask "font-geist-mono-nerd-font"
+cask "font-zed-mono-nerd-font"
 
 # Cask applications
 cask "discord"
