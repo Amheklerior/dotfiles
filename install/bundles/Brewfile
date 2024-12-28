@@ -40,10 +40,10 @@ cask "font-geist-mono-nerd-font"
 cask "font-zed-mono-nerd-font"
 
 # Cask applications
+cask "ghostty"
 cask "discord"
 cask "docker"
 cask "google-chrome"
-cask "iterm2"
 cask "notion"
 cask "steam"
 cask "telegram"
