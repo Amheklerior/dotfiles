@@ -1,6 +1,8 @@
 theme = GruvboxDarkHard
 font-family = VictorMono Nerd Font Mono
 cursor-style = block
+background-opacity = 0.90
+background-blur-radius = 20
 
 # spread padding evenly across all sides of the terminal window
 window-padding-balance = true
