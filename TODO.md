@@ -1,7 +1,7 @@
 # TODOs
 
-- [ ] Improve DX (better logging, prompts to skip parts of the process, etc.)
-- [ ] Automate `macosx prefs` setup
+- [x] Improve DX (better logging, prompts to skip parts of the process, etc.)
+- [x] Automate `macosx prefs` setup
 - [ ] Automate `app prefs` setup (via plain `defaults` script or using [`mackup`](https://github.com/lra/mackup))
 - [ ] Integrate `neovim` configs
 - [ ] Integrate [`tmux`](https://github.com/tmux/tmux/wiki) (or [`zellij`](https://zellij.dev/)) configs
