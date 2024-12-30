@@ -5,6 +5,7 @@ tap "oven-sh/bun"
 # Core and terminal utils
 brew "ansible"
 brew "bat"
+brew "delta"
 brew "eza"
 brew "fd"
 brew "fnm"
