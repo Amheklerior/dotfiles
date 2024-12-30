@@ -49,6 +49,12 @@
 	# No hunk header
 	hunk-header-style = omit
 
+	# color theme (defined in ~/.config/delta/themes.config)
+	features = villsau
+
+[include]
+	path = ./.config/delta/themes.config
+
 [alias]
 	# commit amend shortcut
 	amend = commit --amend --reuse-message=HEAD
