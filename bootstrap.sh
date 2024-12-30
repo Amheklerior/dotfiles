@@ -25,6 +25,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 # - link my dotfiles
 make bootstrap || exit 1
 
+# TODO: Investigate why the dotfiles are not sourced during installation
 # source dotfiles in current shell
 echo "[dotfiles]: source dotfiles..."
 source $HOME/.zshenv
