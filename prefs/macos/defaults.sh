@@ -375,6 +375,8 @@ defaults write -g com.apple.swipescrolldirection -int 1
 #------------------------------------------------------------------------------------#
 echo "$log setting up gestures..."
 
+# NOTE: A lot of gestures have been disabled to push myself towards a keyboard-only workflow
+
 # Secondary click with: two-fingers click
 defaults write -g ContextMenuGesture -int 1
 defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
@@ -396,8 +398,8 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRotate
 defaults write -g AppleEnableSwipeNavigateWithScrolls -bool true
 
 # Swipe between spaces with three-fingers horizontal scroll
-defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerHorizSwipeGesture -int 2
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 2
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerHorizSwipeGesture -int 0
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 0
 
 # Open notification center with two-finger left-scroll from the right edge
 defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerFromRightEdgeSwipeGesture -int 3
