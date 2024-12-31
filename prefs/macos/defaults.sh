@@ -549,8 +549,8 @@ defaults write com.apple.dock orientation -string "bottom"
 defaults write com.apple.dock autohide -bool true
 
 # Autohide animation properties: in seconds (requires autohide)
-defaults write com.apple.dock autohide-delay -float 0.2
-defaults write com.apple.dock autohide-time-modifier -float 0.1
+# NOTE: Impractically slow to force myself not using it at all
+defaults write com.apple.dock autohide-delay -float 1000
 
 # Set dock icons size in pixels
 defaults write com.apple.dock tilesize -int 36
