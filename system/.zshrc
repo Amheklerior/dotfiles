@@ -42,6 +42,16 @@ source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
 
+# Allow moving back and forth across words with option+left/right
+# NOTE: Ghostty terminal emulator uses lowercase chars (while others use uppercase chars) 
+bindkey '^[b' backward-word
+bindkey '^[f' forward-word
+
+# Consider the following chars word-separators
+export WORDCHARS="*?[]~=&;!#$%^(){}<>"
+
+# Delete word by word with option+delete 
+bindkey '^[^?' backward-kill-word
 
 ### ZOXIDE
 
