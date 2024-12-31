@@ -38,5 +38,8 @@ source $HOME/.zshrc
 # - configure system and apps settings
 make setup || exit 1
 
+# switch dotfiles repo from https protocol to SSH
+git remote set-url origin git@github.com:Amheklerior/dotfiles.git
+
 # Complete
 echo "[Done]: You're ready to rock \m/"
