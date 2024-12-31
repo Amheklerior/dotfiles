@@ -522,9 +522,6 @@ defaults write com.apple.chronod remoteWidgetsEnabled -bool true
 # Prevent Photos from opening automatically when devices are plugged in
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
-# Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
-defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
-
 # Allow text selection in images
 defaults write -g AppleLiveTextEnabled -bool true
 
@@ -744,25 +741,15 @@ echo "$log applying changes to the system..."
 find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete &> /dev/null
 
 # Restart affected applications and apply changes...
-for app in "Activity Monitor" \
-	"Address Book" \
-	"Calendar" \
-	"cfprefsd" \
-	"Contacts" \
-	"Dock" \
-	"Finder" \
-	"Google Chrome Canary" \
-	"Google Chrome" \
-	"Mail" \
-	"Messages" \
-	"Photos" \
-	"Safari" \
-	"SystemUIServer" \
-	"Terminal" \
-	"Transmission" \
-	"Tweetbot" \
-	"Twitter" \
-	"iCal"; do
+for app in "Activity Monitor" "cfprefsd" "Dock" "Finder" "SystemUIServer"; do
 	killall "${app}" &> /dev/null
 done
-echo "$log done! Note that some of these changes require a logout/restart to take effect."
+
+# Restart the system
+echo "$log done! \
+Some of these changes require a logout/restart to take effect. \
+Do you want to restart now? (y/n)" && read -r REPLY
+if [[ $REPLY == "y" ]]; then
+	echo "$log restarting..."
+	sudo shutdown -r now
+fi
