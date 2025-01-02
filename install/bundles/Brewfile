@@ -42,6 +42,7 @@ cask "font-geist-mono-nerd-font"
 cask "font-zed-mono-nerd-font"
 
 # Cask applications
+cask "alt-tab"
 cask "chai"
 cask "discord"
 cask "docker"
