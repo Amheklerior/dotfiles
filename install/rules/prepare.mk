@@ -1,9 +1,6 @@
-.PHONY: prepare sys-check backup
+.PHONY: sys-check backup
 
 .DEFAULT_GOAL := prepare
-
-
-prepare: sys-check backup
 
 # check whether it's running on a macos system (the only supported so far)
 sys-check: 

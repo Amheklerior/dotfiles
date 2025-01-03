@@ -1,9 +1,6 @@
-.PHONY: packages core-packages brew-bundle zsh ansible stow brew-check
+.PHONY: core-packages brew-bundle zsh ansible stow brew-check
 
 .DEFAULT_GOAL := packages
-
-
-packages: core-packages brew-bundle brew-check
 
 core-packages: zsh ansible stow
 

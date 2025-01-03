@@ -1,4 +1,4 @@
-.PHONY: brew brew-install brew-setup
+.PHONY: brew-install brew-setup
 
 .DEFAULT_GOAL := brew
 
@@ -10,8 +10,6 @@
 # in the following recipes of the bootstrap process, the `brew` command calls fail
 # because the command is not found.
 brew := $(HOMEBREW_BIN_PATH)/brew
-
-brew: brew-install brew-setup
 
 brew-install:
 	if ! command -v $(brew) >/dev/null; then \

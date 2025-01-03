@@ -1,12 +1,8 @@
-.PHONY: dev setup-node personal work
+.PHONY: setup-node clone-personal-repo clone-work-repo
 
 .DEFAULT_GOAL := dev
 
-
-dev: setup-node personal work
-
 # setup fnm and corepack install dirs, and install lts and latest version of node
-# NOTE: at the moment, node versions are: v22.2.0 (latest), and v20.13.1 (LTS) 
 setup-node: 
 	echo "$(DEV_LOG) setting up node env..."
 	mkdir -p $(FNM_INSTALL_DIR) $(COREPACK_INSTALL_DIR)
@@ -17,8 +13,7 @@ setup-node:
 		fnm install --latest; \
 	fi
 
-# clone personal projects
-personal: github-login
+clone-personal-repo: github-login
 	echo "$(DEV_LOG) Do you want to clone personal repos on this machine? (y/n)" && read -r REPLY; \
 	if [[ $$REPLY != "y" && $$REPLY != "Y" ]]; then \
 		echo "$(DEV_LOG) Skipping personal repos cloning"; \
@@ -39,8 +34,7 @@ personal: github-login
 	done < ${XDG_DATA_HOME}/personal-repo; \
 	rm ${XDG_DATA_HOME}/personal-repo
 
-# clone work projects
-work: gitlab-login
+clone-work-repo: gitlab-login
 	echo "$(DEV_LOG) Do you want to clone work related repos on this machine? (y/n)" && read -r REPLY; \
 	if [[ $$REPLY != "y" && $$REPLY != "Y" ]]; then \
 		echo "$(DEV_LOG) Skipping work repos cloning"; \

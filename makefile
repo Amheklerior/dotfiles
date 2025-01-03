@@ -8,15 +8,19 @@ include install/rules/stow.mk
 include install/rules/dev.mk
 include install/rules/settings.mk
 
-.PHONY: init bootstrap setup
+.PHONY: prepare packages bootstrap setup-dev-env settings
 
 # force make to use bash to interpret the recipes
 # NOTE: default shell used by make is /bin/sh
 SHELL := /bin/bash
 
 
-init: prepare brew
+prepare: sys-check backup brew-install brew-setup
 
-bootstrap: packages core shell dotfiles
+packages: core-packages brew-bundle brew-check
 
-setup: dev settings
+bootstrap: core shell dotfiles
+
+setup-dev-env: setup-node clone-personal-repo clone-work-repo
+
+settings: sys-settings # TODO: apps-settings

@@ -1,9 +1,9 @@
-.PHONY: settings
+.PHONY: sys-settings
 
-.DEFAULT_GOAL := settings
+.DEFAULT_GOAL := sys-settings
 
 
-settings:
+sys-settings:
 	echo "$(SETTINGS_LOG) Do you want to set up system and apps preferences? (y/n)" && read -r REPLY; \
 	if [[ $$REPLY != "y" && $$REPLY != "Y" ]]; then \
 		echo "$(SETTINGS_LOG) Skipping settings"; \
