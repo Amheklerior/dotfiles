@@ -1,8 +1,7 @@
 include ${HOME}/.dotfiles/install/configs/env.mk
 
-.PHONY: help fmt-iterm-profile link unlink relink clean check-links restore view-backup
+.PHONY: help link unlink relink clean check-links restore view-backup
 
-ITERM_PROFILE := $(DOTFILES)/prefs/iterm2/profile.json
 LINKED_FILES := \
 	${HOME}/.zshrc \
 	${HOME}/.zprofile \
@@ -23,10 +22,6 @@ SHELL := /bin/zsh
 
 help: 
 	head $(DOTFILES)/dev.mk | grep ".PHONY:" | sed -e "s/\.PHONY: //" -e "s/ /\n/g"
-
-fmt-iterm-profile: 
-	echo "$(DEV_LOG) ordering keys in the iterm's profile.json..."
-	jq -S . $(ITERM_PROFILE) > tmp.json && mv tmp.json $(ITERM_PROFILE)
 
 link:
 	echo "$(DEV_LOG) symlink dotfiles..."

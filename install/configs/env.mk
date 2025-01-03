@@ -7,7 +7,7 @@ STOW_ITEMS := \
 	.ssh \
 	.gitconfig \
 	.config/starship.toml \
-	.config/.bunfig.toml bin \
+	.config/.bunfig.toml \
 	wallpapers \
 	bin
 
