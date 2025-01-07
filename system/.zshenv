@@ -14,7 +14,7 @@ export WORK="$HOME/work"
 export DOTFILES="$HOME/.dotfiles"
 
 # path to the bin folder
-export BIN="$HOME/bin"
+export BIN="$DOTFILES/bin"
 
 # path to the shell plugins
 export SHELL_PLUGINS="$XDG_CONFIG_HOME/plugins"
