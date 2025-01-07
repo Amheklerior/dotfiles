@@ -13,7 +13,6 @@ LINKED_FILES := \
 	${HOME}/.ssh/known_hosts \
 	${HOME}/.config/starship.toml \
 	${HOME}/.config/.bunfig.toml \
-	${HOME}/wallpapers \
 	${HOME}/Library/Application\ Support/Code/User/settings.json
 
 # use zsh to interpret the recipes

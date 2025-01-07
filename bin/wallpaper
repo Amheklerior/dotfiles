@@ -8,7 +8,7 @@
 #   the others remain unchanged
 
 # default path to all wallpapers
-WALLPAPER_DIR=$HOME/wallpapers
+WALLPAPER_DIR=$DOTFILES/wallpapers
 
 # select a wallpaper from the list 
 wallpaper=$(\
