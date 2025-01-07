@@ -13,9 +13,6 @@ export WORK="$HOME/work"
 # path to the dotfiles repo
 export DOTFILES="$HOME/.dotfiles"
 
-# path to the original dotfiles backup dir
-export BACKUP="$HOME/backup"
-
 # path to the bin folder
 export BIN="$HOME/bin"
 
