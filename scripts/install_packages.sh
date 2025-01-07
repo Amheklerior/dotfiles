@@ -2,7 +2,7 @@
 
 local LOG_PREFIX="[Install packages and apps]:"
 
-local BUNDLES_DIR="$DOTFILES/bundles"
+local BUNDLES_DIR="$REPO/bundles"
 
 local _install() {
   local bundle="$BUNDLES_DIR/$1.bundle" 
