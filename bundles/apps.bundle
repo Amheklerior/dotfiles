@@ -1,0 +1,17 @@
+# Cask applications
+cask "alt-tab"
+cask "chai"
+cask "discord"
+cask "docker"
+cask "ghostty"
+cask "google-chrome"
+cask "keyclu"
+cask "notion"
+cask "raycast"
+cask "steam"
+cask "telegram"
+cask "todoist"
+cask "visual-studio-code"
+
+# Mac App Store applications
+mas "Pages", id: 409201541

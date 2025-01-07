@@ -1,52 +1,63 @@
 #!/bin/zsh
 
-# don't echo the commands while running make
-export MAKEFLAGS="--silent"
+local LOG_PREFIX="[system bootstrap]:"
 
-# run the init pipeline:
-# - check system compatibility
-# - create backup of current dotfiles
-# - install and setup homebrew
-make prepare || exit 1
+local REPO="$HOME/.dotfiles"
+local SCRIPTS="$REPO/scripts"
+local XDG_CONFIG_HOME="$HOME/.config"
+local XDG_DATA_HOME="$HOME/.local/share"
 
-# complete homebrew installation
-# - set homebrew env vars
-# - add the `brew` command to the PATH
-echo "[brew]: setting up homebrew environment variables..."
-eval "$(/opt/homebrew/bin/brew shellenv)"
+local _run() {
+  local script="$SCRIPTS/$1.sh"
+  if [ -e $script ]; then
+    source $script
+  else
+    echo "ERROR: script $script not found!"
+    exit 1
+  fi
+}
 
-# export dir for tmp files (used by the bootstrap recipe)
-export XDG_DATA_HOME="$HOME/.local/share"
+# ensure the process exits on any error
+set -e
 
-# Install packages and apps
-# - install core utils
-# - install cask apps and mac app store apps
-# - install vscode extensions
-make packages || exit 1
+# load utility functions
+source "$SCRIPTS/utils.sh"
 
-# bootstrap the system
-# - setup shell env
-# - setup ssh
-# - link my dotfiles
-make bootstrap || exit 1
+# create dir for temporary files
+mkdir -p $XDG_DATA_HOME
 
-# TODO: Investigate why the dotfiles are not sourced during installation
-# source dotfiles in current shell
-echo "[dotfiles]: source dotfiles..."
-source $HOME/.zshenv
-source $HOME/.zprofile
-source $HOME/.zshrc
+_log "$LOG_PREFIX Sit down and relax, system is going to be ready soon..."
+
+# system bootstrap steps
+_run check_sys_requirements
+_run remove_current_dotfiles
+_run install_and_setup_homebrew
+_run install_packages
+_run setup_ssh_keys
+_run setup_github_account
+_run setup_shell
+_run install_shell_plugins
+_run link_dotfiles
+_run setup_dev_env
+_run clone_git_repos
 
 # switch dotfiles repo from https protocol to SSH
-git remote set-url origin git@github.com:Amheklerior/dotfiles.git
+cd $REPO && git remote set-url origin git@github.com:Amheklerior/dotfiles.git
 
-# setup the rest of the system
-# - setup dev env
-# - clone personal and work repos
-make setup-dev-env || exit 1
+# setup machine for work
+_prompt_for_confirmation "$LOG_PREFIX Do you want to setup this machine as a work machine?"
+if _has_confirmed; then
+  _log "$LOG_PREFIX Setting up work machine..."
+  _run setup_work_ssh
+  _run setup_work_git
+  _run clone_work_repos
+  _log "$LOG_PREFIX Work setup complete!"
+fi
 
-# configure system and apps settings
-make settings || exit 1
+# cofigure system and apps settings to my liking
+_prompt_for_confirmation "$LOG_PREFIX Do you want to load system and apps preferences"
+if _has_confirmed; then 
+  _run load_sys_and_app_prefs
+fi
 
-# Complete
-echo "[Done]: You're ready to rock \m/"
+_log "$LOG_PREFIX Done! You're ready to rock \m/"
