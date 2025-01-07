@@ -90,9 +90,6 @@ alias decrypt="ansible-vault decrypt"
 # tail log files with syntax highlighting 
 alias watch="tail -f $1 | bat --paging=never -l log"
 
-# reset the system, aligning installed packages and apps with the original Brewfile
-alias breset="brew bundle install --file=$HOMEBREW_BUNDLE_FILE && brew bundle cleanup --file=$HOMEBREW_BUNDLE_FILE"
-
 # create a list of currently installed software in the `Brewfile`.
 # --force: overrides a previously created `Brewfile`.
 # --describe: adds descriptive comments (for formulae and cask only).

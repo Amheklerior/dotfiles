@@ -4,13 +4,14 @@
 ### compare current brew bundle list with the default brewfile
 
 local TMP=$(mktemp -d)
+local BUNDLE="$DOTFILES/bundles/packages.bundle"
 local _extract_brews() {
   rg '^brew' | sed 's/brew \"\(.*\)\"/\1/'
 }
 
 # get the default list of brews form the brewfile
 local DEFAULT=$TMP/brews_default
-cat $HOMEBREW_BUNDLE_FILE | _extract_brews | sort > $DEFAULT
+cat $BUNDLE | _extract_brews | sort > $DEFAULT
 
 # get the current bundle list
 local CURRENT=$TMP/brews_current

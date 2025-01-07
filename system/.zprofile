@@ -5,9 +5,6 @@ export GIT_EDITOR=nvim
 # bypass the Gatekeeper for cask apps
 export HOMEBREW_CASK_OPTS="--no-quarantine"
 
-# path to the Brewfile
-export HOMEBREW_BUNDLE_FILE="$DOTFILES/install/bundles/Brewfile"
-
 # set PATH, MANPATH, etc. for Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 

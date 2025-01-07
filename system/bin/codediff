@@ -4,13 +4,14 @@
 ### compare current extensions list for vscode with the default list from the brewfile
 
 local TMP=$(mktemp -d)
+local BUNDLE="$DOTFILES/bundles/vscode.bundle"
 local _extract_vscode_ext() {
   rg '^vscode' | sed 's/vscode \"\(.*\)\"/\1/'
 }
 
 # grab the default extensions list from brewfile 
 local DEFAULT=$TMP/vscode_default_ext
-cat $HOMEBREW_BUNDLE_FILE | _extract_vscode_ext > $DEFAULT
+cat $BUNDLE | _extract_vscode_ext > $DEFAULT
 
 # grab the current extensions list
 local CURRENT=$TMP/vscode_current_ext
