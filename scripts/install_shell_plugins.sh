@@ -2,7 +2,7 @@
 
 local LOG_PREFIX="[install shell plugins]:"
 
-local PLUGINS_LIST="$REPO/install/bundles/shell-plugins.list"
+local PLUGINS_LIST="$REPO/bundles/shell-plugins.list"
 
 # create the shell plugins dir if it doesn't exist
 mkdir -p $XDG_CONFIG_HOME/plugins
