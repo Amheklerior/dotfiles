@@ -1,0 +1,15 @@
+{
+	// Here's a JS snippet example to be used as a reference
+	"Print to console": {
+		// used to trigger the snippet
+		"prefix": "log",
+		// $1, $2, ... for tab stops
+		// $0 for the final cursor position
+		// ${1:label}, ${2:another}, ... for placeholders
+		"body": [
+			"console.log('$1');",
+			"$2"
+		],
+		"description": "Log output to console"
+	}
+}

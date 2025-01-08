@@ -2,26 +2,24 @@
 
 local LOG_PREFIX="[applications preferences]:"
 
+local APP_PREFS="$HOME/.dotfiles/prefs"
+
 # the list of the apps to configure
 local APPS=(
-  visual-studio-code
+  vscode
   # TODO: integrate other apps
 )
 
-local _is_app_installed() {
-  test $(brew list --cask | grep $1) >/dev/null
+local _remove_current_config_files() {
+  cat "$APP_PREFS/$1/cpaths" | xargs -n1 -I "{}" rm -rf "$HOME/{}"
+}
+
+local _load_custom_prefs() {
+  stow -d "$APP_PREFS/$app/configs" -t $HOME -S .
 }
 
 for app in ${APPS[@]}; do
-  if ! _is_app_installed $app; then
-    _log "$LOG_PREFIX $app not installed on your system, skipping!"
-    continue
-  fi
-
-  # remove current config files...
-  # TODO
-
-  # ...and replace them with the one from the repo
   _log "$LOG_PREFIX loading preferences for $app..."
-  # TODO
+  _remove_current_config_files $app
+  _load_custom_prefs $app
 done
