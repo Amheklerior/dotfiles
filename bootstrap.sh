@@ -60,7 +60,8 @@ fi
 # cofigure system and apps settings to my liking
 _prompt_for_confirmation "$LOG_PREFIX Do you want to load system and apps preferences"
 if _has_confirmed; then 
-  _run load_sys_and_app_prefs
+  _run load_sys_prefs
+  _run load_app_prefs
 fi
 
 _log "$LOG_PREFIX Done! You're ready to rock \m/"

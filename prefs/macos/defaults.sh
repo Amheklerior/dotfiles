@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
 LOG_PREFIX="[system preferences]:"
 
