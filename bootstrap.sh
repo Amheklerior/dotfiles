@@ -38,11 +38,14 @@ _run setup_github_account
 _run setup_shell
 _run install_shell_plugins
 _run link_dotfiles
-_run setup_dev_env
-_run clone_git_repos
+_run enable-touchid-for-sudo-access
 
 # switch dotfiles repo from https protocol to SSH
 cd $REPO && git remote set-url origin git@github.com:Amheklerior/dotfiles.git
+
+# setup machine for personal development
+_run setup_dev_env
+_run clone_git_repos
 
 # setup machine for work
 _prompt_for_confirmation "$LOG_PREFIX Do you want to setup this machine as a work machine?"
