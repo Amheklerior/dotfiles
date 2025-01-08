@@ -2,6 +2,9 @@
 
 local LOG_PREFIX="[setup ssh keys]:"
 
+# load utility functions in case the script is run by the user
+[[ -o interactive ]] && source "$DOTFILES/scripts/utils.sh"
+
 # create the ssh dir if it doesn't exist
 mkdir -p $HOME/.ssh
 

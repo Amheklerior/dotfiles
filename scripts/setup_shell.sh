@@ -2,6 +2,9 @@
 
 local LOG_PREFIX="[setup shell]:"
 
+# load utility functions in case the script is run by the user
+[[ -o interactive ]] && source "$DOTFILES/scripts/utils.sh"
+
 local _is_ZSH_the_default_sys_shell() {
   test $(grep -Fxq $HOMEBREW_BIN_PATH/zsh /etc/shells)
 }

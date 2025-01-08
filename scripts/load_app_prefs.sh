@@ -4,6 +4,9 @@ local LOG_PREFIX="[applications preferences]:"
 
 local APP_PREFS="$HOME/.dotfiles/prefs"
 
+# load utility functions in case the script is run by the user
+[[ -o interactive ]] && source "$DOTFILES/scripts/utils.sh"
+
 # the list of the apps to configure
 local APPS=(
   vscode

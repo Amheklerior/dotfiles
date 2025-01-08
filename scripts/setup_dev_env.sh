@@ -2,6 +2,9 @@
 
 local LOG_PREFIX="[setup dev env]:"
 
+# load utility functions in case the script is run by the user
+[[ -o interactive ]] && source "$DOTFILES/scripts/utils.sh"
+
 _log "$LOG_PREFIX setting up node dev env..."
 
 local _install_node() {

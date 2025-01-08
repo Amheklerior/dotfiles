@@ -2,9 +2,6 @@
 
 LOG_PREFIX="[system preferences]:"
 
-# load utility functions
-. $HOME/.dotfiles/scripts/utils.sh
-
 # -------------------------------------
 # Table of Content:
 # -------------------------------------

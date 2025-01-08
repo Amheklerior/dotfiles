@@ -2,6 +2,9 @@
 
 local LOG_PREFIX="[setup work ssh keys]:"
 
+# load utility functions in case the script is run by the user
+[[ -o interactive ]] && source "$DOTFILES/scripts/utils.sh"
+
 if [ -e "$HOME/.ssh/work" ]; then
   _log "$LOG_PREFIX work ssh keys already set up"
   return

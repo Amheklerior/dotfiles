@@ -2,6 +2,9 @@
 
 local LOG_PREFIX="[setup work git account]:"
 
+# load utility functions in case the script is run by the user
+[[ -o interactive ]] && source "$DOTFILES/scripts/utils.sh"
+
 if glab auth status >/dev/null 2>&1; then
   _log "$LOG_PREFIX gitlab account already logged in"
   return
