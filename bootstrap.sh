@@ -57,10 +57,15 @@ if _has_confirmed; then
   _log "$LOG_PREFIX Work setup complete!"
 fi
 
-# cofigure system and apps settings to my liking
-_prompt_for_confirmation "$LOG_PREFIX Do you want to load system and apps preferences"
+# cofigure system's settings to my liking
+_prompt_for_confirmation "$LOG_PREFIX Do you want to load system preferences"
 if _has_confirmed; then 
   _run load_sys_prefs
+fi
+
+# configure applications' settings to my liking
+_prompt_for_confirmation "$LOG_PREFIX Do you want to load apps preferences"
+if _has_confirmed; then 
   _run load_app_prefs
 fi
 

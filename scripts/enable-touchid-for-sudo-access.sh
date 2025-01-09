@@ -24,6 +24,7 @@ if [ ! -e $SUDO_ACCESS_FILE ]; then
   _log "$LOG_PREFIX $SUDO_ACCESS_FILE created"
 else
   _log "$LOG_PREFIX $SUDO_ACCESS_FILE already exists"
+  return
 fi
 
 if _already_set; then

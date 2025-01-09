@@ -15,6 +15,8 @@ local _restore_backup() {
 _restore_backup $BACKUP_DIR/.zshrc
 _restore_backup $BACKUP_DIR/.zprofile
 _restore_backup $BACKUP_DIR/.zshenv
+_restore_backup $BACKUP_DIR/.zalias
+_restore_backup $BACKUP_DIR/.zfunc
 
 # git configs
 _restore_backup $BACKUP_DIR/.gitconfig
