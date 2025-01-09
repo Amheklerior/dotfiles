@@ -2,8 +2,8 @@
 
 local LOG_PREFIX="[system bootstrap]:"
 
-local REPO="$HOME/.dotfiles"
-local SCRIPTS="$REPO/scripts"
+local DOTFILES_REPO="$HOME/.dotfiles"
+local SCRIPTS="$DOTFILES_REPO/scripts"
 local XDG_CONFIG_HOME="$HOME/.config"
 local XDG_DATA_HOME="$HOME/.local/share"
 
@@ -41,7 +41,7 @@ _run link_dotfiles
 _run enable-touchid-for-sudo-access
 
 # switch dotfiles repo from https protocol to SSH
-cd $REPO && git remote set-url origin git@github.com:Amheklerior/dotfiles.git
+cd $DOTFILES_REPO && git remote set-url origin git@github.com:Amheklerior/dotfiles.git
 
 # setup machine for personal development
 _run setup_dev_env

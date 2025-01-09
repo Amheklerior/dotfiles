@@ -4,7 +4,7 @@
 ### compare current extensions list for vscode with the default list from the brewfile
 
 local TMP=$(mktemp -d)
-local BUNDLE="$DOTFILES/bundles/vscode.bundle"
+local BUNDLE="$DOTFILES_REPO/bundles/vscode.bundle"
 local _extract_vscode_ext() {
   rg '^vscode' | sed 's/vscode \"\(.*\)\"/\1/'
 }

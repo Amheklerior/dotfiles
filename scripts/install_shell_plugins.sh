@@ -2,10 +2,10 @@
 
 local LOG_PREFIX="[install shell plugins]:"
 
-local PLUGINS_LIST="$REPO/bundles/shell-plugins.list"
+local PLUGINS_LIST="$DOTFILES_REPO/bundles/shell-plugins.list"
 
 # load utility functions in case the script is run by the user
-[[ -o interactive ]] && source "$DOTFILES/scripts/utils.sh"
+[[ -o interactive ]] && source "$DOTFILES_REPO/scripts/utils.sh"
 
 # create the shell plugins dir if it doesn't exist
 mkdir -p $XDG_CONFIG_HOME/plugins

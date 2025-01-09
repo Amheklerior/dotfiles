@@ -3,7 +3,7 @@
 local LOG_PREFIX="[remove current dotfiles]:"
 
 # load utility functions in case the script is run by the user
-[[ -o interactive ]] && source "$DOTFILES/scripts/utils.sh"
+[[ -o interactive ]] && source "$DOTFILES_REPO/scripts/utils.sh"
 
 # save the dotfiles in the following directory
 # if the -c option is privided, save the item into the .config subdir

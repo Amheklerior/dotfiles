@@ -2,10 +2,10 @@
 
 local LOG_PREFIX="[Install packages and apps]:"
 
-local BUNDLES_DIR="$REPO/bundles"
+local BUNDLES_DIR="$DOTFILES_REPO/bundles"
 
 # load utility functions in case the script is run by the user
-[[ -o interactive ]] && source "$DOTFILES/scripts/utils.sh"
+[[ -o interactive ]] && source "$DOTFILES_REPO/scripts/utils.sh"
 
 local _install() {
   local bundle="$BUNDLES_DIR/$1.bundle" 

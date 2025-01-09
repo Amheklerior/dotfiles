@@ -3,7 +3,7 @@
 local LOG_PREFIX="[enable touchId for sudo access]:"
 
 # load utility functions in case the script is run by the user
-[[ -o interactive ]] && source "$DOTFILES/scripts/utils.sh"
+[[ -o interactive ]] && source "$DOTFILES_REPO/scripts/utils.sh"
 
 # The file to be modified to configure sudo access
 # NOTE: Instead of modifying the main /etc/pam.d/sudo file, which would be 

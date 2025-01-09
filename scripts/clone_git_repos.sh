@@ -2,10 +2,10 @@
 
 local LOG_PREFIX="[clone git repos]:"
 
-local REPO_LIST="$REPO/bundles/personal-repos.list"
+local REPO_LIST="$DOTFILES_REPO/bundles/personal-repos.list"
 
 # load utility functions in case the script is run by the user
-[[ -o interactive ]] && source "$DOTFILES/scripts/utils.sh"
+[[ -o interactive ]] && source "$DOTFILES_REPO/scripts/utils.sh"
 
 _prompt_for_confirmation "$LOG_PREFIX Do you want to clone personal git repos on this machine?"
 if ! _has_confirmed; then

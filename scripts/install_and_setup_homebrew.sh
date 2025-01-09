@@ -5,7 +5,7 @@ local LOG_PREFIX="[install and setup homebrew]:"
 local brew_cmd="$HOMEBREW_BIN_PATH/brew"
 
 # load utility functions in case the script is run by the user
-[[ -o interactive ]] && source "$DOTFILES/scripts/utils.sh"
+[[ -o interactive ]] && source "$DOTFILES_REPO/scripts/utils.sh"
 
 # install homebrew if not already installed
 if ! _is_installed $brew_cmd; then

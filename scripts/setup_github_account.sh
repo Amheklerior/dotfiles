@@ -3,7 +3,7 @@
 local LOG_PREFIX="[setup github account]:"
 
 # load utility functions in case the script is run by the user
-[[ -o interactive ]] && source "$DOTFILES/scripts/utils.sh"
+[[ -o interactive ]] && source "$DOTFILES_REPO/scripts/utils.sh"
 
 if gh auth status >/dev/null 2>&1; then
   _log "$LOG_PREFIX github already setup"
@@ -13,7 +13,7 @@ fi
 _log "$LOG_PREFIX setting up github cli"
 
 # decrypt and copy the github ACCESS_TOKEN to the clipboard
-cp $REPO/private/github.token $XDG_DATA_HOME/gh-login-token
+cp $DOTFILES_REPO/private/github.token $XDG_DATA_HOME/gh-login-token
 _log "$LOG_PREFIX Please enter the decryption password for copying the github login token"
 ansible-vault decrypt $XDG_DATA_HOME/gh-login-token
 cat $XDG_DATA_HOME/gh-login-token | pbcopy

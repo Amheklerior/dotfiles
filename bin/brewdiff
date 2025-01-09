@@ -4,7 +4,7 @@
 ### compare current brew bundle list with the default brewfile
 
 local TMP=$(mktemp -d)
-local BUNDLE="$DOTFILES/bundles/packages.bundle"
+local BUNDLE="$DOTFILES_REPO/bundles/packages.bundle"
 local _extract_brews() {
   rg '^brew' | sed 's/brew \"\(.*\)\"/\1/'
 }

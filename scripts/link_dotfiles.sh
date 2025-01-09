@@ -2,10 +2,10 @@
 
 local LOG_PREFIX="[link dotfiles]:"
 
-local DOTFILES="$REPO/system"
+local DOTFILES="$DOTFILES_REPO/system"
 
 # load utility functions in case the script is run by the user
-[[ -o interactive ]] && source "$DOTFILES/scripts/utils.sh"
+[[ -o interactive ]] && source "$DOTFILES_REPO/scripts/utils.sh"
 
 # first, create the folder structure
 # NOTE: this is necessary to prevent GNU stow from linking the directories

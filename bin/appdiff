@@ -4,7 +4,7 @@
 ### compare the list of currently installed apps with the default list from the brewfile
 
 local TMP=$(mktemp -d)
-local BUNDLE="$DOTFILES/bundles/apps.bundle"
+local BUNDLE="$DOTFILES_REPO/bundles/apps.bundle"
 local _extract_apps() {
   rg '^(cask|mas)' | sed -e 's/cask \"\(.*\)\"/\1/' -e 's/mas \"\(.*\)\".*/\1/'
 }

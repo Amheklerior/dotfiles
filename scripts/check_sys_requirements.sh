@@ -3,7 +3,7 @@
 local LOG_PREFIX="[check system requirements]:"
 
 # load utility functions in case the script is run by the user
-[[ -o interactive ]] && source "$DOTFILES/scripts/utils.sh"
+[[ -o interactive ]] && source "$DOTFILES_REPO/scripts/utils.sh"
 
 local _is_macos() {
   test $(uname -s) = "Darwin"
