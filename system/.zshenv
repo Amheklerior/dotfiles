@@ -11,10 +11,10 @@ export PERSONAL="$HOME/personal"
 export WORK="$HOME/work"
 
 # path to the dotfiles repo
-export DOTFILES="$HOME/.dotfiles"
+export DOTFILES_REPO="$HOME/.dotfiles"
 
 # path to the bin folder
-export BIN="$DOTFILES/bin"
+export BIN="$DOTFILES_REPO/bin"
 
 # path to the shell plugins
 export SHELL_PLUGINS="$XDG_CONFIG_HOME/plugins"
