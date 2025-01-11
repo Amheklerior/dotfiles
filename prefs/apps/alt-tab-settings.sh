@@ -1,19 +1,7 @@
 #!/bin/zsh
 
-local LOG_PREFIX="[load apps preferences]:"
-
-# load utility functions in case the script is run by the user
-[[ -o interactive ]] && source "$DOTFILES_REPO/scripts/utils.sh"
-
 # apps config plist file paths
-# local ALT_TAB_PREFS="$HOME/Library/Preferences/com.lwouis.alt-tab-macos"
 local ALT_TAB_PREFS="com.lwouis.alt-tab-macos"
-
-#------------------------------------------------------------------------------------#
-# Alt Tab                                                                            #
-#------------------------------------------------------------------------------------#
-
-_log "$LOG_PREFIX loading preferences for Alt-Tab..."
 
 # start at login without manu bar icon and no screen recording permissions
 defaults write $ALT_TAB_PREFS startAtLogin -string true
