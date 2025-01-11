@@ -181,12 +181,6 @@ sudo pmset -b womp 0
 # --------------------------------------------------------------------------------
 sudo pmset -a hibernatemode 0
 
-# Remove the sleep image file to save disk space, replacing it
-# with a readonluy zero-byte file instead
-sudo rm /private/var/vm/sleepimage
-sudo touch /private/var/vm/sleepimage
-sudo chflags uchg /private/var/vm/sleepimage
-
 #------------------------------------------------------------------------------------#
 #                              • Screen Saver •                                      #
 #------------------------------------------------------------------------------------#
