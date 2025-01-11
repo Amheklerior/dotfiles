@@ -24,7 +24,7 @@ fi
 # set ZSH as the default login shell
 if ! _is_ZSH_the_default_login_shell; then
 	_log "$LOG_PREFIX change default login shell to zsh..."
-	chsh -s $(HOMEBREW_BIN_PATH)/zsh
+	chsh -s $HOMEBREW_BIN_PATH/zsh
 else
   _log "$LOG_PREFIX login shell already set to zsh"
 fi
