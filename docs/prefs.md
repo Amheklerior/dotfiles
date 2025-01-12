@@ -1,15 +1,68 @@
 # Preferences
 
-- [`MacOS` preferences](#macos-system-preferences)
-- [`Nuphy Air75` keyboard layout](#nuphy-air75-keyboard-layout)
+- [MacOS system](#macos-system)
+- [Ghostty](#ghostty)
+- [VSCode](#vscode)
+- [Raycast](#raycast)
+- [Todoist](#todoist)
+- [Notion](#notion)
+- [Telegram](#telegram)
+- [AltTab](#alttab)
+- [KeyClu](#keyclu)
+- [Nuphy Air75 keyboard layout](#nuphy-air75-keyboard-layout)
 
-## MacOS System Preferences
+> **! NOTE**\
+> Still need to find a way to reliably save Mail, Notes, Contacts, Safari, and Photos apps' preferences.
 
-<!--TODO-->
+## MacOS System
 
-_TODO: Still to integrate_
+MacOS system preferences are set via the [`/prefs/macos/defaults.sh`](/prefs/macos/defaults.sh) script. The script is automatically run by the bootstrap script, but you can source the [`load-sys-prefs.sh`](/scripts/load_sys_prefs.sh) script to load the system preferences yourself.
 
-<!--TODO-->
+## Ghostty
+
+The [Ghostty](https://ghostty.org/) terminal emulator reads its preferences from a [`$XDG_CONFIG_HOME/ghostty/config` file](/system/.config/ghostty/config), which gets symlinked alongside all other dotfiles.
+
+## VSCode
+
+Visual Studio Code reads user preferences from the [`settings.json`](/prefs/vscode/settings.json) file, user's specific key bindings from the [`keybindings.json`](/prefs/vscode/keybindings.json) file, and user's specified snippets from the [`snippets`](/prefs/vscode/snippets/) dir, under the `$HOME/Library/Application Support/Code/User/` dir.
+
+All three files are defined under the [`/prefs/vscode`](/prefs/vscode/) dir, and symlinked with Stow to the `$HOME/Library/Application Support/Code/User/` dir by the [`/prefs/apps/vscode-settings.sh`](/prefs/apps/vscode-settings.sh) script.
+
+The script is automatically run by the [`load-app-prefs.sh`](/scripts/load_app_prefs.sh) script, but you can always source it manually from shell to load the preferences yourself.
+
+## Raycast
+
+[Raycast](https://www.raycast.com/) preferences are exported in a `.rayconfig` file stored under the [`/prefs/raycast`](/prefs/raycast/) dir.
+
+Open Raycast and go to `settings (⌘ + ,) > 'Advanced' Tab > 'Import/Export' section`, and import the preferences file.
+
+## Todoist
+
+Todoist's settings are stored in cloud by the service provider.
+
+## Notion
+
+Notion's settings are stored in cloud by the service provider.
+
+## Telegram
+
+_TODO_
+
+## AltTab
+
+The [Alt-tab](https://alt-tab-macos.netlify.app/) app reads its preferences from the `/Library/Preferences/com.lwouis.alt-tab-macos.plist` file (associated with the `com.lwouis.alt-tab-macos` domain).
+
+The [`alt-tab-settings.sh`](/prefs/apps/alt-tab-settings.sh) script sets `alt-tab` preferences by updating directly the plist file using the `defaults` command.
+
+The script is automatically run by the [`load-app-prefs.sh`](/scripts/load_app_prefs.sh) script, but you can always source it manually from shell to load the preferences yourself.
+
+## Keyclu
+
+The KeyClu app reads its preferences from the  `/Library/Preferences/com.0804Team.KeyClu.plist` file (associated with the `com.0804Team.KeyClu` domain).
+
+The [`keyclu-settings.sh`](/prefs/apps/keyclu-settings.sh) script sets `keyclu` preferences by updating directly the plist file using the `defaults` command.
+
+The script is automatically run by the [`load-app-prefs.sh`](/scripts/load_app_prefs.sh) script, but you can always source it manually from shell to load the preferences yourself.
 
 ## Nuphy Air75 Keyboard Layout
 
