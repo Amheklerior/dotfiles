@@ -36,7 +36,7 @@ alias vim="nvim"
 alias cpwd="pwd | tr -d '\n' | pbcopy"
 
 # navigation shortcuts
-alias dot="cd $DOTFILES"
+alias dot="cd $DOTFILES_REPO"
 alias personal="cd $PERSONAL"
 alias ihavenolife="cd $PERSONAL"
 alias work="cd $WORK"
@@ -75,7 +75,7 @@ alias gla="git log --oneline --graph --all -25"
 alias yolo="git push origin master --force --no-verify"
 
 # dotfiles management
-alias edot="$EDITOR $DOTFILES"
+alias edot="$EDITOR $DOTFILES_REPO"
 alias sdot="source $HOME/.zshenv; source $HOME/.zprofile; source $HOME/.zshrc"
 
 # node package managers shortcuts
