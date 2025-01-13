@@ -19,8 +19,8 @@ ansible-vault decrypt $XDG_DATA_HOME/glab-login-token
 cat $XDG_DATA_HOME/glab-login-token | pbcopy
 _log "$LOG_PREFIX token successfully copeid on your clipboard! Paste it during the installation process..."
 
-# login to github
-gh auth login
+# login to gitlab
+glab auth login
 
 # cleanup temporary files
 rm $XDG_DATA_HOME/glab-login-token
