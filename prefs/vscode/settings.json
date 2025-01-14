@@ -5,7 +5,8 @@
   "editor.fontLigatures": true,
   "editor.minimap.enabled": false,
   "diffEditor.ignoreTrimWhitespace": false,
-
+  "workbench.statusBar.visible": false,
+  "editor.linkedEditing": true,
   "window.titleBarStyle": "custom",
   "editor.tabSize": 2,
   "editor.renderWhitespace": "trailing",
@@ -16,7 +17,6 @@
   "gopls": {
     "ui.semanticTokens": true
   },
-
   "tailwindCSS.includeLanguages": {
     "templ": "html",
     "plaintext": "html",
