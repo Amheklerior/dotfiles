@@ -74,6 +74,8 @@ SSH key pairs are safely stored under the [`/ssh-keys`](/ssh-keys/) directory. T
 
 2FA codes, keys, and tokens for apps/services are stored encrypted in a `*.codes`, `*.key`, `*.token` file respectively, under the [`/private`](/private/) directory.
 
+I've also integrated [`gitleaks`](https://github.com/zricethezav/gitleaks) to run as a pre-commit git hook, to scan for potential secrets being committed.
+
 ## Feedback
 
 If you have any suggestion/improvement [be my guest](https://github.com/Amheklerior/dotfiles/issues)!
