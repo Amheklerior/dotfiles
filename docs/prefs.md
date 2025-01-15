@@ -9,6 +9,7 @@
 - [Telegram](#telegram)
 - [AltTab](#alttab)
 - [KeyClu](#keyclu)
+- [Hidden Bar](#hidden-bar)
 - [Nuphy Air75 keyboard layout](#nuphy-air75-keyboard-layout)
 
 > **! NOTE**\
@@ -61,6 +62,14 @@ The script is automatically run by the [`load-app-prefs.sh`](/scripts/load_app_p
 The KeyClu app reads its preferences from the  `/Library/Preferences/com.0804Team.KeyClu.plist` file (associated with the `com.0804Team.KeyClu` domain).
 
 The [`keyclu-settings.sh`](/prefs/apps/keyclu-settings.sh) script sets `keyclu` preferences by updating directly the plist file using the `defaults` command.
+
+The script is automatically run by the [`load-app-prefs.sh`](/scripts/load_app_prefs.sh) script, but you can always source it manually from shell to load the preferences yourself.
+
+## Hidden Bar
+
+The [HiddenBar](https://github.com/dwarvesv/hidden) app reads its preferences from the  `/Library/Preferences/com.dwarvesv.minimalbar.plist` file (associated with the `com.dwarvesv.minimalbar` domain).
+
+The [`hiddenbar-settings.sh`](/prefs/apps/hiddenbar-settings.sh) script sets `hiddenbar` preferences by updating directly the plist file using the `defaults` command.
 
 The script is automatically run by the [`load-app-prefs.sh`](/scripts/load_app_prefs.sh) script, but you can always source it manually from shell to load the preferences yourself.
 

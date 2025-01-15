@@ -18,3 +18,4 @@ local _load_settings() {
 _load_settings vscode
 _load_settings alt-tab
 _load_settings keyclu
+_load_settings hiddenbar
