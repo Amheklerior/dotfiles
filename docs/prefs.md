@@ -67,7 +67,7 @@ The script is automatically run by the [`load-app-prefs.sh`](/scripts/load_app_p
 
 ## Hidden Bar
 
-The [HiddenBar](https://github.com/dwarvesv/hidden) app reads its preferences from the  `/Library/Preferences/com.dwarvesv.minimalbar.plist` file (associated with the `com.dwarvesv.minimalbar` domain).
+The [HiddenBar](https://github.com/dwarvesv/hidden) app reads its preferences from the  `Library/Containers/com.dwarvesv.minimalbar/Data/Library/Preferences/com.dwarvesv.minimalbar.plist` file (associated with the `com.dwarvesv.minimalbar` domain).
 
 The [`hiddenbar-settings.sh`](/prefs/apps/hiddenbar-settings.sh) script sets `hiddenbar` preferences by updating directly the plist file using the `defaults` command.
 
