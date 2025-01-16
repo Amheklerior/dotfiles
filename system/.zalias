@@ -14,18 +14,12 @@ alias func="declare -f | grep '^[a-z].* ().*$' | sed 's/().*$//g'"
 alias path="echo $PATH | sed 's/:/\n/g'"
 alias fpath="echo $FPATH | sed 's/:/\n/g'"
 
-# system
-alias afk="open /System/Library/CoreServices/ScreenSaverEngine.app"
-alias logoff="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-alias screens="system_profiler SPDisplaysDataType"
-alias cpu="sysctl -n machdep.cpu.brand_string"
-alias ram="top -l 1 -s 0 | grep PhysMem"
-
 # Recursively remove Apple meta files
 alias rmds="find . -type f -name '*.DS_Store' -ls -delete"
 alias rmad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
 
-# browsers shortcuts
+# system shortcuts
+alias afk="open /System/Library/CoreServices/ScreenSaverEngine.app"
 alias web="open -a /Applications/Safari.app"
 alias chrome="open -a /Applications/Google\ Chrome.app"
 
@@ -41,6 +35,7 @@ alias personal="cd $PERSONAL"
 alias ihavenolife="cd $PERSONAL"
 alias work="cd $WORK"
 alias dl="cd ~/Downloads"
+alias desk="cd ~/Desktop"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -65,7 +60,7 @@ alias gf="git fetch --all"
 alias gco="git checkout"
 alias gs="git status --short"
 alias ga="git add --all"
-alias gai="git add -i"
+alias gai="git add -p"
 alias gb="git branch"
 alias gw="git worktree"
 alias gc="git commit"
@@ -88,11 +83,3 @@ alias decrypt="ansible-vault decrypt"
 
 # tail log files with syntax highlighting 
 alias watch="tail -f $1 | bat --paging=never -l log"
-
-# create a list of currently installed software in the `Brewfile`.
-# --force: overrides a previously created `Brewfile`.
-# --describe: adds descriptive comments (for formulae and cask only).
-#
-# NOTE: using a separate brewfile for dumping the current list of packages/apps, 
-# as I want to keep direct control over what gets inside the actual Brewfile
-alias bdump="brew bundle dump --force --describe --file=$TMP/Brewfile.dump"
