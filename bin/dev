@@ -1,3 +1,0 @@
-#!/usr/bin/env zsh
-
-make -f $DOTFILES_REPO/dev.mk --silent $1
