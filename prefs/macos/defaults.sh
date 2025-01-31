@@ -476,9 +476,9 @@ defaults write com.apple.dock wvous-br-corner -int 0
 defaults write com.apple.dock wvous-br-modifier -int 0
 
 # Disable spotlight indexing for all volumes,
-sudo mdutil -a -i off &> /dev/null
+# sudo mdutil -a -i off &> /dev/null
 # ...clear index dirs on the main volume,
-sudo mdutil -X / &> /dev/null
+# sudo mdutil -X / &> /dev/null
 # ...and remove spotlight keyboard shortcut
 # /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:64:enabled 0" \
 # "$HOME/Library/Preferences/com.apple.symbolichotkeys.plist"
