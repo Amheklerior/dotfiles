@@ -15,6 +15,11 @@ local _load_settings() {
   source $APP_PREFS/$1-settings.sh 2> /dev/null
 }
 
+_load_settings apple-mail
+_load_settings apple-notes
+_load_settings apple-saffari
+_load_settings apple-passwords
+_load_settings apple-contacts
 _load_settings vscode
 _load_settings alt-tab
 _load_settings keyclu
