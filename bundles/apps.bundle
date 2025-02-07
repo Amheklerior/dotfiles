@@ -1,6 +1,7 @@
 # Cask applications
 cask "alt-tab"
 cask "chai"
+cask "cloudflare-warp"
 cask "discord"
 cask "docker"
 cask "ghostty"
