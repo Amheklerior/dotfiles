@@ -35,7 +35,7 @@ The script is automatically run by the [`load-app-prefs.sh`](/scripts/load_app_p
 
 [Raycast](https://www.raycast.com/) preferences are exported in a `.rayconfig` file stored under the [`/prefs/raycast`](/prefs/raycast/) dir.
 
-Open Raycast and go to `settings (⌘ + ,) > 'Advanced' Tab > 'Import/Export' section`, and import the preferences file.
+Open Raycast and go to `settings (⌘ + ,)` > `Advanced` > `Import/Export`, and import the preferences file.
 
 ## Todoist
 
