@@ -9,7 +9,7 @@ local LOG_PREFIX="[enable touchId for sudo access]:"
 # NOTE: Instead of modifying the main /etc/pam.d/sudo file, which would be 
 # overriden at every system update, we create a _local extension file,
 # which is maintained by the user and already imported by the main one.
-local SUDO_ACCESS_FILE="/etc/pam.d/sudo"
+local SUDO_ACCESS_FILE="/etc/pam.d/sudo_local"
 
 # line to enable touchId for sudo access
 local AUTH_LINE="auth sufficient pam_tid.so"
@@ -33,7 +33,7 @@ if _already_set; then
 fi
 
 # enable touchId for sudo access
-echo "auth sufficient pam_tid.so" >> /etc/pam.d/sudo_local
+echo "auth sufficient pam_tid.so" >> $SUDO_ACCESS_FILE
 defaults write com.apple.security.authorization ignoreArd -bool true
 
 _log "$LOG_PREFIX touchId for sudo access should be now enabled"
