@@ -26,6 +26,7 @@ Follow the steps presented to you, making sure you skip migration assistant and 
 - create a computer account: `Andrea Amato` (`amheklerior`)
 - check the _allow my apple account to reset this password_ checkbox
 - keep FileVault disabled (will be [enabled afterwards](./setup-guide.md#enable-filevault-disk-encryption))
+- after completion, update the mac to the lates OS version available
 
 _**NOTE**. Leave the rest as is (accessibility settings, services, payment cards, etc..)_
 
@@ -41,11 +42,15 @@ Go to `System Settings` > `Internet Accounts` and add the following accounts:
 
 Go to `System Settings` > `Touch ID & Password`, and register 3 alternative fingerprints.
 
+_**NOTE**. This is only relevant on laptop devices (i.e. it's not applicable to mac mini)_
+
 ## Setup Apple Wallet
 
 Open the Apple Wallet app and register all payment cards, one by one.
 
 Make sure to enable `hide-my-email` for payments via Apple Wallet.  
+
+_**NOTE**. This is only relevant on laptop devices (it requires a magic keyboard to be setup on mac mini)_
 
 ## Install CLI dev tools
 
@@ -70,9 +75,6 @@ cd $HOME/.dotfiles
 
 # run the install script and follow the instructions...
 ./bootstrap.sh
-
-# switch the dotfiles repo from http to ssh git protocol
-git remote set-url origin git@github.com:Amheklerior/dotfiles.git
 ```
 
 ## Setup system preferences
@@ -148,12 +150,12 @@ Open **Apple Calendar** app to connect with the accounts. Then do the following:
 
 Open **Apple Contact** app to sync all contacts from iCloud. Then do the following:
 
-- Go to `Settings` > `General`: changed address format to "Italy"
+- Go to `Settings` > `General` and make sure the address format is set to "Italy"
 - Go to `Settings` > `Template` and add _Nickname_ and _Job Title_, and remove _Pronouns_ and _External links_
 
 ### Safari
 
-Open **Apple Safari** browser and customize the start page by removing the _recently closed tabs_, _suggestions_, and _privacy report_ sections.
+Open **Apple Safari** browser and make sure the start page does not have the _recently closed tabs_, _suggestions_, and _privacy report_ sections.
 
 ### Finder
 
@@ -179,16 +181,19 @@ Open **Telegram** app and log in with QR code via the iPhone, and then do the fo
 
 - Open **Apple Messages** app to sync all messages from iCloud.
 - Open **Apple Photos** app to sync all photos from iCloud.
-- Open **Keyclu** and grant it accessibility access rights
-- Open **AltTab** and grant it accessibility access rights only (no screen recording)
-- Open **Hiddenbar**
+- Open **Keyclu** and grant it accessibility access rights.
+- Open **AltTab** and grant it accessibility access rights only (no screen recording).
+- Open **Hiddenbar** and declutter the menu bar.
 
 ## Finishing touches: notification settings / login items / Apple Intelligence / etc
 
 - Enable and configure **Apple Intelligence**
-- Go to `Settings` > `General` > `Login Items and Extensions` and add **Raycast**, **AltTab**, **HiddenBar**, **Chai**, and **KeyClu**
-- Go to `Settings` > `Displays` and set display resolution to _more space_
-- Go to `Settings` > `Notification` and set system and apps notifications
+- Go to `Settings` > `General` > `Login Items and Extensions` and add **Raycast**, **AltTab**, **HiddenBar**, **Chai**, and **KeyClu**.
+- Go to `Settings` > `Displays` and set display resolution to _more space_.
+- Go to `Settings` > `Wallpaper`, add the wallpaper directory and set a custom wallpaper picture.
+- Go to `Settings` > `Screen Saver` and disable screen saver.
+- Go to `Settings` > `Accessibility` > `Display` and enable grayscale color filtering (just a tiny bit to not have popping colors).
+- Go to `Settings` > `Notification` and set system and apps notifications.
 
 ## Enabling/Disabling SIP (System Integrity Protection) on MacOS
 
@@ -196,4 +201,4 @@ To disable SIP, reboot the machine in recovery mode and run `csrutil disable` fr
 
 To reenable SIP, reboot the machine in recovery mode and run `csrutil enable` from a terminal window.
 
-_**NOTE**. To reboot the machine in recovery mode, completely shut down the machine, then hold the power button (touch id) until you see "loading options..." on screen, and select "recovery mode". Finally select "recovery mode"._
+_**NOTE**. To [reboot the machine in recovery mode](https://support.apple.com/en-gb/guide/mac-help/mchl82829c17/mac), completely shut down the machine, then hold the power button until you see "loading options..." on screen. Then select "recovery mode"._
