@@ -33,7 +33,7 @@ if _already_set; then
 fi
 
 # enable touchId for sudo access
-echo "auth sufficient pam_tid.so" >> $SUDO_ACCESS_FILE
+echo $AUTH_LINE | sudo tee -a $SUDO_ACCESS_FILE >/dev/null
 defaults write com.apple.security.authorization ignoreArd -bool true
 
 _log "$LOG_PREFIX touchId for sudo access should be now enabled"
