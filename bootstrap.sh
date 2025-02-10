@@ -39,6 +39,7 @@ _run setup_shell
 _run install_shell_plugins
 _run link_dotfiles
 _run enable-touchid-for-sudo-access
+_run set_precommit_hook
 
 # switch dotfiles repo from https protocol to SSH
 cd $DOTFILES_REPO && git remote set-url origin git@github.com:Amheklerior/dotfiles.git
