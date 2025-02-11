@@ -25,4 +25,10 @@ _log "$LOG_PREFIX created node and corepack install dirs: ~/.fnm, ~/.corepack"
 _install_node lts
 _install_node latest
 
+# installing pnpm as package manager of choice
+# NOTE. I need to get latest version of corepack because trying to install pnpm with the version
+# of corepack that comes with node causes signature validation errors -> https://pnpm.io/it/installation#using-corepack
+npm i -g corepack@latest
+corepack enable pnpm
+
 _log "$LOG_PREFIX node dev env setup complete!"
