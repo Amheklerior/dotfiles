@@ -177,6 +177,10 @@ Open **Telegram** app and log in with QR code via the iPhone, and then do the fo
 - Go to `Settings` > `Appearance` and set theme from _night accent_ to _system_
 - Go to `Settings` > `Appearance` and set app icon to _flat B/W_
 
+### Cloudflare WARP
+
+Open **Cloudflare WARP** app and, from the menu bar icon, set its mode to `1.1.1.1` DNS only (isntead of `1.1.1.1` DNS + `WARP` Tunneling). Then go to `Settings` > `Connection`, and set it to block any malware and adult content.
+
 ### Other Apps
 
 - Open **Apple Messages** app to sync all messages from iCloud.
@@ -194,6 +198,7 @@ Open **Telegram** app and log in with QR code via the iPhone, and then do the fo
 - Go to `Settings` > `Screen Saver` and disable screen saver.
 - Go to `Settings` > `Accessibility` > `Display` and enable grayscale color filtering (just a tiny bit to not have popping colors).
 - Go to `Settings` > `Notification` and set system and apps notifications.
+- Open the Cloudflare Warp and switch to use 1.1.1.1 DNS resolution only (instead of 1.1.1.1 + WARP)
 
 ## Enabling/Disabling SIP (System Integrity Protection) on MacOS
 
