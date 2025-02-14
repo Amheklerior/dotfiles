@@ -96,9 +96,6 @@ eval "$(fnm env --use-on-cd)"
 # define the root directory for node installations
 export FNM_DIR="$HOME/.fnm"
 
-# enable corepack support for each new installation (ie. corepack enable)
-export FNM_COREPACK_ENABLED="true"
-
 # resolve `engines.node` field in `package.json` whenever a `.node-version`/`.nvmrc` file is not present
 export FNM_RESOLVE_ENGINES="true"
 
