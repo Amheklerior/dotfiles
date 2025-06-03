@@ -82,5 +82,8 @@ alias p='pnpm'
 alias encrypt="ansible-vault encrypt"
 alias decrypt="ansible-vault decrypt"
 
-# tail log files with syntax highlighting 
+# tail log files with syntax highlighting
 alias watch="tail -f $1 | bat --paging=never -l log"
+
+# docker and docker compose shortcuts
+alias doco="docker compose"
