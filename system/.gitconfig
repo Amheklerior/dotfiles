@@ -46,7 +46,9 @@
 	# show line numbers
 	line-numbers = true
 
-	# No hunk header
+	# show a header for each file (not individual hunks)
+	file-style = yellow
+	file-decoration-style = yellow ul
 	hunk-header-style = omit
 
 	# color theme (defined in ~/.config/delta/themes.config)
