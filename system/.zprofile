@@ -15,9 +15,9 @@ fpath=(
   $fpath
 )
 
-# add vs code cli (code) to the path
-# NOTE: it's already added if vscode is installed via homebrew, hence
-# should only be necessary when vscode is installed via UI
+# add vs code cli (code) and go binaries to the path
+# NOTE: code cli is already added if vscode is installed via homebrew, hence
+# it should only be necessary when vscode is installed via UI
 path=(
   $path
   "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
