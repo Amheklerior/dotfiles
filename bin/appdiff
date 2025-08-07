@@ -4,14 +4,17 @@
 ### compare the list of currently installed apps with the default list from the brewfile
 
 local TMP=$(mktemp -d)
-local BUNDLE="$DOTFILES_REPO/bundles/apps.bundle"
+local BUNDLES_DIR="$DOTFILES_REPO/bundles"
+local APPS_BUNDLE="$BUNDLES_DIR/apps.bundle"
+local FONTS_BUNDLE="$BUNDLES_DIR/fonts.bundle"
+
 local _extract_apps() {
   rg '^(cask|mas)' | sed -e 's/cask \"\(.*\)\"/\1/' -e 's/mas \"\(.*\)\".*/\1/'
 }
 
 # get the default list of cask and mas apps from the brewfile
 local DEFAULT=$TMP/apps_default
-cat $BUNDLE | _extract_apps | sort > $DEFAULT
+cat $APPS_BUNDLE $FONTS_BUNDLE | _extract_apps | sort > $DEFAULT
 
 # get the list of currently installed cask and mas apps
 local CURRENT=$TMP/apps_current
