@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 
-# NOTE: `wallpaper` - select a picture to be set as new wallpaper on all desktop
+# `wallpaper` - select a picture to be set as new wallpaper on all desktop
+
+# NOTE: first time it runs it will prompt for permissions to send events
 
 # ISSUES:
 # - It doesn't work if the terminal is full screen
@@ -12,8 +14,8 @@ WALLPAPER_DIR=$DOTFILES_REPO/wallpapers
 
 # select a wallpaper from the list 
 wallpaper=$(\
-  ls $WALLPAPER_DIR | fzf \
-    --preview 'viu --width 120 --static '"$WALLPAPER_DIR"'/{1}' \
+  \ls $WALLPAPER_DIR | fzf \
+    --preview 'chafa --size "120x" '"$WALLPAPER_DIR"'/{1}' \
     --preview-window=right:70%
 )
 
