@@ -1,9 +1,8 @@
 # Cask applications
 cask "alt-tab"
 cask "chai"
-cask "cloudflare-warp"
+# cask "cloudflare-warp" # connection too slow, remove for now
 cask "discord"
-cask "docker"
 cask "ghostty"
 cask "google-chrome"
 cask "hiddenbar"
@@ -12,7 +11,7 @@ cask "notion"
 cask "raycast"
 cask "steam"
 cask "telegram"
-cask "todoist"
+cask "todoist-app"
 cask "visual-studio-code"
 
 # Mac App Store applications
