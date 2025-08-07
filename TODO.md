@@ -2,14 +2,16 @@
 
 - [x] Improve DX (better logging, prompts to skip parts of the process, etc.)
 - [x] Automate `macosx prefs` setup
-- [ ] Automate `app prefs` setup (via plain `defaults` script or using [`mackup`](https://github.com/lra/mackup))
+- [x] Automate `app prefs` setup (via plain `defaults` script or using [`mackup`](https://github.com/lra/mackup))
 - [ ] Integrate `neovim` configs
 - [ ] Integrate [`tmux`](https://github.com/tmux/tmux/wiki) (or [`zellij`](https://zellij.dev/)) configs
 - [ ] Integrate [`yabai`](https://github.com/koekeishiya/yabai) configs
 - [ ] Consider a plugin manager for zsh, like:
-  - [`zinit`](https://github.com/zdharma-continuum/zinit) - power users, who wants finegrained control over zsh env
-  - [`zplug`](https://github.com/zplug/zplug) - featurerich but lightweight, users who need advanced features and customization options
-  - [`zap`](https://github.com/zap-zsh/zap) or [znap](https://github.com/marlonrichert/zsh-snap) - minimal and super fast manager, for users who prioritize perf and simplicity
-  - [`sheldon`](https://github.com/rossmacarthur/sheldon) - lightweight and configurable via a TOML file
-  - [`zi`](https://github.com/z-shell/zi) - a more lightweight version of zinit
-- [ ] Add `Linux` system support
+  - [`zap`](https://github.com/zap-zsh/zap) or [znap](https://github.com/marlonrichert/zsh-snap) - minimal and super-fast, with static or inline config (active repo)
+  - [`antidote`](https://antidote.sh) - minimal, blazingly fast, with static config (moderate repo activity)
+  - [`sheldon`](https://github.com/rossmacarthur/sheldon) - lightweight, medium complexity, static config via a TOML file (active repo)
+  - [`zi`](https://github.com/z-shell/zi) - successor of [`zinit`](https://github.com/zdharma-continuum/zinit), feature-rich, modular, kinda complex, inline config, fast (active repo)
+- [ ] Consider splitting the repo into different ones (codes, wallpapers, nvim, dotfiles, dev-env, etc.)
+- [ ] Add a prompt to avoid touch-id setup for sudo access (not all devices has touch-id)
+- [ ] Rethink repos management, folder structure and workflow (cli for bulk ops, optimize git worktree workflow, etc.)
+- [ ] Add `Linux` system support?!
