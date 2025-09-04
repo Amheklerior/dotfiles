@@ -82,8 +82,5 @@
 	# set personal git account name/email 
 	set-personal = !git config user.name 'Amheklerior' && git config user.email '49590425+Amheklerior@users.noreply.github.com'
 
-	# set work git account name/email 
-	set-work = !git config user.name 'Andrea Amato' && git config user.email 'andrea.amato@moneyfarm.com'
-
 	# changes author of all commits in the git history (you must call set-personal/set-work first)
 	switch-author = !git rebase -r --root --exec "git commit --amend --no-edit --reset-author"
