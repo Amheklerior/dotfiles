@@ -8,20 +8,3 @@ setbat() {
 replace() {
   rg --files-with-matches "$1" "$3" | xargs tr "$1" "$2"
 }
-
-## WORK
-
-# specific git logging for work repos
-# it removes merge commits and ci/cd generated commits for a less cluttered git history 
-wgl() {
-  if [ ! -e $1 ]; then 
-    git log --oneline --grep='^ci: Tagged' --invert-grep --no-merges | head -n $1 | bat --number -l gitlog
-  else
-    git log --oneline --grep='^ci: Tagged' --invert-grep --no-merges
-  fi
-}
-
-# logs only merge commits to the main branch
-glmc() {
-  git log --oneline --merges
-}

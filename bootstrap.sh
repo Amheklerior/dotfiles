@@ -52,8 +52,6 @@ _run clone_git_repos
 _prompt_for_confirmation "$LOG_PREFIX Do you want to setup this machine as a work machine?"
 if _has_confirmed; then
   _log "$LOG_PREFIX Setting up work machine..."
-  _run setup_work_ssh
-  _run setup_work_git
   _run clone_work_repos
   _log "$LOG_PREFIX Work setup complete!"
 fi
