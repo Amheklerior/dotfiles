@@ -7,8 +7,8 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_RUNTIME_DIR="$HOME/.local/runtime"
 
 # my personal and work dirs
-export PERSONAL="$HOME/personal"
-export WORK="$HOME/work"
+export PERSONAL="$HOME/dev/personal"
+export WORK="$HOME/dev/heritage-holdings"
 
 # path to the dotfiles repo
 export DOTFILES_REPO="$HOME/.dotfiles"
