@@ -28,7 +28,7 @@ while IFS=' ' read -r repo path; do
     continue
   fi
   _log "$LOG_PREFIX cloning git repo $repo..."
-  gh repo clone $repo "$HOME/$path" || _log "$LOG_PREFIX Failed to clone: $repo"
+  gh repo clone $repo "$PERSONAL/$path" || _log "$LOG_PREFIX Failed to clone: $repo"
 done < "$XDG_DATA_HOME/personal-repo"
 
 # remove tmp decrypted file

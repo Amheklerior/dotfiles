@@ -38,7 +38,7 @@ while IFS=' ' read -r repo path; do
     continue
   fi
   _log "$LOG_PREFIX cloning git repo $repo..."
-  glab repo clone $repo "$HOME/$path" || _log "$LOG_PREFIX Failed to clone: $repo"
+  glab repo clone $repo "$WORK/$path" || _log "$LOG_PREFIX Failed to clone: $repo"
 done < "$XDG_DATA_HOME/work-repo"
 
 # remove tmp decrypted file
