@@ -17,9 +17,9 @@ defaults write $KEYCLU_PREFS hideMenuIcon -bool true
 # don't show app icon in overlay when launching/quitting the app
 defaults write $KEYCLU_PREFS silentLaunchQuit -bool true
 
-# show the shortcuts window by pressing the ⌘ key twice and hold for .5 seconds
+# show the shortcuts window by pressing the "globe/fn" modifier key twice and hold for .5 seconds
 # then deactivate by pressing any non-modifier key
-defaults write $KEYCLU_PREFS activationKeyId -int 0
+defaults write $KEYCLU_PREFS activationKeyId -int 4
 defaults write $KEYCLU_PREFS activationKeyType -int 1
 defaults write $KEYCLU_PREFS activationPersistentKeyType -int 0
 defaults write $KEYCLU_PREFS keyHoldingDelay -float 0.5

@@ -305,7 +305,7 @@ defaults write -g com.apple.keyboard.fnState -bool false
 # 1: change input source (swhith between keyboard layouts)
 # 2: show emojis, symbols, and more
 # 3: start dictation
-defaults write com.apple.HIToolbox AppleFnUsageType -int 2
+defaults write com.apple.HIToolbox AppleFnUsageType -int 0
 
 # Use large window for emoji and symbols 
 defaults write com.apple.CharacterPaletteIM CVStartAsLargeWindow -int 1
