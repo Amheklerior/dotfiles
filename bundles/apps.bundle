@@ -1,6 +1,5 @@
 # Cask applications
 cask "alt-tab"
-cask "chai"
 # cask "cloudflare-warp" # connection too slow, remove for now
 cask "discord"
 cask "ghostty"
