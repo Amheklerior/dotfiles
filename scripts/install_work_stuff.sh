@@ -16,32 +16,9 @@ HOMEBREW_CASK_OPTS="--no-quarantine" brew bundle --file=$bundle || :
 brew cleanup
 brew doctor || :
 
-# proceeds to repo cloning if desired 
-_prompt_for_confirmation "$LOG_PREFIX Do you want to clone work-related git repos on this machine?"
-if ! _has_confirmed; then
-  return
-fi
+_log "$LOG_PREFIX work apps has been installed"
 
-_log "$LOG_PREFIX cloning work related git repos..."
-
-# get and decrypt the work repo list
-if [ ! -e "$XDG_DATA_HOME/work-repo" ]; then
-  cp $repo_list $XDG_DATA_HOME/work-repo
-  _log "$LOG_PREFIX provide decryption password to access your work repos list..."
-  ansible-vault decrypt "$XDG_DATA_HOME/work-repo"
-fi
-
-# loop through the list of repos and clone them
-while IFS=' ' read -r repo path; do
-  if [ -e "$HOME/$path" ]; then
-    _log "$LOG_PREFIX $repo is already present"
-    continue
-  fi
-  _log "$LOG_PREFIX cloning git repo $repo..."
-  glab repo clone $repo "$WORK/$path" || _log "$LOG_PREFIX Failed to clone: $repo"
-done < "$XDG_DATA_HOME/work-repo"
-
-# remove tmp decrypted file
-rm $XDG_DATA_HOME/work-repo
-
-_log "$LOG_PREFIX work-related git repos cloned successfully"
+# TODO: setup work ssh key-pair for accessing the production server
+# TODO: automate or document DB setup
+# TODO: automate logging in into the HH npm registry on Github   
+# TODO: add repo cloning automation
