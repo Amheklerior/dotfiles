@@ -1,0 +1,19 @@
+cask "1password" # password manager
+cask "linear-linear" # issue tracking and project management
+cask "dbngin" # DB version management tool
+cask "sequel-ace" # DB client
+cask "arc" # web browser
+# cask "slack" # chat
+# cask "notion" # knowledge
+# cask "raycast" # a better spotlight
+# cask "visual-studio-code" # editor
+mas "Xcode", id: 497799835 # mostly for command line tools
+
+# required by the svc server application (see https://github.com/heritageholdings/svc-platform/tree/main/packages/server#readme)
+brew "pkgconf"
+brew "pango"
+brew "jpeg"
+# NOTE: the following are already installed due to other formulae being dependent on them..
+# brew "cairo"
+# brew "giflib"
+# brew "librsvg"
