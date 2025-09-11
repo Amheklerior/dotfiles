@@ -18,7 +18,16 @@ brew doctor || :
 
 _log "$LOG_PREFIX work apps has been installed"
 
-# TODO: setup work ssh key-pair for accessing the production server
+# setup work ssh key-pair for accessing the production server
+if [ -e "$HOME/.ssh/work" ]; then
+  _log "$LOG_PREFIX ssh keys to access work production server are already set up"
+else
+  _log "$LOG_PREFIX setting up work-related ssh keys"
+  cp $DOTFILES_REPO/ssh-keys/work $DOTFILES_REPO/ssh-keys/work.pub $HOME/.ssh
+  _log "$LOG_PREFIX Please enter the decryption password for decrypting the private ssh keys"
+  ansible-vault decrypt $HOME/.ssh/work && _log "$LOG_PREFIX ssh keys setup complete"
+fi
+
 # TODO: automate or document DB setup
 # TODO: automate logging in into the HH npm registry on Github   
 # TODO: add repo cloning automation
