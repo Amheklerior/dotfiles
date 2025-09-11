@@ -2,21 +2,23 @@
 
 local LOG_PREFIX="[Setup work-related stuff]:"
 
-local bundle="$DOTFILES_REPO/bundles/hh.bundle"
-local repo_list="$DOTFILES_REPO/bundles/hh-repos.list"
+# variables
+local BUNDLE="$DOTFILES_REPO/bundles/hh.bundle"
+local HH_NPM_REGISTRY="https://npm.pkg.github.com"
 
 # load utility functions in case the script is run by the user
 [[ -o interactive ]] && source "$DOTFILES_REPO/scripts/utils.sh"
 
+# install work-related packages and apps
 # NOTE: the --no-quarantine flag is addedd to avoid the MacOS's Gatekeeper for cask apps
-_log "$LOG_PREFIX installing work packages and apps from $bundle..."
-HOMEBREW_CASK_OPTS="--no-quarantine" brew bundle --file=$bundle || : 
+_log "$LOG_PREFIX installing work packages and apps from $BUNDLE..."
+HOMEBREW_CASK_OPTS="--no-quarantine" brew bundle --file=$BUNDLE || : 
 
 # cleanup and check for any warnings/errors
 brew cleanup
 brew doctor || :
 
-_log "$LOG_PREFIX work apps has been installed"
+_log "$LOG_PREFIX work-related packages and apps have been installed"
 
 # setup work ssh key-pair for accessing the production server
 if [ -e "$HOME/.ssh/work" ]; then
@@ -28,6 +30,23 @@ else
   ansible-vault decrypt $HOME/.ssh/work && _log "$LOG_PREFIX ssh keys setup complete"
 fi
 
+# login into the Heritage Holdings npm registry hosted on Github via the personal Github account   
+if [[ $(npm whoami --registry=$HH_NPM_REGISTRY 2>/dev/null) == "Amheklerior" ]]; then
+  _log "$LOG_PREFIX already logged in to HH npm registry via GitHub account"
+else
+  # decrypt and copy the github ACCESS_TOKEN to the clipboard
+  cp $DOTFILES_REPO/private/github.token $XDG_DATA_HOME/npm-registry-login-token
+  _log "$LOG_PREFIX Please enter the decryption password for copying the github login token"
+  ansible-vault decrypt $XDG_DATA_HOME/npm-registry-login-token
+  cat $XDG_DATA_HOME/npm-registry-login-token | pbcopy
+  _log "$LOG_PREFIX token successfully copeid on your clipboard!"
+
+  # logging in to the HH npm registry 
+  _log "$LOG_PREFIX logging in to HH npm registry $HH_NPM_REGISTRY!
+    When prompted, instert GitHub username (lowercase) as username
+    and paste the TOKEN copied above as password..."
+  npm login --scope=@heritageholdings --registry=$HH_NPM_REGISTRY
+fi
+
 # TODO: automate or document DB setup
-# TODO: automate logging in into the HH npm registry on Github   
 # TODO: add repo cloning automation
