@@ -20,13 +20,13 @@ brew doctor || :
 _log "$LOG_PREFIX work-related packages and apps have been installed"
 
 # setup work ssh key-pair for accessing the production server
-if [ -e "$HOME/.ssh/work" ]; then
+if [ -e "$HOME/.ssh/work-server" ]; then
   _log "$LOG_PREFIX ssh keys to access work production server are already set up"
 else
   _log "$LOG_PREFIX setting up work-related ssh keys"
-  cp $DOTFILES_REPO/ssh-keys/work $DOTFILES_REPO/ssh-keys/work.pub $HOME/.ssh
+  cp $DOTFILES_REPO/ssh-keys/work-server $DOTFILES_REPO/ssh-keys/work-server.pub $HOME/.ssh
   _log "$LOG_PREFIX Please enter the decryption password for decrypting the private ssh keys"
-  ansible-vault decrypt $HOME/.ssh/work && _log "$LOG_PREFIX ssh keys setup complete"
+  ansible-vault decrypt $HOME/.ssh/work-server && _log "$LOG_PREFIX ssh keys setup complete"
 fi
 
 # login into the Heritage Holdings npm registry hosted on Github
