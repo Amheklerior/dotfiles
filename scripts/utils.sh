@@ -21,3 +21,7 @@ local _has_confirmed() {
 local _is_installed() {
   test $(command -v $1) >/dev/null
 }
+
+local _trim() {
+  sed '/^$/d'
+}

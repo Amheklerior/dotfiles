@@ -8,6 +8,7 @@ local LOG_PREFIX="[Setup work-related stuff]:"
 # variables
 local BUNDLE="$DOTFILES_REPO/bundles/hh.bundle"
 local HH_NPM_REGISTRY="https://npm.pkg.github.com"
+local REPO_LIST="$DOTFILES_REPO/bundles/hh-repos.list"
 
 # install work-related packages and apps from a bundle
 # NOTE: the --no-quarantine flag is addedd to avoid the MacOS's Gatekeeper for cask apps
@@ -57,7 +58,28 @@ fi
 # - install mysql vscode extension for quering data
 # - alternatively install the Sequel Ace or DBeaver app (or another app)
 
-# TODO: add repo cloning automation
-# - add repos into the repolist file `hh-repos.list`
-# - write the code to clone all repos in the list to the $WORK dir
+_prompt_for_confirmation "$LOG_PREFIX Do you want to clone personal git repos on this machine?"
+if ! _has_confirmed; then
+  return
+fi
+_log "$LOG_PREFIX cloning personal git repos..."
 
+# copy and decrypt the heritage holdings repo list
+if [ ! -e "$XDG_DATA_HOME/work-repo" ]; then
+  cp $REPO_LIST $XDG_DATA_HOME/work-repo
+  _log "$LOG_PREFIX provide decryption password to access work repo list..."
+  ansible-vault decrypt "$XDG_DATA_HOME/work-repo"
+fi
+
+# clone all repos into the work dir
+for repo in $(awk '{print $1}' $XDG_DATA_HOME/work-repo | _trim); do
+  if [ -e "$HOME/$repo" ]; then
+    _log "$LOG_PREFIX $repo is already present"
+    continue
+  fi
+  _log "$LOG_PREFIX cloning git repo $repo..."
+  git clone github.com:heritageholdings/$repo.git "$WORK/$repo" || _log "$LOG_PREFIX Failed to clone: $repo"
+done
+
+# remove tmp decrypted repo file
+rm $XDG_DATA_HOME/work-repo
