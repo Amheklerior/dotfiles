@@ -8,7 +8,7 @@ local BUNDLE="$DOTFILES_REPO/bundles/packages.bundle"
 local WORK_BUNDLE="$DOTFILES_REPO/bundles/hh.bundle"
 
 local _extract_brews() {
-  rg '^brew' | sed 's/brew \"\(.*\)\"/\1/'
+  rg '^brew' | awk '{print $2}' | sed -e 's/"//g' -e 's/,//g' 
 }
 
 # get the default list of brews form the brewfile
@@ -22,7 +22,7 @@ cat $TMP/Brewfile.dump | _extract_brews | sort > $CURRENT
 
 # show differences
 # NOTE: The -U0 options makes the outoput more compact by removing context lines
-git diff --no-index -U0 $DEFAULT $CURRENT
+git -c delta.line-numbers=false diff --no-index -U0 $DEFAULT $CURRENT
 
 # cleanup temporary generated files
 rm -r $TMP

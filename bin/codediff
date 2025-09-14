@@ -6,7 +6,7 @@
 local TMP=$(mktemp -d)
 local BUNDLE="$DOTFILES_REPO/bundles/vscode.bundle"
 local _extract_vscode_ext() {
-  rg '^vscode' | sed 's/vscode \"\(.*\)\"/\1/'
+  rg '^vscode' | awk '{print $2}' | sed -e 's/"//g'
 }
 
 # grab the default extensions list from brewfile 
@@ -18,7 +18,7 @@ local CURRENT=$TMP/vscode_current_ext
 code --list-extensions > $CURRENT
 
 # show differences
-git diff --no-index $DEFAULT $CURRENT
+git -c delta.line-numbers=false diff --no-index $DEFAULT $CURRENT
 
 # cleanup temporary generated files
 rm -r $TMP

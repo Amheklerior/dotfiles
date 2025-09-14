@@ -10,16 +10,12 @@ local FONTS_BUNDLE="$BUNDLES_DIR/fonts.bundle"
 local WORK_BUNDLE="$BUNDLES_DIR/hh.bundle"
 
 local _extract_apps() {
-  rg '^(cask|mas)' | sed -e 's/cask \"\(.*\)\"/\1/' -e 's/mas \"\(.*\)\".*/\1/'
-}
-
-local _strip_comments() {
-  sed -e 's/ #.*//g'
+  rg '^(cask|mas)' | awk '{print $2}' | sed -e 's/"//g' -e 's/,//g' 
 }
 
 # get the default list of cask and mas apps from the brewfile
 local DEFAULT=$TMP/apps_default
-cat $APPS_BUNDLE $FONTS_BUNDLE $WORK_BUNDLE | _extract_apps | _strip_comments | sort > $DEFAULT
+cat $APPS_BUNDLE $FONTS_BUNDLE $WORK_BUNDLE | _extract_apps | sort > $DEFAULT
 
 # get the list of currently installed cask and mas apps
 local CURRENT=$TMP/apps_current
@@ -28,7 +24,7 @@ cat $TMP/Brewfile.dump | _extract_apps | sort > $CURRENT
 
 # show differences
 # NOTE: The -U0 options makes the outoput more compact by removing context lines
-git diff --no-index -U0 $DEFAULT $CURRENT
+git -c delta.line-numbers=false diff --no-index -U0 $DEFAULT $CURRENT
 
 # cleanup temporary generated files
 rm -r $TMP
