@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    // apply the same syntax highlighting used for `Brewfile` (i.e. Ruby)
+    "*.bundle": "ruby"
+  }
+}
