@@ -1,19 +1,20 @@
-cask "1password" # password manager
-cask "linear-linear" # issue tracking and project management
-cask "dbngin" # DB version management tool
-cask "sequel-ace" # DB client
-cask "arc" # web browser
-# cask "slack" # chat
-# cask "notion" # knowledge
-# cask "raycast" # a better spotlight
-# cask "visual-studio-code" # editor
-mas "Xcode", id: 497799835 # mostly for command line tools
 
-# required by the svc server application (see https://github.com/heritageholdings/svc-platform/tree/main/packages/server#readme)
+# apps & services:
+brew "mailhog"              # SMPT proxy server (used for email testing)
+cask "linear-linear"        # issue tracking
+cask "1password"            # password manager
+cask "dbngin"               # DB-servers manager (to start/stop DB servers locally)
+cask "sequel-ace"           # DB management tool
+mas "Xcode", id: 497799835  # mostly for command line tools
+
+# global deendencies for BE server development:
+brew "python-setuptools"
 brew "pkgconf"
 brew "pango"
 brew "jpeg"
-# NOTE: the following are already installed due to other formulae being dependent on them..
-# brew "cairo"
-# brew "giflib"
-# brew "librsvg"
+# NOTE: the followings are already present as dependencies of other formulae
+#   they are commented to avoid noice of the brewdiff output, since dependencies are
+#   not considered among the currently installed and would therefore appear as missing
+# brew "cairo" # already present as dep (commented to remove noice from the brewdiff output)
+# brew "giflib" # already present as dep (commented to remove noice from the brewdiff output)
+# brew "librsvg" # already present as dep (commented to remove noice from the brewdiff output)
