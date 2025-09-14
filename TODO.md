@@ -1,8 +1,6 @@
 # TODOs
 
-- [x] Improve DX (better logging, prompts to skip parts of the process, etc.)
-- [x] Automate `macosx prefs` setup
-- [x] Automate `app prefs` setup (via plain `defaults` script or using [`mackup`](https://github.com/lra/mackup))
+- [ ] bring all bundles back to a single well-organized `Brewfile`
 - [ ] Integrate `neovim` configs
 - [ ] Integrate [`tmux`](https://github.com/tmux/tmux/wiki) (or [`zellij`](https://zellij.dev/)) configs
 - [ ] Integrate [`yabai`](https://github.com/koekeishiya/yabai) configs
