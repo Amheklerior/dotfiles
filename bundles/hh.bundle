@@ -5,7 +5,6 @@ cask "linear-linear"        # issue tracking
 cask "1password"            # password manager
 cask "dbngin"               # DB-servers manager (to start/stop DB servers locally)
 cask "sequel-ace"           # DB management tool
-mas "Xcode", id: 497799835  # mostly for command line tools
 
 # global deendencies for BE server development:
 brew "python-setuptools"
@@ -18,3 +17,6 @@ brew "jpeg"
 # brew "cairo" # already present as dep (commented to remove noice from the brewdiff output)
 # brew "giflib" # already present as dep (commented to remove noice from the brewdiff output)
 # brew "librsvg" # already present as dep (commented to remove noice from the brewdiff output)
+
+# NOTE: commented as never actually used as of now... 
+# mas "Xcode", id: 497799835  # mostly for command line tools
