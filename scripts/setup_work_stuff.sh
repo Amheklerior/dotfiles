@@ -64,22 +64,17 @@ if ! _has_confirmed; then
 fi
 _log "$LOG_PREFIX cloning personal git repos..."
 
-# copy and decrypt the heritage holdings repo list
-if [ ! -e "$XDG_DATA_HOME/work-repo" ]; then
-  cp $REPO_LIST $XDG_DATA_HOME/work-repo
-  _log "$LOG_PREFIX provide decryption password to access work repo list..."
-  ansible-vault decrypt "$XDG_DATA_HOME/work-repo"
-fi
-
 # clone all repos into the work dir
-for repo in $(awk '{print $1}' $XDG_DATA_HOME/work-repo | _trim); do
-  if [ -e "$HOME/$repo" ]; then
-    _log "$LOG_PREFIX $repo is already present"
-    continue
+local _clone() {
+  local repo=$1
+  if [ ! -e "$WORK/$repo" ]; then
+    git clone "git@github.com:heritageholdings/$repo.git" "$WORK/$repo"
+  else
+    echo "project $repo already present!"
   fi
-  _log "$LOG_PREFIX cloning git repo $repo..."
-  git clone github.com:heritageholdings/$repo.git "$WORK/$repo" || _log "$LOG_PREFIX Failed to clone: $repo"
-done
+}
 
-# remove tmp decrypted repo file
-rm $XDG_DATA_HOME/work-repo
+_clone svc-platform # the BE monorepo: server and api definition
+_clone web-app # the web app used by HH clients
+_clone admin-panel # the backoffice panel used by HH admins
+_clone admin-fm # the backoffice panel used by external fund managers
