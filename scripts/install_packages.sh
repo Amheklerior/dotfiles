@@ -39,6 +39,9 @@ _install fonts
 _install apps
 _install vscode
 
+# install utility to monitor plist changes (of great help in automating app prefs)
+go install github.com/catilac/plistwatch@latest
+
 # cleanup and check for any warnings/errors
 brew cleanup
 brew doctor || :
