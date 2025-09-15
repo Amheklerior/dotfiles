@@ -3,6 +3,7 @@
 brew "mailhog"              # SMPT proxy server (used for email testing)
 cask "linear-linear"        # issue tracking
 cask "1password"            # password manager
+cask "microsoft-teams"      # video calls
 cask "dbngin"               # DB-servers manager (to start/stop DB servers locally)
 cask "sequel-ace"           # DB management tool
 
