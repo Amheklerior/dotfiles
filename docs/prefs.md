@@ -86,3 +86,13 @@ If further customization is needed:
 5. Go to the `Configure` tab > `SAVE + LOAD` section and load the [customization .json file](/prefs/kbd/mappings-and-macros.json)
 
 > _checkout the [official guide](https://nuphy.com/pages/via-usage-guide-for-nuphy-keyboards) for more detail_
+
+## Linear
+
+Linear settings are stored in cloud. Hence, there's nothing to be done.
+
+Just in case the custom color theme gets lost, it is saved in json format within the repo. To apply it:
+
+1. Open Linear app
+2. Go to `preferences` > `interface and theme` > `sharing`
+3. Click `import theme` and paste the content of the [`prefs/linear/theme.json`](../prefs/linear/theme.json) file
