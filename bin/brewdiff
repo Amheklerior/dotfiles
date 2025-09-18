@@ -5,7 +5,6 @@
 
 local TMP=$(mktemp -d)
 local BUNDLE="$DOTFILES_REPO/bundles/packages.bundle"
-local WORK_BUNDLE="$DOTFILES_REPO/bundles/hh.bundle"
 
 local _extract_brews() {
   rg '^brew' | awk '{print $2}' | sed -e 's/"//g' -e 's/,//g' 
@@ -13,7 +12,7 @@ local _extract_brews() {
 
 # get the default list of brews form the brewfile
 local DEFAULT=$TMP/brews_default
-cat $BUNDLE $WORK_BUNDLE | _extract_brews | sort > $DEFAULT
+cat $BUNDLE | _extract_brews | sort > $DEFAULT
 
 # get the current bundle list
 local CURRENT=$TMP/brews_current

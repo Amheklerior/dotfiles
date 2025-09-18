@@ -108,7 +108,3 @@ export COREPACK_HOME="$HOME/.corepack"
 source $HOME/.zalias
 source $HOME/.zfunc
 
-### WORK RELATED UTILITIES AND CONFIGURATIONS
-
-# NOTE: the file is not tracked within the repo, to avoid sensitive data leaking out.
-if [ -e "$HOME/.zwork" ]; then source $HOME/.zwork; fi
