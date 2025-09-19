@@ -19,14 +19,8 @@ In a nutshell, to install the dotfiles on a brand new system, simply run the fol
 # install the command line dev tools
 xcode-select --install 
 
-# clone this dotfile repository
-git clone https://github.com/Amheklerior/dotfiles-repo $HOME/.dotfiles-repo
-
-# move into the .dotfiles directory
-cd $HOME/.dotfiles-repo
-
-# run the install script and follow the instructions...
-./bootstrap.sh
+# run the automated system setup script
+curl -fsSL "https://raw.githubusercontent.com/Amheklerior/dotfiles-repo/refs/heads/master/bootstrap.sh" | /bin/bash
 
 ```
 

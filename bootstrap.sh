@@ -20,6 +20,10 @@ local _run() {
 # ensure the process exits on any error
 set -e
 
+# clone this dotfiles' repository and move into it
+git clone https://github.com/Amheklerior/dotfiles-repo $DOTFILES_REPO
+cd $DOTFILES_REPO
+
 # load utility functions
 source "$SCRIPTS/utils.sh"
 
@@ -40,12 +44,10 @@ _run install_shell_plugins
 _run link_dotfiles
 _run enable-touchid-for-sudo-access
 _run set_precommit_hook
+_run setup_dev_env
 
 # switch dotfiles repo from https protocol to SSH
 cd $DOTFILES_REPO && git remote set-url origin git@github.com:Amheklerior/dotfiles.git
-
-# setup machine for personal development
-_run setup_dev_env
 
 # setup machine for work
 _prompt_for_confirmation "$LOG_PREFIX Do you want to setup this machine as a work machine?"
