@@ -46,7 +46,6 @@ cd $DOTFILES_REPO && git remote set-url origin git@github.com:Amheklerior/dotfil
 
 # setup machine for personal development
 _run setup_dev_env
-_run clone_git_repos
 
 # setup machine for work
 _prompt_for_confirmation "$LOG_PREFIX Do you want to setup this machine as a work machine?"
