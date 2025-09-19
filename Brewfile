@@ -63,7 +63,8 @@ vscode "vscodevim.vim"                      # VIM motions integration
 vscode "johnpapa.vscode-cloak"              # hide sensitive info
 vscode "eamodio.gitlens"                    # git integration
 vscode "mikestead.dotenv"                   # .env files syntax highlighting
-vscode "ms-azuretools.vscode-docker"        # build, manage, and deploy conteinerized apps
+vscode "ms-azuretools.vscode-docker"        # the docker extension pack for vscode
+vscode "ms-azuretools.vscode-containers"    # build, manage, and deploy conteinerized apps (installed by the above)
 vscode "davidanson.vscode-markdownlint"     # linting for .md files
 vscode "jock.svg"                           # SVG languagge support and previwer
 vscode "kamikillerto.vscode-colorize"       # CSS color highlighting
@@ -83,3 +84,5 @@ vscode "otovo-oss.htmx-tags"                # autocompletion and docs for HTMX t
 vscode "craigrbroughton.htmx-attributes"    # autocompletion and docs for HTMX attributes
 vscode "sumneko.lua"                        # Lua LSP integration
 vscode "unifiedjs.vscode-mdx"               # MDX language support
+vscode "mtxr.sqltools"                      # DBMS client for vscode
+vscode "mtxr.sqltools-driver-mysql"         # SQLTools drivers for MySQL / MariaDB / TiDB
