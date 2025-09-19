@@ -108,3 +108,6 @@ export COREPACK_HOME="$HOME/.corepack"
 source $HOME/.zalias
 source $HOME/.zfunc
 
+### WORK
+
+if [ -e "$HOME/.zwork" ]; then source $HOME/.zwork; fi
