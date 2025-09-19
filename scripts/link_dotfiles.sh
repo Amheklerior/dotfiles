@@ -2,7 +2,7 @@
 
 local LOG_PREFIX="[link dotfiles]:"
 
-local DOTFILES="$DOTFILES_REPO/system"
+local DOTFILES="$DOTFILES_REPO/dotfiles"
 
 # first, create the folder structure
 # NOTE: this is necessary to prevent GNU stow from linking the directories

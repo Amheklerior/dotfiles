@@ -21,7 +21,7 @@ MacOS system preferences are set via the [`/prefs/macos/defaults.sh`](/prefs/mac
 
 ## Ghostty
 
-The [Ghostty](https://ghostty.org/) terminal emulator reads its preferences from a [`$XDG_CONFIG_HOME/ghostty/config` file](/system/.config/ghostty/config), which gets symlinked alongside all other dotfiles.
+The [Ghostty](https://ghostty.org/) terminal emulator reads its preferences from a [`$XDG_CONFIG_HOME/ghostty/config` file](/dotfiles/.config/ghostty/config), which gets symlinked alongside all other dotfiles.
 
 ## VSCode
 
