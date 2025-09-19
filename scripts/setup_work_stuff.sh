@@ -42,7 +42,7 @@ ansible-vault decrypt $XDG_DATA_HOME/gh-login-token
 local GITHUB_TOKEN=$(cat $XDG_DATA_HOME/gh-login-token)
 
 # setup work laptop via automation script
-curl -fsSL -H "Authorization: token $GITHUB_TOKEN" "https://raw.githubusercontent.com/heritageholdings/dev-onboarding/refs/heads/improvements/setup.sh" | /bin/bash
+curl -fsSL -H "Authorization: token $GITHUB_TOKEN" "https://raw.githubusercontent.com/heritageholdings/dev-onboarding/refs/heads/main/setup.sh" | /bin/bash
 
 # cleanup temporary files
 rm $XDG_DATA_HOME/gh-login-token
