@@ -28,7 +28,7 @@ LOG_PREFIX="[system preferences]:"
 # - Finder
 # - APPLY CHANGES
 
-_log "$LOG_PREFIX starting system preferences setup..."
+echo "$LOG_PREFIX starting system preferences setup..."
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
@@ -43,7 +43,7 @@ sudo -v
 
 _prompt_for_confirmation "$LOG_PREFIX Do you want to set the computer name?"
 if _has_confirmed; then
-	_log "$LOG_PREFIX which name do you want to give to this computer? (amheklerior)" && read
+	echo "$LOG_PREFIX which name do you want to give to this computer? (amheklerior)" && read
 	local name=$REPLY
 	if [[ $name == "" ]]; then; name=amheklerior; fi
 
@@ -57,7 +57,7 @@ fi
 #------------------------------------------------------------------------------------#
 #                            • Software Updates •                                    #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX enabling automatic software updates preferences..."
+echo "$LOG_PREFIX enabling automatic software updates preferences..."
 
 local updates="/Library/Preferences/com.apple.SoftwareUpdates"
 
@@ -72,7 +72,7 @@ sudo defaults write $updates CriticalUpdateInstall -bool true
 #------------------------------------------------------------------------------------#
 #                       • Language / Locale / Formats •                              #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX setting favorite languages, locales, and formats..."
+echo "$LOG_PREFIX setting favorite languages, locales, and formats..."
 
 # Set preferred languages
 defaults write -g AppleLanguages -array "en-US" "it-IT"
@@ -109,7 +109,7 @@ defaults write com.apple.iCal BirthdayEventsGenerationLastLocale -string "en_IT"
 #------------------------------------------------------------------------------------#
 #                                 • Timezone •                                       #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX enabling location-based timezone..."
+echo "$LOG_PREFIX enabling location-based timezone..."
 
 # Enable date and time syncrhorization
 sudo systemsetup -setusingnetworktime on
@@ -130,7 +130,7 @@ sudo defaults write /Library/Preferences/com.apple.timezone.auto Active -bool tr
 #------------------------------------------------------------------------------------#
 #                             • Power Management •                                   #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX setting up power management preferences..."
+echo "$LOG_PREFIX setting up power management preferences..."
 
 # Set sleep times when on AC Power
 sudo pmset -c displaysleep 10
@@ -181,7 +181,7 @@ sudo pmset -a hibernatemode 0
 #------------------------------------------------------------------------------------#
 #                              • Screen Saver •                                      #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX setting up screen saver preferences..."
+echo "$LOG_PREFIX setting up screen saver preferences..."
 
 # Start Screen saver when inactive for 5 minutes
 # NOTE: set to 0 to never have screensaver
@@ -194,7 +194,7 @@ defaults write com.apple.screensaver askForPasswordDelay -int 0
 #------------------------------------------------------------------------------------#
 #                              • Appearance / UI •                                   #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX setting up appearance and UI preferences..."
+echo "$LOG_PREFIX setting up appearance and UI preferences..."
 
 # Switch to Dark theme
 # NOTE: other options are:
@@ -250,7 +250,7 @@ defaults write -g _HIHideMenuBar -bool false
 #------------------------------------------------------------------------------------#
 #                                • Screens •                                         #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX optimizing screen settings for non-Apple LCDs..."
+echo "$LOG_PREFIX optimizing screen settings for non-Apple LCDs..."
 
 # Enable subpixel font rendering on non-Apple LCDs
 # Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
@@ -262,7 +262,7 @@ sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutio
 #------------------------------------------------------------------------------------#
 #                             • Audio / Sounds •                                     #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX setting up audio and sound preferences..."
+echo "$LOG_PREFIX setting up audio and sound preferences..."
 
 # Disable the sound effects on system boot (%00 to reenable it)
 sudo nvram StartupMute="%01"
@@ -283,7 +283,7 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 #------------------------------------------------------------------------------------#
 #                               • Keyboard •                                         #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX setting up keyboard preferences..."
+echo "$LOG_PREFIX setting up keyboard preferences..."
 
 # Enable full keyboard access for all controls (move focus with Tab and Shift+Tab)
 defaults write -g AppleKeyboardUIMode -int 2
@@ -313,7 +313,7 @@ defaults write com.apple.CharacterPaletteIM CVStartAsLargeWindow -int 1
 #------------------------------------------------------------------------------------#
 #                               • Typing •                                           #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX optimizing typing experience..."
+echo "$LOG_PREFIX optimizing typing experience..."
 
 # Clear replacement dictionary
 defaults write -g NSUserDictionaryReplacementItems -array
@@ -332,7 +332,7 @@ defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool false
 #------------------------------------------------------------------------------------#
 #                           • Mouse & Trackpad •                                     #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX setting up mouse and trackpad preferences..."
+echo "$LOG_PREFIX setting up mouse and trackpad preferences..."
 
 # Set a high tracking speed
 defaults write -g com.apple.trackpad.scaling -float 2.5
@@ -367,7 +367,7 @@ defaults write -g com.apple.swipescrolldirection -int 1
 #------------------------------------------------------------------------------------#
 #                              • Gestures •                                          #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX setting up gestures..."
+echo "$LOG_PREFIX setting up gestures..."
 
 # NOTE: A lot of gestures have been disabled to push myself towards a keyboard-only workflow
 
@@ -418,7 +418,7 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFiveFi
 #------------------------------------------------------------------------------------#
 #                              • Login Window •                                      #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX setting up login window screen appearance..."
+echo "$LOG_PREFIX setting up login window screen appearance..."
 
 local loginwindow=/Library/Preferences/com.apple.loginwindow
 
@@ -440,7 +440,7 @@ sudo defaults write $loginwindow AdminHostInfo HostName
 #------------------------------------------------------------------------------------#
 #                             • Screenshots •                                        #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX configuring screenshots format and location..."
+echo "$LOG_PREFIX configuring screenshots format and location..."
 
 # Screenshots format: `png`, `bmp`, `gif`, `jpg`, `pdf`, `tiff`, `psd`, `tga`, 
 defaults write com.apple.screencapture type -string "png"
@@ -457,7 +457,7 @@ defaults write com.apple.screencapture disable-shadow -bool true
 #------------------------------------------------------------------------------------#
 #                        • Disable unused systems •                                  #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX disabling Siri, Spotlight, Notification center, and other unused systems..."
+echo "$LOG_PREFIX disabling Siri, Spotlight, Notification center, and other unused systems..."
 
 # Disable Siri
 defaults write com.apple.assistant.support "Assistant Enabled" -bool false
@@ -501,7 +501,7 @@ defaults write -g NSDisableAutomaticTermination -bool true
 #------------------------------------------------------------------------------------#
 #                           • Quality of Life •                                      #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX setting up quality of life preferences..."
+echo "$LOG_PREFIX setting up quality of life preferences..."
 
 # Show notification previews: (1) never, (2) when unlocked, (3) always
 defaults write com.apple.ncprefs content_visibility -int 2
@@ -533,7 +533,7 @@ defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
 #------------------------------------------------------------------------------------#
 #                                   • Dock •                                         #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX configuring the Dock..."
+echo "$LOG_PREFIX configuring the Dock..."
 
 # Dock position on screen: `bottom`, `left`, `right`
 defaults write com.apple.dock orientation -string "bottom"
@@ -573,7 +573,7 @@ defaults write com.apple.dock persistent-apps -array
 #------------------------------------------------------------------------------------#
 #                          • Windows / Navigation •                                  #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX setting up window and navigation preferences..."
+echo "$LOG_PREFIX setting up window and navigation preferences..."
 
 # Prefer tabs when opening documents: 'always', 'manual', or when in 'fullscreen'
 defaults write -g AppleWindowTabbingMode -string "fullscreen"
@@ -596,7 +596,7 @@ defaults write com.apple.spaces spans-displays -bool false
 #------------------------------------------------------------------------------------#
 #                               • Desktop •                                          #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX configuring the Desktop..."
+echo "$LOG_PREFIX configuring the Desktop..."
 
 # Set a custom wallpaper image. `DefaultDesktop.jpg` is already a symlink, and
 # all wallpapers are in `/Library/Desktop Pictures/`.
@@ -629,7 +629,7 @@ defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
 #------------------------------------------------------------------------------------#
 #                               • Finder •                                           #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX configuring Finder..."
+echo "$LOG_PREFIX configuring Finder..."
 
 # Set Home as the default location for new Finder windows
 defaults write com.apple.finder NewWindowTarget -string "PfLo"
@@ -731,7 +731,7 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 #------------------------------------------------------------------------------------#
 #                           • APPLY CHANGES •                                        #
 #------------------------------------------------------------------------------------#
-_log "$LOG_PREFIX applying changes to the system..."
+echo "$LOG_PREFIX applying changes to the system..."
 
 # Cleanup current Dock state
 find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete &> /dev/null
@@ -742,9 +742,9 @@ for app in "Activity Monitor" "cfprefsd" "Dock" "Finder" "SystemUIServer"; do
 done
 
 # Restart the system
-_log "$LOG_PREFIX done! Some settings may require a logout/restart to take effect."
+echo "$LOG_PREFIX done! Some settings may require a logout/restart to take effect."
 _prompt_for_confirmation "$LOG_PREFIX Do you want to restart now?"
 if _has_confirmed; then
-	_log "$LOG_PREFIX restarting now..."
+	echo "$LOG_PREFIX restarting now..."
 	sudo shutdown -r now
 fi

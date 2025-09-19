@@ -26,7 +26,7 @@ source "$SCRIPTS/utils.sh"
 # create dir for temporary files
 mkdir -p $XDG_DATA_HOME
 
-_log "$LOG_PREFIX Sit down and relax, system is going to be ready soon..."
+echo "$LOG_PREFIX Sit down and relax, system is going to be ready soon..."
 
 # system bootstrap steps
 _run check_sys_requirements
@@ -65,4 +65,4 @@ if _has_confirmed; then
   _run load_app_prefs
 fi
 
-_log "$LOG_PREFIX Done! You're ready to rock \m/"
+echo "$LOG_PREFIX Done! You're ready to rock \m/"

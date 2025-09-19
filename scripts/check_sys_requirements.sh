@@ -11,8 +11,8 @@ local _is_macos() {
 
 # exit immediately if the script is run on a non-supported system
 if ! _is_macos; then
-  _log "$LOG_PREFIX OS check failed! It only works on Apple Silicon MacOS systems"
+  echo "$LOG_PREFIX ERROR: OS check failed! It only works on Apple Silicon MacOS systems"
   exit 1
 fi
 
-_log "$LOG_PREFIX OS check passed!"
+echo "$LOG_PREFIX OS check passed!"

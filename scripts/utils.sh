@@ -4,14 +4,8 @@
 # NOTE. for intel-macs the path is: /usr/local/bin
 local HOMEBREW_BIN_PATH="/opt/homebrew/bin"
 
-# utility for logging to the stdout
-# TODO: add timestamp, color, etc.
-local _log() {
-  echo $1
-}
-
 local _prompt_for_confirmation() {
-  echo "$1 (y/n)" && read
+  echo "$1 (y/n)" && read -r REPLY < /dev/tty
 }
 
 local _has_confirmed() {

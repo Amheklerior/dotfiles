@@ -4,12 +4,8 @@ local LOG_PREFIX="[setting dotfiles repo dev env]:"
 
 local PRE_COMMIT_HOOK="$DOTFILES_REPO/.git/hooks/pre-commit"
 
-# load utility functions in case the script is run by the user
-[[ -o interactive ]] && source "$DOTFILES_REPO/scripts/utils.sh"
-
-
 if [ ! -e $PRE_COMMIT_HOOK ]; then
-  _log "$LOG_PREFIX setting up pre-commit hooks..."
+  echo "$LOG_PREFIX setting up pre-commit hooks..."
 
   echo "\
     #!/bin/sh\
@@ -20,6 +16,6 @@ if [ ! -e $PRE_COMMIT_HOOK ]; then
 
   chmod +x $PRE_COMMIT_HOOK
 else
-  _log "$LOG_PREFIX pre-commit hook already setup!"
+  echo "$LOG_PREFIX pre-commit hook already setup!"
 fi
 

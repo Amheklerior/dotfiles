@@ -9,10 +9,10 @@ local brew_cmd="$HOMEBREW_BIN_PATH/brew"
 
 # install homebrew if not already installed
 if ! _is_installed $brew_cmd; then
-  _log "$LOG_PREFIX installing homebrew on your system..."
+  echo "$LOG_PREFIX installing homebrew on your system..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
-  _log "$LOG_PREFIX homebrew already installed!"
+  echo "$LOG_PREFIX homebrew already installed!"
 fi
 
 # load homebrew environment variables
@@ -22,5 +22,5 @@ fi
 eval "$($brew_cmd shellenv)"
 
 # setup homebrew
-_log "$LOG_PREFIX setting up homebrew..."
+echo "$LOG_PREFIX setting up homebrew..."
 brew analytics state | grep enabled >/dev/null && brew analytics off || :
