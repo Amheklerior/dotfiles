@@ -38,12 +38,15 @@ dotfiles-repo/
 ├── scripts/
 │   └── # scripts used by the automated setup process
 ⋮
-├── bootstrap.sh # the automated setup entry-point script
+├── bootstrap.sh # the entry point for the automated setup process
+├── system-setup.sh # the actual setup script
 ├── Brewfile # the bundle of all system packages, apps, and vscode extensions to be installed
 └── README.md # this readme file
 ```
 
-The [`bootstrap.sh`](./bootstrap.sh) script is the entry point that will kick off the automated setup process for a new machine. It is designed to be [**idempotent**](https://en.wikipedia.org/wiki/Idempotence), which means you can safely run it multiple times and expect operations to be done only once.
+The [`bootstrap.sh`](./bootstrap.sh) script is the entry point that will automatically clone this repo into your machine and kick off the automated setup process.
+
+The automated [`setup-system`](./setup-system.sh) script is designed to be [**idempotent**](https://en.wikipedia.org/wiki/Idempotence), which means you can safely run it multiple times and expect operations to be done only once.
 
 It runs the setup scripts in the [`scripts/`](./scripts/) directory.
 
