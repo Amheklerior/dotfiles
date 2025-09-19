@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-local BACKUP_DIR=$1
+local BACKUP_DIR=$(ls $HOME/.dotfiles/backups | fzf)
 
 local _restore_backup() {
   [[ $* != *"-c"* ]] && to="$HOME" || to=$XDG_CONFIG_HOME

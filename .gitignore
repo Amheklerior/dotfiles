@@ -8,3 +8,6 @@ playground
 
 # apple meta files
 .DS_store
+
+# dotfiles backups
+backups
