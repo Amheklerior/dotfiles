@@ -1,6 +1,5 @@
 # TODOs
 
-- [ ] bring all bundles back to a single well-organized `Brewfile`
 - [ ] Integrate `neovim` configs
 - [ ] Integrate [`tmux`](https://github.com/tmux/tmux/wiki) (or [`zellij`](https://zellij.dev/)) configs
 - [ ] Integrate [`yabai`](https://github.com/koekeishiya/yabai) configs

@@ -7,11 +7,7 @@ This is my personal dotfiles repo. Feel free to explore it, copy bits and pieces
 
 ## Platform Compatibility ⚠
 
-This repository is currently tailored for macOS systems only.
-
-Dotfiles might work with little/no changes on other systems (although no test has been performed to confirm that, so far). The installation process will more likely require more effort, as it is thoroughly tailored on macOS systems.
-
-It's my intention to make it crossplatform one day, but it will require major changes: like switching from `homebrew` to `Nix` as a system package manager, and adapting all system and app preferences automation script.
+The dotfiles and setup automation scripts in this repository are designed with macOS systems in mind.
 
 ## Installation process
 
@@ -24,57 +20,44 @@ In a nutshell, to install the dotfiles on a brand new system, simply run the fol
 xcode-select --install 
 
 # clone this dotfile repository
-git clone https://github.com/Amheklerior/dotfiles $HOME/.dotfiles
+git clone https://github.com/Amheklerior/dotfiles-repo $HOME/.dotfiles-repo
 
 # move into the .dotfiles directory
-cd $HOME/.dotfiles
+cd $HOME/.dotfiles-repo
 
 # run the install script and follow the instructions...
 ./bootstrap.sh
 
 ```
 
-For a step-by-step reference guide in setting up a new machine, checkout the [stup-guide](/docs/setup-guide.md) and the [system and apps preferences](/docs/prefs.md) page.
-
 ## Repository Overview
 
-Here's an overview of the repository structure
+Here's an high level overview of the repository structure
 
-- [**`bootstrap.sh`**](./bootstrap.sh) - the main script that is used to automate the installation process (it calls in order, all scripts defined in the `scripts/` dir below)
-- [**`scripts/`**](./scripts/) - scripts that are used to automate the installation process
-- [**`bundles/`**](./bundles/)
-  - [**`packages.bundle`**](/bundles/packages.bundle) - list of all packages to be installed
-  - [**`fonts.bundle`**](/bundles/fonts.bundle) - list of all fonts to be installed
-  - [**`apps.bundle`**](/bundles/apps.bundle) - list of all cask and mac app store's apps to be installed
-  - [**`vscode.bundle`**](/bundles/vscode.bundle) - list of all vscode extensions to be installed
-  - [**`shell-plugins.list`**](/bundles/shell-plugins.list) - list of all shell plugins to be installed
-  - [**`personal-repos.list`**](/bundles/personal-repos.list) - list of all personal git repos to be cloned
-  - [**`work-repos.list`**](/bundles/work-repos.list) - list of all work related git repos to be cloned
-- [**`prefs/`**](./prefs/)
-  - [**`apps/`**](./prefs/apps/) - scripts to load preferences for the various apps
-  - [**`macos/`**](./prefs/macos/) - script to load macos system preferences
-  - [**`raycast/`**](./prefs/raycast/) - raycast's config file
-  - [**`vscode/`**](./prefs/vscode/) - vscode settings, keybindings, and snippets
-  - [**`kbd/`**](./prefs/kbd/) - keyboard layout and mappings for my Nuphy Air75 keyboard
-- [**`private/`**](./private/) - sensitive data like 2FA codes, keys, and tokens, all encrypted
-- [**`ssh-keys`**](./ssh-keys/) - ssh key pairs for both personal and work accounts
-- [**`system/`**](./system/) - dotfiles that are symlinked into the user's home dir
-- [**`bin/`**](./bin/) - scripts and utilities that are available in the PATH
-- [**`wallpaper/`**](./wallpaper/) - a set of nice wallpapers for my mac
+```sh
+dotfiles-repo/
+⋮
+├── dotfiles/
+│   └── # home of the actual dotfiles 
+├── prefs/
+│   └── # where all system and apps preferences are stored
+├── scripts/
+│   └── # scripts used by the automated setup process
+⋮
+├── bootstrap.sh # the automated setup entry-point script
+├── Brewfile # the bundle of all system packages, apps, and vscode extensions to be installed
+└── README.md # this readme file
+```
 
-## My dotfiles
+The [`bootstrap.sh`](./bootstrap.sh) script is the entry point that will kick off the automated setup process for a new machine. It is designed to be [**idempotent**](https://en.wikipedia.org/wiki/Idempotence), which means you can safely run it multiple times and expect operations to be done only once.
 
-My dotfiles are stored under the [`/system`](/system/) directory. They are symlinked into the user's `$HOME` dir using [`GNU stow`](https://www.gnu.org/software/stow/). This makes it easy to update them without having to manually synk them between the system and the repo.
+It runs the setup scripts in the [`scripts/`](./scripts/) directory.
 
-## How private information are protected
+The system package manager it uses is [`homebrew`](https://brew.sh), which gets first installed and then used to install all system packages, apps, fonts, and vscode extensions defined in the [`Brewfile`](./Brewfile).
 
-Sensitive and private data, such as 2FA backup codes, SSH private keys, GitHub/GitLab access tokens, licence keys, personal and work related git repo lists, are all  encrypted and protected with a password, using [`ansible-vault`](https://docs.ansible.com/ansible/latest/vault_guide/index.html).
+The actual dotfiles are located in the [`dotfiles/`](./dotfiles/) directory. They are symlinked into the user's `$HOME` dir using [`GNU stow`](https://www.gnu.org/software/stow/). This makes it easy to update them without having to manually synk them between the system and the repo.
 
-SSH key pairs are safely stored under the [`/ssh-keys`](/ssh-keys/) directory. The private keys are stored encrypted, while the public ones are stored as is.
-
-2FA codes, keys, and tokens for apps/services are stored encrypted in a `*.codes`, `*.key`, `*.token` file respectively, under the [`/private`](/private/) directory.
-
-I've also integrated [`gitleaks`](https://github.com/zricethezav/gitleaks) to run as a pre-commit git hook, to scan for potential secrets being committed.
+The process will also load all settings and preferences for the MacOS system and the installed apps. You can find the  [`prefs/macos/defaults.sh`](./prefs/macos/defaults.sh) is the script that sets all system preferences, the apps prefs occupy the rest of the [`prefs/`](./prefs/) direcotry.
 
 ## Feedback
 
@@ -87,4 +70,4 @@ Special thanks to:
 - the [github's dotfiles community](https://dotfiles.github.io/) which has been a great source of ideas and inspiration
 - [Michael Paulson (aka The Primeagen)](https://www.youtube.com/c/ThePrimeagen) for his [_developer productivity_ course](https://frontendmasters.com/courses/developer-productivity/)
 - [Patrick Mcdonald](https://twitter.com/eieioxyz) for his [_dotfiles from start to finish-ish_ course](https://www.udemy.com/course/dotfiles-from-start-to-finish-ish/)
-- [Mathia's macos sensible default settings](https://github.com/mathiasbynens/dotfiles/blob/main/.macos), and [macos-defaults.com](https://macos-defaults.com/), used as reference for automating macos system settings, and [`plistwatch`](https://github.com/catilac/plistwatch) which made easier to experiment with, and iterate over, system and app's settings.
+- [Mathia's macos sensible default settings](https://github.com/mathiasbynens/dotfiles/blob/main/.macos), and [macos-defaults.com](https://macos-defaults.com/), used as reference for automating macos system settings, and [`plistwatch`](https://github.com/catilac/plistwatch) which made it easier to experiment with, and iterate over, system and app's settings.
