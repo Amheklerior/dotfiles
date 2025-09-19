@@ -4,24 +4,34 @@
 ### compare current brew bundle list with the default brewfile
 
 local TMP=$(mktemp -d)
-local BUNDLE="$DOTFILES_REPO/bundles/packages.bundle"
+local BUNDLE="$DOTFILES_REPO/Brewfile"
+local WORK_BUNDLE="$HOME/dev-onboarding/Brewfile"
 
-local _extract_brews() {
-  rg '^brew' | awk '{print $2}' | sed -e 's/"//g' -e 's/,//g' 
+local _extract_brews() { rg '^brew'; }
+local _extract_apps() { rg '^(cask|mas)'; }
+local _extract_vscode_ext() { rg '^vscode'; }
+local _format() {
+  awk '{print $2}' | sed -e 's/"//g' -e 's/,//g' | sort | uniq
+}
+local _showdiff() {
+  # NOTE: The -U0 options makes the outoput more compact by removing context lines
+  git -c delta.line-numbers=false diff --no-index -U0 "$TMP/$1"_default "$TMP/$1"_current
 }
 
-# get the default list of brews form the brewfile
-local DEFAULT=$TMP/brews_default
-cat $BUNDLE | _extract_brews | sort > $DEFAULT
+# get the default lists of brews, apps, and vscode extensions form the brewfile
+cat $BUNDLE $WORK_BUNDLE | _extract_brews | _format > $TMP/brews_default
+cat $BUNDLE $WORK_BUNDLE | _extract_apps | _format > $TMP/apps_default
+cat $BUNDLE $WORK_BUNDLE | _extract_vscode_ext | _format > $TMP/vscode_default
 
-# get the current bundle list
-local CURRENT=$TMP/brews_current
-brew bundle dump --brews --force --file=$TMP/Brewfile.dump
-cat $TMP/Brewfile.dump | _extract_brews | sort > $CURRENT
+# get the actual lists of installed brews, apps, and vscode extensions
+brew bundle dump --brews --force --file - | _format > $TMP/brews_current
+brew bundle dump --cask --mas --force --file - | _format > $TMP/apps_current
+code --list-extensions | sort > $TMP/vscode_current
 
 # show differences
-# NOTE: The -U0 options makes the outoput more compact by removing context lines
-git -c delta.line-numbers=false diff --no-index -U0 $DEFAULT $CURRENT
+_showdiff brews
+_showdiff apps
+_showdiff vscode
 
 # cleanup temporary generated files
 rm -r $TMP
