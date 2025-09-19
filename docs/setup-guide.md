@@ -68,10 +68,10 @@ Open a new terminal window and run the following shell commands:
 
 ```sh
 # clone this dotfile repository via https git protocol
-git clone https://github.com/Amheklerior/dotfiles $HOME/.dotfiles
+git clone https://github.com/Amheklerior/dotfiles-repo $HOME/.dotfiles-repo
 
 # move into the .dotfiles directory
-cd $HOME/.dotfiles
+cd $HOME/.dotfiles-repo
 
 # run the install script and follow the instructions...
 ./bootstrap.sh
@@ -84,7 +84,7 @@ You can do that as part of the [`bootstrap.sh`](../bootstrap.sh) installation sc
 Alternatively, open a new terminal window and run the following shell command:
 
 ```sh
-source $HOME/.dotfiles/scripts/load_sys_prefs.sh
+source $HOME/.dotfiles-repo/scripts/load_sys_prefs.sh
 ```
 
 Restart the system to make sure all new preferences get loaded.
@@ -102,7 +102,7 @@ First, [disable System Integrity Protection (SIP)](./setup-guide.md#enablingdisa
 Then, open a new terminal window and run the following shell commands:
 
 ```sh
-source $HOME/.dotfiles/scripts/load_app_prefs.sh
+source $HOME/.dotfiles-repo/scripts/load_app_prefs.sh
 ```
 
 [Re-eneble the SIP](./setup-guide.md#enablingdisabling-sip-system-integrity-protection-on-macos) and restart.

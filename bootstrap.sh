@@ -2,7 +2,7 @@
 
 local LOG_PREFIX="[system bootstrap]:"
 
-local DOTFILES_REPO="$HOME/.dotfiles"
+local DOTFILES_REPO="$HOME/.dotfiles-repo"
 local SCRIPTS="$DOTFILES_REPO/scripts"
 local XDG_CONFIG_HOME="$HOME/.config"
 local XDG_DATA_HOME="$HOME/.local/share"
