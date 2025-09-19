@@ -24,4 +24,3 @@ eval "$($brew_cmd shellenv)"
 # setup homebrew
 _log "$LOG_PREFIX setting up homebrew..."
 brew analytics state | grep enabled >/dev/null && brew analytics off || :
-brew update --auto-update
