@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # dropin replacements
 alias cd="z"
 alias cat="bat"
@@ -8,7 +10,7 @@ alias rg="rg --colors=match:fg:green"
 alias q="exit"
 alias quit="exit"
 
-# list aliases, paths, functions, ...
+# list aliases, paths, functions, ...
 alias aliases="alias | sed 's/=.*//'"
 alias func="declare -f | grep '^[a-z].* ().*$' | sed 's/().*$//g'"
 
@@ -16,7 +18,7 @@ alias func="declare -f | grep '^[a-z].* ().*$' | sed 's/().*$//g'"
 alias rmds="find . -type f -name '*.DS_Store' -ls -delete"
 alias rmad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
 
-# system shortcuts
+# system shortcuts
 alias afk="open /System/Library/CoreServices/ScreenSaverEngine.app"
 alias web="open -a /Applications/Safari.app"
 alias chrome="open -a /Applications/Google\ Chrome.app"
@@ -28,7 +30,8 @@ alias vim="nvim"
 alias cpwd="pwd | tr -d '\n' | pbcopy"
 
 # navigation shortcuts
-alias dot="cd $DOTFILES_REPO"
+alias dot="cd $CORE/dotfiles"
+alias core="cd $CORE"
 alias personal="cd $PERSONAL"
 alias ihavenolife="cd $PERSONAL"
 alias work="cd $WORK"
@@ -71,13 +74,14 @@ alias yolo="git push origin master --force --no-verify"
 # dotfiles management
 alias edot="$EDITOR $DOTFILES_REPO"
 alias sdot="source $HOME/.zshenv; source $HOME/.zprofile; source $HOME/.zshrc"
+alias dlink="stow -d $DOTFILES_REPO/home -t $HOME . -R"
 
 # node package managers shortcuts
 alias y='yarn'
 alias p='pnpm'
 
 # ansible shortcuts
-alias av="ansible-valult"
+alias av="ansible-vault"
 alias aenc="ansible-vault encrypt"
 alias adec="ansible-vault decrypt"
 

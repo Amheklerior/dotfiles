@@ -7,8 +7,8 @@
 
 [rerere]
 	# enable "reuse recorded resolutions" to avoid solving the same conflicts
-	# over and over again during rebase operations on long-living branches
-	# https://git-scm.com/book/en/v2/Git-Tools-Rerere
+	# over and over again during rebase operations on long-living branches
+	# https://git-scm.com/book/en/v2/Git-Tools-Rerere
 	enabled = true
 
 [filter "lfs"]
@@ -23,10 +23,10 @@
 	trustctime = false
 
 	# prevent showing files which filenames contains non-ASCII as untracked
-	# https://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+	# https://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
 
-	# speed up commands that involve determining untracked files such as git status
+	# speed up commands that involve determining untracked files such as git status
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
 	untrackedCache = true
 
@@ -63,7 +63,7 @@
 	path = ./.config/delta/themes.config
 
 [alias]
-	# commit amend shortcut
+	# commit amend shortcut
 	amend = commit --amend --reuse-message=HEAD
 	
 	# list all git aliases
@@ -75,7 +75,7 @@
 	# worktree shortcut
 	wt = worktree
 
-	# stash staged files with a comment
+	# stash staged files with a comment
 	park = stash --staged -m
 
 	# unstash selected changes (preserve stash entry)
@@ -84,10 +84,10 @@
 	# unstash selected changes (delete stash entry)
 	pop = !git stash list | fzf | git stash pop
 	
-	# set personal git account name/email 
+	# set personal git account name/email
 	set-personal = !git config user.name 'Amheklerior' && git config user.email '49590425+Amheklerior@users.noreply.github.com'
 
-	# set work git account name/email
+	# set work git account name/email
 	# NOTE: in heritage holdings devs use their own github account to contribute to work projects
 	set-work = !git config user.name 'Andrea Amato' && git config user.email '49590425+Amheklerior@users.noreply.github.com'
 

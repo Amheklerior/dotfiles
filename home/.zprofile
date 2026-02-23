@@ -2,7 +2,7 @@
 export EDITOR=nvim
 export GIT_EDITOR=nvim
 
-# bypass the Gatekeeper for cask apps
+# bypass the Gatekeeper for cask apps
 export HOMEBREW_CASK_OPTS="--no-quarantine"
 
 # set PATH, MANPATH, etc. for Homebrew

@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # preview and set a bat theme
 setbat() {
   export BAT_THEME=$(bat --list-themes | fzf --preview="bat --theme={} --color=always $HOME/.zshrc")
