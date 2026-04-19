@@ -57,6 +57,10 @@ bindkey '^[^?' backward-kill-word
 # load zoxide
 eval "$(zoxide init zsh)"
 
+### TIRITH
+
+eval "$(tirith init)"
+
 ### BAT
 
 # setup bat color theme
