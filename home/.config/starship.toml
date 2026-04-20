@@ -19,6 +19,16 @@ format = '[$read_only]($read_only_style)[$path]($style) '
 read_only = '[] '
 read_only_style = 'bold red'
 truncation_symbol = '…/' # custom
+# usually the truncation is at the third dir unless a git repo
+# is found, in which case it stops at the repo root dir (defaults
+# to `true`). Worktrees are seen as git repos themselves. Setting
+# this to `false` prevents truncating at the worktree dir, revealing
+# the root repo dir name and making things clearer.
+#
+# examples:
+#   - true -> .../main
+#   - false -> .../<repo>/worktrees/main
+truncate_to_repo = false
 
 [git_commit]
 format = '[\($hash$tag\)]($style) '
