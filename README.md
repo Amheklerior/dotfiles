@@ -1,60 +1,63 @@
-# My Personal Dotfiles
+# Amheklerior's Dotfiles
 
-This repo contains my personal dotfiles for shell and terminal configurations.
+These are my personal dotfiles. They contains my shell and terminal settings for MacOS (what I currently use),
+as well as git and neovim configurations.
 
-## Platform Compatibility ⚠
+> [!IMPORTANT]
+> Don’t blindly use my settings unless you know what that entails. Use at your own risk!
+> If you want to give them a try, [fork](https://github.com/Amheklerior/dotfiles/fork)
+> the repo, review the content, and remove anything you don't want or need.
 
-The dotfiles are designed and tested on macOS only (which is what I currently use).
-However, it should be easy to adapt them to a generic Unix system (for example,
-the update in the system package manager used).
-
-## Install
+## Getting Started
 
 To install these dotfiles into a brand new machine, simply run the command:
 
 ```sh
 # first, create the folder structure to prevent GNU stow from linking the
 # directories rather than their content.
-mkdir -p $XDG_CONFIG_HOME
+mkdir -p ~/.config
 
 # then symlink them using stow
+# TIP: can use the -R flag instead of the -S to (R)elink them
 stow -d <this-repo-path>/home -t $HOME . -S
-
-# alternatively, you can relink already previously linked ones
-stow -d <this-repo-path>/home -t $HOME . -R
 ```
 
-The above requires [GNU Stow](https://www.gnu.org/software/stow/) to be installed on your system.
-If not already present, install it with `brew install stow`.
-
-### An Alternative Approach (copying)
-
-If you prefer to have hard copies on your system, simply copy the `home/` directory content into your `$HOME` dir.
-
-```sh
-cp -R <this-repo-path>/home $HOME
-```
+If you don't like/want the dependency on `stow`, you can symlink manually using the `ln` command
+or make hard copies if you are into that sort of thing.
 
 ## Repo Structure
 
-The repo contains only one directory - the [`home/`](/home/) dir - which is where the actual dotfiles are stored.
+The actual dotfiles are contained within the [`home/`](/home/) dir, which replicates the same structure of
+the `$HOME` system directory. I chose to do so (over a _topical_ approach for example) to optimize for ease
+of management/maintenance over clean content segregation. In fact, I use [GNU Stow](https://www.gnu.org/software/stow/)
+to symlink the dotfiles on new systems.
 
 ```ruby
 home/
 ├── .config/
-│   ├── ...
-│   ├── ghostty/config # ghotty terminal prefs
+│   ├── delta/themes.config # delta diff tool color themes
+│   ├── ghostty/config # ghostty terminal prefs
+│   ├── nvim/ # nvim lua configs (submodule)
 │   └── starship.toml # my shell prompts settings
-├── .gitconfig # global git configs
+├── .gitconfig # my global git configs
 │
 │   # all my shell's settings
-├── .zalias 
+├── .zalias
 ├── .zfunc
 ├── .zprofile
 ├── .zshenv
 └── .zshrc
-
 ```
 
-The `home/` dir replicates the same structure of the `$HOME` system directory.
-This is done in order to simplify symlinking them with `stow`.
+- [`delta/themes.config`](./home/.config/delta/themes.config) - color theme definitions for the [delta](https://github.com/dandavison/delta) diff tool
+- [`ghostty/config`](./home/.config/ghostty/config) - settings for the [Ghostty](https://ghostty.org) terminal emulator
+- [`starship.toml`](./home/.config/starship.toml) - my shell prompt configurations via [Starship](https://starship.rs)
+- [`nvim/`](./home/.config/nvim) - my [Neovim](https://neovim.io) lua configurations as a git submodule (see [`Amheklerior/nvim`](https://github.com/Amheklerior/nvim))
+- [`.gitconfig`](./home/.gitconfig) - my global git configurations
+- [`.zalias`](./home/.zalias), [`.zfunc`](./home/.zfunc) - my custom shell aliases and functions
+- [`.zprofile`](./home/.zprofile), [`.zshenv`](./home/.zshenv), [`.zshrc`](./home/.zshrc) - my main shell configuration
+
+## The Bigger Picture
+
+They are part of my [System Environment Setup](https://github.com/Amheklerior/sysenv)
+for quickly setting up new machines.
