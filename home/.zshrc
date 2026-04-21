@@ -41,7 +41,8 @@ bindkey '^[^?' backward-kill-word
 # ------------------------------------------------------------------------------
 
 # load zoxide
-eval "$(zoxide init zsh)"
+# NOTE: replace built-in `cd` shell command
+eval "$(zoxide init zsh --cmd cd)"
 
 # ------------------------------------------------------------------------------
 # BAT SETUP
