@@ -1,4 +1,13 @@
-#!/usr/bin/env zsh
+# ------------------------------------------------------------------------------
+# CORE SHELL ALIASES
+# ------------------------------------------------------------------------------
+# These are my core shell aliases. They include:
+#   - drop-in replacements for common commands using modern alternatives,
+#   - shortcuts for rapid file system navigation,
+#   - quick-view options for listing directories content,
+#   - structured tree-like views for the file system,
+#   - general quality of life shortcuts (quit, copy working dir, view PATH, ...)
+# ------------------------------------------------------------------------------
 
 # dropin replacements
 alias cd="z"
@@ -6,56 +15,79 @@ alias cat="bat"
 alias grep="rg"
 alias rg="rg --colors=match:fg:green"
 
-# exit shortcut
+# exit shortcuts
 alias q="exit"
 alias quit="exit"
 
-# list aliases, paths, functions, ...
-alias aliases="alias | sed 's/=.*//'"
-alias func="declare -f | grep '^[a-z].* ().*$' | sed 's/().*$//g'"
-
-# Recursively remove Apple meta files
-alias rmds="find . -type f -name '*.DS_Store' -ls -delete"
-alias rmad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
-
-# system shortcuts
-alias afk="open /System/Library/CoreServices/ScreenSaverEngine.app"
-alias web="open -a /Applications/Safari.app"
-alias chrome="open -a /Applications/Google\ Chrome.app"
-
-# editing
-alias e=$EDITOR
-alias v="nvim"
-alias vim="nvim"
-alias cpwd="pwd | tr -d '\n' | pbcopy"
-
-# navigation shortcuts
-alias dot="cd $CORE/dotfiles"
-alias core="cd $CORE"
-alias personal="cd $PERSONAL"
-alias ihavenolife="cd $PERSONAL"
-alias work="cd $WORK"
-alias dl="cd ~/Downloads"
-alias desk="cd ~/Desktop"
+# quick navigation
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias -- -="cd -"
+alias dl="cd ~/Downloads"
+alias desk="cd ~/Desktop"
+alias personal="cd $PERSONAL"
+alias work="cd $WORK"
+alias dot="cd $DOTFILES_REPO"
+alias sys="cd $SYSENV_REPO"
 
-# fs view
+# list views
 alias ls="eza --all --oneline --classify --group-directories-first --icons"
 alias ll="eza --all --long --classify --header --group --group-directories-first --icons"
 alias ld="ls --only-dirs"
 alias lf="ls --only-files"
 alias lld="ll --only-dirs"
 alias llf="ll --only-files"
+
+# tree views
 alias tree="eza --tree --all --classify --icons --group-directories-first"
 alias t="tree --git-ignore --ignore-glob .git"
 alias t2="t -L2"
 alias t4="t -L4"
 
-# git shortcuts
+# copy the current working directory to the clipboard
+alias cpwd="pwd | tr -d '\n' | pbcopy"
+
+# list binary and function paths in a more readable format
+# NOTE: bpath fnpath are defined as functions to avoid the premature
+#  evaluation of $PATH and $FPATH that happens when using aliases,
+#  which causes subsequent changes to those variables to not be reflected
+bpath() { echo $PATH | sed 's/:/\n/g'; }
+fnpath() { echo $FPATH | sed 's/:/\n/g'; }
+
+# Recursively remove Apple meta files
+alias rmds="find . -type f -name '*.DS_Store' -ls -delete"
+alias rmad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
+
+# ------------------------------------------------------------------------------
+# DOTFILES MANAGEMENT ALIASES
+# ------------------------------------------------------------------------------
+# Aliases to quickly edit, relink, reload my dotfiles.
+# ------------------------------------------------------------------------------
+
+# (e)dit (dot)files
+alias edot="$EDITOR $DOTFILES_REPO"
+
+# (s)ource (dot)files
+alias sdot="source $HOME/.zshenv; source $HOME/.zprofile; source $HOME/.zshrc"
+
+# (l)ink (dot)files
+alias ldot="stow -d $DOTFILES_REPO/home -t $HOME . -R"
+
+# ------------------------------------------------------------------------------
+# DEVELOPMENT ALIASES
+# ------------------------------------------------------------------------------
+# Shortcuts for editors, git, node package managers, Docker, log inspection
+# and more...
+# ------------------------------------------------------------------------------
+
+# editor shortcuts
+alias e="$EDITOR"
+alias v="nvim"
+alias vim="nvim"
+
+# main git commands
 alias g="git"
 alias gf="git fetch --all"
 alias gco="git checkout"
@@ -69,24 +101,13 @@ alias gc="git commit"
 alias gp="git push"
 alias gl="git log --oneline --graph -15"
 alias gla="git log --oneline --graph --all -25"
-alias yolo="git push origin master --force --no-verify"
 
-# dotfiles management
-alias edot="$EDITOR $DOTFILES_REPO"
-alias sdot="source $HOME/.zshenv; source $HOME/.zprofile; source $HOME/.zshrc"
-alias dlink="stow -d $DOTFILES_REPO/home -t $HOME . -R"
-
-# node package managers shortcuts
+# node package managers
 alias y='yarn'
 alias p='pnpm'
 
-# ansible shortcuts
-alias av="ansible-vault"
-alias aenc="ansible-vault encrypt"
-alias adec="ansible-vault decrypt"
-
-# tail log files with syntax highlighting
-alias watch="tail -f $1 | bat --paging=never -l log"
-
 # docker and docker compose shortcuts
 alias doco="docker compose"
+
+# tail log files with syntax highlighting
+watch() { tail -f "$1" | bat --paging=never -l log; }

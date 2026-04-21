@@ -1,41 +1,28 @@
-### SHELL & SYSTEM-WIDE LANGUAGE
-
-# NOTE. Priority order of these env vars:
-# 1. LC_ALL   - overrides all other LC_* vars
-# 2. LC_*     - set specific formats for various language and locale aspects (es. LC_MESSAGE, LC_TIME, LC_MEASUREMENTS, ...)
-# 3. LANGUAGE - only for translations, takes precedence over the LANG var
-# 4. LANG     - general default if no other specific locale or language variables are set.
-
-# use US English as default language
-export LANGUAGE=en_US
-export LANG=en_US.UTF-8
-
-# use metric system over imperial
-export LC_MEASUREMENT=it_IT.UTF-8
-
-# use day-month-year, 24-hour date and time formats
-export LC_TIME=it_IT.UTF-8
-
-# make sure there's no override
-export LC_ALL=
-
-### SHELL PROMPT
+# ------------------------------------------------------------------------------
+# SHELL PROMPT
+# ------------------------------------------------------------------------------
 
 # load the completion functions and initialize the completion system.
 # -z: first unload any preloaded completion function.
 autoload -Uz compinit && compinit
 
-# load starship
+# load starship customized prompt
 eval "$(starship init zsh)"
 
-# integrate fuzzy search on tab autocompletion
-source $SHELL_PLUGINS/fzf-tab/fzf-tab.plugin.zsh
+# load security layer to intercept suspicious commands
+eval "$(tirith init)"
 
-# setup zsh autouggestions
-source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# integrate fuzzy search on tab autocompletion
+source "$SHELL_PLUGINS/fzf-tab/fzf-tab.plugin.zsh"
+
+# setup zsh shell commands in-line suggestions
+source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # setup zsh syntax highlighting
-source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# Consider the following chars word-separators
+export WORDCHARS="*?[]~=&;!#$%^(){}<>"
 
 # improve history up/down traversal to limit results on the current shell input
 bindkey '\e[A' history-search-backward
@@ -46,22 +33,19 @@ bindkey '\e[B' history-search-forward
 bindkey '^[b' backward-word
 bindkey '^[f' forward-word
 
-# Consider the following chars word-separators
-export WORDCHARS="*?[]~=&;!#$%^(){}<>"
-
 # Delete word by word with option+delete
 bindkey '^[^?' backward-kill-word
 
-### ZOXIDE
+# ------------------------------------------------------------------------------
+# ZOXIDE SETUP
+# ------------------------------------------------------------------------------
 
 # load zoxide
 eval "$(zoxide init zsh)"
 
-### TIRITH
-
-eval "$(tirith init)"
-
-### BAT
+# ------------------------------------------------------------------------------
+# BAT SETUP
+# ------------------------------------------------------------------------------
 
 # setup bat color theme
 export BAT_THEME=gruvbox-dark
@@ -75,7 +59,9 @@ export MANPAGER="sh -c 'col -bx | bat --language=man --style=plain'"
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
-### FZF
+# ------------------------------------------------------------------------------
+# FZF SETUP
+# ------------------------------------------------------------------------------
 
 # set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
@@ -87,11 +73,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # call fzf with a content previewer, using bat for syntax highlighting
 export FZF_DEFAULT_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 
-### NODE
-
-# setup fnm env vars
-# --use-on-cd: automatically run fnm use when a directory contains a `.node-version` or `.nvmrc` file
-eval "$(fnm env --use-on-cd)"
+# ------------------------------------------------------------------------------
+# NODE
+# ------------------------------------------------------------------------------
 
 # define the root directory for node installations
 export FNM_DIR="$HOME/.fnm"
@@ -99,11 +83,16 @@ export FNM_DIR="$HOME/.fnm"
 # resolve `engines.node` field in `package.json` whenever a `.node-version`/`.nvmrc` file is not present
 export FNM_RESOLVE_ENGINES="true"
 
-### ALIASES & FUNCTIONS
+# setup fnm env vars
+# --use-on-cd: automatically run fnm use when a directory contains a `.node-version` or `.nvmrc` file
+eval "$(fnm env --use-on-cd)"
 
-source $HOME/.zalias
-source $HOME/.zfunc
+# ------------------------------------------------------------------------------
+# OTHER
+# ------------------------------------------------------------------------------
 
-### WORK
+# load custom aliases
+source "$HOME/.zalias"
 
-if [ -e "$HOME/.zwork" ]; then source $HOME/.zwork; fi
+# load work-specific shell configurations if any
+if [ -e "$HOME/.zwork" ]; then source "$HOME/.zwork"; fi
