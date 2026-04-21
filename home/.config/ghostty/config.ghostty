@@ -1,15 +1,15 @@
-theme = GruvboxDarkHard
 font-family = VictorMono Nerd Font Mono
-cursor-style = block
+theme = Gruvbox Dark Hard
+background = #0F0E0D
 background-opacity = 0.95
 background-blur-radius = 20
 
 # spread padding evenly across all sides of the terminal window
 window-padding-balance = true
 
-# prevent shell integration to override cursor style
-shell-integration-features = no-cursor
-
 # restore last window size and position
 window-save-state = always
 
+# always display block-styled cursor
+cursor-style = block
+shell-integration-features = no-cursor
