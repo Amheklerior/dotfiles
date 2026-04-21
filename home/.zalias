@@ -26,10 +26,10 @@ alias .....="cd ../../../.."
 alias -- -="cd -"
 alias dl="cd ~/Downloads"
 alias desk="cd ~/Desktop"
-alias personal="cd $PERSONAL"
-alias work="cd $WORK"
-alias dot="cd $DOTFILES_REPO"
-alias sys="cd $SYSENV_REPO"
+alias personal='cd $PERSONAL'
+alias work='cd $WORK'
+alias dot='cd $DOTFILES_REPO'
+alias sys='cd $SYSENV_REPO'
 
 # list views
 alias ls="eza --all --oneline --classify --group-directories-first --icons"
@@ -49,11 +49,8 @@ alias t4="t -L4"
 alias cpwd="pwd | tr -d '\n' | pbcopy"
 
 # list binary and function paths in a more readable format
-# NOTE: bpath fnpath are defined as functions to avoid the premature
-#  evaluation of $PATH and $FPATH that happens when using aliases,
-#  which causes subsequent changes to those variables to not be reflected
-bpath() { echo $PATH | sed 's/:/\n/g'; }
-fnpath() { echo $FPATH | sed 's/:/\n/g'; }
+alias bpath='echo $PATH | sed "s/:/\n/g"'
+alias fnpath='echo $FPATH | sed "s/:/\n/g"'
 
 # Recursively remove Apple meta files
 alias rmds="find . -type f -name '*.DS_Store' -ls -delete"
@@ -66,13 +63,13 @@ alias rmad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
 # ------------------------------------------------------------------------------
 
 # (e)dit (dot)files
-alias edot="$EDITOR $DOTFILES_REPO"
+alias edot='$EDITOR $DOTFILES_REPO'
 
 # (s)ource (dot)files
-alias sdot="source $HOME/.zshenv; source $HOME/.zprofile; source $HOME/.zshrc"
+alias sdot='source $HOME/.zshenv; source $HOME/.zprofile; source $HOME/.zshrc'
 
 # (l)ink (dot)files
-alias ldot="stow -d $DOTFILES_REPO/home -t $HOME . -R"
+alias ldot='stow -d $DOTFILES_REPO/home -t $HOME . -R'
 
 # ------------------------------------------------------------------------------
 # DEVELOPMENT ALIASES
@@ -82,7 +79,7 @@ alias ldot="stow -d $DOTFILES_REPO/home -t $HOME . -R"
 # ------------------------------------------------------------------------------
 
 # editor shortcuts
-alias e="$EDITOR"
+alias e='$EDITOR'
 alias v="nvim"
 alias vim="nvim"
 
