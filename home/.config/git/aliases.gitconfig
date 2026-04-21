@@ -1,0 +1,47 @@
+# ------------------------------------------------------------------------------
+# GIT CUSTOM ALIASES
+# ------------------------------------------------------------------------------
+# These are my custom git aliases.
+#
+# Why not common shell aliases instead?
+# Because I wanted a more idiomatic experience using git. This allows me to
+# ALWAYS write `git` before any git related command, and use these aliases as
+# if they are native git sub-commands. For example, I can now call `git whoami`
+# instead of a `git-whoami` shell alias.
+# ------------------------------------------------------------------------------
+
+[alias]
+  # list all my custom git aliases
+  aliases = !git config --get-regex alias | sed -e 's/alias\\.//' -e 's/ /\\t--- /'
+
+  # ------------------------------------------------- shortcuts for git commands
+
+  # commit amend shortcut
+  amend = commit --amend --reuse-message=HEAD
+
+  # worktree shortcut
+  wt = worktree
+
+  # stash staged files with a comment
+  park = stash --staged -m
+
+  # unstash selected changes (preserve stash entry)
+  peek = !git stash apply $(git stash list | fzf --no-sort | cut -d: -f1)
+
+  # unstash selected changes (delete stash entry)
+  pop = !git stash pop $(git stash list | fzf --no-sort | cut -d: -f1)
+
+  # ------------------------------------------------ git user management utilities
+
+  # check if on personal or work git account
+  whoami = !git config --get-regex 'user.(name|email)' | sed -e 's/user\\.//' -e 's/ /:\\t/'
+
+  # set personal git account name/email
+  set-personal = !git config user.name 'Amheklerior' && git config user.email '49590425+Amheklerior@users.noreply.github.com'
+
+  # set work git account name/email
+  # NOTE:since I'm using my personal git account, I only switch to a more acceptable author name
+  set-work = !git config user.name 'Andrea Amato' && git config user.email '49590425+Amheklerior@users.noreply.github.com'
+
+  # changes author of all commits in the git history (requires calling set-personal/set-work first)
+  switch-author = !git rebase -r --root --exec "git commit --amend --no-edit --reset-author"

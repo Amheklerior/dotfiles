@@ -1,0 +1,35 @@
+# ------------------------------------------------------------------------------
+# GIT-DELTA CONFIGS
+# ------------------------------------------------------------------------------
+# These are the configurations for using git-delta as the default pager for git.
+#
+# For more config options, see the official `git-delta` documentation at
+# https://dandavison.github.io/delta/
+# ------------------------------------------------------------------------------
+
+[include]
+  path = ../delta/theme.config
+
+[core]
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[merge]
+  conflictstyle = zdiff3
+
+[delta]
+  # set color theme (imported above)
+  features = villsau
+
+  # use n/N to navigate between diff sections
+  navigate = true
+
+  # show line numbers
+  line-numbers = true
+
+  # show a header for each file (not individual hunks)
+  file-style = yellow
+  file-decoration-style = yellow ul
+  hunk-header-style = omit
