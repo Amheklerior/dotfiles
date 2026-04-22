@@ -9,8 +9,7 @@
 #   - general quality of life shortcuts (quit, copy working dir, view PATH, ...)
 # ------------------------------------------------------------------------------
 
-# dropin replacements
-alias cat="bat"
+# use ripgrep as a drop-in replacement for `grep`
 alias grep="rg"
 alias rg="rg --colors=match:fg:green"
 
@@ -65,11 +64,11 @@ alias rmad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
 # (e)dit (dot)files
 alias edot='$EDITOR $DOTFILES_REPO'
 
-# (s)ource (dot)files
-alias sdot='source $HOME/.zshenv; source $HOME/.zprofile; source $HOME/.zshrc'
-
 # (l)ink (dot)files
 alias ldot='stow -d $DOTFILES_REPO/home -t $HOME . -R'
+
+# (s)ource (dot)files
+alias sdot='source $HOME/.zshenv; source $HOME/.zprofile; source $HOME/.zshrc'
 
 # ------------------------------------------------------------------------------
 # DEVELOPMENT ALIASES
