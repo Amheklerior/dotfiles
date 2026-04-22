@@ -43,5 +43,8 @@
   # NOTE:since I'm using my personal git account, I only switch to a more acceptable author name
   set-work = !git config user.name 'Andrea Amato' && git config user.email '49590425+Amheklerior@users.noreply.github.com'
 
+  # set none and use default one under this dir tree
+  set-none = !git config unset user.name && git config unset user.email
+
   # changes author of all commits in the git history (requires calling set-personal/set-work first)
   switch-author = !git rebase -r --root --exec "git commit --amend --no-edit --reset-author"

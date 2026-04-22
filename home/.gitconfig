@@ -28,3 +28,13 @@
 
 [include]
   path = .config/git/aliases.gitconfig
+
+# Automatically apply a default git identity based on the project directory tree.
+# WARN: The trailing `/` on the gitdir paths is required to treat the value as a
+#   prefix rather than exact match by git
+
+[includeIf "gitdir:~/dev/personal/"]
+  path = .config/git/identity.personal.gitconfig
+
+[includeIf "gitdir:~/dev/heritage-holdings/"]
+  path = .config/git/identity.work.gitconfig

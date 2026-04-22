@@ -1,0 +1,10 @@
+# ------------------------------------------------------------------------------
+# PERSONAL GIT IDENTITY
+# ------------------------------------------------------------------------------
+# This is the default git user for my personal repos with my pseudonim and an
+# anonymized github email.
+# ------------------------------------------------------------------------------
+
+[user]
+  name = Amheklerior
+  email = 49590425+Amheklerior@users.noreply.github.com
