@@ -8,7 +8,6 @@ export HOMEBREW_CASK_OPTS="--no-quarantine"
 # set PATH, MANPATH, etc. for Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-
 # ------------------------------------------------------------------------------
 # OTHER CONFIGURATION
 # ------------------------------------------------------------------------------

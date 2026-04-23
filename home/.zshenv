@@ -42,7 +42,7 @@ export XDG_RUNTIME_DIR="$HOME/.local/runtime"
 # ------------------------------------------------------------------------------
 # GLOBAL DIR PATHS
 # ------------------------------------------------------------------------------
-# common paths used across shell configs and personal projects
+# common paths used across shell configs and personal projects.
 # ------------------------------------------------------------------------------
 
 export SHELL_PLUGINS="$XDG_CONFIG_HOME/plugins"
@@ -54,7 +54,7 @@ export DOTFILES_REPO="$SYSENV_REPO/dotfiles"
 # ------------------------------------------------------------------------------
 # PRIVACY & TELEMETRY
 # ------------------------------------------------------------------------------
-# defaults to privacy-first behavior for tools that honor telemetry controls
+# defaults to privacy-first behavior for tools that honor telemetry controls.
 # ------------------------------------------------------------------------------
 
 # disable telemetry and data collection for apps and services

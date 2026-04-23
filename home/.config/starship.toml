@@ -19,7 +19,7 @@ format = '[$read_only]($read_only_style)[$path]($style) '
 read_only = '[] '
 read_only_style = 'bold red'
 truncation_symbol = '…/' # custom
-# usually the truncation is at the third dir unless a git repo
+# NOTE: usually the truncation is at the third dir unless a git repo
 # is found, in which case it stops at the repo root dir (defaults
 # to `true`). Worktrees are seen as git repos themselves. Setting
 # this to `false` prevents truncating at the worktree dir, revealing

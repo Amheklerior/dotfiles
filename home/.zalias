@@ -6,7 +6,7 @@
 #   - shortcuts for rapid file system navigation,
 #   - quick-view options for listing directories content,
 #   - structured tree-like views for the file system,
-#   - general quality of life shortcuts (quit, copy working dir, view PATH, ...)
+#   - general quality of life shortcuts (quit, view PATH, ...)
 # ------------------------------------------------------------------------------
 
 # use ripgrep as a drop-in replacement for `grep`
@@ -44,16 +44,9 @@ alias t="tree --git-ignore --ignore-glob .git"
 alias t2="t -L2"
 alias t4="t -L4"
 
-# copy the current working directory to the clipboard
-alias cpwd="pwd | tr -d '\n' | pbcopy"
-
 # list binary and function paths in a more readable format
 alias bpath='echo $PATH | sed "s/:/\n/g"'
 alias fnpath='echo $FPATH | sed "s/:/\n/g"'
-
-# Recursively remove Apple meta files
-alias rmds="find . -type f -name '*.DS_Store' -ls -delete"
-alias rmad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
 
 # ------------------------------------------------------------------------------
 # DOTFILES MANAGEMENT ALIASES
@@ -106,3 +99,14 @@ alias doco="docker compose"
 
 # tail log files with syntax highlighting
 watch() { tail -f "$1" | bat --paging=never -l log; }
+
+# ------------------------------------------------------------------------------
+# UTILITY ALIASES
+# ------------------------------------------------------------------------------
+
+# copy the current working directory to the clipboard
+alias cpwd="pwd | tr -d '\n' | pbcopy"
+
+# Recursively remove Apple meta files
+alias rmds="find . -type f -name '*.DS_Store' -ls -delete"
+alias rmad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"

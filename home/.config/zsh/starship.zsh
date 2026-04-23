@@ -3,8 +3,7 @@
 # ------------------------------------------------------------------------------
 # setup my custom shell prompt with starship.
 #
-# NOTE: actual customizations are defined in the `starship.toml` config file,
-# located in the `~/.config/` directory.
+# NOTE: actual customizations are defined in the `~/.config/starship.toml` file.
 #
 # see: https://github.com/starship/starship
 # ------------------------------------------------------------------------------

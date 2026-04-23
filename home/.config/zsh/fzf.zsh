@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # FZF SETUP
 # ------------------------------------------------------------------------------
-# setup fzf for fuzzy finding, with shell bindings and file previews
+# setup fzf for fuzzy finding, with shell bindings and file previews.
 #
 # see: https://github.com/junegunn/fzf
 # ------------------------------------------------------------------------------
