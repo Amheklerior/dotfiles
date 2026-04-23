@@ -8,7 +8,7 @@
 # ------------------------------------------------------------------------------
 
 [include]
-  path = ../delta/theme.config
+  path = ../delta/theme.gitconfig
 
 [core]
   pager = delta
