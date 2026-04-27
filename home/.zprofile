@@ -22,5 +22,5 @@ typeset -U path fpath
 path+=("$(go env GOPATH)/bin")
 
 # make neovim the default editor
-export editor=nvim
-export git_editor=nvim
+export EDITOR=nvim
+export GIT_EDITOR=nvim
