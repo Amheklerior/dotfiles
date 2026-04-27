@@ -104,3 +104,9 @@ Additionally, I've defined the following git aliases to make my life easier:
 ## The Bigger Picture
 
 They are part of my [System Environment Setup](https://github.com/Amheklerior/sysenv) for quickly setting up new machines.
+
+## License
+
+Licensed under [MIT](LICENCE) © Andrea Amato 2026
+
+_For information, see [TLDR Legal / MIT](https://www.tldrlegal.com/license/mit-license)_
