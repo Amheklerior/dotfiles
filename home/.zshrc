@@ -38,4 +38,4 @@ source "$XDG_CONFIG_HOME/zsh/tirith.zsh"
 source "$HOME/.zalias"
 
 # load work-specific shell configurations if any
-if [ -e "$HOME/.zwork" ]; then source "$HOME/.zwork"; fi
+if [ -f "$HOME/.zwork" ]; then source "$HOME/.zwork"; fi
