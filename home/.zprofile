@@ -2,6 +2,9 @@
 # HOMEBREW SETUP
 # ------------------------------------------------------------------------------
 
+# set the global path for the homebrew bundle file
+export HOMEBREW_BUNDLE_FILE_GLOBAL="$HOME/.config/homebrew/Brewfile"
+
 # bypass the MacOS Gatekeeper for cask apps
 export HOMEBREW_CASK_OPTS="--no-quarantine"
 
