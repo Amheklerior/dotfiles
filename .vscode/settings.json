@@ -1,0 +1,14 @@
+{
+  // apply proper syntax highlighting when using VS Code editor
+  "files.associations": {
+    "*.gitconfig": "ini",
+    "*.ghostty": "ini",
+    ".zalias": "shellscript",
+    ".markdownlintrc": "json"
+  },
+  // silence the "undefined global" warning for `vim`
+  // in Neovim config files when using VS Code editor
+  "Lua.diagnostics.globals": [
+    "vim"
+  ]
+}
