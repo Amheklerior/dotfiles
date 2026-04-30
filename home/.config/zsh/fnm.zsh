@@ -13,6 +13,9 @@ export FNM_DIR="$HOME/.fnm"
 # `.node-version`/`.nvmrc` file is not present
 export FNM_RESOLVE_ENGINES="true"
 
+# search for a valid node version on parent dirs if not found locally
+export FNM_VERSION_FILE_STRATEGY="recursive"
+
 # setup fnm env vars (the `--use-on-cd` option ensures `fnm use` is automatically
 # run when cd-ing into a directory containing a `.node-version` or `.nvmrc` file
 eval "$(fnm env --use-on-cd)"
