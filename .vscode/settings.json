@@ -2,6 +2,7 @@
   // apply proper syntax highlighting when using VS Code editor
   "files.associations": {
     "*.gitconfig": "ini",
+    "**/git/ignore": "ignore",
     "*.ghostty": "ini",
     ".zalias": "shellscript",
     ".markdownlintrc": "json"
