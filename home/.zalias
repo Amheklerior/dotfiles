@@ -58,10 +58,10 @@ alias fnpath='echo $FPATH | sed "s/:/\n/g"'
 alias edot='$EDITOR $DOTFILES_REPO'
 
 # (l)ink (dot)files
-alias ldot='stow -d $DOTFILES_REPO/home -t $HOME . -R'
+alias ldot='stow -R -d $DOTFILES_REPO -t $HOME home'
 
 # (s)ource (dot)files
-alias sdot='source $HOME/.zshenv; source $HOME/.zprofile; source $HOME/.zshrc'
+alias sdot='source $HOME/.zshenv; source $HOME/.zshrc'
 
 # ------------------------------------------------------------------------------
 # DEVELOPMENT ALIASES

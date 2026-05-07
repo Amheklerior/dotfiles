@@ -80,6 +80,7 @@ then composed via `[include]` directives from the root `.gitconfig`:
 - **[`.config/git/delta.gitconfig`](home/.config/git/delta.gitconfig)** — configures [git-delta](https://dandavison.github.io/delta/) as the default pager.
 - **[`.config/delta/theme.gitconfig`](home/.config/delta/theme.gitconfig)** — contains the color theme used by delta.
 - **[`.config/git/lfs.gitconfig`](home/.config/git/lfs.gitconfig)** — Git LFS filter configuration.
+- **[`.config/git/ignore`](home/.config/git/ignore)** — global `.gitignore` file
 
 #### Git identity management
 
@@ -107,6 +108,6 @@ They are part of my [System Environment Setup](https://github.com/Amheklerior/sy
 
 ## License
 
-Licensed under [MIT](LICENCE) © Andrea Amato 2026
+Licensed under [MIT](LICENSE) © Andrea Amato 2026
 
 _For information, see [TLDR Legal / MIT](https://www.tldrlegal.com/license/mit-license)_

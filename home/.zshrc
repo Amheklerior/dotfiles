@@ -1,6 +1,12 @@
+# ensure unique values for the path and fpath arrays
+typeset -U path fpath
+
 # load the completion functions and initialize the completion system.
 # -z: first unload any preloaded completion function.
 autoload -Uz compinit && compinit
+
+# set PATH, MANPATH, etc. for Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # integrate fuzzy search on tab autocompletion
 source "$SHELL_PLUGINS/fzf-tab/fzf-tab.plugin.zsh"
@@ -33,6 +39,7 @@ source "$XDG_CONFIG_HOME/zsh/bat.zsh"
 source "$XDG_CONFIG_HOME/zsh/fzf.zsh"
 source "$XDG_CONFIG_HOME/zsh/fnm.zsh"
 source "$XDG_CONFIG_HOME/zsh/tirith.zsh"
+source "$XDG_CONFIG_HOME/zsh/go.sh"
 
 # load custom aliases
 source "$HOME/.zalias"

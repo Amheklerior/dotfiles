@@ -52,6 +52,17 @@ export SYSENV_REPO="$PERSONAL/sysenv"
 export DOTFILES_REPO="$SYSENV_REPO/dotfiles"
 
 # ------------------------------------------------------------------------------
+# HOMEBREW PATHS
+# ------------------------------------------------------------------------------
+# The default global path for the homebrew bundle file, used when calling
+# `brew bundle` with the `--global` flag. It also export the brew --prefix path
+# in case the .zshenv is loaded in a non-interactive shell.
+# ------------------------------------------------------------------------------
+
+export HOMEBREW_BUNDLE_FILE_GLOBAL="$HOME/.config/homebrew/Brewfile"
+export HOMEBREW_PREFIX="/opt/homebrew"
+
+# ------------------------------------------------------------------------------
 # PRIVACY & TELEMETRY
 # ------------------------------------------------------------------------------
 # defaults to privacy-first behavior for tools that honor telemetry controls.
@@ -62,3 +73,12 @@ export DOTFILES_REPO="$SYSENV_REPO/dotfiles"
 #   - `consent` if set with any other value or not set at all
 # WARN: it's not universally honored/supported across all software
 export DO_NOT_TRACK=1
+
+# ------------------------------------------------------------------------------
+# DEFAULT EDITOR
+# ------------------------------------------------------------------------------
+# set Neovim as the default editor to be used.
+# ------------------------------------------------------------------------------
+
+export EDITOR=nvim
+export GIT_EDITOR=nvim
