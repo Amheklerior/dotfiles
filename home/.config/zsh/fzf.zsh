@@ -10,6 +10,7 @@
 eval "$(fzf --zsh)"
 
 # default command for standalone `fzf` invocations
+# NOTE: used also by fzf-tab to provide seamless experience (see fzf-tab.zsh)
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --no-ignore --exclude .git --strip-cwd-prefix'
 
 # common styling applied to every fzf invocation

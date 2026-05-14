@@ -9,9 +9,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # initialize completion system (compinit)
 source "$XDG_CONFIG_HOME/zsh/completion.zsh"
 
-# integrate fuzzy search on tab autocompletion
-source "$SHELL_PLUGINS/fzf-tab/fzf-tab.plugin.zsh"
-
 # setup zsh in-line ghost suggestions
 source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
@@ -34,6 +31,7 @@ bindkey '\e[B' history-search-forward
 source "$XDG_CONFIG_HOME/zsh/starship.zsh"
 source "$XDG_CONFIG_HOME/zsh/bat.zsh"
 source "$XDG_CONFIG_HOME/zsh/fzf.zsh"
+source "$XDG_CONFIG_HOME/zsh/fzf-tab.zsh"
 source "$XDG_CONFIG_HOME/zsh/fnm.zsh"
 source "$XDG_CONFIG_HOME/zsh/go.sh"
 source "$XDG_CONFIG_HOME/zsh/tirith.zsh"
