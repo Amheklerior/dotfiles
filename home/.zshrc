@@ -1,12 +1,14 @@
 # ensure unique values for the path and fpath arrays
 typeset -U path fpath
 
+# set PATH, MANPATH, FPATH, etc. for Homebrew.
+# WARN: must be placed before compinit so Homebrew-installed completions in
+#  $HOMEBREW_PREFIX/share/zsh/site-functions are visible to the completion system.
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # load the completion functions and initialize the completion system.
 # -z: first unload any preloaded completion function.
 autoload -Uz compinit && compinit
-
-# set PATH, MANPATH, etc. for Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # integrate fuzzy search on tab autocompletion
 source "$SHELL_PLUGINS/fzf-tab/fzf-tab.plugin.zsh"
