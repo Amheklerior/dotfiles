@@ -6,9 +6,8 @@ typeset -U path fpath
 #  $HOMEBREW_PREFIX/share/zsh/site-functions are visible to the completion system.
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# load the completion functions and initialize the completion system.
-# -z: first unload any preloaded completion function.
-autoload -Uz compinit && compinit
+# initialize completion system (compinit)
+source "$XDG_CONFIG_HOME/zsh/completion.zsh"
 
 # integrate fuzzy search on tab autocompletion
 source "$SHELL_PLUGINS/fzf-tab/fzf-tab.plugin.zsh"
