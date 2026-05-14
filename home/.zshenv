@@ -22,7 +22,7 @@ export LC_MEASUREMENT=it_IT.UTF-8
 export LC_TIME=it_IT.UTF-8
 
 # make sure there's no override
-export LC_ALL=
+unset LC_ALL
 
 # ------------------------------------------------------------------------------
 # XDG BASE DIR SPEC
