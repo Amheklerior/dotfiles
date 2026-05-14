@@ -14,9 +14,6 @@ source "$SHELL_PLUGINS/fzf-tab/fzf-tab.plugin.zsh"
 # setup zsh in-line ghost suggestions
 source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
-# setup zsh syntax highlighting
-source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
 # Consider the following chars word-separators
 export WORDCHARS="*?[]~=&;!#$%^(){}<>"
 
@@ -40,6 +37,12 @@ source "$XDG_CONFIG_HOME/zsh/fzf.zsh"
 source "$XDG_CONFIG_HOME/zsh/fnm.zsh"
 source "$XDG_CONFIG_HOME/zsh/tirith.zsh"
 source "$XDG_CONFIG_HOME/zsh/go.sh"
+
+# setup zsh syntax highlighting
+# WARN: must be loaded after all tools that register ZLE widgets (e.g. fzf-tab),
+#  otherwise their highlighting will break.
+# see: https://github.com/zsh-users/zsh-syntax-highlighting#why-must-zsh-syntax-highlightingzsh-be-sourced-at-the-end-of-the-zshrc-file
+source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # load custom aliases
 source "$HOME/.zalias"
