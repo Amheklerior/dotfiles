@@ -32,12 +32,12 @@ bindkey '\e[B' history-search-forward
 
 # load tools
 source "$XDG_CONFIG_HOME/zsh/starship.zsh"
-source "$XDG_CONFIG_HOME/zsh/zoxide.zsh"
 source "$XDG_CONFIG_HOME/zsh/bat.zsh"
 source "$XDG_CONFIG_HOME/zsh/fzf.zsh"
 source "$XDG_CONFIG_HOME/zsh/fnm.zsh"
-source "$XDG_CONFIG_HOME/zsh/tirith.zsh"
 source "$XDG_CONFIG_HOME/zsh/go.sh"
+source "$XDG_CONFIG_HOME/zsh/tirith.zsh"
+source "$XDG_CONFIG_HOME/zsh/zoxide.zsh"
 
 # setup zsh syntax highlighting
 # WARN: must be loaded after all tools that register ZLE widgets (e.g. fzf-tab),
