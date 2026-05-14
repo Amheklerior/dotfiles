@@ -97,7 +97,7 @@ alias p='pnpm'
 alias doco="docker compose"
 
 # tail log files with syntax highlighting
-watch() { tail -f "$1" | bat --paging=never -l log; }
+tlog() { tail -f "$1" | bat --paging=never -l log; }
 
 # ------------------------------------------------------------------------------
 # UTILITY ALIASES
