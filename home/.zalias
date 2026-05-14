@@ -9,8 +9,7 @@
 #   - general quality of life shortcuts (quit, view PATH, ...)
 # ------------------------------------------------------------------------------
 
-# use ripgrep as a drop-in replacement for `grep`
-alias grep="rg"
+# set color defaults for ripgrep
 alias rg="rg --colors=match:fg:green"
 
 # exit shortcuts
