@@ -15,8 +15,7 @@ export MANPAGER="sh -c 'col -bx | bat --language=man --style=plain'"
 # ...only if you experience formatting issues with man pages
 # export MANROFFOPT="-c"
 
-# integrate bat to the `-h` and `--help` command options
-alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+# integrate bat to the `--help` command option
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
 # replace `cat`
