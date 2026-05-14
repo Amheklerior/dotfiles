@@ -83,4 +83,5 @@ export DO_NOT_TRACK=1
 # ------------------------------------------------------------------------------
 
 export EDITOR=nvim
+export VISUAL=nvim
 export GIT_EDITOR=nvim
