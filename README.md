@@ -48,7 +48,6 @@ home/
 │
 │   # shell configuration
 ├── .zalias
-├── .zprofile
 ├── .zshenv
 └── .zshrc
 ```
@@ -56,18 +55,21 @@ home/
 ### zsh shell configs
 
 I used to have one giant `.zshrc` file with all Zsh configurations in there.
-Nowadays, I splitted it up into multiple files listed below (still gotta understand whether I actually like it or not tbh).
+Nowadays, I split it up into multiple files listed below (still gotta understand whether I actually like it or not tbh).
 
-- **[`.zshenv`](home/.zshenv)** — loaded first for _all_ shells. Sets locale/language, [XDG base dirs](https://specifications.freedesktop.org/basedir-spec/latest/), global path variables (`$PERSONAL`, `$WORK`, `$DOTFILES_REPO`, …), and telemetry opt-out.
-- **[`.zprofile`](home/.zprofile)** — loaded for _login_ shells only, after `.zshenv`. Bootstraps Homebrew, extends `$PATH`, and sets the default editor.
-- **[`.zshrc`](home/.zshrc)** — loaded for _interactive_ shells. Initialises the completion system, loads shell plugins (_fzf-tab_, _zsh-autosuggestions_, _zsh-syntax-highlighting_), configures keybindings, sources aliases and tools configurations from the `.config/zsh/` dir.
+- **[`.zshenv`](home/.zshenv)** — loaded first for _all_ shells. Sets locale/language, [XDG base dirs](https://specifications.freedesktop.org/basedir-spec/latest/), global path variables (`$PERSONAL`, `$WORK`, `$DOTFILES_REPO`, …), default editor, and telemetry opt-out.
+- **[`.zshrc`](home/.zshrc)** — loaded for _interactive_ shells. Bootstraps Homebrew, loads shell plugins (_fzf-tab_, _zsh-autosuggestions_, _zsh-syntax-highlighting_), and sources aliases and tool configurations from the `.config/zsh/` dir.
 - **[`.zalias`](home/.zalias)** — all my custom shell aliases, sourced by `.zshrc`.
-- **[`.config/zsh/zoxide.zsh`](home/.config/zsh/zoxide.zsh)**, **[`.config/zsh/bat.zsh`](home/.config/zsh/bat.zsh)**, **[`.config/zsh/fzf.zsh`](home/.config/zsh/fzf.zsh)**, **[`.config/zsh/fnm.zsh`](home/.config/zsh/fnm.zsh)**, **[`.config/zsh/tirith.zsh`](home/.config/zsh/tirith.zsh)** - tool-specific setup configuration files, sourced by `.zshrc`.
+- **[`.config/zsh/completion.zsh`](home/.config/zsh/completion.zsh)** — initialises the zsh completion system (`compinit`) with a 24h cache optimisation to keep shell startup fast.
+- **[`.config/zsh/keybindings.zsh`](home/.config/zsh/keybindings.zsh)** — shell keybinding configuration.
+- **[`.config/zsh/dev.zsh`](home/.config/zsh/dev.zsh)** — dev environment setup: exports `$GOPATH` and initialises [fnm](https://github.com/Schniz/fnm) for Node.js version management.
+- **[`.config/zsh/fzf.zsh`](home/.config/zsh/fzf.zsh)**, **[`.config/zsh/fzf-tab.zsh`](home/.config/zsh/fzf-tab.zsh)** — fzf keybindings/config and fzf-tab integration (replaces the default completion menu with fzf).
+- **[`.config/zsh/bat.zsh`](home/.config/zsh/bat.zsh)**, **[`.config/zsh/zoxide.zsh`](home/.config/zsh/zoxide.zsh)**, **[`.config/zsh/tirith.zsh`](home/.config/zsh/tirith.zsh)** — tool-specific setup configuration files.
 
 #### shell prompt configs
 
 I use [Starship](https://starship.rs) as custom cross-shell prompt.
-The actual configurations for starship are defined wihin the **[`.config/starship.toml`](home/.config/starship.toml)** file,
+The actual configurations for starship are defined within the **[`.config/starship.toml`](home/.config/starship.toml)** file,
 while its integration setup with the zsh shell is done by the **[`.config/zsh/starship.zsh`](home/.config/zsh/starship.zsh)** file, sourced by `.zshrc`.
 
 ### git configs
