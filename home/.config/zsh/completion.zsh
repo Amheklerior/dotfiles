@@ -15,14 +15,12 @@
 # NOTE: the cache file is compiled to bytecode so `compinit -C` calls can skip
 #  the parser too in reading its content.
 #
-# WARN: it must be sourced after all tools (like homebrew) have populated FPATH.
-#
 # ------------------------------------------------------------------------------
 
 autoload -Uz compinit
 zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
 
-# NOTE: fast-track initialization if the dump file has less than 24h.
+# fast-track initialization if the dump file has less than 24h.
 if [[ -n $zcompdump(#qN.mh+24) ]]; then
   compinit
   [[ ! -f $zcompdump.zwc || $zcompdump -nt $zcompdump.zwc ]] && zcompile $zcompdump
