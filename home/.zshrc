@@ -12,20 +12,8 @@ source "$XDG_CONFIG_HOME/zsh/completion.zsh"
 # setup zsh in-line ghost suggestions
 source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
-# Consider the following chars word-separators
-export WORDCHARS="*?[]~=&;!#$%^(){}<>"
-
-# Allow moving back and forth across words with option+left/right
-# NOTE: Ghostty terminal emulator uses lowercase chars (while others use uppercase chars)
-bindkey '^[b' backward-word
-bindkey '^[f' forward-word
-
-# Delete word by word with option+delete
-bindkey '^[^?' backward-kill-word
-
-# improve history up/down traversal to limit results on the current shell input
-bindkey '\e[A' history-search-backward
-bindkey '\e[B' history-search-forward
+# setup zsh keybindings
+source "$XDG_CONFIG_HOME/zsh/keybindings.zsh"
 
 # load tools
 source "$XDG_CONFIG_HOME/zsh/starship.zsh"
@@ -38,8 +26,7 @@ source "$XDG_CONFIG_HOME/zsh/tirith.zsh"
 source "$XDG_CONFIG_HOME/zsh/zoxide.zsh"
 
 # setup zsh syntax highlighting
-# WARN: must be loaded after all tools that register ZLE widgets (e.g. fzf-tab),
-#  otherwise their highlighting will break.
+# WARN: must be loaded after all tools that register ZLE widgets (e.g. fzf-tab)
 # see: https://github.com/zsh-users/zsh-syntax-highlighting#why-must-zsh-syntax-highlightingzsh-be-sourced-at-the-end-of-the-zshrc-file
 source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
@@ -47,4 +34,4 @@ source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.z
 source "$HOME/.zalias"
 
 # load work-specific shell configurations if any
-if [ -f "$HOME/.zwork" ]; then source "$HOME/.zwork"; fi
+[ -f "$HOME/.zwork" ] && source "$HOME/.zwork"
