@@ -65,6 +65,7 @@ Nowadays, I split it up into multiple files listed below (still gotta understand
 - **[`.config/zsh/dev.zsh`](home/.config/zsh/dev.zsh)** — dev environment setup: exports `$GOPATH` and initialises [fnm](https://github.com/Schniz/fnm) for Node.js version management.
 - **[`.config/zsh/fzf.zsh`](home/.config/zsh/fzf.zsh)**, **[`.config/zsh/fzf-tab.zsh`](home/.config/zsh/fzf-tab.zsh)** — fzf keybindings/config and fzf-tab integration (replaces the default completion menu with fzf).
 - **[`.config/zsh/bat.zsh`](home/.config/zsh/bat.zsh)**, **[`.config/zsh/zoxide.zsh`](home/.config/zsh/zoxide.zsh)**, **[`.config/zsh/tirith.zsh`](home/.config/zsh/tirith.zsh)** — tool-specific setup configuration files.
+- **[`.config/zsh/docker.zsh`](home/.config/zsh/docker.zsh)** — docker setup: points `$DOCKER_HOST` to the [colima](https://github.com/abiosoft/colima) VM socket and defines the aliases to manage it on demand.
 
 #### shell prompt configs
 

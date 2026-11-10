@@ -24,6 +24,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # setup shell
 ZDIR="$XDG_CONFIG_HOME/zsh"
 source "$ZDIR/dev.zsh"
+source "$ZDIR/docker.zsh"
 source "$ZDIR/completion.zsh"
 source "$ZDIR/keybindings.zsh"
 source "$ZDIR/starship.zsh"
